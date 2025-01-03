@@ -1,20 +1,20 @@
 import React from 'react';
 // ...existing code...
 
-const NavigationBar = () => {
+const Dashboard = () => {
     // ...existing code...
 
     const handleClick = () => {
-        console.log('임시 파일일');
+        console.log('Dashboard button clicked!');
     };
 
     return (
-        <nav>
+        <div>
             // ...existing code...
-            <button onClick={handleClick}>New Button</button>
+            <button onClick={handleClick}>Dashboard Button</button>
             // ...existing code...
-        </nav>
+        </div>
     );
 };
 
-export default NavigationBar;
+export default Dashboard;
