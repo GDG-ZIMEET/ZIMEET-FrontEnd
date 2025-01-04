@@ -29,7 +29,7 @@ const Content = styled.div`
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: black;
+  background-color: white;
 `;
 
 interface SmartphoneScreenProps {
