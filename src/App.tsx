@@ -1,27 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import Join from './pages/Authentication/Join/Join';
-import Login from './pages/Authentication/Login/Login';
-import Booth from './pages/Booth/Booth';
-import Chatting from './pages/Chatting/Chatting';
-import Meeting22 from './pages/Meeting22/Meeting22';
-import MeetingRandom from './pages/MeetingRandom/MeetingRandom';
 import MainScreen from './components/MainScreen';
+import { ThemeProvider } from 'styled-components';
+import Routers from './pages/Routers';
 
 const App: React.FC = () => {
   return (
     <RecoilRoot>
       <Router>
         <MainScreen>
-          <Routes>
-            <Route path="/join" element={<Join />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/booth" element={<Booth />} />
-            <Route path="/chatting" element={<Chatting />} />
-            <Route path="/meeting22" element={<Meeting22 />} />
-            <Route path="/meeting-random" element={<MeetingRandom />} />
-          </Routes>
+            <Routers />
         </MainScreen>
       </Router>
     </RecoilRoot>
