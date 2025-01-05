@@ -4,8 +4,15 @@ import { RecoilRoot } from 'recoil';
 import MainScreen from './components/MainScreen';
 import { ThemeProvider } from 'styled-components';
 import Routers from './pages/Routers';
+import { init } from '@amplitude/analytics-browser';
 
 const App: React.FC = () => {
+    const amplitudeKey =
+        process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
+            ? process.env.REACT_APP_AMPLITUDE_DEV_KEY || ''
+            : process.env.REACT_APP_AMPLITUDE_PRODUCTION_KEY || '';
+    init(amplitudeKey);
+
   return (
     <RecoilRoot>
       <Router>
