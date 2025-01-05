@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MeetingRodingContainer = styled.div`
-    padding: 8% 0% 0;
+    padding: 8% 3% 0;
     background-color: #FFFFFF;
     height: 100%;
     display: flex;

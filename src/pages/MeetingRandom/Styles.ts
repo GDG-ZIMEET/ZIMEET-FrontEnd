@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const MeetingRandomContainer = styled.div`
-    padding: 8% 0% 0;
+    padding: 8% 3% 0;
     background-color: #FFFFFF;
     height: 100%;
     display: flex;
     flex-direction: column;
+    border: 1px solid rgb(157, 29, 29);
 `;
 
 export const MeetingRandomTitle = styled.h1`
