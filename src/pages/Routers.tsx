@@ -6,6 +6,7 @@ import Booth from './Booth/Booth';
 import Chatting from './Chatting/Chatting';
 import Meeting22 from './Meeting22/Meeting22';
 import MeetingRandom from './MeetingRandom/MeetingRandom';
+import MeetingRoading from './MeetingRandom/MeetingRoading/MeetingRoading';
 
 const Routers: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const Routers: React.FC = () => {
       <Route path="/chatting" element={<Chatting />} />
       <Route path="/meeting22" element={<Meeting22 />} />
       <Route path="/meeting-random" element={<MeetingRandom />} />
+      <Route path="/meetingRoading" element={<MeetingRoading />} />
     </Routes>
   );
 };

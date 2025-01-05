@@ -5,15 +5,39 @@ export const MakeTeamLayout = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 23% 0 0 0; 
+  padding: 18% 0 0 0; 
   height: 55%;
 `;
 
 export const TeamRow = styled.div`
   display: flex;
-  height: 40%;
+  height: 50%;
   width: 100%;
   justify-content: space-between; 
+`;
+
+export const GirlComponent = styled.div.attrs<{ show: boolean }>(({ show }) => ({
+  style: {
+    visibility: show ? 'visible' : 'hidden',
+  },
+}))<{ show: boolean }>`
+  font-size: 15px;
+  color: #000000;
+  margin-bottom: 2%;
+  font-weight: bold;
+  align-self: flex-start;
+`;
+
+export const BoyComponent = styled.div.attrs<{ show: boolean }>(({ show }) => ({
+  style: {
+    visibility: show ? 'visible' : 'hidden',
+  },
+}))<{ show: boolean }>`
+  font-size: 15px;
+  color: #000000;
+  margin-bottom: 2%;
+  font-weight: bold;
+  align-self: flex-start;
 `;
 
 export const FirstPerson = styled.div`

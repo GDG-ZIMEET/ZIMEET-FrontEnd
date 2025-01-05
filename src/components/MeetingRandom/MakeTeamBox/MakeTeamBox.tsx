@@ -1,15 +1,22 @@
 import React from 'react';
 import * as S from './Styles';
 
-const MakeTeamBox: React.FC = () => {
+interface MakeTeamBoxProps {
+  showGender: boolean;
+  isLoading: boolean;
+}
+
+const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ showGender, isLoading }) => {
   return (
     <S.MakeTeamLayout>
+      <S.GirlComponent show={showGender}>여자</S.GirlComponent>
       <S.TeamRow>
         <S.FirstPerson>👻</S.FirstPerson>
         <S.SecondPerson>😺</S.SecondPerson>
-        <S.ThirdPerson>🐴</S.ThirdPerson>
+        <S.ThirdPerson>{isLoading ? '❔' : '🐴'}</S.ThirdPerson>
       </S.TeamRow>
-      <S.Loding>💓</S.Loding>
+      <S.Loding>{isLoading ? '💗' : '💓'}</S.Loding>
+      <S.BoyComponent show={showGender}>남자</S.BoyComponent>
       <S.TeamRow>
         <S.FourthPerson>🐕</S.FourthPerson>
         <S.FifthPerson>⚾</S.FifthPerson>

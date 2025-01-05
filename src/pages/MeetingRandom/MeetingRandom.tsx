@@ -10,10 +10,10 @@ const MeetingRandom: React.FC = () => {
     <MeetingRandomContainer>
       <MeetingRandomTitle>팀 갤러리</MeetingRandomTitle>
       <TypeButton />
-      <MakeTeamBox />
-      <Help />
+      <MakeTeamBox showGender={false} isLoading={false} />
+      <Help showContainer={true} />
       <AddPeople>친구도 얻고, 연인도 얻고!</AddPeople>
-      <JoinRandomMeetingButton />
+      <JoinRandomMeetingButton isRoading={false} />
     </MeetingRandomContainer>
   );
 };

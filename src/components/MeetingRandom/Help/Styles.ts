@@ -10,7 +10,7 @@ export const HelpLayout = styled.div`
   width: 100%;
 `;
 
-export const HelpContainer = styled.div`
+export const HelpContainer = styled.div<{ show: boolean }>`
   display: flex;
   font-size: 13px;
   color: #000000;
@@ -20,5 +20,6 @@ export const HelpContainer = styled.div`
   border-radius: 8%;
   justify-content: center;
   align-items: center;
-  width : 27%;
+  width: 27%;
+  visibility: ${({ show }) => (show ? 'visible' : 'hidden')}; 
 `;
