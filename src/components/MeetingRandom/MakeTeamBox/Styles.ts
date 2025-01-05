@@ -18,7 +18,7 @@ export const TeamRow = styled.div`
 
 export const FirstPerson = styled.div`
   font-size: 40px;
-  background-color: #E5E5E5;
+  background-color: #F2F2F2;
   height: 100%; 
   flex: 1; 
   display: flex;
