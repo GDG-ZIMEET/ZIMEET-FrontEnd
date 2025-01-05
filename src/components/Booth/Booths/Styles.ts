@@ -69,10 +69,10 @@ export const Booth = styled.div`
   flex-direction: column;
   align-items: center; 
   justify-content: center;
-  transition: background-color 0.3s ease; // 부드러운 전환 효과 추가
+  transition: background-color 0.3s ease; 
 
   &:hover {
-    background-color: ${props => darken(0.1, props.color || '#000')}; // 커서가 있을 때 살짝 어둡게
+    background-color: ${props => darken(0.1, props.color || '#000')}; 
   }
 `;
 
@@ -101,6 +101,6 @@ export const Andrea = styled.div`
   font-size: 13px;
   font-weight: bold;
   line-height: 1.3; 
-  position: sticky; // 글자가 밑으로 내려가지 않도록 설정
+  position: sticky; 
   top: 0;
 `;

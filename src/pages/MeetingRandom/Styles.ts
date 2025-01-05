@@ -6,7 +6,6 @@ export const MeetingRandomContainer = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgb(157, 29, 29);
 `;
 
 export const MeetingRandomTitle = styled.h1`
