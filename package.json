@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@amplitude/analytics-browser": "^2.11.11",
     "@types/styled-components": "^5.1.34",
     "axios": "^1.7.9",
     "cra-template-typescript": "1.2.0",
