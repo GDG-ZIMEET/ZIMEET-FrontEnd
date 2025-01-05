@@ -1,10 +1,14 @@
 import React from 'react';
 import * as S from './Styles';
 
-const Help: React.FC = () => {
+interface HelpProps {
+  showContainer: boolean;
+}
+
+const Help: React.FC<HelpProps> = ({ showContainer }) => {
   return (
     <S.HelpLayout>
-      <S.HelpContainer>🗨️도움말</S.HelpContainer>
+      {showContainer && <S.HelpContainer show={showContainer}>🗨️도움말</S.HelpContainer>}
     </S.HelpLayout> 
   );
 };
