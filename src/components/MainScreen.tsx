@@ -12,7 +12,7 @@ const PhoneContainer = styled.div`
 const PhoneScreen = styled.div`
   height: 100%;
   width: auto;
-  background-color: white;
+  background-color: #FFFFFF;
   overflow: hidden;
   position: relative;
   aspect-ratio: 393 / 852;
@@ -29,7 +29,7 @@ const Content = styled.div`
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: white;
+  background-color: #FFFFFF;
 `;
 
 interface SmartphoneScreenProps {
