@@ -2,9 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import MainScreen from './components/MainScreen';
-import { ThemeProvider } from 'styled-components';
-import Routers from './pages/Routers';
 import { init } from '@amplitude/analytics-browser';
+import Routers from './pages/Routers';
 
 const App: React.FC = () => {
     const amplitudeKey =

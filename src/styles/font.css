@@ -65,3 +65,8 @@
     font-family: 'tossface';
     src: url('../assets/fonts/TossFaceFontMac.ttf') format('truetype');;
 }
+
+@font-face {
+	font-family: 'Futura XBlk BT';
+	src: url('../assets/fonts/FuturaXBlkBT.ttf') format('truetype');
+  }

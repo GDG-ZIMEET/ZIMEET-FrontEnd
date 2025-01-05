@@ -40,3 +40,11 @@ export { ReactComponent as RedApple } from './emoticon/red apple.svg';
 export { ReactComponent as Rocket } from './emoticon/rocket.svg';
 export { ReactComponent as Rose } from './emoticon/rose.svg';
 export { ReactComponent as Tulip } from './emoticon/tulip.svg';
+
+// 부스 아이콘
+export { ReactComponent as G } from './booth/G.svg';
+export { ReactComponent as GGrey } from './booth/G grey.svg';
+export { ReactComponent as DGoCCUK } from './booth/DGoC CUK.svg';
+export { ReactComponent as D } from './booth/D.svg';
+export { ReactComponent as Ating } from './booth/ating.svg';
+export { ReactComponent as ateway } from './booth/ateway.svg';
