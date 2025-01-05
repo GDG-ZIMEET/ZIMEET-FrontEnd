@@ -12,7 +12,7 @@ export const TypeComponent = styled.div`
 `;
 
 const buttonStyles = css<{ selected: boolean }>`
-  background-color: ${({ selected }) => (selected ? 'black' : '#E5E5E5')};
+  background-color: ${({ selected }) => (selected ? 'black' : '#F2F2F2')};
   color: ${({ selected }) => (selected ? 'white' : 'black')};
   font-weight: bold;
   text-align: center;
