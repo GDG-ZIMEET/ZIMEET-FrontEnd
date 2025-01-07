@@ -1,50 +1,30 @@
 
 //부스배치
-export { ReactComponent as BigLogo } from './booth/bigLogo.svg';
-export { ReactComponent as Check } from './booth/check.svg';
-export { ReactComponent as CircleLogo } from './booth/circleLogo.svg';
-export { ReactComponent as Hand } from './booth/hand.svg';
-export { ReactComponent as HeaderLogo } from './booth/headerLogo.svg';
-export { ReactComponent as PuppleGirl } from './booth/puppleGirl.svg';
+export { ReactComponent as BigLogo } from './icon/booth/BigLogo.svg';
+export { ReactComponent as CircleLogo } from './icon/booth/CircleLogo.svg';
+export { ReactComponent as HeaderLogo } from './icon/booth/headerLogo.svg';
 
 //랜덤미팅
-export { ReactComponent as Bird } from './randomMeeting/bird.svg';
-export { ReactComponent as SpeechBubble } from './randomMeeting/speechBubble.svg';
+export { ReactComponent as SpeechBubble } from './icon/MeetingRandom/speechBubble.svg';
 
 //네비게이션바
-export { ReactComponent as Chatting } from './navigation/chatting.svg';
-export { ReactComponent as Home } from './navigation/home.svg';
-export { ReactComponent as HomeWhite } from './navigation/homeWhite.svg';
-export { ReactComponent as Meeting } from './navigation/meeting.svg';
-export { ReactComponent as MeetingHeart } from './navigation/meetingHeart.svg';
-export { ReactComponent as MyInformation } from './navigation/myInformation.svg';
+export { ReactComponent as Chatting } from './icon/navigationbar/chatting.svg';
+export { ReactComponent as Home } from './icon/navigationbar/home.svg';
+export { ReactComponent as HomeWhite } from './icon/navigationbar/homeWhite.svg';
+export { ReactComponent as Meeting } from './icon/navigationbar/meeting.svg';
+export { ReactComponent as MeetingHeart } from './icon/navigationbar/meetingHeart.svg';
+export { ReactComponent as MyInformation } from './icon/navigationbar/myinformation.svg';
 
-
-//이모티콘 아이콘
-export { ReactComponent as Baseball } from './emoticon/baseball.svg';
-export { ReactComponent as Candy } from './emoticon/candy.svg';
-export { ReactComponent as Cat } from './emoticon/cat.svg';
-export { ReactComponent as CherryBlossom } from './emoticon/cherry blossom.svg';
-export { ReactComponent as Chocolate } from './emoticon/chocolate.svg';
-export { ReactComponent as Dog } from './emoticon/dog.svg';
-export { ReactComponent as Drum } from './emoticon/drum.svg';
-export { ReactComponent as Fire} from './emoticon/fire.svg';
-export { ReactComponent as Ghost } from './emoticon/ghost.svg';
-export { ReactComponent as GreenApple } from './emoticon/green apple.svg';
-export { ReactComponent as Heart } from './emoticon/heart.svg';
-export { ReactComponent as Horse } from './emoticon/horse.svg';
-export { ReactComponent as Medal } from './emoticon/medal.svg';
-export { ReactComponent as Mike } from './emoticon/mike.svg';
-export { ReactComponent as Planet } from './emoticon/planet.svg';
-export { ReactComponent as RedApple } from './emoticon/red apple.svg';
-export { ReactComponent as Rocket } from './emoticon/rocket.svg';
-export { ReactComponent as Rose } from './emoticon/rose.svg';
-export { ReactComponent as Tulip } from './emoticon/tulip.svg';
 
 // 부스 아이콘
-export { ReactComponent as G } from './booth/G.svg';
-export { ReactComponent as GGrey } from './booth/G grey.svg';
-export { ReactComponent as DGoCCUK } from './booth/DGoC CUK.svg';
-export { ReactComponent as D } from './booth/D.svg';
-export { ReactComponent as Ating } from './booth/ating.svg';
-export { ReactComponent as ateway } from './booth/ateway.svg';
+export { ReactComponent as G } from './icon/booth/G.svg';
+export { ReactComponent as GGrey } from './icon/booth/G grey.svg';
+export { ReactComponent as DGoCCUK } from './icon/booth/DGoCCUK.svg';
+export { ReactComponent as D } from './icon/booth/D.svg';
+export { ReactComponent as DGrey } from './icon/booth/D grey.svg';
+export { ReactComponent as Ating } from './icon/booth/ating.svg';
+export { ReactComponent as ateway } from './icon/booth/ateway.svg';
+
+
+//back
+export { ReactComponent as Back } from './icon/Vector.svg';
