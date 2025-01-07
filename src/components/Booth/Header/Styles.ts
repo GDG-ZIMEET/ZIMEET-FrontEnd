@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import * as I from '../../../assets/icon';
+import * as I from '../../../assets/Icons';
 
 export const HeaderLayout = styled.div`
   display: flex;

@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './Styles';
-import { boothsData, getBoothColor, getTextColor } from './boothsData';
+import { boothsData } from './boothsData';
+import Booth from './Booth';
 
 const Booths: React.FC = () => {
   return (
@@ -10,10 +11,7 @@ const Booths: React.FC = () => {
         <S.BoothTime>부스 운영 시간 : 10 : 00 ~ 16 : 00</S.BoothTime>
         <S.Booths>
           {boothsData.map((booth, index) => (
-            <S.Booth key={index} color={getBoothColor(booth.category)}>
-              <S.BoothWho color={getTextColor(booth.category)}>{booth.who}</S.BoothWho>
-              <S.BoothTitle>{booth.title}</S.BoothTitle>
-            </S.Booth>
+            <Booth key={index} booth={booth} />
           ))}
         </S.Booths>
       </S.BoothsContainer>
