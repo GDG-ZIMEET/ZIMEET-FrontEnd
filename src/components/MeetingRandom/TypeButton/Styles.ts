@@ -21,7 +21,7 @@ const buttonStyles = css<{ selected: boolean }>`
   font-size: 13px; 
   cursor: pointer;
   border: none;
-  border-radius: 15%;
+  border-radius: 6px;
   height: 100%;
   width: 100%; 
   white-space: nowrap;

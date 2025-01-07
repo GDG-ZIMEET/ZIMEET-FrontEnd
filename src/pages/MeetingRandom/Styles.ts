@@ -14,11 +14,19 @@ export const MeetingRandomTitle = styled.h1`
     font-weight: bold; 
 `;
 
-export const AddPeople = styled.div`
-  font-size: 15px;
-  color: #333;
+export const TicketCount = styled.div`
+  font-size: 12px;
+  color: #000000;
   align-self: center;
   font-weight: bold;
   margin: 0;
+  background-color: #F2F2F2;
+  height: 3%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  line-height: 1; 
 `;
 
