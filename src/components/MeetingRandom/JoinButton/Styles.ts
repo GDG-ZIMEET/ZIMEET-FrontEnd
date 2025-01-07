@@ -9,7 +9,7 @@ export const Button = styled.button<{ isRoading: boolean }>`
   font-size: 17px;
   border-radius: 10px; 
   cursor: pointer;
-  margin: 3% 0;
+  margin: 3.5% 0;
   height: 7%;
 
   &:hover {

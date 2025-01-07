@@ -1,17 +1,16 @@
 import styled from 'styled-components';
 
 export const NavBarContainer = styled.nav`
-  position: absolute;
+  position: sticky;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 70px;
+  height: 10%;
   background-color: #ffffff;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border-top: 1px solid #f0f0f0;
-  z-index: 10;
 `;
 
 export const NavItem = styled.div`

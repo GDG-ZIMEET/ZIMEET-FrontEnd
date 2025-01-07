@@ -14,12 +14,12 @@ export const Modallayout = styled.div`
 
 export const ModalContent = styled.div`
   background: #ffffff;
-  padding: 3%;
+  padding: 4%;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 83%; 
-  height: 28%;
+  height: 34%;
 `;
 
 export const ModalTitle = styled.h2`
@@ -65,7 +65,7 @@ export const ButtonBox = styled.div`
 `;
 
 export const ConfirmButton = styled.button`
-  padding: 10px 20px;
+  padding: 4% 2%;
   background: red;
   color: #ffffff;
   font-weight: bold;
@@ -76,7 +76,7 @@ export const ConfirmButton = styled.button`
 `;
 
 export const CancelButton = styled.button`
-  padding: 10px 20px;
+  padding: 4% 2%;
   background: #F2F2F2;
   color: #A6A6A6;
   border: none;

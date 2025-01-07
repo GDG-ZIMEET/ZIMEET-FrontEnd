@@ -19,9 +19,9 @@ export const TicketCount = styled.div`
   color: #000000;
   align-self: center;
   font-weight: bold;
-  margin: 0;
+  margin-top: 3%;
   background-color: #F2F2F2;
-  height: 3%;
+  height: 4%;
   width: 30%;
   display: flex;
   align-items: center;
