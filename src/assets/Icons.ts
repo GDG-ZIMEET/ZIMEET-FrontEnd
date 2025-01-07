@@ -24,7 +24,10 @@ export { ReactComponent as D } from './icon/booth/D.svg';
 export { ReactComponent as DGrey } from './icon/booth/D grey.svg';
 export { ReactComponent as Ating } from './icon/booth/ating.svg';
 export { ReactComponent as ateway } from './icon/booth/ateway.svg';
-
+export { ReactComponent as Check } from './icon/booth/check.svg';
 
 //back
 export { ReactComponent as Back } from './icon/Vector.svg';
+
+//posterexample
+export { ReactComponent as PosterExample } from './icon/posterExample.svg';

@@ -6,6 +6,7 @@ export const HelpLayout = styled.div`
   height: 100%;
   border: 1px solid #f2f2f2;  
   background-color: #ffffff;
+  padding: 3%;
 `;
 
 export const Header = styled.div`
