@@ -1,20 +1,43 @@
-import React from 'react';
-import { MeetingRandomContainer, MeetingRandomTitle, AddPeople } from './Styles';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as S from './Styles';
 import TypeButton from '../../components/MeetingRandom/TypeButton/TypeButton';
 import MakeTeamBox from '../../components/MeetingRandom/MakeTeamBox/MakeTeamBox';
 import Help from '../../components/MeetingRandom/Help/Help';
 import JoinRandomMeetingButton from '../../components/MeetingRandom/JoinButton/JoinRandomMeetingButton';
+import Modal from '../../components/MeetingRandom/Modal/Modal';
 
 const MeetingRandom: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleJoinClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleConfirm = () => {
+    setIsModalOpen(false);
+    navigate('/meetingRoading');
+  };
+
+  const handleHelpClick = () => {
+    navigate('/help');
+  };
+
   return (
-    <MeetingRandomContainer>
-      <MeetingRandomTitle>팀 갤러리</MeetingRandomTitle>
+    <S.MeetingRandomContainer>
+      <S.MeetingRandomTitle>팀 갤러리</S.MeetingRandomTitle>
       <TypeButton />
-      <MakeTeamBox showGender={false} isLoading={false} />
-      <Help showContainer={true} />
-      <AddPeople>친구도 얻고, 연인도 얻고!</AddPeople>
-      <JoinRandomMeetingButton isRoading={false} />
-    </MeetingRandomContainer>
+      <MakeTeamBox showGender={false} isLoading={false} showExplain={true} />
+      <Help showContainer={true} onClick={handleHelpClick} />
+      <S.TicketCount>남은 티켓 : 2개</S.TicketCount>
+      <JoinRandomMeetingButton isRoading={false} onClick={handleJoinClick} />
+      {isModalOpen && <Modal onClose={handleCloseModal} onConfirm={handleConfirm} />}
+    </S.MeetingRandomContainer>
   );
 };
 

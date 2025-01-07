@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Button = styled.button<{ isRoading: boolean }>`
   background-color: ${({ isRoading }) => (isRoading ? '#F2F2F2' : '#000000')};
@@ -12,6 +13,6 @@ export const Button = styled.button<{ isRoading: boolean }>`
   height: 7%;
 
   &:hover {
-    background-color: #ccc;
+    background-color: ${({ isRoading }) => (isRoading ? darken(0.1, '#F2F2F2') : darken(0.1, '#000000'))}; 
   }
 `;

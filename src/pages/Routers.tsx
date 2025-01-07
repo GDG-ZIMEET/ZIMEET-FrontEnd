@@ -7,6 +7,7 @@ import Chatting from './Chatting/Chatting';
 import Meeting22 from './Meeting22/Meeting22';
 import MeetingRandom from './MeetingRandom/MeetingRandom';
 import MeetingRoading from './MeetingRandom/MeetingRoading/MeetingRoading';
+import Help from './MeetingRandom/Help/Help';
 
 const Routers: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const Routers: React.FC = () => {
       <Route path="/meeting22" element={<Meeting22 />} />
       <Route path="/meeting-random" element={<MeetingRandom />} />
       <Route path="/meetingRoading" element={<MeetingRoading />} />
+      <Route path="/help" element={<Help />} />
     </Routes>
   );
 };

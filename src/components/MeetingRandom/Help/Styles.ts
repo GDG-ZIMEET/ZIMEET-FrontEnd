@@ -5,21 +5,19 @@ export const HelpLayout = styled.div`
   justify-content: center;
   align-items: center;
   padding: 5%;
-  margin-top: 5%;
+  margin-top: 1%;
   height: 10%;
   width: 100%;
 `;
 
 export const HelpContainer = styled.div<{ show: boolean }>`
-  display: flex;
-  font-size: 13px;
-  color: #000000;
-  font-weight: bold;
-  height: 80%;
-  box-shadow: 0 4px 8px rgba(0.1, 0.1, 0.1, 0.1);
-  border-radius: 8%;
-  justify-content: center;
-  align-items: center;
-  width: 27%;
-  visibility: ${({ show }) => (show ? 'visible' : 'hidden')}; 
+  display: ${props => (props.show ? 'block' : 'none')};
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
 `;
