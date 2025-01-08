@@ -3,13 +3,7 @@ import styled, { css } from 'styled-components';
 export const TypeLayout = styled.div`
   display: flex;
   padding: 1% 0 0 0;
-
-  @media (max-width: 402px) {
-    height: 7.5%;}
-
-  @media (min-width: 403px) {
-    height: 13%;
-  }
+  height: 6.5%;
 `;
 
 export const TypeComponent = styled.div`
