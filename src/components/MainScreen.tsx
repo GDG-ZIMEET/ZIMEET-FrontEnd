@@ -50,7 +50,6 @@ const MainScreen: React.FC<SmartphoneScreenProps> = ({ children }) => {
     <PhoneContainer>
       <PhoneScreen>
         <Content>{children}</Content>
-        {!excludeNavBarPaths.includes(location.pathname) && <NavigationBar />}
       </PhoneScreen>
     </PhoneContainer>
   );

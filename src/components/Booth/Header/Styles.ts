@@ -4,7 +4,6 @@ import * as I from '../../../assets/Icons';
 export const HeaderLayout = styled.div`
   display: flex;
   height: 7%;
-  height: 50px;
   background-color: #ffffff;
   align-items: flex-end; 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
+import NavigationBar from 'components/NavigationBar/NavigationBar';
 
 const Help: React.FC = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Help: React.FC = () => {
       <S.notionContainer>
         <S.notionTitle>노션웹뷰</S.notionTitle>
       </S.notionContainer>
+      <NavigationBar />
     </S.HelpLayout>
   );
 };

@@ -6,6 +6,7 @@ import MakeTeamBox from '../../components/MeetingRandom/MakeTeamBox/MakeTeamBox'
 import Help from '../../components/MeetingRandom/Help/Help';
 import JoinRandomMeetingButton from '../../components/MeetingRandom/JoinButton/JoinRandomMeetingButton';
 import Modal from '../../components/MeetingRandom/Modal/Modal';
+import NavigationBar from 'components/NavigationBar/NavigationBar';
 
 const MeetingRandom: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,6 +38,7 @@ const MeetingRandom: React.FC = () => {
       <S.TicketCount>남은 티켓 : 2개</S.TicketCount>
       <JoinRandomMeetingButton isRoading={false} onClick={handleJoinClick} />
       {isModalOpen && <Modal onClose={handleCloseModal} onConfirm={handleConfirm} />}
+      <NavigationBar />
     </S.MeetingRandomContainer>
   );
 };

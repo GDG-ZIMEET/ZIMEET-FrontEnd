@@ -4,8 +4,8 @@ import { darken } from 'polished';
 export const BoothLayout = styled.div`
   display: flex;
   flex-direction: row; 
-  height: 100%;
-  margin: 5% 0 0 0;
+  height: 77%;
+  margin-top: 5%;
   justify-content: space-between;
 `;
 

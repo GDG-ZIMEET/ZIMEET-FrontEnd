@@ -2,13 +2,13 @@ import styled, { css } from 'styled-components';
 
 export const TypeLayout = styled.div`
   display: flex;
-  height: 7.5%;
-  padding: 1% 0 0 0;
+  margin-top: 6%;
+  height: 4%;
 `;
 
 export const TypeComponent = styled.div`
-  padding: 4% 1% 1% 0;
   width: 18%;
+  margin: 0 1% 0 0;
 `;
 
 const buttonStyles = css<{ selected: boolean }>`
@@ -27,7 +27,7 @@ const buttonStyles = css<{ selected: boolean }>`
   height: 100%;
   width: 100%; 
   white-space: nowrap;
-
+  
   &:hover {
     background-color: ${({ selected }) => (selected ? 'black' : '#ddd')};
   }
