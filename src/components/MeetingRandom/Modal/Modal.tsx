@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, onConfirm }) => {
         <S.TicketCount>남은 티켓 : 2개</S.TicketCount>
         <S.ButtonBox>
           <S.CancelButton onClick={onClose}>취소</S.CancelButton>
-          <S.ConfirmButton onClick={onConfirm}>확인</S.ConfirmButton>
+          <S.ConfirmButton onClick={onConfirm}>참여하기</S.ConfirmButton>
         </S.ButtonBox>
       </S.ModalContent>
     </S.Modallayout>

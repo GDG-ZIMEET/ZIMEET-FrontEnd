@@ -5,15 +5,34 @@ export const HeaderLayout = styled.div`
   display: flex;
   height: 7%;
   background-color: #ffffff;
-  align-items: flex-end; 
-
+  box-sizing: border-box;
+  align-items: flex-end;
   svg {
-    margin-right: 1%;
+    cursor: pointer;
   }
 
   .headerLogo {
-    margin-bottom: -2%; 
-    margin-left: -3%;
+    display: flex;
+    align-items: center;
+    margin-top: 0%
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 1%;
+    gap: 4px;
+    .headerLogo {
+      margin-bottom: -1%; 
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: 0 1%;
+    gap: 4px;
+  }
+
+
+  @media (max-width: 393px) {
+    gap: 4px;
   }
 `;
 
@@ -51,7 +70,3 @@ export const Ating = styled(I.Ating)`
 
 export const DGoCCUK = styled(I.DGoCCUK)`
 `;
-
-
-
-
