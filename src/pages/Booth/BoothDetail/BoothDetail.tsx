@@ -5,6 +5,7 @@ import AccountCopy from '../../../components/BoothDetail/AccountCopy/AccountCopy
 import ItemInventory from 'components/BoothDetail/ItemInventory/ItemInventory';
 import Explanation from 'components/BoothDetail/Explanation/Explanation';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
+import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 
 const BoothDetail: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,6 +33,7 @@ const BoothDetail: React.FC = () => {
         </S.ModalOverlay>
       )}
       <NavigationBar />
+      <GotoMeeting />
     </S.BoothDetailLayout>
   );
 };
