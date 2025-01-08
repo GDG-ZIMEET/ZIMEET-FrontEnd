@@ -11,16 +11,17 @@ export const ItemInventoryLayout = styled.div`
 `;
 
 export const ItemInventoryTitle = styled.h2`
-  font-size: 17px;
+  font-size: 14px;
   font-weight: bold;
   color: #000000;
-  margin-bottom: 4%;
+  margin: 0 0 4% 3%;
 `;
 
 export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 60%;
+  margin: 0 3% 0 3%;
 `;
 
 export const ItemComponent = styled.div`

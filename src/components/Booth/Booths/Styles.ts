@@ -26,7 +26,7 @@ export const BoothsContainer = styled.div`
   flex-direction: column; 
   align-items: center;
   width: 70%;
-  height: 100vm;
+  height: 100%;
 `;
 
 export const BoothTime = styled.div`
