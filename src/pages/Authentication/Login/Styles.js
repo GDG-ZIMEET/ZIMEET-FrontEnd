@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 
 export const LoginContainer = styled.div`
-  border: 1px solid black;
-  width: 393px; height: 852px;
+  height: 100%;
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
 `;
 
 export const LogoContainer = styled.h1`
