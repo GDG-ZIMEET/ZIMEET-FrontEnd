@@ -1,12 +1,40 @@
 import React from 'react';
-import { LoginContainer, LoginTitle } from './Styles';
+import * as S from './Styles';
+import * as I from '../../../assets/Icons';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleJoin = () => {
+    navigate('/join'); 
+  };
+
   return (
-    <LoginContainer>
-      <LoginTitle>Login Page</LoginTitle>
-      {/* 여기에 로그인 폼을 추가하세요 */}
-    </LoginContainer>
+    <S.LoginContainer>
+      <S.LogoContainer>
+        <I.ZimeetLogo />
+        <S.LogoText>지금 우리 만나요, ZI밋에서!</S.LogoText>
+      </S.LogoContainer>
+      <S.LoginForm>
+        <S.LoginInput 
+          type='text'
+          placeholder='학번'
+        />
+        <S.LoginInput 
+          type='password'
+          placeholder='비밀번호'
+        />
+        <S.LoginBtn>로그인</S.LoginBtn>
+      </S.LoginForm>
+      <S.JoinContainer>
+        <S.JoinText>ZI밋, 처음인가요?</S.JoinText>
+        <S.JoinBtn onClick={handleJoin}>회원가입</S.JoinBtn>
+      </S.JoinContainer>
+      <S.BottomLogoContainer>
+        <I.GdgBottomLogo />
+      </S.BottomLogoContainer>
+    </S.LoginContainer>
   );
 };
 
