@@ -3,6 +3,7 @@ import * as I from '../../../assets/Icons';
 
 export const HeaderLayout = styled.div`
   display: flex;
+  height: 7%;
   background-color: #ffffff;
   box-sizing: border-box;
   align-items: flex-end;

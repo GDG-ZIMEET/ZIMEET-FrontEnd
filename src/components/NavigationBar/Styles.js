@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const NavBarContainer = styled.nav`
-  position: sticky;
-  bottom: 0;
+  position: fixed;
   left: 0;
   width: 100%;
   height: 10%;
@@ -24,6 +23,7 @@ export const NavItem = styled.div`
   text-align: center;
   cursor: pointer;
   padding: 5px 0;
+
 `;
 
 export const IconWrapper = styled.div`

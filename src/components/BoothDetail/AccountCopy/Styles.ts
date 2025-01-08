@@ -7,6 +7,7 @@ export const AccountCopyLayout = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding: 3%;
   margin: 3% 0 2%;
 `;
 
@@ -28,7 +29,7 @@ export const CopyButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin-left: auto; 
+  margin-left: auto;
   color: white;
   font-weight: 600;
   height: 50%;

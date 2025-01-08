@@ -40,12 +40,11 @@ export const notionContainer = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: 80%;
   display: flex;
-  align-items: center; // 텍스트를 중간에 위치하도록 설정
-  justify-content: center; // 텍스트를 중간에 위치하도록 설정
+  align-items: center; 
+  justify-content: center; 
 `;
 
 export const notionTitle = styled.h3`
   font-size: 16px;
   color: #666;
-  margin-bottom: 5px;
 `;

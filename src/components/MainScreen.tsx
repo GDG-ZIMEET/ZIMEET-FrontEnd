@@ -4,60 +4,37 @@ import { useLocation } from 'react-router-dom';
 import NavigationBar from './NavigationBar/NavigationBar';
 
 const PhoneContainer = styled.div`
-  width: 100vw; 
-  height: 100vh; 
-  margin: 0 auto;
-  box-sizing: border-box;
-  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const PhoneScreen = styled.div`
-  width: 100%;
   height: 100%;
-  max-width: 768px; 
+  width: auto;
   background-color: #FFFFFF;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
+  aspect-ratio: 393 / 852;
+  flex-direction: column;
 
-  @media (min-width: 768px) {
-    max-width: 768px;
-    margin: 0 auto;
-    padding: 16px;
-    font-size: 16px;
-  }
-
-  @media (max-width: 768px) {
+  @media only screen and (max-width: 393px) {
     width: 100%;
     height: 100%;
-  }
-
-
-  @media (max-width: 405px) {
-    width: 100vw; 
-    height: 100%;
-    padding: 8px; /* 여백 추가 */
-    box-sizing: border-box;
-    font-size: 14px; /* 글자 크기 조정 */
+    aspect-ratio: auto;
   }
 `;
 
 const Content = styled.div`
+  flex:1;
   width: 100%;
   height: 100%;
-  flex: 1;
-  overflow-y: auto; 
-  overflow-x: hidden; 
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color: #FFFFFF;
-
-  @media (max-width: 393px) {
-    font-size: 12px; /* 작은 화면에서 글자 크기 축소 */
-    padding: 4px; /* 내부 여백 조정 */
-  }
 `;
+
 interface SmartphoneScreenProps {
   children: React.ReactNode;
 }
@@ -71,7 +48,6 @@ const MainScreen: React.FC<SmartphoneScreenProps> = ({ children }) => {
     <PhoneContainer>
       <PhoneScreen>
         <Content>{children}</Content>
-        {!excludeNavBarPaths.includes(location.pathname) && <NavigationBar />}
       </PhoneScreen>
     </PhoneContainer>
   );
