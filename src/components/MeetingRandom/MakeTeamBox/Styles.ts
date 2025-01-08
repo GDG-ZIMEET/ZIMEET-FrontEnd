@@ -8,6 +8,10 @@ export const MakeTeamLayout = styled.div`
   padding: 1% 0 0 0; 
   height: 55%;
   margin-top: 7%;
+
+  @media (min-width: 430px) { 
+    margin-top: 2%;
+  }
 `;
 
 export const explainComponent = styled.div`
@@ -15,6 +19,8 @@ export const explainComponent = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+
+
 `;
 
 export const line1 = styled.div`
@@ -43,7 +49,7 @@ export const GirlComponent = styled.div<{ show: boolean }>`
 
 export const TeamRow = styled.div`
   display: flex;
-  height: 50%;
+  height: 55%;
   width: 100%;
   justify-content: space-between; 
   
@@ -69,6 +75,11 @@ export const FirstPerson = styled.div`
   margin: 0 2.5% 0 0;
   border-radius: 9%;
   font-family: 'tossface', sans-serif;
+
+  @media (min-width: 430px) { 
+    font-size: 52px;
+    height: 16 0%;
+  }
 `;
 
 export const SecondPerson = styled(FirstPerson)``;
@@ -87,6 +98,6 @@ export const SixthPerson = styled(FirstPerson)`
 
 export const Loding = styled.div`
   font-size: 35px;
-  margin: 8%;
+  margin-top: 3.5%;
   align-self: center;
 `;
