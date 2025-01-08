@@ -18,6 +18,6 @@ export const WaitPeople = styled.div`
   font-size: 12px;
   color: #333;
   align-self: center;
-  margin: 0;
+  margin-top: -5%;
 `;
 
