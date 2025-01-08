@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const TypeLayout = styled.div`
   display: flex;
-  height: 7.5%;
+  height: 10%;
   padding: 1% 0 0 0;
 `;
 

@@ -19,14 +19,18 @@ export const TicketCount = styled.div`
   color: #000000;
   align-self: center;
   font-weight: bold;
-  margin: 0;
+  margin-top: 3%;
   background-color: #F2F2F2;
-  height: 3%;
+  height: 4%;
   width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50px;
   line-height: 1; 
+
+  @media (min-width: 430px) { 
+    height: 5%;
+}
 `;
 

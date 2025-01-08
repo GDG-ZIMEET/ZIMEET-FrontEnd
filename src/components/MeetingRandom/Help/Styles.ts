@@ -12,7 +12,7 @@ export const HelpLayout = styled.div`
 
 export const HelpContainer = styled.div<{ show: boolean }>`
   display: ${props => (props.show ? 'block' : 'none')};
-  padding: 10px;
+  padding: 2%;
   background-color: #f9f9f9;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

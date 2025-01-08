@@ -3,7 +3,7 @@ import * as I from '../../../assets/Icons';
 
 export const ItemInventoryLayout = styled.div`
   width: 100%;
-  height: 20%;
+  height: 27%;
   background-color: #ffffff;
   margin-top: 4%;
   padding-bottom: 4%;
