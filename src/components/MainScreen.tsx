@@ -17,12 +17,15 @@ const PhoneScreen = styled.div`
   background-color: #FFFFFF;
   overflow: hidden;
   aspect-ratio: 393 / 852;
+  display: flex;
   flex-direction: column;
 
-  @media only screen and (max-width: 393px) {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: auto;
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+      width: 100%;
+      height: 87%;
+      margin-top: -24%;
+    }
   }
 `;
 
@@ -33,6 +36,14 @@ const Content = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #FFFFFF;
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    .container {
+      height: -webkit-fill-available;
+    }
+  }
+}    
 `;
 
 interface SmartphoneScreenProps {
