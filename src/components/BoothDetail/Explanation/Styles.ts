@@ -2,16 +2,17 @@ import styled from 'styled-components';
 
 export const ExplanationLayout = styled.div`
   display: flex;
-  height: 1%;
+  height: 40%;
   flex-direction: column;
   background-color: #fff;
-  margin-top: 6%;
+  margin: 6% 0 30% 0;
 `;
 
 export const ExplanationTitle = styled.h2`
   font-size: 14px;
   color: #000000;
-  margin-bottom: 4%;
+  font-weight: bold;
+  margin: 0 0 4% 0;
 `;
 
 export const ExplanationContainer = styled.div`

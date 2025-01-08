@@ -3,14 +3,14 @@ import * as I from '../../../assets/Icons';
 
 export const BoothDetailLayout = styled.div`
   width: 100%;
-  height: 100%; 
+  height: 100vh; 
+  overflow: auto;
   background-color: #ffffff;
 `;
 
 
 export const PosterDetail = styled(I.PosterExample)`
   margin-top: 3%;
-  height: 50%;
   width: 100%;
 `;
 
