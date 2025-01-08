@@ -28,5 +28,9 @@ export const TicketCount = styled.div`
   justify-content: center;
   border-radius: 50px;
   line-height: 1; 
+
+  @media (min-width: 430px) { 
+    height: 5%;
+}
 `;
 

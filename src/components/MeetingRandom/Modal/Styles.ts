@@ -20,6 +20,19 @@ export const ModalContent = styled.div`
   text-align: center;
   width: 83%; 
   height: 34%;
+
+  
+  @media (min-width: 430px) {
+    width: 50%;
+  }
+
+  @media (min-width: 630px) {
+    width: 40%;
+  }
+
+  @media (min-width: 768px) {
+    width: 30%;
+  }
 `;
 
 export const ModalTitle = styled.h2`
