@@ -42,7 +42,7 @@ interface SmartphoneScreenProps {
 const MainScreen: React.FC<SmartphoneScreenProps> = ({ children }) => {
   const location = useLocation();
 
-  const excludeNavBarPaths = ['/login']; 
+  const excludeNavBarPaths = ['/login', '/join']; 
 
   return (
     <PhoneContainer>
