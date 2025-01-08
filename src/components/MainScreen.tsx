@@ -16,7 +16,6 @@ const PhoneScreen = styled.div`
   width: auto;
   background-color: #FFFFFF;
   overflow: hidden;
-  position: relative; /* navbar를 phonescreen 영역 내 고정 */
   aspect-ratio: 393 / 852;
   flex-direction: column;
 
@@ -34,7 +33,6 @@ const Content = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #FFFFFF;
-  // padding-bottom: 65px;
 `;
 
 interface SmartphoneScreenProps {

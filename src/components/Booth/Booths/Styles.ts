@@ -4,7 +4,7 @@ import { darken } from 'polished';
 export const BoothLayout = styled.div`
   display: flex;
   flex-direction: row; 
-  height: 77%;
+  height: 65%;
   margin-top: 5%;
   justify-content: space-between;
 `;
@@ -51,7 +51,7 @@ export const Booths = styled.div`
   flex-wrap: wrap; 
   justify-content: space-between;
   overflow-y: auto; 
-  height: calc(100% - 8% - 3%); 
+  height: calc(100% - 5% - 3%); 
   scrollbar-width: none; /* Firefox */
   
   &::-webkit-scrollbar {

@@ -4,6 +4,7 @@ import BackHeader from '../../../components/BoothDetail/BackHeader/BackHeader';
 import AccountCopy from '../../../components/BoothDetail/AccountCopy/AccountCopy';
 import ItemInventory from 'components/BoothDetail/ItemInventory/ItemInventory';
 import Explanation from 'components/BoothDetail/Explanation/Explanation';
+import NavigationBar from 'components/NavigationBar/NavigationBar';
 
 const BoothDetail: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,6 +31,7 @@ const BoothDetail: React.FC = () => {
           </S.ModalContent>
         </S.ModalOverlay>
       )}
+      <NavigationBar />
     </S.BoothDetailLayout>
   );
 };
