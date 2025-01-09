@@ -3,10 +3,14 @@ import { darken } from 'polished';
 
 export const BoothLayout = styled.div`
   display: flex;
-  flex-direction: row; 
-  height: 65%;
-  margin-top: 5%;
+  flex-direction: row;
+  height: 75%;
+  margin: 5% 3% 0 3%;
   justify-content: space-between;
+  
+  @media (max-width: 768px) {
+    height: 65%;
+  }
 `;
 
 export const NBuilding = styled.div`
@@ -16,14 +20,14 @@ export const NBuilding = styled.div`
   font-size: 13px;
   font-weight: bold;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
   border-radius: 5px;
 `;
 
 export const BoothsContainer = styled.div`
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   width: 70%;
   height: 100%;
@@ -39,19 +43,19 @@ export const BoothTime = styled.div`
   text-align: center;
   height: 8%;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
-  position: sticky; 
+  position: sticky;
   top: 0;
   margin-bottom: 3%;
 `;
 
 export const Booths = styled.div`
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   justify-content: space-between;
-  overflow-y: auto; 
-  height: calc(100% - 5% - 3%); 
+  overflow-y: auto;
+  height: calc(100% - 5% - 3%);
   scrollbar-width: none; /* Firefox */
   
   &::-webkit-scrollbar {
@@ -60,24 +64,24 @@ export const Booths = styled.div`
 `;
 
 export const Booth = styled.div`
-  width: 48%; 
+  width: 48%;
   height: 17%;
   margin-bottom: 3%;
   border-radius: 5px;
-  background-color: ${props => props.color}; 
+  background-color: ${props => props.color};
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: ${props => darken(0.1, props.color || '#000')}; 
+    background-color: ${props => darken(0.1, props.color || '#000')};
   }
 `;
 
 export const BoothWho = styled.div`
-  color: ${props => props.color}; 
+  color: ${props => props.color};
   font-size: 13px;
   font-weight: bold;
 `;
@@ -93,14 +97,14 @@ export const Andrea = styled.div`
   height: 100%;
   background-color: #F2F2F2;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
   border-radius: 5px;
-  letter-spacing: 2px; 
-  text-align: center; 
+  letter-spacing: 2px;
+  text-align: center;
   font-size: 13px;
   font-weight: bold;
-  line-height: 1.3; 
-  position: sticky; 
+  line-height: 1.3;
+  position: sticky;
   top: 0;
 `;

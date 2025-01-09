@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 
 export const TypeLayout = styled.div`
   display: flex;
-  padding: 1% 0 0 0;
-  height: 6.5%;
+  padding: 0.7% 0 0 0;
+  height: 7.5%;
 `;
 
 export const TypeComponent = styled.div`

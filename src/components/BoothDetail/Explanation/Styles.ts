@@ -12,7 +12,7 @@ export const ExplanationTitle = styled.h2`
   font-size: 14px;
   color: #000000;
   font-weight: bold;
-  margin: 0 0 4% 0;
+  margin: 0 0 4% 3%;
 `;
 
 export const ExplanationContainer = styled.div`
@@ -23,5 +23,6 @@ export const ExplanationContainer = styled.div`
 export const Explanation = styled.p`
   font-size: 12px;
   color: #000000;
+  margin: 0 3% 0 3%;
   line-height: 1.6;
 `;
