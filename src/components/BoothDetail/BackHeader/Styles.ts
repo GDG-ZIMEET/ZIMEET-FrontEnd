@@ -7,7 +7,6 @@ export const HeaderLayout = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 3%;
 `;
 
 export const BackButton = styled(I.Back)`
@@ -15,6 +14,7 @@ export const BackButton = styled(I.Back)`
   border: none;
   cursor: pointer;
   display: flex;
+  margin-left: 3%;
   align-items: center;
 `;
 
@@ -22,4 +22,5 @@ export const Title = styled.h2`
   font-size: 12px; 
   color: #000000;
   margin-left: auto; 
+  margin-right: 3%;
 `;
