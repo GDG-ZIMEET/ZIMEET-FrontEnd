@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
 export const Meeting22Container = styled.div`
-  padding: 20px;
-  background-color: #f9f9f9;
+    padding: 6% 3% 0;
+    background-color: #FFFFFF;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 `;
 
 export const Meeting22Title = styled.h1`
-  font-size: 24px;
-  color: #333;
+    font-size: 15px;
+    color: #000000;
+    font-weight: bold; 
 `;
