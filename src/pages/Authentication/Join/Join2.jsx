@@ -49,10 +49,11 @@ const Join2 = () => {
             
           </S.CircleWrap>
         </S.EmojiContainer>
-        
-        <S.JoinBtn disabled={!isFormComplete}>
-          {isFormComplete ? '다음으로' : '모든 정보를 입력해주세요.'}
-        </S.JoinBtn>
+        <S.BtnContainer>
+          <S.JoinBtn disabled={!isFormComplete}>
+            {isFormComplete ? '다음으로' : '모든 정보를 입력해주세요.'}
+          </S.JoinBtn>
+        </S.BtnContainer>
       </S.JoinForm>
     </S.JoinContainer>
   );

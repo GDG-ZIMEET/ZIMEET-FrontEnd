@@ -23,6 +23,7 @@ export const Logo = styled.div`
 export const LogoTitle = styled.p`
   font-weight: 700;
   font-size: 17px;
+  padding: 2% 0;
 `;
 
 export const LogoText = styled.p`
@@ -32,6 +33,7 @@ export const LogoText = styled.p`
 `;
 
 export const JoinForm = styled.form`
+  height: 100%;
   font-family: Pretendard;
   padding: 10% 0;
 `;
@@ -44,7 +46,7 @@ export const JoinText = styled.p`
 
 export const JoinInput = styled.input`
   width: 100%;
-  height: 2.5rem;
+  height: 6.5%;
   background-color: #f9fafb;
   border: 1px solid rgba(2, 32, 71, 0.05);
   border-radius: 0.6rem;
@@ -55,23 +57,24 @@ export const JoinInput = styled.input`
 export const SelectContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  height: 6.5%;
+  margin-bottom: 10%;
 `;
 export const JoinSelect = styled.select`
   width: 48%;
-  height: 2.5rem;
   background-color: #f9fafb;
   border: 1px solid rgba(2, 32, 71, 0.05);
   border-radius: 0.6rem;
-  margin-bottom: 10%;
 `;
 
 export const GenderContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  height: 6.5%;
+  margin-bottom: 5%;
 `;
 export const GenderButton = styled.button`
   width:  48%;
-  height: 2.7rem;
   background-color: ${({ selected }) => (selected ? 'black' : '#f9fafb')};
   color: ${({ selected }) => (selected ? 'white' : 'black')};
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -85,6 +88,7 @@ export const GenderButton = styled.button`
 `;
 export const BtnContainer = styled.div`
   padding: 10% 0;
+  height: 100%;
 `;
 export const BtnText = styled.p`
   text-align: center;
@@ -94,7 +98,7 @@ export const BtnText = styled.p`
 export const JoinBtn = styled.button`
   font-weight: 700;
   width: 100%;
-  height: 2.7rem;
+  height: 7.5%;
   background-color: ${({ disabled }) => (disabled ? '#ececec' : '#ea4335')};
   border-radius: 0.6rem;
   margin-bottom: 2%;
