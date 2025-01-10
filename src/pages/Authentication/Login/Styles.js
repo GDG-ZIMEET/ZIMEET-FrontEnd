@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const LoginContainer = styled.div`
-  border: 1px solid black;
-  width: 393px; height: 852px;
+  width: 100%; height: 100%;
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  padding: 5%;
 `;
 
 export const LogoContainer = styled.h1`
@@ -40,12 +40,12 @@ export const LoginForm = styled.form`
   flex-direction: column;
   align-items: center;
   font-family: Pretendard;
-  padding-bottom: 15%;
-  width: 100%;
+  margin-bottom: 15%;
+  width: 100%; height: 30%;
 `;
 
 export const LoginInput = styled.input`
-  width: 100%; height: 3rem;
+  width: 100%; height: 22%;
   background-color: #f9fafb;
   border: 1px solid rgba(2,32,71, 0.05);
   border-radius: 0.6rem;
@@ -55,7 +55,7 @@ export const LoginInput = styled.input`
 
 export const LoginBtn = styled.button`
   font-weight: 700;
-  width: 100%; height: 3rem;
+  width: 100%; height: 22%;
   background-color: black;
   border-radius: 0.6rem;
   margin-bottom: 2%;
@@ -66,7 +66,7 @@ export const JoinContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 100%; height: 10%;
 `;
 
 export const JoinText = styled.p`
@@ -78,10 +78,9 @@ export const JoinText = styled.p`
 
 export const JoinBtn = styled.button`
   font-weight: 700;
-  width: 100%; height: 3rem;
+  width: 100%; height: 75%;
   background-color: rgba(234, 67, 53, 0.1);
   border-radius: 0.6rem;
-  margin-bottom: 2%;
   color: #EA4335;
 `;
 
