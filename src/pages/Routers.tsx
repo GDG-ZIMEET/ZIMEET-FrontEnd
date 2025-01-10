@@ -5,7 +5,8 @@ import Join2 from './Authentication/Join/Join2';
 import Login from './Authentication/Login/Login';
 import Booth from './Booth/Booth';
 import BoothDetail from './Booth/BoothDetail/BoothDetail';
-import Chatting from './Chatting/Chatting';
+import Chatting from './Chatting/Chatting/Chatting';
+import ChattingInventory from './Chatting/ChattingInventory/ChattingInventory';
 import Meeting22 from './Meeting22/Meeting22';
 import MeetingRandom from './MeetingRandom/MeetingRandom';
 import MeetingRoading from './MeetingRandom/MeetingRoading/MeetingRoading';
@@ -20,6 +21,7 @@ const Routers: React.FC = () => {
       <Route path="/booth" element={<Booth />} />
       <Route path="/boothDetail" element={<BoothDetail />} />
       <Route path="/chatting" element={<Chatting />} />
+      <Route path="/chattingInventory" element={<ChattingInventory />} />
       <Route path="/meeting22" element={<Meeting22 />} />
       <Route path="/meeting-random" element={<MeetingRandom />} />
       <Route path="/meetingRoading" element={<MeetingRoading />} />

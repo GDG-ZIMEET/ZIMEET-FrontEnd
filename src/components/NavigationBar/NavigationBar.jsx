@@ -46,7 +46,7 @@ const NavigationBar = () => {
                 </S.IconWrapper>
                 미팅
             </S.NavItem>
-            <S.NavItem onClick={() => navigate('/chatting')}>
+            <S.NavItem onClick={() => navigate('/chattingInventory')}>
                 <S.IconWrapper style={{ margin: '1px' }}>
                     {getIcon('/chatting')}
                 </S.IconWrapper>
