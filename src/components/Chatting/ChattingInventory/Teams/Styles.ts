@@ -11,6 +11,26 @@ export const TeamComponent = styled.div`
   }
 `;
 
+export const NoTeamsMessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+export const ZimeetLogo = styled(I.ZimeetLogo)`
+  width: 30%;
+  margin-bottom: 5%;
+ `;  
+ 
+export const NoTeamsMessage = styled.div`
+  font-size: 14px;
+  color: #000000;
+  text-align: center;
+  line-height: 1.5; 
+`;
+
 export const Team = styled.div`
   width: 97%;
   height: 21%;
