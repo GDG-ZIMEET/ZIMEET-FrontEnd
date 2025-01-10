@@ -43,7 +43,7 @@ export const JoinText = styled.p`
 `;
 
 export const JoinInput = styled.input`
-  width: 100%;
+  width: 300px;
   height: 48px;
   background-color: #f9fafb;
   border: 1px solid rgba(2, 32, 71, 0.05);
@@ -56,40 +56,39 @@ export const SelectContainer = styled.div`
   gap: 10px;
 `;
 export const JoinSelect = styled.select`
-  width: 140px;
+  width: 300px;
   height: 48px;
-  background-color: #f9fafb;
-  border: 1px solid rgba(2, 32, 71, 0.05);
+  background-color: white;
+  border: 1px solid black;
   border-radius: 10px;
   margin-bottom: 10%;
 `;
 
-export const GenderContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-export const GenderButton = styled.button`
-  width: 157px;
-  height: 51px;
-  background-color: ${({ selected }) => (selected ? 'black' : '#f9fafb')};
-  color: ${({ selected }) => (selected ? 'white' : 'black')};
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
+export const EmojiContainer = styled.div``;
 
-  &:hover {
-    background-color: #e0e0e0;
-  }
-`;
-export const BtnContainer = styled.div`
-  padding: 10% 0;
-`;
-export const BtnText = styled.p`
-  text-align: center;
+export const EmojiText = styled.p`
   font-size: 12px;
+  color: #707070;
   padding: 5px 0;
 `;
+export const CircleWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+`;
+export const EmojiWrap = styled.div`
+  width: 87px;
+  height: 87px; 
+  border-radius: 50%; 
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 55px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+`;
+export const TossEmoji = styled.p``;
 export const JoinBtn = styled.button`
   font-weight: 700;
   width: 300px;
