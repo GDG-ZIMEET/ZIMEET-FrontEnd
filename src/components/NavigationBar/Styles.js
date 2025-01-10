@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NavBarContainer = styled.nav`
-  position: fixed;
+  position: sticky;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -11,6 +11,10 @@ export const NavBarContainer = styled.nav`
   justify-content: space-around;
   align-items: center;
   border-top: 1px solid #f0f0f0;
+
+  @media (max-width: 768px) {
+    position: fixed;
+  }
 `;
 
 export const NavItem = styled.div`
@@ -24,12 +28,10 @@ export const NavItem = styled.div`
   text-align: center;
   cursor: pointer;
   padding: 5px 0;
-
 `;
 
 export const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
 `;

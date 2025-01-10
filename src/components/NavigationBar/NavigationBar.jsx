@@ -34,13 +34,13 @@ const NavigationBar = () => {
 
     return (
         <S.NavBarContainer>
-            <S.NavItem onClick={() => navigate('/')}>
+            <S.NavItem onClick={() => navigate('/booth')}>
                 <S.IconWrapper>
                     {getIcon('/')}
                 </S.IconWrapper>
                 홈
             </S.NavItem>
-            <S.NavItem onClick={() => navigate('/meeting22')}>
+            <S.NavItem onClick={() => navigate('/meeting-random')}>
                 <S.IconWrapper style={{ margin: location.pathname === '/meeting22' ? '5px' : '6px' }}>
                     {getIcon('/meeting22')}
                 </S.IconWrapper>

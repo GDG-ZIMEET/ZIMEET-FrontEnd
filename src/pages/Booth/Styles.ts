@@ -16,14 +16,14 @@ export const ColorType = styled.div`
   font-size: 12px;
   color: #949494;
   font-weight: bold;
-  margin-top: 4%;
+  margin: 4% 0 0 3%;
   height: 2%;
 `;
 
 export const Explanation = styled.p`
   font-size: 12px;
   color: #000000;
-  margin-top: 3%;
+  margin: 3% 0 0 3%;
   height: 2%;
   text-decoration: underline;
   underline: #000000;

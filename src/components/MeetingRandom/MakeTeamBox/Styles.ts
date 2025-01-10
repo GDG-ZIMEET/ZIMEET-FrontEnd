@@ -6,12 +6,8 @@ export const MakeTeamLayout = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1% 0 0 0; 
-  height: 55%;
-  margin-top: 7%;
-
-  @media (min-width: 430px) { 
-    margin-top: 2%;
-  }
+  height: 53%;
+  margin-top: 5%;
 `;
 
 export const explainComponent = styled.div`
@@ -19,22 +15,24 @@ export const explainComponent = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-
-
 `;
 
-export const line1 = styled.div`
+export const line1 = styled.div<{ showExplain: boolean }>`
   font-size: 14px;
   width: 100%;
   color: #000000;
   font-weight: bold;
+  opacity: ${({ showExplain }) => (showExplain ? '1' : '0')};
+  transition: opacity 0.3s ease-in-out;
   margin-bottom: 2%;
 `;
 
-export const line2 = styled.div`
+export const Line2 = styled.div<{ showExplain: boolean }>`
   font-size: 14px;
   width: 100%;
   color: #000000;
+  opacity: ${({ showExplain }) => (showExplain ? '1' : '0')};
+  transition: opacity 0.3s ease-in-out;
 `;
 
 
@@ -52,7 +50,6 @@ export const TeamRow = styled.div`
   height: 55%;
   width: 100%;
   justify-content: space-between; 
-  
 `;
 
 export const BoyComponent = styled.div<{ show: boolean }>`

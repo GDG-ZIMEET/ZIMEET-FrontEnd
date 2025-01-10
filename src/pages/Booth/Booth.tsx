@@ -4,6 +4,7 @@ import TypeButton from '../../components/Booth/TypeButton/TypeButton';
 import Booths from '../../components/Booth/Booths/Booths';
 import Header from '../../components/Booth/Header/Header';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
+import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 
 const Booth: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const Booth: React.FC = () => {
         <Booths />
       </S.BoothContainer>
       <NavigationBar />
+      <GotoMeeting />
     </S.BoothLayout>
   );
 };
