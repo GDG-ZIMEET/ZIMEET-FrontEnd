@@ -19,7 +19,7 @@ const Join = () => {
     </option>
   ));
 
-  const ageOptions = Array.from({ length: 10 }, (_, index) => (
+  const ageOptions = Array.from({ length: 9 }, (_, index) => (
     <option key={index} value={index + 20}>
       {index + 20}세
     </option>
