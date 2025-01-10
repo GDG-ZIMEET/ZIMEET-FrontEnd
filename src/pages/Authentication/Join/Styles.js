@@ -12,8 +12,8 @@ export const LogoContainer = styled.div`
 `;
 
 export const Logo = styled.div`
-  width: 55px;
-  height: 55px;
+  width: 20%;
+  height: 20%;
   svg {
     width: 100%;
     height: 100%;
@@ -28,7 +28,7 @@ export const LogoTitle = styled.p`
 export const LogoText = styled.p`
   font-size: 14px;
   color: #707070;
-  padding: 5px 0;
+  padding: 1% 0;
 `;
 
 export const JoinForm = styled.form`
@@ -39,28 +39,29 @@ export const JoinForm = styled.form`
 export const JoinText = styled.p`
   font-weight: 700;
   font-size: 14px;
-  padding: 5px 0;
+  padding: 2% 0;
 `;
 
 export const JoinInput = styled.input`
   width: 100%;
-  height: 48px;
+  height: 2.5rem;
   background-color: #f9fafb;
   border: 1px solid rgba(2, 32, 71, 0.05);
-  border-radius: 10px;
+  border-radius: 0.6rem;
   margin-bottom: 10%;
+  font-size: 14px;
 `;
 
 export const SelectContainer = styled.div`
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
 `;
 export const JoinSelect = styled.select`
-  width: 140px;
-  height: 48px;
+  width: 48%;
+  height: 2.5rem;
   background-color: #f9fafb;
   border: 1px solid rgba(2, 32, 71, 0.05);
-  border-radius: 10px;
+  border-radius: 0.6rem;
   margin-bottom: 10%;
 `;
 
@@ -69,12 +70,12 @@ export const GenderContainer = styled.div`
   justify-content: space-between;
 `;
 export const GenderButton = styled.button`
-  width: 157px;
-  height: 51px;
+  width:  48%;
+  height: 2.7rem;
   background-color: ${({ selected }) => (selected ? 'black' : '#f9fafb')};
   color: ${({ selected }) => (selected ? 'white' : 'black')};
   border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
+  border-radius: 0.6rem;
   font-weight: 600;
   cursor: pointer;
 
@@ -88,14 +89,14 @@ export const BtnContainer = styled.div`
 export const BtnText = styled.p`
   text-align: center;
   font-size: 12px;
-  padding: 5px 0;
+  padding: 1% 0;
 `;
 export const JoinBtn = styled.button`
   font-weight: 700;
-  width: 300px;
-  height: 53px;
+  width: 100%;
+  height: 2.7rem;
   background-color: ${({ disabled }) => (disabled ? '#ececec' : '#ea4335')};
-  border-radius: 10px;
-  margin-bottom: 5px;
+  border-radius: 0.6rem;
+  margin-bottom: 2%;
   color: ${({ disabled }) => (disabled ? '#7c7c7c' : 'white')};
 `;
