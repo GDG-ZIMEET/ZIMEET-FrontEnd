@@ -35,3 +35,6 @@ export { ReactComponent as PosterExample } from './icon/posterExample.svg';
 //login
 export { ReactComponent as ZimeetLogo } from './icon/login/zimeetLogo.svg';
 export { ReactComponent as GdgBottomLogo } from './icon/login/gdgbottomLogo.svg';
+
+//chatting
+export { ReactComponent as PinkCircle } from './icon/PinkCircle.svg';
