@@ -34,7 +34,7 @@ const Chatting = () => {
     <S.ChattingContainer>
       <S.Header>
         <S.BackButton onClick={handleBackClick} />
-        <S.ChattingTitle>채팅방 이름</S.ChattingTitle>
+        <S.ChattingTitle>만나서 놀아요!</S.ChattingTitle>
       </S.Header>
       <S.ChattingBox>
         {messages.map((message, index) => {

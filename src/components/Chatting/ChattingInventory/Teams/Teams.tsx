@@ -1,8 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import { teams } from './TeamData';
 
 const Teams: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleTeamClick = (id: string) => {
+    if (id === '1') {
+      navigate('/chatting');
+    }
+  };
+
   return (
     <S.TeamComponent>
       {teams.length === 0 ? (
@@ -12,7 +21,7 @@ const Teams: React.FC = () => {
         </S.NoTeamsMessageContainer>
       ) : (
         teams.map(team => (
-          <S.Team key={team.id}>
+          <S.Team key={team.id} onClick={() => handleTeamClick(team.id)}>
             <S.TeamHeader>
               <S.TeamName>{team.name} 팀</S.TeamName>
               <S.WriteTime>{team.writeTime}</S.WriteTime>
