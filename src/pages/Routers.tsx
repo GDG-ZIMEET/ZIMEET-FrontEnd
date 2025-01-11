@@ -13,6 +13,7 @@ import MeetingRoading from './MeetingRandom/MeetingRoading/MeetingRoading';
 import Help from './MeetingRandom/Help/Help';
 import Meeting from './NonMember/Meeting/Meeting';
 import ZimeetIntroduct from './Introduct/ZimeetIntroduct/ZimeetIntroduct';
+import GdgocIntroduct from './Introduct/GdgocIntroduct/GdgocIntroduct';
 
 const Routers: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const Routers: React.FC = () => {
       <Route path="/booth" element={<Booth />} />
       <Route path="/boothDetail" element={<BoothDetail />} />
       <Route path="/zimeetIntroduct" element={<ZimeetIntroduct />} />
+      <Route path="gdgocIntroduct" element={<GdgocIntroduct />} />
       <Route path="/chatting" element={<Chatting />} />
       <Route path="/chattingInventory" element={<ChattingInventory />} />
       <Route path="/meeting22" element={<Meeting22 />} />
