@@ -1,6 +1,7 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
+import NavigationBar from './NavigationBar/NavigationBar';
 
 const PhoneContainer = styled.div`
   width: 100vw;
@@ -10,7 +11,7 @@ const PhoneContainer = styled.div`
   align-items: center;
 `;
 
-const PhoneScreen = styled.div<{ isChatting: boolean }>`
+const PhoneScreen = styled.div`
   height: 100%;
   width: auto;
   background-color: #FFFFFF;
@@ -19,32 +20,17 @@ const PhoneScreen = styled.div<{ isChatting: boolean }>`
   display: flex;
   flex-direction: column;
 
-  ${({ isChatting }) =>
-    isChatting &&
-    css`
-      @media (max-width: 768px) {
-        @supports (-webkit-touch-callout: none) {
-          width: 100%;
-          height: 100%;
-        }
-      }
-    `}
-
-  ${({ isChatting }) =>
-    !isChatting &&
-    css`
-      @media (max-width: 768px) {
-        @supports (-webkit-touch-callout: none) {
-          width: 100%;
-          height: 87%;
-          margin-top: -24%;
-        }
-      }
-    `}
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+      width: 100%;
+      height: 87%;
+      margin-top: -24%;
+    }
+  }
 `;
 
 const Content = styled.div`
-  flex: 1;
+  flex:1;
   width: 100%;
   height: 100%;
   overflow-y: auto;
@@ -52,12 +38,12 @@ const Content = styled.div`
   background-color: #FFFFFF;
 
   @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      .container {
-        height: -webkit-fill-available;
-      }
+  @supports (-webkit-touch-callout: none) {
+    .container {
+      height: -webkit-fill-available;
     }
   }
+}    
 `;
 
 interface SmartphoneScreenProps {
@@ -65,12 +51,9 @@ interface SmartphoneScreenProps {
 }
 
 const MainScreen: React.FC<SmartphoneScreenProps> = ({ children }) => {
-  const location = useLocation();
-  const isChatting = location.pathname.includes('/chatting');
-
   return (
     <PhoneContainer>
-      <PhoneScreen isChatting={isChatting}>
+      <PhoneScreen>
         <Content>{children}</Content>
       </PhoneScreen>
     </PhoneContainer>
