@@ -25,8 +25,7 @@ const PhoneScreen = styled.div<{ isChatting: boolean }>`
       @media (max-width: 768px) {
         @supports (-webkit-touch-callout: none) {
           width: 100%;
-          height: 85%;
-          margin-top: -28%;
+          height: 100%;
         }
       }
     `}

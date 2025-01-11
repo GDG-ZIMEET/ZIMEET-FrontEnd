@@ -74,14 +74,14 @@ export const MessageUser = styled.strong`
 export const MessageText = styled.span<{ isMine: boolean; borderRadius: string }>`
   word-break: break-word;
   display: block;
-  background-color: ${({ isMine }) => (isMine ? '#007bff' : '#D9D9D9')};
+  background-color: ${({ isMine }) => (isMine ? 'black' : '#D9D9D9')};
   color: ${({ isMine }) => (isMine ? 'white' : 'black')};
   border-radius: ${({ borderRadius }) => borderRadius};
   padding: 10px;
 `;
 
 export const InputContainer = styled.div`
-  position: fixed;
+  position: sticky;
   bottom: 0;
   width: 100%;
   height: 7%;
@@ -91,7 +91,7 @@ export const InputContainer = styled.div`
   border-radius: 20px;
   background-color: #D9D9D9;
   justify-content: space-between; 
-  z-index: 1000; // 키보드 위에 표시되도록 z-index 설정
+  z-index: 1000; 
 `;
 
 export const ChatInput = styled.input`
