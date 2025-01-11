@@ -12,6 +12,8 @@ const Header: React.FC = () => {
             setSelected('G');
         } else if (location.pathname.includes('/zimeetintroduct')) {
             setSelected('D');
+        } else if (location.pathname.includes('/gdgocintroduct')) {
+            setSelected('G2');
         }
     }, [location]);
 
@@ -25,13 +27,18 @@ const Header: React.FC = () => {
         navigate('/zimeetintroduct');
     };
 
+    const handleG2Click = () => {
+        setSelected('G2');
+        navigate('/gdgocintroduct');
+    };
+
     return (
         <S.HeaderLayout>
             {selected === 'G' ? <S.G /> : <S.GGrey onClick={handleGClick} />}
             {selected === 'G' && <S.Ateway />}
             {selected === 'D' ? <S.D /> : <S.Dgrey onClick={handleDClick} />}
             {selected === 'D' && <S.Ating />}
-            {selected === 'G2' ? <S.G2 /> : <S.GGrey onClick={() => setSelected('G2')} />}
+            {selected === 'G2' ? <S.G2 /> : <S.GGrey onClick={handleG2Click} />}
             {selected === 'G2' && <S.DGoc />}
             <S.HeaderLogo className="headerLogo" />
         </S.HeaderLayout>

@@ -83,7 +83,6 @@ export const PinkCircle = styled(I.PinkCircle)`
 export const JoinMember = styled.div`
   font-size: 26px;
   position: relative;
-  z-index: 1;
 `;
 
 export const Introduction = styled.div`

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as S from './Styles';
 import Header from '../../../components/Booth/Header/Header';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
+import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 
 const ZimeetIntroduct: React.FC = () => {
   
@@ -38,6 +39,7 @@ const ZimeetIntroduct: React.FC = () => {
         </S.Introduct>
       </S.IntroductComponent>
       <NavigationBar />
+      <GotoMeeting />
     </S.ZimeetIntroductLayout>
   );
 };
