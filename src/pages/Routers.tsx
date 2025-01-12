@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Join from './Authentication/Join/Join';
 import Join2 from './Authentication/Join/Join2';
+import Join3 from './Authentication/Join/Join3';
 import Login from './Authentication/Login/Login';
 import Booth from './Booth/Booth';
 import BoothDetail from './Booth/BoothDetail/BoothDetail';
@@ -20,6 +21,7 @@ const Routers: React.FC = () => {
     <Routes>
       <Route path="/join" element={<Join />} />
       <Route path="/join2" element={<Join2 />} />
+      <Route path="/join3" element={<Join3 />} />
       <Route path="/login" element={<Login />} />
       <Route path="/booth" element={<Booth />} />
       <Route path="/boothDetail" element={<BoothDetail />} />
