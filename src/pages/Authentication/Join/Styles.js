@@ -14,6 +14,7 @@ export const LogoContainer = styled.div`
 export const Logo = styled.div`
   width: 20%;
   height: 20%;
+
   svg {
     width: 100%;
     height: 100%;
@@ -88,7 +89,7 @@ export const GenderButton = styled.button`
 `;
 export const BtnContainer = styled.div`
   padding: 10% 0;
-  height: 100%;
+  width: 100%; height: 16%;
 `;
 export const BtnText = styled.p`
   text-align: center;
@@ -98,7 +99,7 @@ export const BtnText = styled.p`
 export const JoinBtn = styled.button`
   font-weight: 700;
   width: 100%;
-  height: 7.5%;
+  height: 100%;
   background-color: ${({ disabled }) => (disabled ? '#ececec' : '#ea4335')};
   border-radius: 0.6rem;
   margin-bottom: 2%;
