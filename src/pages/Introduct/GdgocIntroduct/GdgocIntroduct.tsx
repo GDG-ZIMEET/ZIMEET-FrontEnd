@@ -18,7 +18,6 @@ const GdgocIntroduct: React.FC = () => {
         바로, Google Developer Groups on Campus CUK!
       </S.Explanation2>
       <S.BigLogo />
-      <NavigationBar />
       <GotoMeeting />
       <S.gdgExplanation1>
         GDGoC CUK는 이런 동아리에요!
@@ -32,6 +31,7 @@ const GdgocIntroduct: React.FC = () => {
       <S.gdgExplanation4>
        동아리가 인플루언서, 네이버, SKT 현직 분들을 모셨다고?!
       </S.gdgExplanation4>
+      <NavigationBar />
     </S.GdgocIntroductLayout>
   );
 };

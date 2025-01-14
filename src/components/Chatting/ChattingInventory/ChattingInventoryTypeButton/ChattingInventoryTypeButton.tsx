@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as S from './Styles';
 
 const ChattingInventoryTypeButton: React.FC = () => {
-  const [selectedButton, setSelectedButton] = useState<string>('Chatting'); // 기본 선택을 '2to2'로 설정
+  const [selectedButton, setSelectedButton] = useState<string>('Chatting');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.includes('/chattingInventory')) {
+      setSelectedButton('Chatting');
+    } else if (location.pathname.includes('/receiveHi')) {
+      setSelectedButton('receiveHi');
+    }
+  }, [location]);
 
   const handleClick = (buttonType: string) => {
     setSelectedButton(buttonType);
+    if (buttonType === 'Chatting') {
+      navigate('/chattingInventory');
+    } else if (buttonType === 'receiveHi') {
+      navigate('/receiveHi');
+    }
   };
 
   return (
