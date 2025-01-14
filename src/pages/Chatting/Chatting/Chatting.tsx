@@ -1,27 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
+import ChatHeader from '../../../components/Chatting/Chat/Header/ChatHeader';
+import ChattingBox from '../../../components/Chatting/Chat/ChattingBox/ChattingBox';
+import ChatInputBox from '../../../components/Chatting/Chat/Input/ChatInputBox';
+import ChatSidebar from '../../../components/Chatting/Chat/Sidebar/ChatSidebar';
 
 const Chatting = () => {
   const [messages, setMessages] = useState([
-    { id: 1, user: 'User1', text: '안녕하세요!', avatar: 'user1.png' },
-    { id: 2, user: 'User2', text: '반갑습니다!', avatar: 'user2.png' },
-    { id: 3, user: 'User2', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: 'user2.png' },
-    { id: 4, user: 'User3', text: '오늘 날씨 좋네요.', avatar: 'user3.png' },
-    { id: 5, user: 'User3', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: 'user3.png' },
-    { id: 6, user: 'User3', text: '여러 개 입력한 메시지 중 두 번째입니다.', avatar: 'user3.png' },
-    { id: 7, user: 'User1', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: 'user1.png' },
-    { id: 8, user: 'User1', text: '여러 개 입력한 메시지 중 두 번째입니다.', avatar: 'user1.png' },
-    { id: 9, user: 'User1', text: '여러 개 입력한 메시지 중 세 번째입니다.', avatar: 'user1.png' },
-    { id: 10, user: 'User1', text: '여러 개 입력한 메시지 중 네 번째입니다.', avatar: 'user1.png' },
+    { id: 1, user: '학점 4.5', text: '안녕하세요!', avatar: '🏅' },
+    { id: 2, user: '불멍', text: '반갑습니다!', avatar: '🔥' },
+    { id: 3, user: '불멍', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: '🔥' },
+    { id: 4, user: 'User3', text: '오늘 날씨 좋네요.', avatar: '🌞' },
+    { id: 5, user: 'User3', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: '🌞' },
+    { id: 6, user: 'User3', text: '여러 개 입력한 메시지 중 두 번째입니다.', avatar: '🌞' },
+    { id: 7, user: 'User1', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: '🏅' },
+    { id: 8, user: 'User1', text: '여러 개 입력한 메시지 중 두 번째입니다.', avatar: '🏅' },
+    { id: 9, user: 'User1', text: '여러 개 입력한 메시지 중 세 번째입니다.', avatar: '🏅' },
+    { id: 10, user: 'User1', text: '여러 개 입력한 메시지 중 네 번째입니다.', avatar: '🏅' },
   ]);
   const [input, setInput] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const handleSend = () => {
     if (input.trim()) {
-      setMessages([...messages, { id: messages.length + 1, user: 'Me', text: input, avatar: 'me.png' }]);
+      setMessages([...messages, { id: messages.length + 1, user: 'Me', text: input, avatar: '🙂' }]);
       setInput('');
     }
   };
@@ -34,36 +39,33 @@ const Chatting = () => {
     navigate(-1); 
   };
 
+  const handleInputFocus = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const uniqueUsers = Array.from(new Set(messages.filter(message => message.user !== 'Me').map(message => message.user)))
+    .map(user => messages.find(message => message.user === user))
+    .filter((user): user is { id: number; user: string; text: string; avatar: string } => user !== undefined);
+
   return (
     <S.ChattingContainer>
-      <S.Header>
-        <S.BackButton onClick={handleBackClick} />
-        <S.ChattingTitle>만나서 놀아요!</S.ChattingTitle>
-      </S.Header>
-      <S.ChattingBox>
-        {messages.map((message, index) => {
-          const showUser = index === 0 || messages[index - 1].user !== message.user;
-          const borderRadius = showUser ? (message.user === 'Me' ? '8px 0 8px 8px' : '0 8px 8px 8px') : '8px';
-          return (
-            <S.MessageContainer key={message.id} isMine={message.user === 'Me'} borderRadius={borderRadius}>
-              <S.Avatar src={message.avatar} alt={`${message.user} avatar`} show={showUser} />
-              <S.MessageContent isMine={message.user === 'Me'}>
-                {showUser && message.user !== 'Me' && <S.MessageUser>{message.user}</S.MessageUser>}
-                <S.MessageText isMine={message.user === 'Me'} borderRadius={borderRadius}>{message.text}</S.MessageText>
-              </S.MessageContent>
-            </S.MessageContainer>
-          );
-        })}
-        <div ref={messagesEndRef} />
-      </S.ChattingBox>
-      <S.InputContainer>
-        <S.ChatInput
-          placeholder="메시지를 입력해주세요"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <S.SendButton onClick={handleSend}>^</S.SendButton>
-      </S.InputContainer>
+      <ChatHeader onBackClick={handleBackClick} onHamburgerClick={toggleSidebar} />
+      <ChattingBox messages={messages} />
+      <ChatInputBox 
+        input={input} 
+        setInput={setInput} 
+        handleSend={handleSend} 
+        handleInputFocus={handleInputFocus} 
+      />
+      <ChatSidebar 
+        isOpen={isSidebarOpen} 
+        toggleSidebar={toggleSidebar} 
+        uniqueUsers={uniqueUsers} 
+      />
     </S.ChattingContainer>
   );
 };

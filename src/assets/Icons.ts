@@ -38,6 +38,8 @@ export { ReactComponent as GdgBottomLogo } from './icon/login/gdgbottomLogo.svg'
 
 //chatting
 export { ReactComponent as PinkCircle } from './icon/PinkCircle.svg';
+export { ReactComponent as ChattingButton } from './icon/ChattingButton.svg';
+export { ReactComponent as Hamburger } from './icon/Hamburger.svg';
 
 //ziMeetIntroduct
 export { ReactComponent as Zimeet } from './icon/ZIMEET.svg';
