@@ -1,11 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useLocation } from 'react-router-dom';
-import NavigationBar from './NavigationBar/NavigationBar';
 
 const PhoneContainer = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,9 +15,6 @@ const PhoneScreen = styled.div<{ isChatting: boolean }>`
   width: auto;
   background-color: #FFFFFF;
   overflow: hidden;
-  aspect-ratio: 393 / 852;
-  display: flex;
-  flex-direction: column;
 
    ${({ isChatting }) =>
     isChatting &&
@@ -36,8 +32,7 @@ const PhoneScreen = styled.div<{ isChatting: boolean }>`
       @media (max-width: 768px) {
         @supports (-webkit-touch-callout: none) {
           width: 100%;
-          height: 87%;
-          margin-top: -24%;
+          height: 87vh;
         }
       }
     `}
@@ -66,7 +61,7 @@ interface SmartphoneScreenProps {
 
 const MainScreen: React.FC<SmartphoneScreenProps> = ({ children }) => {
   const location = useLocation();
-  const isChatting = location.pathname.includes('/chatting');
+  const isChatting = location.pathname === '/chatting';
 
   return (
     <PhoneContainer>

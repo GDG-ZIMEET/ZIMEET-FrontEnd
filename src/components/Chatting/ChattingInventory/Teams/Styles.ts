@@ -8,7 +8,7 @@ export const TeamComponent = styled.div`
   overflow-y: auto;
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {
-    height: 71%;
+    height: 81%;
   }}
 `;
 
