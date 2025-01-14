@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 
 const Chatting = () => {
@@ -16,6 +17,7 @@ const Chatting = () => {
   ]);
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const handleSend = () => {
     if (input.trim()) {
@@ -28,7 +30,9 @@ const Chatting = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleBackClick = () => {  };
+  const handleBackClick = () => {
+    navigate(-1); 
+  };
 
   return (
     <S.ChattingContainer>

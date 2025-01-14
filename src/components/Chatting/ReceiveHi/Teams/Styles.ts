@@ -7,9 +7,8 @@ export const TeamComponent = styled.div`
   margin-left: -1%;
   overflow-y: auto;
   @media (max-width: 768px) {
-  @supports (-webkit-touch-callout: none) {
     height: 71%;
-  }}
+  }
 `;
 
 export const NoTeamsMessageContainer = styled.div`
@@ -34,7 +33,7 @@ export const NoTeamsMessage = styled.div`
 
 export const Team = styled.div`
   width: 97%;
-  height: 21%;
+  height: 24%;
   padding: 10px;
   margin: 3% auto;
   background-color: #FFFFFF;
@@ -57,6 +56,12 @@ export const TeamName = styled.div`
 export const WriteTime = styled.div`
   font-size: 10px;
   color: #FA2D4C;
+
+  &::after {
+    font-size: 14px;
+    content: ' >';
+    color: #000000; 
+  }
 `;
 
 export const JoinMembers = styled.div`
@@ -89,11 +94,48 @@ export const JoinMember = styled.div`
 export const Introduction = styled.div`
   height: 75%; 
   margin-left: 5%;
+  margin-top: 3%;
+  font-size: 10px;
+  color: #000000;
+  flex: 1;
+  align-items: center;
+`;
+
+export const Major = styled.div`
+  height: 40%; 
+  margin-left: 5%;
   font-size: 10px;
   color: #000000;
   flex: 1;
   display: flex;
   align-items: center;
+  margin-bottom: 2%;
+`;
+
+export const MusicStylesContainer = styled.div`
+  display: flex;
+  height: 53%;
+  width: 70%;
+`;
+
+export const MusicStyles = styled.div`
+  height: 52%; 
+  width: 70%;
+  margin-left: 5%;
+  font-size: 10px;
+  color: #000000;
+  display: flex;
+  background-color: #F2F2F2;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+`;
+export const MusicEmoji = styled.span`
+  font-size: 11px;
+  margin-left: 5%;
+  height: 100%;
+  width: 13%;
+  margin-top: 2%;
 `;
 
 export const JoinMembersAndIntroduction = styled.div`
