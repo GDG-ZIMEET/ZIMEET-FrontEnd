@@ -17,7 +17,7 @@ export default createGlobalStyle`
     body{
         padding: 0;
         margin: 0;
-        font-family: 'Pretendard Variable', 'Pretendard', 'Futura XBlk BT', -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif, "tossface";
+        font-family: 'Pretendard', sans-serif;
     };
     button{
         border: none;

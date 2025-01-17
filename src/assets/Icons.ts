@@ -44,3 +44,8 @@ export { ReactComponent as Hamburger } from './icon/Hamburger.svg';
 //ziMeetIntroduct
 export { ReactComponent as Zimeet } from './icon/ZIMEET.svg';
 export { ReactComponent as AboutGdgocCuk } from './icon/About GDGoC CUK.svg';
+
+//myProfile
+export { ReactComponent as PinkCircle2 } from './icon/PinkCircle.svg';
+export { ReactComponent as BlueCircle } from './icon/BlueCircle.svg';
+export { ReactComponent as ProfileCircle } from './icon/ProfileCircle.svg';

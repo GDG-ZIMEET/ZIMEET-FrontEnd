@@ -3,7 +3,7 @@ import * as I from '../../../assets/Icons';
 
 export const GdgocIntroductLayout = styled.div`
   width: 100%;
-  height: 100vh; 
+  height: 100%; 
   overflow: auto;
   background-color: #ffffff;
 `;
@@ -11,7 +11,11 @@ export const GdgocIntroductLayout = styled.div`
 
 export const AboutGdgocCuk = styled(I.AboutGdgocCuk)`
     height: 3%;
-    margin: 9% 0 0 5%;
+    margin: 9% 0 0 3%;
+
+    @media (max-width: 768px) {
+    @supports (-webkit-touch-callout: none) {
+        margin-left: -3.7%;}}
 `;
 
 export const Explanation1 = styled.div`
@@ -31,6 +35,10 @@ export const Explanation2 = styled.div`
 export const BigLogo = styled(I.BigLogo)`
     height: 10%;
     margin-top: 3%;
+
+    @media (max-width: 768px) {
+    @supports (-webkit-touch-callout: none) {
+        margin-left: -7.3%;}}
 `;
 
 export const gdgExplanation1 = styled.div`

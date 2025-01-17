@@ -2,12 +2,22 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { useLocation } from 'react-router-dom';
 
-const PhoneContainer = styled.div`
+const PhoneContainer = styled.div<{ isChatting: boolean }>`
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
+
+  ${({ isChatting }) =>
+    isChatting &&
+    css`
+      @media (max-width: 768px) {
+        @supports (-webkit-touch-callout: none) {
+          bottom: 0;
+        }
+      }
+    `}
 `;
 
 const PhoneScreen = styled.div<{ isChatting: boolean }>`
@@ -15,8 +25,11 @@ const PhoneScreen = styled.div<{ isChatting: boolean }>`
   width: auto;
   background-color: #FFFFFF;
   overflow: hidden;
+  aspect-ratio: 393 / 852;
+  display: flex;
+  flex-direction: column;
 
-   ${({ isChatting }) =>
+  ${({ isChatting }) =>
     isChatting &&
     css`
       @media (max-width: 768px) {
@@ -32,27 +45,19 @@ const PhoneScreen = styled.div<{ isChatting: boolean }>`
       @media (max-width: 768px) {
         @supports (-webkit-touch-callout: none) {
           width: 100%;
-          height: 87vh;
+          height: 87%;
+          margin-top: -24%;
         }
       }
     `}
 `;
 
 const Content = styled.div`
-  flex:1;
+  flex: 1;
   width: 100%;
   height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   background-color: #FFFFFF;
-
-  @media (max-width: 768px) {
-  @supports (-webkit-touch-callout: none) {
-    .container {
-      height: -webkit-fill-available;
-    }
-  }
-}    
 `;
 
 interface SmartphoneScreenProps {
@@ -64,7 +69,7 @@ const MainScreen: React.FC<SmartphoneScreenProps> = ({ children }) => {
   const isChatting = location.pathname === '/chatting';
 
   return (
-    <PhoneContainer>
+    <PhoneContainer isChatting={isChatting}>
       <PhoneScreen isChatting={isChatting}>
         <Content>{children}</Content>
       </PhoneScreen>

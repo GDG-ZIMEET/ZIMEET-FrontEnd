@@ -9,6 +9,7 @@ import BoothDetail from './Booth/BoothDetail/BoothDetail';
 import Chatting from './Chatting/Chatting/Chatting';
 import ChattingInventory from './Chatting/ChattingInventory/ChattingInventory';
 import Meeting22 from './Meeting22/Meeting22';
+import TeamMaking from './Meeting22/TeamMaking/TeamMaking';
 import MeetingRandom from './MeetingRandom/MeetingRandom';
 import MeetingRoading from './MeetingRandom/MeetingRoading/MeetingRoading';
 import Help from './MeetingRandom/Help/Help';
@@ -27,11 +28,12 @@ const Routers: React.FC = () => {
       <Route path="/booth" element={<Booth />} />
       <Route path="/boothDetail" element={<BoothDetail />} />
       <Route path="/zimeetIntroduct" element={<ZimeetIntroduct />} />
-      <Route path="gdgocIntroduct" element={<GdgocIntroduct />} />
+      <Route path="/gdgocIntroduct" element={<GdgocIntroduct />} />
       <Route path="/chatting" element={<Chatting />} />
       <Route path="/chattingInventory" element={<ChattingInventory />} />
       <Route path="/receiveHi" element={<ReceiveHi />} />
       <Route path="/meeting22" element={<Meeting22 />} />
+      <Route path="/teamMaking" element={<TeamMaking />} />
       <Route path="/nonmember-Meeting" element={<Meeting />} />
       <Route path="/meeting-random" element={<MeetingRandom />} />
       <Route path="/meetingRoading" element={<MeetingRoading />} />
