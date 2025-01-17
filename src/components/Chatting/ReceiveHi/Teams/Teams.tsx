@@ -42,9 +42,9 @@ const Teams: React.FC = () => {
                   {team.joinType === '3to3' && `/${team.join3Major}`} | {team.aveAge}세
                 </S.Major>
                 <S.MusicStylesContainer>
-              <S.MusicEmoji>🎵</S.MusicEmoji>
-              <S.MusicStyles>{team.musicStyles.join(', ')}</S.MusicStyles>
-            </S.MusicStylesContainer>
+                  <S.MusicEmoji>🎵</S.MusicEmoji>
+                  <S.MusicStyles>{team.musicStyles.join(', ')}</S.MusicStyles>
+                </S.MusicStylesContainer>
               </S.Introduction>
             </S.JoinMembersAndIntroduction>
           </S.Team>

@@ -3,9 +3,10 @@ import * as I from '../../../assets/Icons';
 
 export const ZimeetIntroductLayout = styled.div`
   width: 100%;
-  height: 100vh; 
+  height: 100%; 
   overflow: auto;
   background-color: #ffffff;
+  padding-bottom: 10%;
 `;
 
 
@@ -38,8 +39,13 @@ export const IntroductComponent = styled.div`
   margin: 3% auto; 
   display: flex;
   flex-direction: column;
-  justify-content: center; // 세로 중간 배치
-  align-items: center; // 가로 중간 배치
+  justify-content: center; 
+  align-items: center; 
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    height: 37%
+  ;}}
 `;
 
 export const IntroductTitle = styled.h2`

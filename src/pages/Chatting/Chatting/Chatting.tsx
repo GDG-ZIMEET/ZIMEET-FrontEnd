@@ -21,7 +21,6 @@ const Chatting = () => {
   ]);
   const [input, setInput] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const handleSend = () => {
@@ -31,18 +30,9 @@ const Chatting = () => {
     }
   };
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
-
   const handleBackClick = () => {
     navigate(-1); 
   };
-
-  const handleInputFocus = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -59,7 +49,6 @@ const Chatting = () => {
         input={input} 
         setInput={setInput} 
         handleSend={handleSend} 
-        handleInputFocus={handleInputFocus} 
       />
       <ChatSidebar 
         isOpen={isSidebarOpen} 

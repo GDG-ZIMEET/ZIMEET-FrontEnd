@@ -8,6 +8,7 @@ interface ChattingBoxProps {
 const ChattingBox: React.FC<ChattingBoxProps> = ({ messages }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  //스크롤을 최신 메시지로 이동
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -17,7 +18,6 @@ const ChattingBox: React.FC<ChattingBoxProps> = ({ messages }) => {
       {messages.map((message, index) => {
         const showUser = index === 0 || messages[index - 1].user !== message.user; 
         const isSameUser = index > 0 && messages[index - 1].user === message.user; 
-        const isConsecutive = index > 1 && messages[index - 1].user === message.user && messages[index - 2].user === message.user;
                 return (
           <S.MessageContainer key={message.id} isMine={message.user === 'Me'}>
             {message.user !== 'Me' && (
