@@ -73,8 +73,7 @@ export const ProfileCircle = styled(I.ProfileCircle)`
 export const Avatar = styled.div`
   position: absolute;
   font-size: 20px;
-  font: 'tossface';
-  margin-bottom: 3%;
+  font-family: 'TossFaceFontMac', sans-serif;
 
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {
