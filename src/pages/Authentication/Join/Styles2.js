@@ -92,7 +92,9 @@ export const EmojiWrap = styled.div`
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 `;
 
-export const TossEmoji = styled.p``;
+export const TossEmoji = styled.p`
+    font-family: "TossFaceFontMac", sans-serif;
+`;
 
 export const BtnContainer = styled.div`
   padding: 10% 0;
