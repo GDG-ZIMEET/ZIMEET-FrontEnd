@@ -10,7 +10,7 @@ interface AgeBoxProps {
   joinType: '2to2' | '3to3';
 }
 
-const AgeBox: React.FC<AgeBoxProps> = ({ nickname, age, Major, classNum, musicStyle, joinType }) => {
+const AgeBox: React.FC<AgeBoxProps> = ({ nickname, age, Major, classNum, musicStyle }) => {
   return (
     <S.AgeBoxLayout>
       <S.Component>
