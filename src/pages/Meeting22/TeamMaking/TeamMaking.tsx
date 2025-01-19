@@ -4,7 +4,7 @@ import NavigationBar from 'components/NavigationBar/NavigationBar';
 import Teams from 'components/Meeting22/TeamMaking/Teams/Teams';
 import Header from 'components/Meeting22/TeamMaking/Header/Header';
 import TeamName from 'components/Meeting22/TeamMaking/TeamName/TeamName';
-import MakingButton from 'components/Meeting22/TeamMaking/MakingButton/MakingButton';
+import MakingButton from 'components/Meeting22/TeamMaking/Buttons/MakingButton/MakingButton';
 import { MyProfileData, Profiles } from 'components/Meeting22/TeamMaking/Profile/ProfileData';
 
 const TeamMaking: React.FC = () => {

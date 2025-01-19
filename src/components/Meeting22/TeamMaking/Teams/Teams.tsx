@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Styles';
 import { MyProfileData, Profiles } from '../Profile/ProfileData';
-import PeoplePlusButton from './PeoplePlusButton/PeoplePlusButton';
+import PeoplePlusButton from '../Buttons/PlusButton/PeoplePlusButton';
 import MyProfile from '../Profile/MyProfile';
 
 interface TeamsProps {
