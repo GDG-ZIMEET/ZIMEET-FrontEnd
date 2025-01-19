@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './Styles';
 import Header from '../../../components/Booth/Header/Header';
 import NavigationBar from 'components/NavigationBar/NavigationBar';

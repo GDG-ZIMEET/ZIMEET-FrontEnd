@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import * as I from '../../../assets/Icons';
+import PosterExample from '../../../assets/icon/Examplebooth2.png';
+
 
 export const BoothDetailLayout = styled.div`
   width: 100%;
@@ -9,9 +11,14 @@ export const BoothDetailLayout = styled.div`
 `;
 
 
-export const PosterDetail = styled(I.PosterExample)`
+export const PosterDetail = styled.img.attrs((props) => ({
+  src: PosterExample,
+  alt: 'Poster Example',
+  onClick: props.onClick,
+}))`
   margin-top: 3%;
-  width: 100%;
+  width: 80%;
+  margin-left: 10.5%;
 `;
 
 export const ModalOverlay = styled.div`

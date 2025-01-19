@@ -1,4 +1,3 @@
-
 //부스배치
 export { ReactComponent as BigLogo } from './icon/booth/BigLogo.svg';
 export { ReactComponent as CircleLogo } from './icon/booth/CircleLogo.svg';
@@ -29,8 +28,7 @@ export { ReactComponent as Check } from './icon/booth/check.svg';
 //back
 export { ReactComponent as Back } from './icon/Vector.svg';
 
-//posterexample
-export { ReactComponent as PosterExample } from './icon/posterExample.svg';
+
 
 //login
 export { ReactComponent as ZimeetLogo } from './icon/login/zimeetLogo.svg';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as S from './Styles2';
 import * as I from '../../../assets/Icons';
 

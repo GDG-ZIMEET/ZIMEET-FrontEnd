@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import ChatHeader from '../../../components/Chatting/Chat/Header/ChatHeader';

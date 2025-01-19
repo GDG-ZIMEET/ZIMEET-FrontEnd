@@ -21,6 +21,7 @@ import ReceiveHi from './Chatting/ReceiveHi/ReceiveHi';
 const Routers: React.FC = () => {
   return (
     <Routes>
+      <Route path="/" element={<Booth />} />
       <Route path="/join" element={<Join />} />
       <Route path="/join2" element={<Join2 />} />
       <Route path="/join3" element={<Join3 />} />

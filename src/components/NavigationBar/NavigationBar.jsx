@@ -1,4 +1,3 @@
-import React from 'react';
 import * as I from '../../assets/Icons.ts'; 
 import * as S from './Styles';
 import { useNavigate, useLocation } from 'react-router-dom'; 
