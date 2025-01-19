@@ -1,4 +1,3 @@
-
 //부스배치
 export { ReactComponent as BigLogo } from './icon/booth/BigLogo.svg';
 export { ReactComponent as CircleLogo } from './icon/booth/CircleLogo.svg';
@@ -29,9 +28,22 @@ export { ReactComponent as Check } from './icon/booth/check.svg';
 //back
 export { ReactComponent as Back } from './icon/Vector.svg';
 
-//posterexample
-export { ReactComponent as PosterExample } from './icon/posterExample.svg';
+
 
 //login
 export { ReactComponent as ZimeetLogo } from './icon/login/zimeetLogo.svg';
 export { ReactComponent as GdgBottomLogo } from './icon/login/gdgbottomLogo.svg';
+
+//chatting
+export { ReactComponent as PinkCircle } from './icon/PinkCircle.svg';
+export { ReactComponent as ChattingButton } from './icon/ChattingButton.svg';
+export { ReactComponent as Hamburger } from './icon/Hamburger.svg';
+
+//ziMeetIntroduct
+export { ReactComponent as Zimeet } from './icon/ZIMEET.svg';
+export { ReactComponent as AboutGdgocCuk } from './icon/About GDGoC CUK.svg';
+
+//myProfile
+export { ReactComponent as PinkCircle2 } from './icon/PinkCircle.svg';
+export { ReactComponent as BlueCircle } from './icon/BlueCircle.svg';
+export { ReactComponent as ProfileCircle } from './icon/ProfileCircle.svg';

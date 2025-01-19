@@ -13,7 +13,9 @@ const Login = () => {
   return (
     <S.LoginContainer>
       <S.LogoContainer>
-        <I.ZimeetLogo />
+        <S.Logo>
+          <I.ZimeetLogo />
+        </S.Logo>
         <S.LogoText>지금 우리 만나요, ZI밋에서!</S.LogoText>
       </S.LogoContainer>
       <S.LoginForm>

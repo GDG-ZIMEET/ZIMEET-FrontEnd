@@ -11,7 +11,7 @@ const GotoMeeting: React.FC = () => {
 
   return (
     <S.GotoMeetingLayout onClick={handleGotoMeetingClick}>
-      <S.ZimmetLogo />
+      <S.ZimeetLogo />
     </S.GotoMeetingLayout>
   );
 };

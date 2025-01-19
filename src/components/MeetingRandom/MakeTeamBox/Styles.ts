@@ -71,7 +71,7 @@ export const FirstPerson = styled.div`
   align-items: center;
   margin: 0 2.5% 0 0;
   border-radius: 9%;
-  font-family: 'tossface', sans-serif;
+  font-family: 'TossFaceFontMac', sans-serif;
 
   @media (min-width: 430px) { 
     font-size: 52px;
@@ -95,6 +95,7 @@ export const SixthPerson = styled(FirstPerson)`
 
 export const Loding = styled.div`
   font-size: 35px;
-  margin-top: 3.5%;
+  margin-top: 4.5%;
   align-self: center;
+  font-family: 'TossFaceFontMac', sans-serif;
 `;

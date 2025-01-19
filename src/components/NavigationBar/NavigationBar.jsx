@@ -1,4 +1,3 @@
-import React from 'react';
 import * as I from '../../assets/Icons.ts'; 
 import * as S from './Styles';
 import { useNavigate, useLocation } from 'react-router-dom'; 
@@ -46,7 +45,7 @@ const NavigationBar = () => {
                 </S.IconWrapper>
                 미팅
             </S.NavItem>
-            <S.NavItem onClick={() => navigate('/chatting')}>
+            <S.NavItem onClick={() => navigate('/chattingInventory')}>
                 <S.IconWrapper style={{ margin: '1px' }}>
                     {getIcon('/chatting')}
                 </S.IconWrapper>

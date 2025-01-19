@@ -65,8 +65,8 @@ export const Booths = styled.div`
 
 export const Booth = styled.div`
   width: 48%;
-  height: 17%;
-  margin-bottom: 3%;
+  height: 22%;
+  margin-bottom: 5%;
   border-radius: 5px;
   background-color: ${props => props.color};
   display: flex;
@@ -88,7 +88,6 @@ export const BoothWho = styled.div`
 
 export const BoothTitle = styled.div`
   font-size: 13px;
-  font-weight: bold;
   margin-top: 5%;
 `;
 
