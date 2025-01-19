@@ -17,6 +17,7 @@ import Meeting from './NonMember/Meeting/Meeting';
 import ZimeetIntroduct from './Introduct/ZimeetIntroduct/ZimeetIntroduct';
 import GdgocIntroduct from './Introduct/GdgocIntroduct/GdgocIntroduct';
 import ReceiveHi from './Chatting/ReceiveHi/ReceiveHi';
+import TeamIntro from './TeamIntro/TeamIntro';
 
 const Routers: React.FC = () => {
   return (
@@ -39,6 +40,7 @@ const Routers: React.FC = () => {
       <Route path="/meeting-random" element={<MeetingRandom />} />
       <Route path="/meetingRoading" element={<MeetingRoading />} />
       <Route path="/help" element={<Help />} />
+      <Route path="/teamintro" element={<TeamIntro />} />
     </Routes>
   );
 };
