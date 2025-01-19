@@ -5,7 +5,7 @@ export const TeamNameLayout = styled.div`
   display: flex;
   flex-direction: column;
   margin: 3% 6% 0;
-  height: 14%;
+  height: 12%;
 `;
 
 export const Title = styled.label`
@@ -16,7 +16,7 @@ export const Title = styled.label`
 
   @media (max-width: 768px) {
     @supports (-webkit-touch-callout: none) {
-      font-size: 12px;
+      font-size: 14px;
     }
   }
 `;
@@ -29,17 +29,23 @@ export const Description = styled.p`
 
   @media (max-width: 768px) {
     @supports (-webkit-touch-callout: none) {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{ inputColor: string }>`
   width: 100%;
   height: 40%;
   font-size: 14px;
   background-color: #F9FAFB;
-  border: 1px solid rgba(2, 32, 71, 0.05);
+  border: 1px solid ${({ inputColor }) => inputColor};
   border-radius: 10px;
   color: #8B95A1;
+
+  @media (max-width: 768px) {
+    @supports (-webkit-touch-callout: none) {
+      font-size: 16px;
+    }
+  }
 `;
