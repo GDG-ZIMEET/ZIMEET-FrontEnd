@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as S from './Styles';
-import { Profiles, MyProfileData } from '../../../Profile/ProfileData';
+import { Profiles, MyProfileData } from '../Profile/ProfileData';
 
 interface TeamMemberModalProps {
   onClose: () => void;

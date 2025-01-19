@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as S from './Styles';
-import TeamMemberModal from './Modal/TeamMemberModal';
+import TeamMemberModal from '../../Modal/TeamMemberModal';
 import { MyProfileData } from '../../Profile/ProfileData';
 
 //친구추가

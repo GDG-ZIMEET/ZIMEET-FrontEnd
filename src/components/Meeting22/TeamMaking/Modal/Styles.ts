@@ -78,7 +78,7 @@ export const Select = styled.select`
 `;
 
 export const Input = styled.input`
-  padding: 1%;
+  padding: 2%;
   flex: 1;
   border-radius: 10px;
   background: #F9FAFB;
