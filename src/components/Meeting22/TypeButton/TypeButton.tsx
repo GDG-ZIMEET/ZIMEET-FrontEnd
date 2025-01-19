@@ -35,7 +35,11 @@ const TypeButton: React.FC = () => {
         </S.Random>
       </S.TypeComponent>
       <S.lookComponent>
+<<<<<<< Updated upstream
         {<S.lookword>이성 팀만 보여요👀</S.lookword>}
+=======
+        {/*<S.lookword>이성 팀만 보여요👀</S.lookword>*/}
+>>>>>>> Stashed changes
       </S.lookComponent>
     </S.TypeLayout>
   );

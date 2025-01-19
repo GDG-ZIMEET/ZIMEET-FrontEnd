@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 import { padding } from 'polished';
+=======
+>>>>>>> Stashed changes
 import styled from 'styled-components';
 
 export const CreateTeamButton = styled.button`
@@ -22,5 +25,9 @@ export const CreateTeamLayOut = styled.div`
   height : 8.5%;
   margin-top: 3%;
   margin-bottom: 3%;
+<<<<<<< Updated upstream
 `;  
 
+=======
+`;  
+>>>>>>> Stashed changes

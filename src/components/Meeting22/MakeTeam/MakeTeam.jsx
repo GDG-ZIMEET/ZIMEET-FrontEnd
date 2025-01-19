@@ -9,4 +9,8 @@ const MakeTeam = () => {
   );
 };
 
+<<<<<<< Updated upstream
 export default MakeTeam;
+=======
+export default MakeTeam;
+>>>>>>> Stashed changes
