@@ -15,6 +15,8 @@ const SituationText: React.FC<SituationTextProps> = ({ situation }) => {
         return '친구를 추가해주세요';
       case 4:
         return '친구를 한명 더 추가해야해요.';
+      case 5:
+        return '팀 만들기';
       default:
         return '';
     }

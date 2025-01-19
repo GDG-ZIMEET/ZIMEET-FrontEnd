@@ -1,47 +1,44 @@
 import React from 'react';
 import * as S from './Styles';
-import { teams } from './TeamData';
+import { MyProfileData, Profiles } from '../Profile/ProfileData';
 import PeoplePlusButton from './PeoplePlusButton/PeoplePlusButton';
-import MyProfile from './MyProfile/MyProfile';
+import MyProfile from '../Profile/MyProfile';
 
-const Teams: React.FC = () => {
+interface TeamsProps {
+  teamMembers: MyProfileData[];
+  setTeamMembers: React.Dispatch<React.SetStateAction<MyProfileData[]>>;
+  teamName: string;
+}
+
+const Teams: React.FC<TeamsProps> = ({ teamMembers, setTeamMembers, teamName }) => {
+  const myProfile = Profiles.find(profile => profile.isMe);
+  const filteredTeamMembers = teamMembers.filter(member => !member.isMe);
+
+  // 친구 추가 함수
+  const handleAddFriend = (friend: MyProfileData) => {
+    // 이미 추가된 팀원인지 확인
+    if (!teamMembers.some(member => member.nickname === friend.nickname)) {
+      setTeamMembers(prevMembers => [...prevMembers, friend]); // 새로운 친구 추가
+    }
+  };
+
+  //3대3일경우 팀원 추가
+  const maxTeamMembers = myProfile?.joinType === '3to3' ? 2 : 1;
 
   return (
     <S.TeamLayout>
       <S.TeamContainer>
         <S.Title>내 프로필</S.Title>
         <S.Description>나는 상대에게 이렇게 보여요,프로필은 마이에서 편집할 수 있어요.</S.Description>
-        <MyProfile />
-        {teams.length === 0 ? (
-          <PeoplePlusButton />
-        ) : (
-          teams.map(team => (
-            <S.Team key={team.id} >
-              <S.TeamHeader>
-                <S.TeamName>{team.name} 팀</S.TeamName>
-                <S.WriteTime>{team.writeTime}</S.WriteTime>
-              </S.TeamHeader>
-              <S.JoinMembersAndIntroduction>
-                <S.JoinMembers>
-                  <S.JoinMemberBox>
-                    <S.PinkCircle />
-                    <S.JoinMember>{team.join1}</S.JoinMember>
-                  </S.JoinMemberBox>
-                  <S.JoinMemberBox>
-                    <S.PinkCircle />
-                    <S.JoinMember>{team.join2}</S.JoinMember>
-                  </S.JoinMemberBox>
-                  {team.joinType === '3to3' && (
-                    <S.JoinMemberBox>
-                      <S.PinkCircle />
-                      <S.JoinMember>{team.join3}</S.JoinMember>
-                    </S.JoinMemberBox>
-                  )}
-                </S.JoinMembers>
-                <S.Introduction>{team.introduction}</S.Introduction>
-              </S.JoinMembersAndIntroduction>
-            </S.Team>
+        {myProfile && <MyProfile profileData={myProfile} isMe />}
+        <S.Title>팀원</S.Title>
+        {filteredTeamMembers.length > 0 && (
+          filteredTeamMembers.map((team, index) => (
+            <MyProfile key={index} profileData={team} />
           ))
+        )}
+        {filteredTeamMembers.length < maxTeamMembers && (
+          <PeoplePlusButton onAddFriend={handleAddFriend} joinType={myProfile?.joinType as '2to2' | '3to3' || '2to2'}/>
         )}
       </S.TeamContainer>
     </S.TeamLayout>

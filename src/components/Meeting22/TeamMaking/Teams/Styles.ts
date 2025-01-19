@@ -5,10 +5,10 @@ export const TeamLayout = styled.div`
   width: 100%;
   height: 61%;
   overflow: hidden;
-
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {
-    height: 61%;
+    height: 60%;
+    margin-top: 1%;
     overflow: hidden;
   }}
 `;
@@ -24,11 +24,11 @@ export const Title = styled.div`
   font-size: 14px;
   font-weight: bold;
   color: #000000;
-  margin:  3% 6% 3%;
+  margin:  5% 6% 3%;
 
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {
-    font-size: 12px;
+    font-size: 14px;
   }}
 `;
 
@@ -40,7 +40,7 @@ export const Description = styled.div`
 
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {
-    font-size: 10px;
+    font-size: 12px;
   }}
 `;
 
