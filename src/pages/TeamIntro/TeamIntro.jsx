@@ -13,7 +13,7 @@ const TeamIntro = () => {
 
   useEffect(() => {
     const checkPremiumStatus = async () => {
-      setIsPremium(true);
+      setIsPremium(false);
     };
     checkPremiumStatus();
   }, [setIsPremium]);
