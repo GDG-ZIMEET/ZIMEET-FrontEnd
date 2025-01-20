@@ -12,7 +12,7 @@ const Team = ({ teamName, members }) => {
       <S.rowBox1>
         {members.map((member, index) => (
         <S.MemberItem1 key={index}>
-           {member.emoji}
+          {member.emoji}
         </S.MemberItem1>
     ))}
       </S.rowBox1>
