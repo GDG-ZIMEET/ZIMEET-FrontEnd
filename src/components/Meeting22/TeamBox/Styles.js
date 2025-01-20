@@ -3,14 +3,12 @@ import styled from 'styled-components';
 export const TeamBoxLayOut = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-items: center;
-  gap: 1%;
-  height: 70%;
+  height: 100%;
+  width: 100%;
   background-color:# F2F2F2;
-  overflow-y: auto; 
-
+  overflow-y: auto;
+  justify-content: center;
   scrollbar-width: none; 
-
   &::-webkit-scrollbar {
   display: none; 
   }

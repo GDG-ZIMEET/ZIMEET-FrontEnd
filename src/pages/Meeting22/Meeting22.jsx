@@ -17,16 +17,16 @@ const Meeting22 = () => {
 
   return (
     <>
-      {!isLoggedIn && (
-        <LoginPopUp message="ZI밋에서 지금 바로 미팅하려면,로그인이 필요해요!" onClose={handleLogin} />
-      )}      
+        {!isLoggedIn && (
+          <LoginPopUp message="ZI밋에서 지금 바로 미팅하려면,로그인이 필요해요!" onClose={handleLogin} />
+        )}    
         <Meeting22Container isLoggedIn={isLoggedIn}>
           <Meeting22Title>팀 갤러리</Meeting22Title>
           <TypeButton />
           <MakeTeam />
           <TeamBox />
         <NavigationBar />
-        </Meeting22Container>   
+        </Meeting22Container>  
     </>
   );
 };

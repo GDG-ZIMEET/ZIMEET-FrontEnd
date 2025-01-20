@@ -1,10 +1,11 @@
 import React from 'react';
 import Team from '../Team/Team';
 import TeamData from '../Team/TeamData';
-import { TeamBoxLayOut } from './Styles';
+import { TeamBoxLayOut,Wrapper } from './Styles';
 
 const TeamBox = () => {
   return (
+
     <TeamBoxLayOut>
       {TeamData.map((team) => (
         <Team 
@@ -14,6 +15,7 @@ const TeamBox = () => {
         />
       ))}
     </TeamBoxLayOut>
+
   );
 };
 

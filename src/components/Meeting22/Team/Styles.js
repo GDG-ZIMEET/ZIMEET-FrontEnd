@@ -3,50 +3,72 @@ import styled from 'styled-components';
 export const TeamLayOut = styled.div`
   display: flex;
   flex-direction: column;
-   justify-content: space-evenly;  
+  justify-content: space-evenly;
   align-items: center;  
-  width: 49%;
-  height: 40%;
+  width: 44%;
+  height: 27%;
   border-radius: 10px;
   box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.15);
+  margin: 1%;
+  box-sizing: border-box;
 `;
 
-export const rowBox = styled.div`
+export const rowBox1 = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
+  width: 48%;
+  height: 20%;
   `;
+
+export const rowBox2 = styled.div`
+display: flex;
+align-items: center;
+font-size: 12px;
+font-weight: 400;
+line-height: 30px;
+`;
+
+export const rowBox3= styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height:28%;
+  box-sizing: border-box;
+`;
 
 export const MemberItem1 = styled.div`
   display: flex;
   background-color: rgba(234, 67, 53, 0.08); 
-  font-size: 2rem;
-  border-radius: 23.5px;
+  font-size: 16px;
+  border-radius: 50%;
   margin: 0;
   &:hover {
   background-color: rgba(234, 67, 53, 0.2); 
   }
-  padding: 5%;
+  padding: 10%;
+  gap: -7%;
 `;
 
 export const TeamName = styled.h3`
   color: #000;
   font-size: 13px;
-  font-style: normal;
   font-weight: 700;
   line-height: 30px;
 `;
 
-export const MajorDisplay = styled.p`
+export const MajorDisplay = styled.div`
+  display: flex;
+  justify-contents: center;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
+  line-height: 30px;
+  word-spacing: 1%;
   color: #0;
+  
 `;
 
-export const AverageAge = styled.p`
-  font-size: 12px;
-  font-weight: 700;
-  color: #000;
-`;
 
 export const MemberInfo = styled.div`
   display: flex;
@@ -56,11 +78,16 @@ export const MemberInfo = styled.div`
 
 export const MemberItem2 = styled.div`
   display: flex;
+  width:39.5%;
   color: #00AA47;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
+  line-height: 19.5px;
+  justify-content: center;
+  align-items: center;
   border-radius: 20px;
   background: #F5F5F5;
-  padding: 5%;
+  padding: 2.5%;
+  box-sizing: border-box;
 `;

@@ -35,7 +35,7 @@ const TypeButton: React.FC = () => {
         </S.Random>
       </S.TypeComponent>
       <S.lookComponent>
-        {/*<S.lookword>이성 팀만 보여요👀</S.lookword>*/}
+        <S.lookword>이성 팀만 보여요👀</S.lookword>
       </S.lookComponent>
     </S.TypeLayout>
   );
