@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+export const AgeBoxContainer = styled.div`
+  height: 75%;
+  margin: 3% 5% 0 2%;
+  font-size: 10px;
+  color: #000000;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
 export const AgeBoxLayout = styled.div`
   height: 75%;
   margin: 3% 5% 0 2%;
