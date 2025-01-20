@@ -6,6 +6,9 @@ import Header from 'components/TeamIntro/Header/Header';
 import MyProfile from 'components/TeamIntro/Profile/MyProfile';
 import Profiles from 'components/TeamIntro/Profile/ProfileData';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
+import Heart from 'components/Meeting22/Modal/Heart/Heart';
+
+
 const TeamIntro = () => {
   const [isPremium, setIsPremium] = useRecoilState(isPremiumState); 
 
@@ -27,6 +30,7 @@ const TeamIntro = () => {
           isMe={profileData.isMe}  
           isPremium={isPremium} />
       )}
+    <Heart/>
     <NavigationBar/>
     </S.Container>
   );
