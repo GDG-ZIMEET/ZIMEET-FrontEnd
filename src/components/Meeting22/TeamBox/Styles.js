@@ -5,7 +5,6 @@ export const TeamBoxLayOut = styled.div`
   flex-wrap: wrap;
   height: 100%;
   width: 100%;
-  background-color:# F2F2F2;
   overflow-y: auto;
   justify-content: center;
   scrollbar-width: none; 

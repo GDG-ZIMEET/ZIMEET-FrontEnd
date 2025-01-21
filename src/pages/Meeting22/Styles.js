@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Meeting22Container = styled.div`
-  padding: 6% 3% 0;
+  padding: 6% 5% 0 5%;
   background-color: #FFFFFF;
   top: 0;
   height: 100%;
@@ -14,8 +14,11 @@ export const Meeting22Container = styled.div`
   `}
 `;
 
-export const Meeting22Title = styled.h1`
-    font-size: 15px;
-    color: #000000;
-    font-weight: bold; 
+export const Meeting22Title = styled.div`
+  width:85%;
+  font-size: 15px;
+  color: #000000;
+  font-weight: 700;
+  line-height: 30px;
+  margin-left: 4%;
 `;

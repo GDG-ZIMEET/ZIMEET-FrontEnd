@@ -5,8 +5,8 @@ export const CreateTeamButton = styled.button`
   justify-content: center; 
   align-items: center;  
   background-color: #EA4335;
-  width: 90%;
-  height: 83%;
+  width: 94%;
+  height: 100%;
   color: white;
   border-radius: 10px;
   cursor: pointer;
@@ -32,8 +32,8 @@ export const CreateTeamBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;  
-  width: 90%;
-  height: 83%;
+  width: 94%;
+  height: 85%;
   border-radius: 10px;
   border: 1px solid #ADADAD;
   font-size: 13px;
