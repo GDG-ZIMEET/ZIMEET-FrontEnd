@@ -5,8 +5,7 @@ const Heart = ({ onClick }) => {
   return (
     <HeartLayOut>
       <HeartButton onClick={onClick}> 
-        <HiText>Hi</HiText>
-        <SendText>보내기</SendText>
+        <HiText>Hi</HiText> <SendText>보내기</SendText>
       </HeartButton>
     </HeartLayOut>
   );
