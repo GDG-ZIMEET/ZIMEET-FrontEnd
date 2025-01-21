@@ -11,11 +11,11 @@ export const HeartButton = styled.button`
   font-size: 16px;
   font-weight: 700;
   &:hover {
-    background-color: #ffffff;
+    background-color: #EA4335;
   }
 
   &:active {
-    background-color: #ffffff;
+    background-color: #EA4335;
   }
 `;
 

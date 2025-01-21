@@ -1,12 +1,13 @@
 import React from 'react';
 import { HeartButton, HeartLayOut, HiText, SendText } from './Styles';
 
-const Heart = () => {
+const Heart = ({ onClick }) => {
   return (
     <HeartLayOut>
-        <HeartButton>
-          <HiText>Hi</HiText> <SendText>보내기</SendText>
-        </HeartButton>
+      <HeartButton onClick={onClick}> 
+        <HiText>Hi</HiText>
+        <SendText>보내기</SendText>
+      </HeartButton>
     </HeartLayOut>
   );
 };

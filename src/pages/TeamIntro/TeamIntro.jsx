@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { isPremiumState } from '../../recoil/state/authStore'; 
 import * as S from './Styles'; 
@@ -6,11 +6,12 @@ import Header from 'components/TeamIntro/Header/Header';
 import MyProfile from 'components/TeamIntro/Profile/MyProfile';
 import Profiles from 'components/TeamIntro/Profile/ProfileData';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
-import Heart from 'components/Meeting22/Modal/Heart/Heart';
-
+import Heart from 'components/TeamIntro/Modal/Heart/Heart';
+import SendQuestion from 'components/TeamIntro/Modal/SendQuestion/SendQuestion';
 
 const TeamIntro = () => {
   const [isPremium, setIsPremium] = useRecoilState(isPremiumState); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const profileData = Profiles.find(profile => profile.isMe === true);
 
@@ -21,6 +22,18 @@ const TeamIntro = () => {
     checkPremiumStatus();
   }, [setIsPremium]);
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); 
+  };
+
+  const confirmModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <S.Container>
       <Header />
@@ -30,8 +43,10 @@ const TeamIntro = () => {
           isMe={profileData.isMe}  
           isPremium={isPremium} />
       )}
-    <Heart/>
-    <NavigationBar/>
+      <Heart onClick={openModal} />
+      <NavigationBar />
+      
+      {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} />}
     </S.Container>
   );
 };

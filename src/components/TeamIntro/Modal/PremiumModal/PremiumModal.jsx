@@ -1,6 +1,6 @@
 import React from 'react';
-import * as S from './Styles';
-import HeartMail from '../../../assets/icon/TeamInfo/HeartMail.svg'
+import * as S from '../PremiumModal/Styles';
+import HeartMail from '../../../../assets/icon/TeamInfo/HeartMail.svg'
 
 const PremiumModal = ({ }) => {
   return (

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import * as S from './Styles';
 import AgeBox from './AgeBox/AgeBox';
 import ProfileDetail from './ProfileDetail/ProfileDetail';
-import PremiumModal from 'components/TeamIntro/Modal/PremiumModal';
-import Detail from 'components/Meeting22/Modal/Detail/Detail';
+import PremiumModal from 'components/TeamIntro/Modal/PremiumModal/PremiumModal';
+import Detail from 'components/TeamIntro/Modal/Detail/Detail';
 
 const MyProfile = ({ profileData, isPremium }) => {
   const { avatar, nickname, mbti, style, idealType, preferredAge, Major, age, classNum, musicStyle } = profileData;
