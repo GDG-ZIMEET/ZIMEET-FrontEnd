@@ -18,6 +18,7 @@ import ZimeetIntroduct from './Introduct/ZimeetIntroduct/ZimeetIntroduct';
 import GdgocIntroduct from './Introduct/GdgocIntroduct/GdgocIntroduct';
 import ReceiveHi from './Chatting/ReceiveHi/ReceiveHi';
 import TeamIntro from './TeamIntro/TeamIntro';
+import OurTeamIntro from './OurTeamIntro/OurTeamIntro';
 
 const Routers: React.FC = () => {
   return (
@@ -41,6 +42,7 @@ const Routers: React.FC = () => {
       <Route path="/meetingRoading" element={<MeetingRoading />} />
       <Route path="/help" element={<Help />} />
       <Route path="/teamintro" element={<TeamIntro />} />
+      <Route path="/ourteamintro" element={<OurTeamIntro />} />
     </Routes>
   );
 };

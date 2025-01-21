@@ -13,11 +13,11 @@ const TeamIntro = () => {
   const [isPremium, setIsPremium] = useRecoilState(isPremiumState); 
   const [isModalOpen, setIsModalOpen] = useState(false); 
 
-  const profileData = Profiles.find(profile => profile.isMe === true);
+  const profileData = Profiles.filter(profile => profile.isMe === true).slice(0, 2);
 
   useEffect(() => {
     const checkPremiumStatus = async () => {
-      setIsPremium(false);
+      setIsPremium(true);
     };
     checkPremiumStatus();
   }, [setIsPremium]);
@@ -37,12 +37,13 @@ const TeamIntro = () => {
   return (
     <S.Container>
       <Header />
-      {profileData && (
+      {profileData && profileData.map((profile, index) => (
         <MyProfile 
-          profileData={profileData} 
-          isMe={profileData.isMe}  
+          key={index} 
+          profileData={profile} 
+          isMe={profile.isMe}  
           isPremium={isPremium} />
-      )}
+      ))}
       <Heart onClick={openModal} />
       <NavigationBar />
       
