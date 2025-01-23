@@ -5,6 +5,7 @@ import Join2 from './Authentication/Join/Join2';
 import SelectEmoji from './Authentication/Join/SelectEmoji';
 import Join3 from './Authentication/Join/Join3';
 import Login from './Authentication/Login/Login';
+import MyPage from './MyPage/MyPage/MyPage';
 import Booth from './Booth/Booth';
 import BoothDetail from './Booth/BoothDetail/BoothDetail';
 import Chatting from './Chatting/Chatting/Chatting';
@@ -28,6 +29,7 @@ const Routers: React.FC = () => {
       <Route path="/selectemoji" element={<SelectEmoji />} />
       <Route path="/join3" element={<Join3 />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/mypage" element={<MyPage />} />
       <Route path="/booth" element={<Booth />} />
       <Route path="/boothDetail" element={<BoothDetail />} />
       <Route path="/zimeetIntroduct" element={<ZimeetIntroduct />} />
