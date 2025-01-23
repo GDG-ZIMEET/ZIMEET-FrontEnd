@@ -1,17 +1,26 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useLocation } from 'react-router-dom';
-import NavigationBar from './NavigationBar/NavigationBar';
 
-const PhoneContainer = styled.div`
+const PhoneContainer = styled.div<{ isChatting: boolean }>`
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
+
+  ${({ isChatting }) =>
+    isChatting &&
+    css`
+      @media (max-width: 768px) {
+        @supports (-webkit-touch-callout: none) {
+          bottom: 0;
+        }
+      }
+    `}
 `;
 
-const PhoneScreen = styled.div`
+const PhoneScreen = styled.div<{ isChatting: boolean }>`
   height: 100%;
   width: auto;
   background-color: #FFFFFF;
@@ -20,30 +29,35 @@ const PhoneScreen = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 768px) {
-  @supports (-webkit-touch-callout: none) {
-      width: 100%;
-      height: 87%;
-      margin-top: -24%;
-    }
-  }
+  ${({ isChatting }) =>
+    isChatting &&
+    css`
+      @media (max-width: 768px) {
+        @supports (-webkit-touch-callout: none) {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    `}
+  ${({ isChatting }) =>
+    !isChatting &&
+    css`
+      @media (max-width: 768px) {
+        @supports (-webkit-touch-callout: none) {
+          width: 100%;
+          height: 87%;
+          margin-top: -24%;
+        }
+      }
+    `}
 `;
 
 const Content = styled.div`
-  flex:1;
+  flex: 1;
   width: 100%;
   height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   background-color: #FFFFFF;
-
-  @media (max-width: 768px) {
-  @supports (-webkit-touch-callout: none) {
-    .container {
-      height: -webkit-fill-available;
-    }
-  }
-}    
 `;
 
 interface SmartphoneScreenProps {
@@ -52,12 +66,11 @@ interface SmartphoneScreenProps {
 
 const MainScreen: React.FC<SmartphoneScreenProps> = ({ children }) => {
   const location = useLocation();
-
-  const excludeNavBarPaths = ['/login', '/join']; 
+  const isChatting = location.pathname === '/chatting';
 
   return (
-    <PhoneContainer>
-      <PhoneScreen>
+    <PhoneContainer isChatting={isChatting}>
+      <PhoneScreen isChatting={isChatting}>
         <Content>{children}</Content>
       </PhoneScreen>
     </PhoneContainer>

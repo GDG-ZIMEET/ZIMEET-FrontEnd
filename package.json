@@ -6,7 +6,6 @@
     "@amplitude/analytics-browser": "^2.11.11",
     "@types/styled-components": "^5.1.34",
     "axios": "^1.7.9",
-    "cra-template-typescript": "1.2.0",
     "polished": "^4.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -43,13 +42,13 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@eslint/js": "^9.17.0",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-react": "^7.37.3",
     "globals": "^15.14.0",
     "prettier": "^3.4.2",
