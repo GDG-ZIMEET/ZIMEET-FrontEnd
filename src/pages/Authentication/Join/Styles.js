@@ -5,6 +5,7 @@ export const JoinContainer = styled.div`
   height: 100%;
   background-color: white;
   padding: 5%;
+  overflow:auto;
 `;
 
 export const LogoContainer = styled.div`
@@ -36,7 +37,7 @@ export const LogoText = styled.p`
 export const JoinForm = styled.form`
   height: 100%;
   font-family: Pretendard;
-  padding: 10% 0;
+  padding: 8% 0;
 `;
 
 export const JoinText = styled.p`
@@ -53,6 +54,16 @@ export const JoinInput = styled.input`
   border-radius: 0.6rem;
   margin-bottom: 10%;
   font-size: 14px;
+
+  &:focus {
+    background-color: white;
+    border: 1px solid #022047;
+  }
+
+  &:not(:placeholder-shown) {
+    background-color: white;
+    border: 1px solid #022047;
+  }
 `;
 
 export const SelectContainer = styled.div`
@@ -61,12 +72,51 @@ export const SelectContainer = styled.div`
   height: 6.5%;
   margin-bottom: 10%;
 `;
-export const JoinSelect = styled.select`
-  width: 48%;
-  background-color: #f9fafb;
-  border: 1px solid rgba(2, 32, 71, 0.05);
-  border-radius: 0.6rem;
+export const SelectWrap = styled.div`
+  width: 35%; height: 100%;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
 `;
+export const JoinSelect = styled.select`
+  width: 63%; height: 100%;
+  background-color: white;
+  border: 1px solid #aaaaaa;
+  border-radius: 0.6rem;
+  margin: 0;
+  display: flex;
+
+  &:focus {
+    background-color: white;
+    border: 1px solid #022047;
+  }
+  &[value="선택"] {
+    background-color: white;
+  border: 1px solid #aaaaaa;
+  }
+  &:not([value="선택"]) {
+    background-color: white;
+    border: 1px solid #022047;
+  }
+`; 
+
+export const SelectText = styled.p`
+  font-size: 17px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2%;
+`;
+
+export const SelectComment = styled.p`
+  font-size: 17px;
+  color: #B0B0B0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 
 export const GenderContainer = styled.div`
   display: flex;

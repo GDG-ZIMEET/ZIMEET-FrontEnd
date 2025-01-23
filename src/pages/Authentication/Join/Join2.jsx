@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import * as S from './Styles2';
 import * as I from '../../../assets/Icons';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { emojiState } from 'recoil/state/emojiState';
 
 const Join2 = () => {
   const [major, setMajor] = useState('');
   const [nickname, setNickname] = useState('');
-
+  const navigate = useNavigate();
+  const selectedEmoji = useRecoilValue(emojiState);
   const isFormComplete = major && nickname;
 
+  const handleNext = () => {
+    if (isFormComplete) {
+      navigate('/join3'); 
+    }
+  };
 
   return (
     <S.JoinContainer>
@@ -42,15 +51,14 @@ const Join2 = () => {
           <S.JoinText>이모지</S.JoinText>
           <S.EmojiText>이모지는 프로필 사진 대신 쓰여요.</S.EmojiText>
           <S.EmojiText>아래 동그라미를 터치해서 이모지를 변경할 수 있어요.</S.EmojiText>
-          <S.CircleWrap>
+          <S.CircleWrap onClick={() => navigate('/selectemoji')}>
             <S.EmojiWrap>
-              <S.TossEmoji>💎</S.TossEmoji>
+              <S.TossEmoji>{selectedEmoji}</S.TossEmoji>
             </S.EmojiWrap>
-            
           </S.CircleWrap>
         </S.EmojiContainer>
         <S.BtnContainer>
-          <S.JoinBtn disabled={!isFormComplete}>
+          <S.JoinBtn disabled={!isFormComplete} onClick={handleNext}>
             {isFormComplete ? '다음으로' : '모든 정보를 입력해주세요.'}
           </S.JoinBtn>
         </S.BtnContainer>

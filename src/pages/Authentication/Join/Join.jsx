@@ -15,13 +15,13 @@ const Join = () => {
   
   const gradeOptions = Array.from({ length: 4 }, (_, index) => (
     <option key={index} value={index + 1}>
-      {index + 1} 학년
+      {index + 1}
     </option>
   ));
 
   const ageOptions = Array.from({ length: 9 }, (_, index) => (
     <option key={index} value={index + 20}>
-      {index + 20}세
+      {index + 20}
     </option>
   ));
 
@@ -73,21 +73,29 @@ const Join = () => {
         />
         <S.JoinText>학년 / 나이</S.JoinText>
         <S.SelectContainer>
-          <S.JoinSelect
-            value={grade}
-            onChange={(e) => setGrade(e.target.value)}
-          >
-            <option value="">학년</option>
-            {gradeOptions}
-          </S.JoinSelect>
-          <S.JoinSelect
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-          >
-            <option value="">나이</option>
-            {ageOptions}
-          </S.JoinSelect>
+          <S.SelectWrap>
+            <S.JoinSelect
+              value={grade}
+              onChange={(e) => setGrade(e.target.value)}
+            >
+              <option value="">선택</option>
+              {gradeOptions}
+            </S.JoinSelect>
+            <S.SelectText>학년</S.SelectText>
+          </S.SelectWrap>
+          <S.SelectWrap>
+            <S.JoinSelect
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+            >
+              <option value="">선택</option>
+              {ageOptions}
+            </S.JoinSelect>
+            <S.SelectText>세</S.SelectText>
+          </S.SelectWrap>
+          <S.SelectComment>(만 나이 X)</S.SelectComment>
         </S.SelectContainer>
+
         <S.JoinText>성별</S.JoinText>
         <S.GenderContainer>
           <S.GenderButton

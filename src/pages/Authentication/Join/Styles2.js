@@ -51,6 +51,16 @@ export const JoinInput = styled.input`
   border: 1px solid rgba(2, 32, 71, 0.05);
   border-radius: 0.6rem;
   margin-bottom: 10%;
+  
+  &:focus {
+    background-color: white;
+    border: 1px solid #022047;
+  }
+
+  &:not(:placeholder-shown) {
+    background-color: white;
+    border: 1px solid #022047;
+  }
 `;
 
 export const SelectContainer = styled.div`
