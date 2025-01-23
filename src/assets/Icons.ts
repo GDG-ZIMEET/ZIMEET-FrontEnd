@@ -47,3 +47,4 @@ export { ReactComponent as AboutGdgocCuk } from './icon/About GDGoC CUK.svg';
 export { ReactComponent as PinkCircle2 } from './icon/PinkCircle.svg';
 export { ReactComponent as BlueCircle } from './icon/BlueCircle.svg';
 export { ReactComponent as ProfileCircle } from './icon/ProfileCircle.svg';
+export { ReactComponent as EditMyInfo } from './icon/MyPage/EditMyInfo.svg';
