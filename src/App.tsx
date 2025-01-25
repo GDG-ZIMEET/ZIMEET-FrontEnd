@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import MainScreen from './components/MainScreen';
@@ -12,6 +12,13 @@ const App: React.FC = () => {
             : '';
             // : process.env.REACT_APP_AMPLITUDE_PRODUCTION_KEY || ''; // TODO : 실사용자 배포할 때 Production으로 바꿔서 배포
     init(amplitudeKey);
+
+    let vh = 0;
+
+useEffect(() => {
+  vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}, []);
 
   return (
     <RecoilRoot>

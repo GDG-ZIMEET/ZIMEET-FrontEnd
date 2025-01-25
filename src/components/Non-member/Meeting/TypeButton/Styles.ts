@@ -2,15 +2,17 @@ import styled, { css } from 'styled-components';
 
 export const TypeLayout = styled.div`
   display: flex;
-  padding: 0.7% 0 0 0;
-  height: 7.5%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.7% 1% 0  0%;
+  margin: 3% 0 1% 0;
+  height: 5.5%;
 `;
 
 export const TypeComponent = styled.div`
-  padding: 4% 1.7% 1% 0;
-  width: 18%
+  padding: 0.5% 1% 0.5% 0;
+  width: 16%;
 `;
-
 const buttonStyles = css`
   background-color: #F2F2F2;
   color: black;

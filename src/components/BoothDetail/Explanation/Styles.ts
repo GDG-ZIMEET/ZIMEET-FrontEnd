@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 export const ExplanationLayout = styled.div`
   display: flex;
-  height: 40%;
   flex-direction: column;
   background-color: #fff;
-  margin: 6% 0 30% 0;
+  margin: 6% 0 0% 0;
 `;
 
 export const ExplanationTitle = styled.h2`

@@ -9,8 +9,8 @@ import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 const Booth: React.FC = () => {
   return (
     <S.BoothLayout>
+      <Header />
       <S.BoothContainer>
-        <Header />
         <TypeButton />
         <S.ColorType>🟥 연애/팅 🟨먹거리 🟩물품판매 🟦이벤트/게임</S.ColorType>
         <S.Explanation>동아리를 <b>길게 눌러</b> 계좌번호를 쉽게 복사해보세요!</S.Explanation>

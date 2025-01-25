@@ -4,13 +4,9 @@ import { darken } from 'polished';
 export const BoothLayout = styled.div`
   display: flex;
   flex-direction: row;
-  height: 75%;
+  height: 77%;
   margin: 5% 3% 0 3%;
   justify-content: space-between;
-  
-  @media (max-width: 768px) {
-    height: 65%;
-  }
 `;
 
 export const NBuilding = styled.div`
@@ -56,10 +52,10 @@ export const Booths = styled.div`
   justify-content: space-between;
   overflow-y: auto;
   height: calc(100% - 5% - 3%);
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; 
   
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none; 
   }
 `;
 
