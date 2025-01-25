@@ -29,8 +29,11 @@ export const CopyButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-left: auto;
   color: white;
   font-weight: 600;
-  height: 50%;
+  height: 60%;
+  width: 25%;
+  line-height: normal;
 `;

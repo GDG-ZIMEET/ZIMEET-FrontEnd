@@ -6,10 +6,6 @@ export const TeamComponent = styled.div`
   height: 80%;
   margin-left: -1%;
   overflow-y: auto;
-  @media (max-width: 768px) {
-  @supports (-webkit-touch-callout: none) {
-    height: 81%;
-  }}
 `;
 
 export const NoTeamsMessageContainer = styled.div`

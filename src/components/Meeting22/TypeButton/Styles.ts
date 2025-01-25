@@ -2,16 +2,16 @@ import styled, { css } from 'styled-components';
 
 export const TypeLayout = styled.div`
   display: flex;
-  width: 94%;
+  width: 100%;
   box-sizing: border-box;
-  padding: 0.7% 1% 0  1%;
-  margin: 2%;
-  height: 6%;
+  padding: 0.7% 1% 0  0%;
+  margin: 3% 0 1% 0;
+  height: 5.5%;
 `;
 
 export const TypeComponent = styled.div`
   padding: 0.5% 1% 0.5% 0;
-  width: 16%
+  width: 16%;
 `;
 
 const buttonStyles = css<{ selected: boolean }>`
@@ -24,7 +24,7 @@ const buttonStyles = css<{ selected: boolean }>`
   font-size: 13px; 
   cursor: pointer;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   height: 100%;
   width: 100%; 
   white-space: nowrap;

@@ -39,7 +39,7 @@ const NavigationBar = () => {
                 </S.IconWrapper>
                 홈
             </S.NavItem>
-            <S.NavItem onClick={() => navigate('/meeting-random')}>
+            <S.NavItem onClick={() => navigate('/meeting22')}>
                 <S.IconWrapper style={{ margin: location.pathname === '/meeting22' ? '5px' : '6px' }}>
                     {getIcon('/meeting22')}
                 </S.IconWrapper>
@@ -51,7 +51,7 @@ const NavigationBar = () => {
                 </S.IconWrapper>
                 채팅
             </S.NavItem>
-            <S.NavItem>
+            <S.NavItem onClick={() => navigate('/mypage')}>
                 <S.IconWrapper style={{ margin: '5px' }}>
                     {getIcon('/myinformation')}
                 </S.IconWrapper>

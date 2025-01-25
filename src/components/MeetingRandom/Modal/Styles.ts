@@ -10,6 +10,7 @@ export const Modallayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 `;
 
 export const ModalContent = styled.div`
@@ -18,27 +19,15 @@ export const ModalContent = styled.div`
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 83%; 
-  height: 34%;
-
-  
-  @media (min-width: 430px) {
-    width: 50%;
-  }
-
-  @media (min-width: 630px) {
-    width: 40%;
-  }
-
-  @media (min-width: 768px) {
-    width: 30%;
-  }
+  width: 84%; 
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ModalTitle = styled.h2`
   font-size: 16px;
   color: #000000;
-  margin: 2% 0 7%;
+  margin: 6% 0 7%;
   font-weight: bold;
 `;
 
@@ -70,17 +59,21 @@ export const TicketCount = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto; 
+  padding: 2%;
   margin-bottom: 5%;
 `;
 
 export const ButtonBox = styled.div`
   display: flex;
+  justify-content: center; 
+  margin-top: auto;
 `;
 
 export const ConfirmButton = styled.button`
   padding: 4% 2%;
   background: red;
   color: #ffffff;
+  font-size: 16px;
   font-weight: bold;
   border: none;
   border-radius: 12px;
@@ -94,6 +87,7 @@ export const CancelButton = styled.button`
   color: #A6A6A6;
   border: none;
   width: 29%;
+  font-size: 16px;
   font-weight: bold;
   border-radius: 12px;
   cursor: pointer;

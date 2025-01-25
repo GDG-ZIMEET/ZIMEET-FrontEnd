@@ -8,7 +8,7 @@ export const BoothLayout = styled.div`
 `;
 
 export const BoothContainer = styled.div`
-   height: 100%;
+    flex: 1;
 `;
 
 

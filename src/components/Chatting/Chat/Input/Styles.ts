@@ -2,14 +2,13 @@ import { styled } from "styled-components";
 import * as I from "../../../../assets/Icons";
 
 export const InputContainer = styled.div`
-  position: fixed;
+  position: sticky;
   bottom: 0;
   width: 100%;
   height: 7.5%;
   display: flex;
   align-items: center;
-  padding: 1%;
-  border-radius: 20px   20px 0 0;
+  border-radius: 20px;
   background-color: #EFEFEF;
   justify-content: space-between; 
   z-index: 1000; 

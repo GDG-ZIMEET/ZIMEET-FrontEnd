@@ -3,7 +3,6 @@ import * as I from '../../../assets/Icons';
 import Event from 'components/MyPage/Event/Event';
 import ItemShop from 'components/MyPage/ItemShop/Main/ItemShop';
 import QnA from 'components/MyPage/QnA/QnA';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
 
 const MyPage = () => {
   return (
@@ -77,7 +76,6 @@ const MyPage = () => {
             <S.OutText href='/'>로그아웃</S.OutText>
         </S.OutContainer>
       </S.WhiteArea>
-      <NavigationBar />
     </S.MyPageContainer>
   );
 };

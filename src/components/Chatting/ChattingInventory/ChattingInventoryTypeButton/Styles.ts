@@ -3,13 +3,15 @@ import styled, { css } from 'styled-components';
 export const ChattingTypeLayout = styled.div`
   display: flex;
   padding: 0.7% 0 0 0;
-  height: 7.5%;
+  margin: 3% 0 1% 0;
+  height: 5.5%;
 `;
 
 export const ChattingTypeComponent = styled.div`
-  padding: 4% 1.7% 1% 0;
+  padding: 0.5% 1% 0.5% 0;
   width: 23%
 `;
+
 
 const buttonStyles = css<{ selected: boolean }>`
   background-color: ${({ selected }) => (selected ? 'black' : '#F2F2F2')};

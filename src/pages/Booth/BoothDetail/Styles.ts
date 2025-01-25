@@ -5,7 +5,7 @@ import PosterExample from '../../../assets/icon/Examplebooth2.png';
 
 export const BoothDetailLayout = styled.div`
   width: 100%;
-  height: 100vh; 
+  height: 100%; 
   overflow: auto;
   background-color: #ffffff;
 `;

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const MakingButtonLayout = styled.div`
-  position: fixed;
   bottom: 10%;
   width: 100%;
   background-color: #FFFFFF;
@@ -15,7 +14,7 @@ export const MakingButtonLayout = styled.div`
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {
     margin-top: -0%;
-    height: 12%;
+    height: 14%;
   }}
 `;
 

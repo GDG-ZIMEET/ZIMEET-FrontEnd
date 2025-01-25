@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MeetingRodingContainer, MeetingRandomTitle, WaitPeople } from './Styles';
-import TypeButton from '../../../components/MeetingRandom/TypeButton/TypeButton';
+import TypeButton from '../../../components/Meeting22/TypeButton/TypeButton';
 import MakeTeamBox from '../../../components/MeetingRandom/MakeTeamBox/MakeTeamBox';
 import Help from '../../../components/MeetingRandom/Help/Help';
 import JoinRandomMeetingButton from '../../../components/MeetingRandom/JoinButton/JoinRandomMeetingButton';
