@@ -22,39 +22,25 @@ export const ProfileDetailBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 80%;
+  width: 100%;
   position: relative;
   margin-bottom: 3%;
 `;
 
-export const PinkCircle = styled(I.PinkCircle)`
-  width: 93%;
-  height: 93%;
 
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      height: 85%;
-      width: 85%;
-    }
-  }
-`;
 
-export const BlueCircle = styled(I.BlueCircle)`
-  width: 93%;
-  height: 93%;
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      height: 85%;
-      width: 85%;
-    }
-  }
-`;
-
-export const Styles = styled.div<{ isBlue: boolean }>`
+export const Styles = styled.div<{ $isblue: string }>`
+  width: 90%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: ${({ $isblue }) => ($isblue === 'true'? 'rgba(66, 133, 244, 0.08)' : 'rgba(234, 67, 53, 0.08)')};
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   font-size: 14px;
   font-weight: bold;
-  color: ${({ isBlue }) => (isBlue ? '#4285F4' : '#EA4335')};
+  color: ${({ $isblue }) => ($isblue === 'true' ? '#4285F4' : '#EA4335')};
 
   @media (max-width: 768px) {
     @supports (-webkit-touch-callout: none) {

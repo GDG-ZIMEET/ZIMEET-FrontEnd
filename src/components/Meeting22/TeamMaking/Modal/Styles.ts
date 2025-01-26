@@ -91,7 +91,21 @@ export const Input = styled.input`
     }
   }
 `;
+export const SearchButton = styled.button`
+  height: 100%;
+  width: 14%;
+  margin-left: 2%;
+  background-color: #494949;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
 
+  &:hover {
+    background-color: #008A3A;
+  }
+`;
 
 export const AddFriendButton = styled.button`
   position: absolute;
