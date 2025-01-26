@@ -10,7 +10,7 @@ import { MyProfileData, Profiles } from 'components/Meeting22/TeamMaking/Profile
 const TeamMaking: React.FC = () => {
   const [situation, setSituation] = useState(1);
   const [teamName, setTeamName] = useState('');
-  const [inputColor, setinputColor] = useState('rgba(2, 32, 71, 0.05)');
+  const [inputcolor, setinputColor] = useState('rgba(2, 32, 71, 0.05)');
   const [teamMembers, setTeamMembers] = useState<MyProfileData[]>([]);
 
   const handleMakingButtonClick = () => {
@@ -54,7 +54,7 @@ const TeamMaking: React.FC = () => {
         teamName={teamName}
         setTeamName={setTeamName}
         setinputColor={setinputColor}
-        inputColor={inputColor}
+        $inputcolor={inputcolor}
        />
       <Teams 
         teamMembers={teamMembers}

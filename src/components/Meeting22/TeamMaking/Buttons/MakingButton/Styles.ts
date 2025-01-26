@@ -18,18 +18,18 @@ export const MakingButtonLayout = styled.div`
   }}
 `;
 
-export const TwoLimitText = styled.div<{ situation: number }>`
+export const TwoLimitText = styled.div<{ $situation: number }>`
   font-size: 12px;
   color: #000000;
   margin-bottom: 1%;
-  visibility: ${({ situation }) => (situation === 5 ? 'visible' : 'hidden')};
+  visibility: ${({ $situation }) => ($situation === 5 ? 'visible' : 'hidden')};
 `;
 
-export const SituationBox = styled.div<{ situation: number }>`
+export const SituationBox = styled.div<{ $situation: number }>`
   width: 88%;
   height: 60%;
-  background-color: ${({ situation }) => (situation === 5 ? '#EA4335' : '#ECECEC')};
-  color: ${({ situation }) => (situation === 5 ? 'white' : '#7C7C7C')};
+  background-color: ${({ $situation }) => ($situation === 5 ? '#EA4335' : '#ECECEC')};
+  color: ${({ $situation }) => ($situation === 5 ? 'white' : '#7C7C7C')};
   font-weight: bold;
   font-size: 16px;
   border-radius: 8px;
