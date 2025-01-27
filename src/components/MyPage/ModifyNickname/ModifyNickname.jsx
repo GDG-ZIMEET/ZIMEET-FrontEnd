@@ -21,7 +21,7 @@ const ModifyNickname = ({ isOpen, onClose }) => {
           type="text" 
           value={nickname} 
           onChange={(e) => setNickname(e.target.value)} 
-          placeholder="새 닉네임 입력" 
+          placeholder="나를 표현할 닉네임을 입력해주세요." 
         />
 
         <S.BtnContainer>
