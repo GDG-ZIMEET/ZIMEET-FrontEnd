@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const EventContainer = styled.div`
-  width: 90%; height: 5%;
+  width: 90%; 
   background-color: black;
   border-radius: 0.8rem;
   display: flex;
@@ -16,6 +16,7 @@ export const EventLogo = styled.div`
     width: 100%;
     height: 100%;
   }
+  padding: 3% 0;
 `;
 export const EventCommentWrapper = styled.div``;
 export const EventTitle = styled.p`

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const MyPageContainer = styled.div`
   width: 100%; 
   height: 100%;
-  background-color: black;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,10 +18,15 @@ export const LogoContainer = styled.div`
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  padding: 5% 0;
+  padding: 3% 0;
+
+  background-color: black;
+  width: 100%;
+  position: absolute;
+  z-index: 2;
 `;
 export const Logo = styled.div`
-  width: 20%;
+  width: 12%;
   text-align: center;
   svg {
     width: 100%;
@@ -30,14 +35,33 @@ export const Logo = styled.div`
 `;
 
 
+export const BlackContainer = styled.div`
+  width: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  padding: 0; margin: 0;
+`;
+export const WhiteArea = styled.div`
+  width: 100%; 
+  background-color: white;
+  position: absolute; 
+  top: 19%;
+  z-index: 0; 
+  border-top-left-radius: 2rem; border-top-right-radius: 2rem;
+  padding-top: 50%;
+  padding-bottom: 7%;
+`;
+
 //MyInfo
 export const InfoContainer = styled.div` 
   width: 90%;
   position: relative; // WhiteArea와 상호작용 설정
   z-index: 1; // WhiteArea 위로 
   background: transparent; 
+  // top: 10%;
+  margin-top: 15%;
 `;
-
 
 export const MyInfoContainer = styled.div`
   background-color: white;
@@ -135,19 +159,16 @@ export const MeetingIcons = styled.p`
   font-size: 30px;
 `;
 
-export const WhiteArea = styled.div`
-  width: 100%; height: 220%;
-  background-color: white;
-  position: absolute; 
-  top:20%;
-  z-index: 0; 
-  border-top-left-radius: 2rem; border-top-right-radius: 2rem;
-  padding-top: 55%;
 
+export const ComponentContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2%;
+  gap: 3%;
+  padding-top: 11%;
+  flex: 1;
+  padding-bottom: 50%;
 `;
 
 export const OutContainer = styled.div`

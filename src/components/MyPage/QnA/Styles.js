@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const QnAContainer = styled.div`
     font-family: Pretendard;
     width: 90%;
-    padding: 40% 0 10% 0;
+    padding: 35% 0 10% 0;
 `;
 
 export const Title = styled.p`
