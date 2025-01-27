@@ -1,0 +1,142 @@
+import styled from 'styled-components';
+
+export const JoinContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 5%;
+  font-family: Pretendard;
+`;
+
+//상단바
+export const TopBarContainer = styled.div`
+  overflow: hidden;
+  padding-bottom: 5%;
+`;
+export const TopBar = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const BackBtn = styled.button`
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0;
+`;
+export const TopBarText = styled.p`
+  font-weight: 700;
+  font-size: 15px;
+  padding-top: 2%;
+  padding-left: 5%;
+`;
+
+//
+export const ContentContainer = styled.div`
+  width: 100%;
+  overflow: auto;
+`;
+
+//이모지
+export const EmojiContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 5% 0;
+`;
+export const CircleWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+  height: auto;
+  padding: 8%;
+
+  &.emoji {
+    width: 20%; 
+    padding:0;
+    cursor: pointer;
+  }
+  
+`;
+export const EmojiWrap = styled.div`
+  width: 100%;
+  aspect-ratio: 1; /* 원 비율 유지 */
+  background-color: rgba(234, 67, 53, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 55px;
+  border-radius: 50%; 
+
+  &.blue {
+    background-color: rgba(66, 133, 244, 0.1);
+    color: rgb(66, 133, 244);
+  }
+`;
+export const TossEmoji = styled.p`
+  font-family: "TossFaceFontMac", sans-serif;
+  padding-bottom: 12%;
+  font-size: 40px;
+`;
+export const Text = styled.p`
+  font-size: 12px;
+  padding: 2% 0;
+  text-align: center;
+`;
+
+
+//프로필
+export const ProfileContainer = styled.div`
+  font-size: 14px;
+  width: 100%;
+  padding: 7% 5% 5% 5%;
+`;
+export const ProfileWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4%;
+`;
+export const ProfileItems = styled.div``;
+export const ProfileValues = styled.div`
+  &.nickname {
+    text-decoration: underline;
+  }
+`;
+
+
+//취향
+export const PreferContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 3% 5% 5% 5%;
+`;
+export const PreferWrapper = styled.div`
+  width: 25%;
+`;
+export const PreferValue = styled.p`
+  font-size: 14px;
+  font-weight: 700;
+`;
+export const PreferItems = styled.p`
+  font-size: 12px;
+  padding: 2%;
+`;
+
+
+//버튼
+export const BtnContainer = styled.div`
+  padding: 5% 0;
+  height: 100%;
+`;
+
+export const ModifyBtn = styled.button`
+  font-weight: 700;
+  width: 100%; height: 100%;
+  padding: 4%;
+  border-radius: 0.6rem;
+  background-color: ${({ disabled }) => (disabled ? '#ececec' : '#ea4335')};
+  color: ${({ disabled }) => (disabled ? '#7c7c7c' : 'white')};
+`;
