@@ -1,36 +1,39 @@
 import styled from 'styled-components';
+import * as I from "../../../assets/Icons";
 
 export const JoinContainer = styled.div`
   width: 100%;
   height: 100%;
   background-color: white;
-  padding: 5%;
   font-family: Pretendard;
 `;
 
 //상단바
 export const TopBarContainer = styled.div`
-  overflow: hidden;
-  padding-bottom: 5%;
-`;
-export const TopBar = styled.div`
+  width: 100%;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-`;
-export const BackBtn = styled.button`
-  font-size: 20px;
-  cursor: pointer;
-  font-weight: 700;
-  padding: 0;
-`;
-export const TopBarText = styled.p`
-  font-weight: 700;
-  font-size: 15px;
-  padding-top: 2%;
-  padding-left: 5%;
+  padding: 3%;
 `;
 
-//
+export const BackBtn = styled(I.Back)`
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+`;
+
+export const TopBarText = styled.h2`
+  font-weight: 700;
+  font-size: 15px; 
+  font-weight: bold;
+  color: #000000;
+  margin-left: 1%; 
+`;
+
 export const ContentContainer = styled.div`
   width: 100%;
   overflow: auto;

@@ -18,10 +18,8 @@ const ModifyProfile = () => {
   return (
     <S.JoinContainer>
       <S.TopBarContainer>
-        <S.TopBar>
-          <S.BackBtn onClick={handleBack}>&lt;</S.BackBtn>
+          <S.BackBtn onClick={handleBack} />
           <S.TopBarText>프로필 수정</S.TopBarText>
-        </S.TopBar>
       </S.TopBarContainer>
 
       <S.ContentContainer>
