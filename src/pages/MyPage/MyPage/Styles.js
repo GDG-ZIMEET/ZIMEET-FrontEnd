@@ -11,6 +11,13 @@ export const MyPageContainer = styled.div`
   overflow: auto;
 `;
 
+export const MyPageBox = styled.div`
+  width: 100%;
+  height: 88%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+`;
 
 //logo
 export const LogoContainer = styled.div`
@@ -19,7 +26,7 @@ export const LogoContainer = styled.div`
   align-items: center;
   overflow: hidden;
   padding: 3% 0;
-
+  
   background-color: black;
   width: 100%;
   position: absolute;
@@ -48,7 +55,7 @@ export const WhiteArea = styled.div`
   position: absolute; 
   top: 19%;
   z-index: 0; 
-  border-top-left-radius: 2rem; border-top-right-radius: 2rem;
+  border-radius: 2rem 2rem 0 0; 
   padding-top: 50%;
   padding-bottom: 7%;
 `;
@@ -59,7 +66,6 @@ export const InfoContainer = styled.div`
   position: relative; // WhiteArea와 상호작용 설정
   z-index: 1; // WhiteArea 위로 
   background: transparent; 
-  // top: 10%;
   margin-top: 15%;
 `;
 
@@ -161,12 +167,13 @@ export const MeetingIcons = styled.p`
 
 
 export const ComponentContainer = styled.div`
+  z-index: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3%;
-  padding-top: 11%;
+  padding-top: 6%;
   flex: 1;
   padding-bottom: 50%;
 `;
