@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import { getBoothColor, getTextColor } from './boothsData';
+import { Club } from '../../../recoil/type/booth';
 
 interface BoothProps {
-  booth: {
-    who: string;
-    title: string;
-    category: string;
-    accountNumber: string;
-  };
+  booth: Club;
 }
 
 const Booth: React.FC<BoothProps> = ({ booth }) => {
@@ -29,7 +25,7 @@ const Booth: React.FC<BoothProps> = ({ booth }) => {
     if (pressTimer) {
       clearTimeout(pressTimer);
       setPressTimer(null);
-      if (!isLongPress && booth.who === 'GDGoC') {
+      if (!isLongPress && booth.name === 'GDGoC') {
         navigate('/boothDetail');
       }
       setIsLongPress(false);
@@ -38,7 +34,7 @@ const Booth: React.FC<BoothProps> = ({ booth }) => {
 
   const handleBoothClick = () => {
     const textarea = document.createElement('textarea');
-    textarea.value = booth.accountNumber;
+    textarea.value = booth.account || '';
     document.body.appendChild(textarea);
     textarea.select();
     document.execCommand('copy');
@@ -56,8 +52,8 @@ const Booth: React.FC<BoothProps> = ({ booth }) => {
       onTouchEnd={handleBoothPressEnd}
       style={{ userSelect: 'none', WebkitUserSelect: 'none', msUserSelect: 'none' }}
     >
-      <S.BoothWho color={getTextColor(booth.category)}>{booth.who}</S.BoothWho>
-      <S.BoothTitle>{booth.title}</S.BoothTitle>
+      <S.BoothWho color={getTextColor(booth.category)}>{booth.name}</S.BoothWho>
+      <S.BoothTitle>{booth.rep}</S.BoothTitle>
     </S.Booth>
   );
 };

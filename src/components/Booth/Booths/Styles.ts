@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { darken } from 'polished';
 
 export const BoothLayout = styled.div`
@@ -44,6 +44,38 @@ export const BoothTime = styled.div`
   position: sticky;
   top: 0;
   margin-bottom: 3%;
+`;
+export const SquareRL = styled.div`
+  width: 100%;
+  text-align: center;
+  height: 8%;
+  display: flex;
+  align-items: between center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  margin-bottom: 3%;
+`;
+
+export const SquareRLButton = css<{ selected: boolean }>`
+  width: 48%;
+  height: 100%;
+  background-color: ${({ selected }) => (selected ? 'grey' : '#F2F2F2')};
+  border-radius: 5px;
+  color: ${({ selected }) => (selected ? 'white' : 'black')};
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+export const SquareLeft = styled.button<{ selected: boolean }>`
+  ${SquareRLButton}
+`;
+
+export const SquareRight = styled(SquareLeft)`
 `;
 
 export const Booths = styled.div`
