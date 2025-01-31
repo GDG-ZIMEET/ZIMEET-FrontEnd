@@ -130,12 +130,8 @@ export const MusicStyles = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export const MusicEmoji = styled.span`
-  font-size: 11px;
-  margin-left: 5%;
-  height: 100%;
-  width: 13%;
-  margin-top: 2%;
+export const MusicEmoji = styled(I.Music)`
+ margin-left: 6%;
 `;
 
 export const JoinMembersAndIntroduction = styled.div`
