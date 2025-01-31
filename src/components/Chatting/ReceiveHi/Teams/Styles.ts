@@ -9,6 +9,9 @@ export const TeamComponent = styled.div`
   @media (max-width: 768px) {
     height: 71%;
   }
+  &::-webkit-scrollbar {
+   display: none;
+  }
 `;
 
 export const NoTeamsMessageContainer = styled.div`
