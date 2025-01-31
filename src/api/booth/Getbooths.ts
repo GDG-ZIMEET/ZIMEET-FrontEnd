@@ -8,7 +8,6 @@ export const Getbooths = async (place: string): Promise<BoothsResponse | null> =
       headers: { 'Content-Type': 'application/json' },
     });
     if (response.status === 200) {
-      console.log("API Response:", response.data);
       return response.data;
     } else {
       console.error(`Error: Received status code ${response.status}`);
