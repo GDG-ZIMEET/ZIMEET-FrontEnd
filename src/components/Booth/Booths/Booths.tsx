@@ -24,7 +24,6 @@ const Booths: React.FC = () => {
       const response = await Getbooths(place);
       if (response) {
         setBooths(response.data.clubList);
-        console.log("Fetched Booths:", response.data.clubList);
       }
     };
 
