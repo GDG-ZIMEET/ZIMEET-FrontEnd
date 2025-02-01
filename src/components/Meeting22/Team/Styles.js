@@ -16,9 +16,11 @@ export const TeamLayOut = styled.div`
 export const rowBox1 = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  position: relative;
   width: 48%;
-  height: 20%;
+  height: 26%;
+  margin-right: 2%;
   `;
 
 export const rowBox2 = styled.div`
@@ -39,16 +41,16 @@ export const rowBox3= styled.div`
 `;
 
 export const MemberItem1 = styled.div`
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   display: flex;
+  aspect-ratio:1;
   background-color: rgba(234, 67, 53, 0.08); 
   font-size: 16px;
+  margin-right: -7%;
   border-radius: 50%;
-  margin: 0;
-  &:hover {
-  background-color: rgba(234, 67, 53, 0.2); 
-  }
-  padding: 10%;
-  gap: -7%;
 `;
 
 export const TeamName = styled.h3`
