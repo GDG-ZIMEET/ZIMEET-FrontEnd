@@ -11,7 +11,7 @@ const TypeButton: React.FC = () => {
   const handleClick = (buttonType: string) => {
     setSelectedButton(buttonType);
     if (buttonType === 'SSQUARE') {
-      setSelectedSquareRL('S-LEFT'); 
+      setSelectedSquareRL('S_LEFT'); 
     } else {
       setSelectedSquareRL('');
     }
