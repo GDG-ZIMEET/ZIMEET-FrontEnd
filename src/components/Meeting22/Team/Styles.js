@@ -19,7 +19,8 @@ export const rowBox1 = styled.div`
   justify-content: center;
   position: relative;
   width: 48%;
-  height: 20%;
+  height: 26%;
+  margin-right: 2%;
   `;
 
 export const rowBox2 = styled.div`
@@ -40,7 +41,6 @@ export const rowBox3= styled.div`
 `;
 
 export const MemberItem1 = styled.div`
-  width: 37%;
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -49,9 +49,8 @@ export const MemberItem1 = styled.div`
   aspect-ratio:1;
   background-color: rgba(234, 67, 53, 0.08); 
   font-size: 16px;
-  margin: -2%;
+  margin-right: -7%;
   border-radius: 50%;
-  padding: 15%
 `;
 
 export const TeamName = styled.h3`
