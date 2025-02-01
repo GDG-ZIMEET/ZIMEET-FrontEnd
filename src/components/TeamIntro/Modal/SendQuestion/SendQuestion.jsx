@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './Styles';
 import Send from '../Send/Send';  
 
 const SendQuestion = ({ onClose, onConfirm }) => {
-  const [showSend, setShowSend] = useState(false);  
   const [showSendQuestion, setShowSendQuestion] = useState(true);  
 
   const handleConfirm = () => {
     setShowSendQuestion(false);  
-    setShowSend(true);  
     onConfirm();  
   };
 
@@ -16,6 +14,7 @@ const SendQuestion = ({ onClose, onConfirm }) => {
     setShowSendQuestion(false);  
     onClose();  
   };
+
 
   return (
     <>
@@ -31,13 +30,11 @@ const SendQuestion = ({ onClose, onConfirm }) => {
             <S.TicketCount>우리 팀의 하이 : 2개</S.TicketCount>
             <S.ButtonBox>
               <S.CancelButton onClick={handleClose}>취소</S.CancelButton>
-              <S.ConfirmButton onClick={handleConfirm}>Hi 보내기</S.ConfirmButton>
+              <S.ConfirmButton onClick={handleConfirm}><S.HiText>Hi</S.HiText> 보내기</S.ConfirmButton>
             </S.ButtonBox>
           </S.ModalContent>
         </S.Modallayout>
       )}
-
-      {showSend && <Send/>}  
     </>
   );
 };

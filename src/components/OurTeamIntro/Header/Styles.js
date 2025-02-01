@@ -33,7 +33,8 @@ export const DeleteButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: 3%;
+  margin-right: 2.5%;
 `;
 
 export const DeleteIcon = styled.img`
@@ -47,9 +48,13 @@ export const DropdownMenu = styled.div`
   right: 10px;
   border-radius: 5px;
   padding: 10px;
+  width: 30%
 `;
 
 export const DropdownItem = styled.div`
+  display:flex;
+  justify-content: space-evenly;
+  align-items: center;
   font-size: 13px;
   font-weight: 400;
   line-height: 30px;
@@ -62,7 +67,7 @@ export const DropdownItem = styled.div`
 `;
 
 export const TrashIcon = styled.img`
-  width: 12px;
-  height: 12px;
+  width: 13%;
+  height: 13%;
   
 `;

@@ -30,13 +30,13 @@ const Header = () => {
         <S.Title>우리팀 소개</S.Title>
       </S.HeaderWrapper>
       <S.DeleteButton onClick={handleDeleteClick}>
-        <S.DeleteIcon src={DeleteIcon} alt="Delete" />
+        <S.DeleteIcon src={DeleteIcon} />
       </S.DeleteButton>
 
       {isDropdownOpen && (
         <S.DropdownMenu>
           <S.DropdownItem onClick={handleDeleteConfirm}>
-          <S.TrashIcon src={Trash} alt="Trash" />팀 삭제하기</S.DropdownItem>
+          <S.TrashIcon src={Trash} />팀 삭제하기</S.DropdownItem>
         </S.DropdownMenu>
       )}
 

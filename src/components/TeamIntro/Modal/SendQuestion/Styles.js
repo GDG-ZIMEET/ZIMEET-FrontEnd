@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import WhiteHeart from '../../../../assets/icon/TeamInfo/WhiteHeart.svg'
 
 export const Modallayout = styled.div`
   position: absolute; 
@@ -88,6 +89,17 @@ export const ConfirmButton = styled.button`
   border-radius: 12px;
   cursor: pointer;
   width: 72%;
+
+`;
+
+export const HiText = styled.span`
+  color: black;
+  background-image: url(${WhiteHeart});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2%;
+
 `;
 
 export const CancelButton = styled.button`

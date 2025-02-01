@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { isPremiumState } from '../../recoil/state/authStore'; 
 import * as S from './Styles'; 
@@ -8,10 +9,13 @@ import Profiles from 'components/TeamIntro/Profile/ProfileData';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
 import Heart from 'components/TeamIntro/Modal/Heart/Heart';
 import SendQuestion from 'components/TeamIntro/Modal/SendQuestion/SendQuestion';
+import Send from 'components/TeamIntro/Modal/Send/Send'
 
 const TeamIntro = () => {
   const [isPremium, setIsPremium] = useRecoilState(isPremiumState); 
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showSend, setShowSend] = useState(false);
+  const navigate = useNavigate(); 
 
   const profileData = Profiles.filter(profile => profile.isMe === true).slice(0, 2);
 
@@ -31,7 +35,13 @@ const TeamIntro = () => {
   };
 
   const confirmModal = () => {
-    setIsModalOpen(false);
+    setShowSend(true); 
+    setIsModalOpen(false);  
+  };
+
+  const closeSendModal = () => {
+    setShowSend(false);
+    navigate('/Meeting22');  
   };
 
   return (
@@ -48,6 +58,7 @@ const TeamIntro = () => {
       <NavigationBar />
       
       {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} />}
+      {showSend && <Send onClose={closeSendModal} />}
     </S.Container>
   );
 };

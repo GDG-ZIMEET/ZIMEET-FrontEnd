@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import HeartMail from '../../../../assets/icon/TeamInfo/HeartMail.svg'
 
 export const Modallayout = styled.div`
   position: absolute; 
@@ -19,7 +20,7 @@ export const ModalContent = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 83%; 
-  height: 34%;
+  height: 22%;
 
   
   @media (min-width: 430px) {
@@ -35,10 +36,14 @@ export const ModalContent = styled.div`
   }
 `;
 
-export const ModalTitle = styled.h2`
+export const ModalTitle = styled.div`
+  display: flex;
+  font-weight: 700;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
   color: #000000;
-  margin: 2% 0 7%;
+  margin: 2% 0 3%;
   font-weight: bold;
 `;
 
@@ -48,8 +53,15 @@ export const ModalText = styled.p`
   white-space: pre-line;
   word-wrap: break-word;
   text-align: center;
-  margin-bottom: 8%;
-  line-height: 1.5;
+  margin-bottom: 4%;
+  line-height: 22px; 
+  font-weight: 400;
+`;
+
+export const HeartIcon = styled.img`
+  width: 8%;  
+  height: 8%;
+  margin-left: 3%; 
 `;
 
 export const HighlightText = styled.span`
@@ -57,45 +69,20 @@ export const HighlightText = styled.span`
   text-decoration: underline;
 `;
 
-export const TicketCount = styled.div`
-  font-size: 12px;
-  color: #000000;
-  font-weight: bold;
-  background-color: #F2F2F2;
-  height: 12%; 
-  width: 38%; 
-  border-radius: 20px;
-  line-height: 1; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto; 
-  margin-bottom: 5%;
-`;
+
 
 export const ButtonBox = styled.div`
   display: flex;
+  height: 30%;
 `;
 
-export const ConfirmButton = styled.button`
-  padding: 4% 2%;
-  background: red;
-  color: #ffffff;
-  font-weight: bold;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  width: 72%;
-`;
 
 export const CancelButton = styled.button`
-  padding: 4% 2%;
-  background: #F2F2F2;
-  color: #A6A6A6;
+  background: #EA4335;
+  color: #FFFFFF;
   border: none;
-  width: 29%;
+  width: 100%;
   font-weight: bold;
   border-radius: 12px;
   cursor: pointer;
-  margin-right: 3%;
 `;

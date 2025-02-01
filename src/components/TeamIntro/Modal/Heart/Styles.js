@@ -32,7 +32,14 @@ export const HeartLayOut = styled.div`
 `;
 
 export const HiText = styled.span`
+  background-image: url(${WhiteHeart});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   color: black;
+  display: inline-block; 
+  text-align: center;
+  padding:2%;
 `;
 
 export const SendText = styled.span`
