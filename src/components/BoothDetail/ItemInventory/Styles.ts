@@ -44,19 +44,12 @@ export const ItemElement = styled.p`
   margin-left: auto;
 `;
 
-export const Itemhighlight = styled.span`
-  font-weight: bold;
-`;
-
-export const Check = styled(I.Check)`
-  margin-left: 1%;
-`;
 
 export const Account = styled.p`
   font-size: 12px;
   color: #000000;
   text-align: center;
-  margin-bottom: 1%;
+  margin-bottom: 2%;
 `;
 
 export const Time = styled.p`

@@ -11,7 +11,9 @@ export const AccountCopyLayout = styled.div`
   margin: 3% 0 2%;
 `;
 
-export const CircleLogo = styled(I.CircleLogo)`
+export const LogoComponent = styled.svg`
+  width: 9%;
+  height: 60%;
 `;
 
 export const Title = styled.h2`

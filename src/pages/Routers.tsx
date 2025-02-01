@@ -32,7 +32,7 @@ const Routers: React.FC = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/booth" element={<Booth />} />
-      <Route path="/boothDetail" element={<BoothDetail />} />
+      <Route path="/boothDetail/:clubId" element={<BoothDetail />} />
       <Route path="/zimeetIntroduct" element={<ZimeetIntroduct />} />
       <Route path="/gdgocIntroduct" element={<GdgocIntroduct />} />
       <Route path="/chatting" element={<Chatting />} />

@@ -37,14 +37,14 @@ const Booths: React.FC = () => {
           {selectedButton === 'SSQUARE' ? (
           <S.SquareRL>
             <S.SquareLeft
-              onClick={() => handleClick('S-LEFT')}
-              selected={selectedSquareRL === 'S-LEFT'}
+              onClick={() => handleClick('S_LEFT')}
+              selected={selectedSquareRL === 'S_LEFT'}
             >
               좌
             </S.SquareLeft>
             <S.SquareRight
-              onClick={() => handleClick('S-RIGHT')}
-              selected={selectedSquareRL === 'S-RIGHT'}
+              onClick={() => handleClick('S_RIGHT')}
+              selected={selectedSquareRL === 'S_RIGHT'}
             >
               우
             </S.SquareRight>
