@@ -25,8 +25,8 @@ export const NoTeamsMessageContainer = styled.div`
 export const ZimeetLogo = styled(I.ZimeetLogo)`
   width: 30%;
   margin-bottom: 5%;
- `;  
- 
+ `;
+
 export const NoTeamsMessage = styled.div`
   font-size: 14px;
   color: #000000;
@@ -134,8 +134,9 @@ export const MusicStyles = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 export const MusicEmoji = styled(I.Music)`
- margin-left: 6%;
+    margin-left: 6%;
 `;
 
 export const JoinMembersAndIntroduction = styled.div`

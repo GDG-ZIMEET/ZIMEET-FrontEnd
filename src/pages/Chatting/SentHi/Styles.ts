@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ReceiveHiLayout = styled.div`
+export const SentHiLayout = styled.div`
     padding: 6% 3% 0;
     background-color: #FFFFFF;
     top: 0;
@@ -9,13 +9,13 @@ export const ReceiveHiLayout = styled.div`
     flex-direction: column;
 `;
 
-export const ReceiveHiTitle = styled.h1`
+export const SentHiTitle = styled.h1`
     font-size: 15px;
     color: #000000;
     font-weight: bold; 
 `;
 
-export const ReceiveHiExplanation = styled.div`
+export const SentHiExplanation = styled.div`
   font-size: 13px;
   color: #000000;
   margin: 5% 0 3% 0;
@@ -27,12 +27,6 @@ export const ReceiveHiExplanation = styled.div`
 
   span {
     color: #FA2D4C;
-    text-decoration: underline; 
+    text-decoration: underline; // 밑줄 추가
   }
 `;
-
-
-
-
-
-

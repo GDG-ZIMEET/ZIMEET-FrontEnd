@@ -19,6 +19,7 @@ import Meeting from './NonMember/Meeting/Meeting';
 import ZimeetIntroduct from './Introduct/ZimeetIntroduct/ZimeetIntroduct';
 import GdgocIntroduct from './Introduct/GdgocIntroduct/GdgocIntroduct';
 import ReceiveHi from './Chatting/ReceiveHi/ReceiveHi';
+import SentHi from "./Chatting/SentHi/SentHi";
 
 const Routers: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ const Routers: React.FC = () => {
       <Route path="/chatting" element={<Chatting />} />
       <Route path="/chattingInventory" element={<ChattingInventory />} />
       <Route path="/receiveHi" element={<ReceiveHi />} />
+      <Route path="/sentHi" element={<SentHi />} />
       <Route path="/meeting22" element={<Meeting22 />} />
       <Route path="/teamMaking" element={<TeamMaking />} />
       <Route path="/nonmember-Meeting" element={<Meeting />} />
