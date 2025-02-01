@@ -22,16 +22,13 @@ const Teams: React.FC = () => {
             <S.JoinMembersAndIntroduction>
               <S.JoinMembers>
                 <S.JoinMemberBox>
-                  <S.PinkCircle />
                   <S.JoinMember>{team.join1}</S.JoinMember>
                 </S.JoinMemberBox>
                 <S.JoinMemberBox>
-                  <S.PinkCircle />
                   <S.JoinMember>{team.join2}</S.JoinMember>
                 </S.JoinMemberBox>
                 {team.joinType === '3to3' && (
                   <S.JoinMemberBox>
-                    <S.PinkCircle />
                     <S.JoinMember>{team.join3}</S.JoinMember>
                   </S.JoinMemberBox>
                 )}
