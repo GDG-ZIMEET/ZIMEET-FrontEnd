@@ -39,6 +39,14 @@ export const rowBox3= styled.div`
   box-sizing: border-box;
 `;
 
+export const CertifiedIcon = styled.span`
+  width: 16px;
+  height: 16px;
+  background-color: green; 
+  border-radius: 50%;
+  margin-right: 5px;
+`;
+
 export const MemberItem1 = styled.div`
   width: 37%;
   height: 100%;
@@ -54,7 +62,10 @@ export const MemberItem1 = styled.div`
   padding: 15%
 `;
 
-export const TeamName = styled.h3`
+export const TeamName = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #000;
   font-size: 13px;
   font-weight: 700;
