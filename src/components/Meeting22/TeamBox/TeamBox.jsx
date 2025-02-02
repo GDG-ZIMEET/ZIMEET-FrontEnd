@@ -1,21 +1,25 @@
 import React from 'react';
-import Team from '../Team/Team';
-import TeamData from '../Team/TeamData';
-import { TeamBoxLayOut,Wrapper } from './Styles';
+import Team from '../../Meeting22/Team/Team'; 
+import TeamData from '../../Meeting22/Team/TeamData'; 
+import * as S from './Styles'; 
+import { useRecoilValue } from 'recoil';
+import { teamSizeState } from '../../../recoil/state/teamSizeState'
 
 const TeamBox = () => {
-  return (
+  const teamSize = useRecoilValue(teamSizeState);
+  const filteredTeams = TeamData.filter((team) => team.members.length === teamSize);
 
-    <TeamBoxLayOut>
-      {TeamData.map((team) => (
+  return (
+    <S.TeamBoxLayOut>
+      {filteredTeams.map((team) => (
         <Team 
           key={team.id} 
           teamName={team.teamName} 
           members={team.members} 
+          teamSize={teamSize}
         />
       ))}
-    </TeamBoxLayOut>
-
+    </S.TeamBoxLayOut>
   );
 };
 

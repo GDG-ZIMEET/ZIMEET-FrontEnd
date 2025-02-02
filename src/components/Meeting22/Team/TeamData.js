@@ -47,6 +47,24 @@ const TeamData = [
         { major: "철학", age: 22, musicGenre: "클래식식", emoji: "🎷" },
       ],
     },
+    {
+      id: 7,
+      teamName: "달달한 데이트트",
+      members: [
+        { major: "철학", age: 23, musicGenre: "힙합", emoji: "💰" },
+        { major: "철학", age: 22, musicGenre: "클래식식", emoji: "🎷" },
+        { major: "철학", age: 22, musicGenre: "클래식식", emoji: "🎷" },
+      ],
+    },
+    {
+      id: 8,
+      teamName: "달달한 데이트트",
+      members: [
+        { major: "철학", age: 23, musicGenre: "힙합", emoji: "💰" },
+        { major: "철학", age: 22, musicGenre: "클래식식", emoji: "🎷" },
+        { major: "철학", age: 22, musicGenre: "클래식식", emoji: "🎷" },
+      ],
+    },
   ];
   
   export default TeamData;
