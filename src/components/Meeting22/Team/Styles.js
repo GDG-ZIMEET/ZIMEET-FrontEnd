@@ -92,4 +92,20 @@ export const MemberItem2 = styled.div`
   background: #F5F5F5;
   padding: 2.5%;
   box-sizing: border-box;
+  
+`;
+
+export const MusicGenresDiv = styled.div`
+display: flex;
+width:80%;
+color: #00AA47;
+font-size: 11px;
+font-weight: 700;
+line-height: 19.5px;
+justify-content: center;
+align-items: center;
+border-radius: 20px;
+background: #F5F5F5;
+padding: 2.5%;
+box-sizing: border-box;
 `;

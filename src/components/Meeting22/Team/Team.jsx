@@ -4,11 +4,35 @@ import * as S from './Styles';
 const Team = ({ teamName, members, teamSize }) => {
   const membersToDisplay = members.slice(0, teamSize); 
   const averageAge = (membersToDisplay.reduce((sum, member) => sum + member.age, 0) / membersToDisplay.length).toFixed(1); 
-  const uniqueMajors = [...new Set(membersToDisplay.map((member) => member.major))];
-  const majorDisplay = uniqueMajors.length === 1 ? uniqueMajors[0] : uniqueMajors.join("/ ");
+  const majors = membersToDisplay.map(member => member.major);
+  const musicGenres = membersToDisplay.map(member => member.musicGenre);
+
+  let majorDisplay; 
+  let musicGenreDisplay;
+  const uniqueMusicGenres = [...new Set(musicGenres)];
+  const uniqueMajors = [...new Set(majors)];
+  
+  if (uniqueMajors.length === 3) {
+    majorDisplay = majors.join(" / ");
+  } else if (uniqueMajors.length === 2) {
+    majorDisplay = uniqueMajors.join(" / ");
+  } else if (uniqueMajors.length === 1) {
+    majorDisplay = uniqueMajors[0];
+  }
+  console.log('uniqueMajors:', uniqueMajors);
+
+
+  if (uniqueMusicGenres.length === 3) {
+    musicGenreDisplay = `${musicGenres[0]} , ${musicGenres[1]}외`;
+  } else if (uniqueMusicGenres.length === 2) {
+    musicGenreDisplay = uniqueMusicGenres.join(" , ");
+  } else if (uniqueMusicGenres.length === 1) {
+    musicGenreDisplay = uniqueMusicGenres[0];
+  }
+  console.log('uniqueMusicGenres:', uniqueMusicGenres);
 
   return (
-    <S.TeamLayOut>
+    <S.TeamLayOut teamSize={teamSize}>
       <S.rowBox1>
         {membersToDisplay.map((member, index) => (
           <S.MemberItem1 key={index}>
@@ -23,11 +47,13 @@ const Team = ({ teamName, members, teamSize }) => {
         </S.rowBox2>
       </S.rowBox3>
       <S.MemberInfo>
-        {membersToDisplay.map((member, index) => (
-          <S.MemberItem2 key={index}>
-            {member.musicGenre}
-          </S.MemberItem2>
-        ))}
+      {teamSize === 3 ? (
+          <S.MusicGenresDiv>{musicGenreDisplay}</S.MusicGenresDiv>
+        ) : (
+          membersToDisplay.map((member, index) => (
+            <S.MemberItem2 key={index}>{member.musicGenre}</S.MemberItem2>
+          ))
+      )}
       </S.MemberInfo>
     </S.TeamLayOut>
   );

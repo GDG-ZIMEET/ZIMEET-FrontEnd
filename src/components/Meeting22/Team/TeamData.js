@@ -52,17 +52,53 @@ const TeamData = [
       teamName: "달달한 데이트트",
       members: [
         { major: "철학", age: 23, musicGenre: "힙합", emoji: "💰" },
-        { major: "철학", age: 22, musicGenre: "클래식식", emoji: "🎷" },
-        { major: "철학", age: 22, musicGenre: "클래식식", emoji: "🎷" },
+        { major: "철학", age: 22, musicGenre: "힙합", emoji: "🎷" },
+        { major: "철학", age: 22, musicGenre: "힙합", emoji: "🎷" },
       ],
     },
     {
       id: 8,
       teamName: "달달한 데이트트",
       members: [
-        { major: "철학", age: 23, musicGenre: "힙합", emoji: "💰" },
-        { major: "철학", age: 22, musicGenre: "클래식식", emoji: "🎷" },
-        { major: "철학", age: 22, musicGenre: "클래식식", emoji: "🎷" },
+        { major: "철", age: 23, musicGenre: "힙합", emoji: "💰" },
+        { major: "철학", age: 22, musicGenre: "클래식", emoji: "🎷" },
+        { major: "학", age: 22, musicGenre: "클래식", emoji: "🎷" },
+      ],
+    },
+    {
+      id: 8,
+      teamName: "홍성민",
+      members: [
+        { major: "철", age: 23, musicGenre: "힙합", emoji: "💰" },
+        { major: "철학", age: 22, musicGenre: "클래식", emoji: "🎷" },
+        { major: "학", age: 22, musicGenre: "히팝", emoji: "🎷" },
+      ],
+    },
+    {
+      id: 8,
+      teamName: "짱짱맨",
+      members: [
+        { major: "철", age: 23, musicGenre: "힙합", emoji: "💰" },
+        { major: "철학", age: 22, musicGenre: "클래식", emoji: "🎷" },
+        { major: "학", age: 22, musicGenre: "히팝", emoji: "🎷" },
+      ],
+    },
+    {
+      id: 9,
+      teamName: "짱짱맨",
+      members: [
+        { major: "철", age: 23, musicGenre: "힙합", emoji: "💰" },
+        { major: "철학", age: 22, musicGenre: "클래식", emoji: "🎷" },
+        { major: "학", age: 22, musicGenre: "히팝", emoji: "🎷" },
+      ],
+    },
+    {
+      id: 10,
+      teamName: "짱짱맨",
+      members: [
+        { major: "철", age: 23, musicGenre: "힙합", emoji: "💰" },
+        { major: "철학", age: 22, musicGenre: "클래식", emoji: "🎷" },
+        { major: "학", age: 22, musicGenre: "히팝", emoji: "🎷" },
       ],
     },
   ];
