@@ -62,6 +62,11 @@ export const LoginBtn = styled.button`
   color: white;
 `;
 
+export const ErrorMsg = styled.p`
+  color: #EA4335;
+  font-size: 13px;
+`;
+
 export const JoinContainer = styled.div`
   display: flex;
   flex-direction: column;
