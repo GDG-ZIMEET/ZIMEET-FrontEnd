@@ -10,7 +10,7 @@ import NavigationBar from 'components/NavigationBar/NavigationBar';
 import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 import { GetboothDetail } from '../../../api/booth/GetboothDetail';
 import { boothDetailState } from '../../../recoil/state/boothState';
-import { getPosterComponent } from '../../../Mapping/PosterMap';
+import { getPosterComponent } from '../../../utils/PosterMap';
 
 
 const BoothDetail: React.FC = () => {
