@@ -2,7 +2,7 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import * as S from './Styles';
 import { boothDetailState } from '../../../recoil/state/boothState';
-import { getLogoComponent } from '../../../Mapping/PosterMap';
+import { getLogoComponent } from '../../../utils/PosterMap';
 
 const AccountCopy: React.FC = () => {
   const boothDetail = useRecoilValue(boothDetailState);
