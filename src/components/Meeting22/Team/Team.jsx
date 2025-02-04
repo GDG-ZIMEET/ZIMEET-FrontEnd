@@ -1,7 +1,8 @@
 import React from 'react';
 import * as S from './Styles';
+import { ReactComponent as VerifyIcon } from '../../../assets/icon/Meeting22/VerifyIcon.svg' 
 
-const Team = ({ teamName, members, teamSize }) => {
+const Team = ({ teamName, members, teamSize, isVerified }) => {
   const membersToDisplay = members.slice(0, teamSize); 
   const averageAge = (membersToDisplay.reduce((sum, member) => sum + member.age, 0) / membersToDisplay.length).toFixed(1); 
   const majors = membersToDisplay.map(member => member.major);
@@ -41,7 +42,9 @@ const Team = ({ teamName, members, teamSize }) => {
         ))}
       </S.rowBox1>
       <S.rowBox3>
-        <S.TeamName>{teamName}</S.TeamName>
+        <S.TeamName>
+          {isVerified && <VerifyIcon/>}{teamName}
+        </S.TeamName>
         <S.rowBox2>
           <S.MajorDisplay>{majorDisplay} | {averageAge}</S.MajorDisplay>
         </S.rowBox2>

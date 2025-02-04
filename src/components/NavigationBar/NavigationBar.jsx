@@ -1,10 +1,15 @@
 import * as I from '../../assets/Icons.ts'; 
 import * as S from './Styles';
-import { useNavigate, useLocation } from 'react-router-dom'; 
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { authState } from '../../recoil/state/authAtom.js'; 
 
 const NavigationBar = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const isLoggedIn = useRecoilValue(authState);
+    
+    console.log("로그인 상태:", isLoggedIn); 
 
     const iconMapping = {
         '/': {
@@ -40,9 +45,10 @@ const NavigationBar = () => {
                 홈
             </S.NavItem>
             <S.NavItem onClick={() => navigate('/meeting22')}>
-                <S.IconWrapper style={{ margin: location.pathname === '/meeting22' ? '5px' : '6px' }}>
+                <S.RedDotIconWrapper style={{ margin: location.pathname === '/meeting22' ? '5px' : '6px' }}>
+                    {!isLoggedIn && <S.RedDot />} 
                     {getIcon('/meeting22')}
-                </S.IconWrapper>
+                </S.RedDotIconWrapper>
                 미팅
             </S.NavItem>
             <S.NavItem onClick={() => navigate('/chattingInventory')}>

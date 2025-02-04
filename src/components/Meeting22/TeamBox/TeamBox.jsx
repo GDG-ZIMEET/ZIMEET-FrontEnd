@@ -16,7 +16,7 @@ const TeamBox = () => {
           key={team.id} 
           teamName={team.teamName} 
           members={team.members} 
-          teamSize={teamSize}
+          isVerified={team.isVerified}
         />
       ))}
     </S.TeamBoxLayOut>

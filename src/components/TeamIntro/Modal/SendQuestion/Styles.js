@@ -1,0 +1,115 @@
+import styled from 'styled-components';
+import WhiteHeart from '../../../../assets/icon/TeamInfo/WhiteHeart.svg'
+
+export const Modallayout = styled.div`
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ModalContent = styled.div`
+  background: #ffffff;
+  padding: 4%;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 84%; 
+  height: 28%;
+
+  @media (min-width: 430px) {
+    width: 50%;
+  }
+
+  @media (min-width: 630px) {
+    width: 40%;
+  }
+
+  @media (min-width: 768px) {
+    width: 30%;
+  }
+`;
+
+export const ModalTitle = styled.h2`
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 2% 0 5%;
+`;
+
+export const ModalText = styled.p`
+  font-size: 12px;
+  color: #9C9C9C;
+  white-space: pre-line;
+  word-wrap: break-word;
+  text-align: center;
+  margin-bottom: 8%;
+  line-height: 1.5;
+`;
+
+export const HighlightText = styled.span`
+  font-weight: bold;
+  text-decoration: underline;
+`;
+
+export const TicketCount = styled.div`
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 19.5px;
+  color: #EA4335;
+  font-weight: bold;
+  background-color: #F2F2F2;
+  height: 12%; 
+  width: 38%; 
+  border-radius: 20px;
+  line-height: 1; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; 
+  margin-bottom: 5%;
+`;
+
+export const ButtonBox = styled.div`
+  display: flex;
+`;
+
+export const ConfirmButton = styled.button`
+  padding: 4% 2%;
+  background: #EA4335;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 72%;
+
+`;
+
+export const HiText = styled.span`
+  color: black;
+  background-image: url(${WhiteHeart});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2%;
+
+`;
+
+export const CancelButton = styled.button`
+  padding: 4% 2%;
+  background: #F2F2F2;
+  color: #A6A6A6;
+  border: none;
+  width: 29%;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-right: 3%;
+`;
