@@ -6,12 +6,14 @@ import Teams from 'components/Chatting/ChattingInventory/Teams/Teams';
 
 const ChattingInventory: React.FC = () => {
   return (
+    <>
     <S.ChattingInventoryLayout>
       <S.ChattingInventoryTitle>팀 갤러리</S.ChattingInventoryTitle>
       <ChattingInventoryTypeButton />
       <Teams />
-      <NavigationBar />
     </S.ChattingInventoryLayout>
+    <NavigationBar />
+    </>
   );
 };
 

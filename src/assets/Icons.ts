@@ -13,6 +13,7 @@ export { ReactComponent as HomeWhite } from './icon/navigationbar/homeWhite.svg'
 export { ReactComponent as Meeting } from './icon/navigationbar/meeting.svg';
 export { ReactComponent as MeetingHeart } from './icon/navigationbar/meetingHeart.svg';
 export { ReactComponent as MyInformation } from './icon/navigationbar/myinformation.svg';
+export { ReactComponent as Schatting } from './icon/navigationbar/Schatting.svg';
 
 
 // 부스 아이콘
