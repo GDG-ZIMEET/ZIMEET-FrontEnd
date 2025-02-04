@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NavBarContainer = styled.nav`
-  position: sticky;
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
