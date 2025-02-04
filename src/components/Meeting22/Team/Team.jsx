@@ -9,25 +9,27 @@ const Team = ({ teamName, members }) => {
 
   return (
     <S.TeamLayOut>
-      <S.rowBox>
+      <S.rowBox1>
         {members.map((member, index) => (
         <S.MemberItem1 key={index}>
-           {member.emoji}
+          {member.emoji}
         </S.MemberItem1>
     ))}
-      </S.rowBox>
-      <S.TeamName>{teamName}</S.TeamName>
-      <S.rowBox>
-        <S.MajorDisplay>{majorDisplay}</S.MajorDisplay>
-        <S.AverageAge>{averageAge}</S.AverageAge>
-      </S.rowBox>
-      <S.MemberInfo>
-        {members.map((member, index) => (
-          <S.MemberItem2 key={index}>
-            {member.musicGenre} 
-          </S.MemberItem2>
-        ))}
-      </S.MemberInfo>
+      </S.rowBox1>
+      <S.rowBox3>
+        <S.TeamName>{teamName}</S.TeamName>
+        <S.rowBox2>
+          <S.MajorDisplay>{majorDisplay} | {averageAge}</S.MajorDisplay>
+        </S.rowBox2>
+      </S.rowBox3>
+        <S.MemberInfo>
+          {members.map((member, index) => (
+            <S.MemberItem2 key={index}>
+              {member.musicGenre} 
+            </S.MemberItem2>
+            ))}
+        </S.MemberInfo>
+
     </S.TeamLayOut>
   );
 };

@@ -4,10 +4,15 @@ import * as I from '../../../assets/Icons';
 export const ZimeetIntroductLayout = styled.div`
   width: 100%;
   height: 100%; 
-  overflow: auto;
   background-color: #ffffff;
   padding-bottom: 10%;
 `;
+
+export const ZimeetContainer = styled.div`
+  width: 100%;
+  height: 85%;
+  overflow: auto;
+`;  
 
 
 export const Zimeet = styled(I.Zimeet)`

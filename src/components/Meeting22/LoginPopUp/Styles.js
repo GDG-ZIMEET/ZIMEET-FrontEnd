@@ -7,7 +7,7 @@ export const PopupContainer = styled.div`
   align-items: center; 
   position: fixed;
   width: 76%;
-  height: 25.5%;
+  height: 19.5%;
   color: #FFF;
   top: 50%;
   left: 50%;

@@ -9,6 +9,7 @@ export const JoinContainer = styled.div`
 
 export const LogoContainer = styled.div`
   overflow: hidden;
+  padding-bottom: 5%;
 `;
 
 export const Logo = styled.div`
@@ -34,19 +35,43 @@ export const LogoText = styled.p`
 
 export const JoinForm = styled.form`
   font-family: Pretendard;
-  padding: 10% 0;
-  height: 50%;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 55%;
 `;
 
 export const JoinInput = styled.input`
   width: 100%;
-  height: 15%;
+  height: 8%;
   background-color: #f9fafb;
   border: 1px solid rgba(2, 32, 71, 0.05);
   border-radius: 0.6rem;
   margin-bottom: 10%;
+
+  &:focus {
+    background-color: white;
+    border: 1px solid #022047;
+  }
+
+  &:not(:placeholder-shown) {
+    background-color: white;
+    border: 1px solid #022047;
+  }
 `;
 
+export const HrLine = styled.hr`
+  height: 2vh;
+  background-color: #f3f3f3;
+  border: none;
+  // margin: 0; /* 여백 제거 */
+  // width: 100vw; /* 뷰포트 너비를 100%로 설정 */
+  // position: relative; /* 부모 요소와의 위치를 상대적으로 설정 */
+  // left: calc(-50vw + 50%); /* 좌측 여백을 계산하여 중앙 정렬 */
+`;
+
+export const SelectTopContainer = styled.div`
+  height: 7%;
+`;
 
 export const SelectContainer = styled.div`
   margin-top: 5%;
@@ -57,12 +82,6 @@ export const ChooseOne = styled.p`
   font-size: 16px;
   line-height: 150%;
   padding-top: 5%;
-`;
-
-export const SelectTopContainer = styled.div`
-  height: 10%;
-  border-top: 2vh solid #f3f3f3;
-  padding-bottom: 5%;
 `;
 
 export const SelectGrid = styled.div`
@@ -101,7 +120,7 @@ export const SelectButton = styled.button`
 `;
 
 export const BtnContainer = styled.div`
-  height: 15%;
+  height: 9%;
 `
 export const JoinBtn = styled.button`
   font-weight: 700;

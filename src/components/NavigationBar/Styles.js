@@ -5,16 +5,12 @@ export const NavBarContainer = styled.nav`
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 10%;
+  height: 12%;
   background-color: #ffffff;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border-top: 1px solid #f0f0f0;
-
-  @media (max-width: 768px) {
-    position: fixed;
-  }
 `;
 
 export const NavItem = styled.div`

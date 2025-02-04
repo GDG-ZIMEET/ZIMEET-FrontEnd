@@ -1,11 +1,42 @@
-import React from 'react';
-import { CreateTeamButton, CreateTeamLayOut } from './Styles'; 
+import React, { useState, useEffect } from 'react';
+import * as S from './Styles';
+import TeamData from '../Team/TeamData';
+import ViewMore from '../ViewMore/ViewMore';
 
 const MakeTeam = () => {
+  const [teamCreated, setTeamCreated] = useState(false);
+  const [teamName, setTeamName] = useState('');
+  const [emojis, setEmojis] = useState([]);
+
+  useEffect(() => {
+    const team = TeamData.find(team => team.id === 1);
+
+    if (team) {
+      setTeamName(team.teamName);
+      setEmojis(team.members.map(member => member.emoji));
+    }
+  }, []);
+
+  const handleCreateTeam = () => {
+    setTeamCreated(true);
+  };
+
   return (
-    <CreateTeamLayOut>
-        <CreateTeamButton>팀 만들기</CreateTeamButton>
-    </CreateTeamLayOut>
+    <S.CreateTeamLayOut>
+      {!teamCreated ? (
+        <S.CreateTeamButton onClick={handleCreateTeam}>팀 만들기</S.CreateTeamButton>
+      ) : (
+        <S.CreateTeamBox>
+          <S.TeamBox>
+            {emojis.length > 0 && emojis.map((emoji, index) => (
+              <span key={index}>{emoji} </span>
+            ))}
+            {teamName}(우리팀)
+          </S.TeamBox> 
+          <ViewMore />
+        </S.CreateTeamBox>    
+      )}
+    </S.CreateTeamLayOut>
   );
 };
 

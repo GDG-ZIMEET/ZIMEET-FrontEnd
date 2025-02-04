@@ -19,11 +19,12 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend 
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setInputValue(value);
+    setInputValue(event.target.value);
+  };
 
+  const handleSearch = () => {
     const friend = Profiles.find((friend) =>
-      searchType === 'nickname' ? friend.nickname === value : friend.number === value
+      searchType === 'nickname' ? friend.nickname === inputValue : friend.number === inputValue
     );
 
     setMatchedFriend(friend || null);
@@ -60,6 +61,9 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend 
                 border: matchedFriend ? '1px solid #00AA47' : '1px solid rgba(2, 32, 71, 0.05)',
               }}
             />
+            {inputValue && (
+            <S.SearchButton onClick={handleSearch}>검색</S.SearchButton>
+            )}
           </S.DropBox>
         {matchedFriend && (
           <>

@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 export const ChattingBox = styled.div`
-  margin-top: 15%;
-  margin-bottom: 13%;
-  height: 70%;
+  position: relative;
   width: 100%;
   flex: 1;
   padding: 3%;

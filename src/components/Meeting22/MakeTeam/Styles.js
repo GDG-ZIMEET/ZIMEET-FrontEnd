@@ -1,25 +1,47 @@
-import { padding } from 'polished';
 import styled from 'styled-components';
 
 export const CreateTeamButton = styled.button`
+  display: flex;
+  justify-content: center; 
+  align-items: center;  
   background-color: #EA4335;
-  width: 100%;
+  width: 94%;
+  height: 100%;
   color: white;
   border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
-
   &:hover {
-    background-color: #ffffff;
+    background-color: #D1352D;
   }
 
   &:active {
-    background-color: #ffffff;
+    background-color: #B12F24;
   }
 `;
+
 export const CreateTeamLayOut = styled.div`
-  display : flex;
-  height : 8.5%;
+  display: flex;
+  height: 8.5%;
   margin-top: 3%;
   margin-bottom: 3%;
-`;  
+  justify-content: center; 
+  align-items: center;     
+`; 
+export const CreateTeamBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
+  width: 94%;
+  height: 85%;
+  border-radius: 10px;
+  border: 1px solid #ADADAD;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 30px     
+`; 
+
+
+export const TeamBox = styled.div`
+  padding:3%;
+`; 

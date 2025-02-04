@@ -3,14 +3,8 @@ import * as I from '../../../../assets/Icons';
 
 export const TeamLayout = styled.div`
   width: 100%;
-  height: 61%;
+  height: 69%;
   overflow: hidden;
-  @media (max-width: 768px) {
-  @supports (-webkit-touch-callout: none) {
-    height: 60%;
-    margin-top: 1%;
-    overflow: hidden;
-  }}
 `;
 
 export const TeamContainer = styled.div`

@@ -38,6 +38,7 @@ export { ReactComponent as GdgBottomLogo } from './icon/login/gdgbottomLogo.svg'
 export { ReactComponent as PinkCircle } from './icon/PinkCircle.svg';
 export { ReactComponent as ChattingButton } from './icon/ChattingButton.svg';
 export { ReactComponent as Hamburger } from './icon/Hamburger.svg';
+export { ReactComponent as Music } from './icon/Chatting/music.svg';
 
 //ziMeetIntroduct
 export { ReactComponent as Zimeet } from './icon/ZIMEET.svg';
@@ -47,3 +48,21 @@ export { ReactComponent as AboutGdgocCuk } from './icon/About GDGoC CUK.svg';
 export { ReactComponent as PinkCircle2 } from './icon/PinkCircle.svg';
 export { ReactComponent as BlueCircle } from './icon/BlueCircle.svg';
 export { ReactComponent as ProfileCircle } from './icon/ProfileCircle.svg';
+export { ReactComponent as EditMyInfo } from './icon/MyPage/EditMyInfo.svg';
+
+//부스 포스터 사진
+export { ReactComponent as Houh } from './icon/boothDetail/Ho.svg';
+export { ReactComponent as SSine } from './icon/boothDetail/ssine.svg';
+export { ReactComponent as Coma } from './icon/boothDetail/coma.svg';
+export { ReactComponent as Shield } from './icon/boothDetail/shield.svg';
+export { ReactComponent as Ala } from './icon/boothDetail/ala.svg';
+export { ReactComponent as Gdgoc } from './icon/boothDetail/gdgoc.svg';
+export { ReactComponent as Anicat } from './icon/boothDetail/anicat.svg';
+export { ReactComponent as Youdo } from './icon/boothDetail/youdo.svg';
+export { ReactComponent as Cotrang } from './icon/boothDetail/cotrang.svg';
+export { ReactComponent as KickOff } from './icon/boothDetail/kickoff.svg';
+export { ReactComponent as PhotoZone } from './icon/boothDetail/photozone.svg';
+export { ReactComponent as Piano } from './icon/boothDetail/piano.svg';
+
+//부스 로고
+export { ReactComponent as NonLogo } from './icon/boothDetail/GDGlogo.svg';

@@ -12,6 +12,8 @@ const ChattingInventoryTypeButton: React.FC = () => {
       setSelectedButton('Chatting');
     } else if (location.pathname.includes('/receiveHi')) {
       setSelectedButton('receiveHi');
+    } else if (location.pathname.includes('/sentHi')) {
+      setSelectedButton('sentHi');
     }
   }, [location]);
 
@@ -21,6 +23,8 @@ const ChattingInventoryTypeButton: React.FC = () => {
       navigate('/chattingInventory');
     } else if (buttonType === 'receiveHi') {
       navigate('/receiveHi');
+    } else if (buttonType === 'sentHi') {
+      navigate('/sentHi');
     }
   };
 
@@ -44,8 +48,8 @@ const ChattingInventoryTypeButton: React.FC = () => {
       </S.ChattingTypeComponent>
       <S.ChattingTypeComponent>
         <S.SendHi
-          onClick={() => handleClick('sendHi')}
-          selected={selectedButton === 'sendHi'}
+          onClick={() => handleClick('sentHi')}
+          selected={selectedButton === 'sentHi'}
         >
           보낸 하이
         </S.SendHi>

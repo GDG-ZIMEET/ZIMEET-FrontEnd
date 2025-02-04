@@ -11,7 +11,9 @@ export const AccountCopyLayout = styled.div`
   margin: 3% 0 2%;
 `;
 
-export const CircleLogo = styled(I.CircleLogo)`
+export const LogoComponent = styled.svg`
+  width: 9%;
+  height: 60%;
 `;
 
 export const Title = styled.h2`
@@ -29,8 +31,11 @@ export const CopyButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-left: auto;
   color: white;
   font-weight: 600;
-  height: 50%;
+  height: 60%;
+  width: 25%;
+  line-height: normal;
 `;

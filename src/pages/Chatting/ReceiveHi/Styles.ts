@@ -27,7 +27,7 @@ export const ReceiveHiExplanation = styled.div`
 
   span {
     color: #FA2D4C;
-    text-decoration: underline; // 밑줄 추가
+    text-decoration: underline; 
   }
 `;
 

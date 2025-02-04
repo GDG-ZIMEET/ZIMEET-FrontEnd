@@ -9,6 +9,9 @@ export const TeamComponent = styled.div`
   @media (max-width: 768px) {
     height: 71%;
   }
+  &::-webkit-scrollbar {
+   display: none;
+  }
 `;
 
 export const NoTeamsMessageContainer = styled.div`
@@ -76,17 +79,18 @@ export const JoinMemberBox = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
+  margin-right: -5%;
 `;
 
-export const PinkCircle = styled(I.PinkCircle)`
-  width: 120%;
-  height: 100%;
-  position: absolute;
-`;
 
 export const JoinMember = styled.div`
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: rgba(234, 67, 53, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 26px;
   position: relative;
 `;
@@ -130,12 +134,8 @@ export const MusicStyles = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export const MusicEmoji = styled.span`
-  font-size: 11px;
-  margin-left: 5%;
-  height: 100%;
-  width: 13%;
-  margin-top: 2%;
+export const MusicEmoji = styled(I.Music)`
+ margin-left: 6%;
 `;
 
 export const JoinMembersAndIntroduction = styled.div`

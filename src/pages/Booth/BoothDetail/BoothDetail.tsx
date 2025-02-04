@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import * as S from './Styles';
 import BackHeader from '../../../components/BoothDetail/BackHeader/BackHeader';
 import AccountCopy from '../../../components/BoothDetail/AccountCopy/AccountCopy';
@@ -6,32 +8,39 @@ import ItemInventory from 'components/BoothDetail/ItemInventory/ItemInventory';
 import Explanation from 'components/BoothDetail/Explanation/Explanation';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
 import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
+import { GetboothDetail } from '../../../api/booth/GetboothDetail';
+import { boothDetailState } from '../../../recoil/state/boothState';
+import { getPosterComponent } from '../../../utils/PosterMap';
+
 
 const BoothDetail: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { clubId } = useParams<{ clubId: string }>();
+  const [, setBoothDetail] = useRecoilState(boothDetailState);
 
-  const handlePosterClick = () => {
-    setIsModalOpen(true);
-  };
+  useEffect(() => {
+    const fetchBoothDetail = async () => {
+      if (clubId) {
+        const response = await GetboothDetail(Number(clubId));
+        if (response) {
+          setBoothDetail(response);
+        }
+      }
+    };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+    fetchBoothDetail();
+  }, [clubId, setBoothDetail]);
+  
+  const PosterComponent = getPosterComponent(Number(clubId));
 
   return (
     <S.BoothDetailLayout>
       <BackHeader />
-      <S.PosterDetail onClick={handlePosterClick} />
+      {PosterComponent && (
+        <S.PosterComponent as={PosterComponent} />
+      )}
       <AccountCopy />
       <ItemInventory />
       <Explanation />
-      {isModalOpen && (
-        <S.ModalOverlay onClick={handleCloseModal}>
-          <S.ModalContent>
-            <S.PosterDetail />
-          </S.ModalContent>
-        </S.ModalOverlay>
-      )}
       <NavigationBar />
       <GotoMeeting />
     </S.BoothDetailLayout>
