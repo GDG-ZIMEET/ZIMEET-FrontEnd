@@ -20,8 +20,8 @@ const NavigationBar = () => {
             selected: <I.MeetingHeart />,
             default: <I.Meeting />,
         },
-        '/chatting': {
-            selected: <I.Chatting />,
+        '/chattingInventory': {
+            selected: <I.Schatting />,
             default: <I.Chatting />,
         },
         '/myinformation': {
@@ -53,7 +53,7 @@ const NavigationBar = () => {
             </S.NavItem>
             <S.NavItem onClick={() => navigate('/chattingInventory')}>
                 <S.IconWrapper style={{ margin: '1px' }}>
-                    {getIcon('/chatting')}
+                    {getIcon('/chattingInventory')}
                 </S.IconWrapper>
                 채팅
             </S.NavItem>
