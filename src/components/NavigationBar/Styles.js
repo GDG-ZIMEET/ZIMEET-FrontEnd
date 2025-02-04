@@ -31,3 +31,19 @@ export const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+export const RedDotIconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const RedDot = styled.div`
+  position: absolute;
+  top: 10%;   
+  left: 34%;  
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  z-index: 10;
+`;
