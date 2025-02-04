@@ -1,37 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { teamSizeState } from '../../../recoil/state/teamSizeState'
 import * as S from './Styles';
 
 const TypeButton: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedButton, setSelectedButton] = useState<string>('2to2'); // 기본 선택을 '2to2'로 설정
+  const [selectedButton, setSelectedButton] = useState<string>('2to2');
+  const [teamSize, setTeamSize] = useRecoilState(teamSizeState);
 
-  //클릭하면 바뀐 색 표시
+  // 클릭 시 색상 변경 및 페이지 이동
   useEffect(() => {
     if (location.pathname === '/meeting22') {
       setSelectedButton('2to2');
-    } else if (location.pathname === '/meeting22') {
+      setTeamSize(2); 
+    } else if (location.pathname === '/meeting33') {
       setSelectedButton('3to3');
-    } else if (location.pathname === '/meeting-random' || location.pathname === '/meetingRoading') {
+      setTeamSize(3); 
+    } else if (location.pathname === '/meeting-random') {
       setSelectedButton('random');
+      setTeamSize(0); 
     }
   }, [location.pathname]);
 
-  //이동
+
   const handle2Click = () => {
     setSelectedButton('2to2');
-    navigate('/meeting22');
+    setTeamSize(2); 
+    navigate('/meeting22'); 
   };
 
   const handle3Click = () => {
     setSelectedButton('3to3');
-    navigate('/meeting22');
+    setTeamSize(3); 
+    navigate('/meeting22'); 
   };
 
   const handleRClick = () => {
     setSelectedButton('random');
-    navigate('/meeting-random');
+    setTeamSize(0); 
+    navigate('/meeting-random'); 
   };
 
   return (
@@ -61,9 +70,9 @@ const TypeButton: React.FC = () => {
         </S.Random>
       </S.TypeComponent>
       <S.lookComponent>
-      {location.pathname !== '/meeting-random' && (
-        <S.lookword>이성 팀만 보여요👀</S.lookword>
-      )}
+        {location.pathname !== '/meeting-random' && (
+          <S.lookword>이성 팀만 보여요👀</S.lookword>
+        )}
       </S.lookComponent>
     </S.TypeLayout>
   );
