@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './Styles';
-import { ReactComponent as VerifyIcon } from '../../../assets/icon/Meeting22/VerifyIcon.svg' 
 
 const Team = ({ teamName, members, teamSize, isVerified }) => {
   const membersToDisplay = members.slice(0, teamSize); 
@@ -34,21 +33,21 @@ const Team = ({ teamName, members, teamSize, isVerified }) => {
 
   return (
     <S.TeamLayOut teamSize={teamSize}>
-      <S.rowBox1>
+      <S.EmojiContainer>
         {membersToDisplay.map((member, index) => (
           <S.MemberItem1 key={index}>
             {member.emoji}
           </S.MemberItem1>
         ))}
-      </S.rowBox1>
-      <S.rowBox3>
-        <S.TeamName>
-          {isVerified && <VerifyIcon/>}{teamName}
-        </S.TeamName>
-        <S.rowBox2>
+      </S.EmojiContainer>
+      <S.NameContainer>
+        <S.TeamNameBox>
+          {isVerified && <S.CertificationIcon/>}{teamName}
+        </S.TeamNameBox>
+        <S.MajorBox>
           <S.MajorDisplay>{majorDisplay} | {averageAge}</S.MajorDisplay>
-        </S.rowBox2>
-      </S.rowBox3>
+        </S.MajorBox>
+      </S.NameContainer>
       <S.MemberInfo>
       {teamSize === 3 ? (
           <S.MusicGenresDiv>{musicGenreDisplay}</S.MusicGenresDiv>
