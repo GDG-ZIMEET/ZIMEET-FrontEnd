@@ -28,10 +28,11 @@ const Header = () => {
       <S.HeaderWrapper>
         <S.BackButton onClick={() => navigate(-1)} />
         <S.Title>우리팀 소개</S.Title>
+        <S.DeleteButton onClick={handleDeleteClick}>
+          <S.DeleteIcon src={DeleteIcon} />
+        </S.DeleteButton>
       </S.HeaderWrapper>
-      <S.DeleteButton onClick={handleDeleteClick}>
-        <S.DeleteIcon src={DeleteIcon} />
-      </S.DeleteButton>
+
 
       {isDropdownOpen && (
         <S.DropdownMenu>
