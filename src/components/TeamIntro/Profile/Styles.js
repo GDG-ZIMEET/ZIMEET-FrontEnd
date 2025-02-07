@@ -62,10 +62,14 @@ export const ProfileIMG = styled.div`
   margin-bottom: 2%;
 `;
 
-export const ProfileCircle = styled(I.ProfileCircle)`
-  width: 80%;
-  height: 80%;
-
+export const ProfileCircle = styled.div`
+  border-radius: 50%;
+  aspect-ratio:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(234, 67, 53, 0.08);
+  width: 60%;
   @media (max-width: 768px) {
     @supports (-webkit-touch-callout: none) {
       height: 85%;
@@ -106,3 +110,4 @@ export const PreferredAge = styled.div`
   margin-right: 1%;
   margin-bottom: 3%;
 `;
+

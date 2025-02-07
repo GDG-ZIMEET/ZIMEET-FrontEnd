@@ -1,4 +1,3 @@
-// MyProfileData 타입 제거
 const Profiles = [
   {
     isMe: true,
@@ -15,6 +14,7 @@ const Profiles = [
     preferredAge: "연상",
     grade: "2",
     number: "010-1234-5677",
+    gender: "female", 
   },
   {
     isMe: true,
@@ -30,6 +30,7 @@ const Profiles = [
     preferredAge: "연상",
     grade: "2",
     number: "010-9041-4026",
+    gender: "female", 
   },
   {
     isMe: false,
@@ -45,6 +46,7 @@ const Profiles = [
     preferredAge: "연상",
     grade: "3",
     number: "010-1234-5678",
+    gender: "male", 
   },
 ];
 
