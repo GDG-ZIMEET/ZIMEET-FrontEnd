@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import * as I from "../../../../assets/Icons";
 
 export const ProfileDetailContainer = styled.div`
   width: 25%;
@@ -8,54 +7,31 @@ export const ProfileDetailContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      width: 23%;
-      height: 100%;
-    }
-  }
 `;
 
 export const ProfileDetailBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   height: 80%;
   position: relative;
   margin-bottom: 3%;
 `;
 
-export const PinkCircle = styled(I.PinkCircle)`
-  width: 93%;
-  height: 93%;
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      height: 85%;
-      width: 85%;
-    }
-  }
-`;
-
-export const BlueCircle = styled(I.BlueCircle)`
-  width: 93%;
-  height: 93%;
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      height: 85%;
-      width: 85%;
-    }
-  }
-`;
 
 export const Styles = styled.div`
+  width: 90%;
+  aspect-ratio: 1;
+  border-radius: 50%;
   position: absolute;
   font-size: 14px;
   font-weight: bold;
-  color: ${({ isBlue }) => (isBlue ? '#4285F4' : '#EA4335')};
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${({ $isblue }) => ($isblue ? '#4285F4' : '#EA4335')};
+  background-color: ${({ $isblue }) => ($isblue? 'rgba(66, 133, 244, 0.08)' : 'rgba(234, 67, 53, 0.08)')};
   @media (max-width: 768px) {
     @supports (-webkit-touch-callout: none) {
       font-size: 12px;

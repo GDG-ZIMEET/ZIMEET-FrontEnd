@@ -4,13 +4,13 @@ import * as I from "../../../assets/Icons";
 export const MyprofileLayout = styled.div`
   display: flex;
   justify-content: center;
-  height: 23.3%;
+  height: 24%;
   margin-top: 3%;
   margin-bottom: 2%;
   box-sizing: border-box;
   @media (max-width: 768px) {
     @supports (-webkit-touch-callout: none) {
-      height: 45%;
+      height: 30%;
     }
   }
 `;
@@ -62,19 +62,15 @@ export const ProfileIMG = styled.div`
   margin-bottom: 2%;
 `;
 
-export const ProfileCircle = styled(I.ProfileCircle)`
-  width: 80%;
-  height: 80%;
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      height: 85%;
-      width: 85%;
-    }
-  }
-`;
 
 export const Avatar = styled.div`
+  width: 80%;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(234, 67, 53, 0.08);
   position: absolute;
   font-size: 20px;
   font-family: 'TossFaceFontMac', sans-serif;

@@ -1,8 +1,11 @@
 import { padding } from 'polished';
 import styled from 'styled-components';
-import WhiteHeart from '../../../../assets/icon/TeamInfo/WhiteHeart.svg'
+
 
 export const HeartButton = styled.button`
+  display:flex;
+  justify-content:center;
+  align-items:center;
   background-color: #EA4335;
   width: 100%;
   color: white;
@@ -25,23 +28,20 @@ export const HeartLayOut = styled.div`
   width: 85%;
   height: 6.5%;
   margin-top: 3%;
-  margin-bottom: 3%;
+  margin-bottom: 5%;
   position: absolute;  
   bottom: 10%;
   left: 7.5%;
 `;
 
-export const HiText = styled.span`
-  background-image: url(${WhiteHeart});
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+export const Hi = styled.span`
+  width:20%;
   color: black;
-  display: inline-block; 
   text-align: center;
   padding:2%;
 `;
 
 export const SendText = styled.span`
-  color: white;  
+  color: white;
+  margin-left:-5%;  
 `;

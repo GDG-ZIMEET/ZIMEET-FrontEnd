@@ -5,6 +5,7 @@ import ProfileDetail from './ProfileDetail/ProfileDetail';
 import PremiumModal from 'components/TeamIntro/Modal/PremiumModal/PremiumModal';
 import Detail from 'components/TeamIntro/Modal/Detail/Detail';
 
+
 const MyProfile = ({ profileData, isPremium }) => {
   const { avatar, nickname, mbti, style, idealType, preferredAge, Major, age, classNum, musicStyle } = profileData;
 
@@ -16,12 +17,13 @@ const MyProfile = ({ profileData, isPremium }) => {
     }
   }, [isPremium]);
 
+
+
   return (
     <S.MyprofileLayout>
       <S.MyProfileContainer>
         <S.MyProfileBox1>
           <S.ProfileIMG>
-            <S.ProfileCircle />
             <S.Avatar>{avatar}</S.Avatar>
           </S.ProfileIMG>
           <AgeBox nickname={nickname} age={age} Major={Major} classNum={classNum} musicStyle={musicStyle} joinType={'3to3'} />
