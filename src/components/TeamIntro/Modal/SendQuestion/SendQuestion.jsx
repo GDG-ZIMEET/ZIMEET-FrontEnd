@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './Styles';
-import Send from '../Send/Send';  
+import Send from '../Send/Send';
+import hiIcon from '../../../../assets/icon/TeamInfo/HiIcon.svg';  
 
 const SendQuestion = ({ onClose, onConfirm }) => {
   const [showSendQuestion, setShowSendQuestion] = useState(true);  
@@ -30,7 +31,7 @@ const SendQuestion = ({ onClose, onConfirm }) => {
             <S.TicketCount>우리 팀의 하이 : 2개</S.TicketCount>
             <S.ButtonBox>
               <S.CancelButton onClick={handleClose}>취소</S.CancelButton>
-              <S.ConfirmButton onClick={handleConfirm}><S.HiText>Hi</S.HiText> 보내기</S.ConfirmButton>
+              <S.ConfirmButton onClick={handleConfirm}><S.Hi><img src={hiIcon}/></S.Hi> <S.Text>보내기</S.Text></S.ConfirmButton>
             </S.ButtonBox>
           </S.ModalContent>
         </S.Modallayout>

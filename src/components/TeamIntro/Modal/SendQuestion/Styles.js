@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import WhiteHeart from '../../../../assets/icon/TeamInfo/WhiteHeart.svg'
+
 
 export const Modallayout = styled.div`
   position: absolute; 
@@ -78,10 +78,13 @@ export const TicketCount = styled.div`
 
 export const ButtonBox = styled.div`
   display: flex;
+  height:20%
 `;
 
 export const ConfirmButton = styled.button`
-  padding: 4% 2%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   background: #EA4335;
   color: #ffffff;
   font-weight: bold;
@@ -92,13 +95,13 @@ export const ConfirmButton = styled.button`
 
 `;
 
-export const HiText = styled.span`
+export const Hi = styled.div`
+  width: 30%;
   color: black;
-  background-image: url(${WhiteHeart});
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 2%;
+  img{
+  width:100%;
+  height:100%;
+  }
 
 `;
 
@@ -112,4 +115,9 @@ export const CancelButton = styled.button`
   border-radius: 12px;
   cursor: pointer;
   margin-right: 3%;
+`;
+
+export const Text = styled.div`
+  margin-left:-7%;
+
 `;
