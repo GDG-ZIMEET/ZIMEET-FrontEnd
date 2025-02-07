@@ -12,6 +12,7 @@ export const Header = styled.div`
 export const HeaderWrapper = styled.div`
   display: flex;
   width: 86%;
+
 `;
 export const BackButton = styled(I.Back)`
   background: none;
@@ -30,16 +31,17 @@ export const Title = styled.h2`
 `;
 
 export const DeleteButton = styled.button`
+  display:flex;
+  position:absolute;
+  right:10%;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 3%;
-  margin-right: 2.5%;
+  margin-left:70%
 `;
 
 export const DeleteIcon = styled.img`
-  width: 25px;
-  height: 25px;
+
 `;
 
 export const DropdownMenu = styled.div`
