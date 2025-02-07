@@ -43,5 +43,29 @@ export const CreateTeamBox = styled.div`
 
 
 export const TeamBox = styled.div`
-  padding:3%;
+  padding-left: 3%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 70%;
 `; 
+
+export const Emoji = styled.div`
+  font-size: 14px;
+  height: 70%;
+  margin-right: -2%;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(234, 67, 53, 0.08);
+`;
+
+export const TeamName = styled.span`
+  font-size: 13px; 
+  font-weight: 700;
+  font-family: 'Pretendard';
+  color: #000000; 
+  margin-left: 5%;
+`;

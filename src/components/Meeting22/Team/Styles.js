@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {ReactComponent as Certification} from '../../../assets/icon/Meeting22/certification.svg';
 
 export const TeamLayOut = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ export const TeamLayOut = styled.div`
   box-sizing: border-box;
 `;
 
-export const rowBox1 = styled.div`
+export const EmojiContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +24,7 @@ export const rowBox1 = styled.div`
   margin-right: 2%;
   `;
 
-export const rowBox2 = styled.div`
+export const MajorBox = styled.div`
 display: flex;
 align-items: center;
 font-size: 12px;
@@ -31,7 +32,7 @@ font-weight: 400;
 line-height: 30px;
 `;
 
-export const rowBox3= styled.div`
+export const NameContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,13 +41,6 @@ export const rowBox3= styled.div`
   box-sizing: border-box;
 `;
 
-export const CertifiedIcon = styled.span`
-  width: 16px;
-  height: 16px;
-  background-color: green; 
-  border-radius: 50%;
-  margin-right: 5px;
-`;
 
 export const MemberItem1 = styled.div`
   height: 100%;
@@ -61,14 +55,21 @@ export const MemberItem1 = styled.div`
   border-radius: 50%;
 `;
 
-export const TeamName = styled.div`
+export const TeamNameBox = styled.div`
   display: flex;
+  height: 70%;
+  width: 100%;
   justify-content: center;
   align-items: center;
   color: #000;
   font-size: 13px;
   font-weight: 700;
-  line-height: 30px;
+`;
+
+export const CertificationIcon = styled(Certification)`
+  width:12%;
+  height:90%;
+  margin-right: 3%;
 `;
 
 export const MajorDisplay = styled.div`

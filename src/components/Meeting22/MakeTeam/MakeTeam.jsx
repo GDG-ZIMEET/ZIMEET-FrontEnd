@@ -29,9 +29,9 @@ const MakeTeam = () => {
         <S.CreateTeamBox>
           <S.TeamBox>
             {emojis.length > 0 && emojis.map((emoji, index) => (
-              <span key={index}>{emoji} </span>
+              <S.Emoji key={index}>{emoji}</S.Emoji>
             ))}
-            {teamName}(우리팀)
+            <S.TeamName>{teamName}(우리팀)</S.TeamName>
           </S.TeamBox> 
           <ViewMore />
         </S.CreateTeamBox>    
