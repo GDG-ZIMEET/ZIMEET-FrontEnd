@@ -5,6 +5,7 @@ import ProfileDetail from './ProfileDetail/ProfileDetail';
 import PremiumModal from 'components/TeamIntro/Modal/PremiumModal/PremiumModal';
 import Detail from 'components/TeamIntro/Modal/Detail/Detail';
 
+
 const MyProfile = ({ profileData, isPremium }) => {
   const { avatar, nickname, mbti, style, idealType, preferredAge, Major, age, classNum, musicStyle } = profileData;
 
@@ -15,6 +16,8 @@ const MyProfile = ({ profileData, isPremium }) => {
       setShowModal(true);
     }
   }, [isPremium]);
+
+
 
   return (
     <S.MyprofileLayout>
