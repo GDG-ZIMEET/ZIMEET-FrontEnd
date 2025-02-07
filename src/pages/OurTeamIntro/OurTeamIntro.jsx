@@ -17,8 +17,8 @@ const OurTeamIntro = () => {
           profileData={profile} 
           isMe={profile.isMe} />
       ))}
-      <NavigationBar />
       <TipModal/>
+      <NavigationBar />
     </S.Container>
   );
 };

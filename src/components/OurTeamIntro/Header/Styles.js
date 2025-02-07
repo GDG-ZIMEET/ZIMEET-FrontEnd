@@ -3,16 +3,16 @@ import * as I from "../../../assets/Icons";
 
 export const Header = styled.div`
   width: 100%;
+  height: 7%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 2%;
+  padding: 3%;
 `;
 
 export const HeaderWrapper = styled.div`
   display: flex;
-  width: 86%;
-
+  width: 90%;
 `;
 export const BackButton = styled(I.Back)`
   background: none;
@@ -32,12 +32,10 @@ export const Title = styled.h2`
 
 export const DeleteButton = styled.button`
   display:flex;
-  position:absolute;
-  right:10%;
   background: none;
   border: none;
   cursor: pointer;
-  margin-left:70%
+  height: 90%;
 `;
 
 export const DeleteIcon = styled.img`

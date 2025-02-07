@@ -7,12 +7,6 @@ export const MyprofileLayout = styled.div`
   height: 43%;
   margin-top: 3%;
   margin-bottom: 2%;
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      height: 45%;
-    }
-  }
 `;
 
 export const MyProfileContainer = styled.div`

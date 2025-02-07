@@ -28,7 +28,7 @@ export const HeartLayOut = styled.div`
   width: 85%;
   height: 6.5%;
   margin-top: 3%;
-  margin-bottom: 3%;
+  margin-bottom: 5%;
   position: absolute;  
   bottom: 10%;
   left: 7.5%;
