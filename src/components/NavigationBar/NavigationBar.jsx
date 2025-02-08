@@ -2,15 +2,13 @@ import * as I from '../../assets/Icons.ts';
 import * as S from './Styles';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { authState } from '../../recoil/state/authAtom.js'; 
+import { authState } from '../../recoil/state/authState.js'; 
 
 const NavigationBar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const isLoggedIn = useRecoilValue(authState);
     
-    console.log("로그인 상태:", isLoggedIn); 
-
     const iconMapping = {
         '/': {
             selected: <I.Home />,
