@@ -10,7 +10,7 @@ export { ReactComponent as SpeechBubble } from './icon/MeetingRandom/speechBubbl
 export { ReactComponent as Chatting } from './icon/navigationbar/chatting.svg';
 export { ReactComponent as Home } from './icon/navigationbar/home.svg';
 export { ReactComponent as HomeWhite } from './icon/navigationbar/homeWhite.svg';
-export { ReactComponent as Meeting } from './icon/navigationbar/meeting.svg';
+export { ReactComponent as Meeting } from './icon/navigationbar/HeartN.svg';
 export { ReactComponent as MeetingHeart } from './icon/navigationbar/meetingHeart.svg';
 export { ReactComponent as MyInformation } from './icon/navigationbar/myinformation.svg';
 export { ReactComponent as SmyInformation } from './icon/navigationbar/Smyinformation.svg';
