@@ -9,6 +9,8 @@ export const MyPageContainer = styled.div`
   align-items: center;
   position: relative; 
   overflow: auto;
+
+  min-height: 100vh;
 `;
 
 export const MyPageBox = styled.div`
@@ -16,7 +18,7 @@ export const MyPageBox = styled.div`
   height: 88%;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  // overflow: auto;
 `;
 
 //logo
@@ -50,12 +52,12 @@ export const BlackContainer = styled.div`
   padding: 0; margin: 0;
 `;
 export const WhiteArea = styled.div`
-  width: 100%; 
+  width: 100%;
   background-color: white;
-  position: absolute; 
-  top: 19%;
-  z-index: 0; 
-  border-radius: 2rem 2rem 0 0; 
+  position: relative;  
+  z-index: 0;
+  border-radius: 2rem 2rem 0 0;
+  margin-top: -50%;
   padding-top: 50%;
   padding-bottom: 7%;
 `;
