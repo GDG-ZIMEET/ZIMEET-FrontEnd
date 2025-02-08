@@ -3,13 +3,15 @@ import axios from 'axios';
 import * as S from './Styles';
 import * as I from '../../../assets/Icons';
 import { useNavigate } from 'react-router-dom';
+import { authAtom } from 'recoil/state/authAtom';
+import { useSetRecoilState } from 'recoil';
 
 const Login = () => {
   const navigate = useNavigate();
   const [studentNumber, setStudentNumber] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');  
-
+  const setAuthState = useSetRecoilState(authAtom);
   const handleJoin = () => {
     navigate('/join'); 
   };
@@ -19,20 +21,18 @@ const Login = () => {
     setErrorMessage(''); 
 
     try {
-      const response = await axios.post(`/jwt/login`, {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/user/login`, {
         studentNumber,
         password,
       });
 
       const { accessToken, refreshToken } = response.data.data;
-
-      localStorage.setItem('token', accessToken);
-      localStorage.setItem('tokenExpiration', refreshToken);
+      setAuthState({ accessToken, refreshToken });
 
       // console.log("로그인 성공:", accessToken); 
       // alert("로그인 성공");
-
       navigate('/meeting22');
+
     } catch (error) {
       const errorMessage = error.response?.data?.message || '로그인 실패';
       setErrorMessage(errorMessage); 
