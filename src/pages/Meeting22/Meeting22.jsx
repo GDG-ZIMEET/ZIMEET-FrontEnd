@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { authState } from '../../recoil/state/authAtom';
+import { authState } from '../../recoil/state/authState';
 import { Meeting22Layout, Meeting22Title, Meeting22Container} from './Styles';
-import NavigationBar from '../../components/NavigationBar/NavigationBar';
+import NavigationBar from 'components/NavigationBar/NavigationBar';
 import TypeButton from '../../components/Meeting22/TypeButton/TypeButton';
 import MakeTeam from '../../components/Meeting22/MakeTeam/MakeTeam'; 
 import TeamBox from '../../components/Meeting22/TeamBox/TeamBox';
@@ -27,8 +27,8 @@ const Meeting22 = () => {
             <MakeTeam />
             <TeamBox />
           </Meeting22Container>
-        </Meeting22Layout>
-        <NavigationBar />  
+        <NavigationBar />
+        </Meeting22Layout>  
     </>
   );
 };
