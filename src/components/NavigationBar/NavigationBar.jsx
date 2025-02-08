@@ -24,8 +24,8 @@ const NavigationBar = () => {
             selected: <I.Schatting />,
             default: <I.Chatting />,
         },
-        '/myinformation': {
-            selected: <I.MyInformation />,
+        '/mypage': {
+            selected: <I.SmyInformation />,
             default: <I.MyInformation />,
         },
     };
@@ -59,7 +59,7 @@ const NavigationBar = () => {
             </S.NavItem>
             <S.NavItem onClick={() => navigate('/mypage')}>
                 <S.IconWrapper style={{ margin: '5px' }}>
-                    {getIcon('/myinformation')}
+                    {getIcon('/mypage')}
                 </S.IconWrapper>
                 내정보
             </S.NavItem>

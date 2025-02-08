@@ -11,6 +11,10 @@ export const NavBarContainer = styled.nav`
   justify-content: space-around;
   align-items: center;
   border-top: 1px solid #f0f0f0;
+  
+  //마이페이지 navbar 중간에 위치함 수정용
+  position: fixed; 
+  z-index: 100; 
 `;
 
 export const NavItem = styled.div`
