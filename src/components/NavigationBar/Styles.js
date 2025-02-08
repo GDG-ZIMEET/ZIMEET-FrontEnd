@@ -43,8 +43,8 @@ export const RedDotIconWrapper = styled.div`
 
 export const RedDot = styled.div`
   position: absolute;
-  top: 10%;   
-  left: 34%;  
+  top: 23%;   
+  left: 33%;  
   width: 8px;
   height: 8px;
   background-color: red;
