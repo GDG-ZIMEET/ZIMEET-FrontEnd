@@ -7,8 +7,8 @@ import Header from 'components/TeamIntro/Header/Header';
 import MyProfile from 'components/TeamIntro/Profile/MyProfile';
 import Profiles from 'components/TeamIntro/Profile/ProfileData';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
-import Heart from 'components/TeamIntro/Modal/Heart/Heart';
-import SentHiButton from 'components/TeamIntro/Modal/SentHiButton/SentHiButton';
+import Heart from 'components/TeamIntro/Button/Heart/Heart';
+import SentHiButton from 'components/TeamIntro/Button/SentHiButton/SentHiButton';
 import SendQuestion from 'components/TeamIntro/Modal/SendQuestion/SendQuestion';
 import Send from 'components/TeamIntro/Modal/Send/Send';
 
