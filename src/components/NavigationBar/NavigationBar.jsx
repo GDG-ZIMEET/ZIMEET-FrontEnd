@@ -9,8 +9,6 @@ const NavigationBar = () => {
     const location = useLocation();
     const isLoggedIn = useRecoilValue(authState);
     
-    console.log("로그인 상태:", isLoggedIn); 
-
     const iconMapping = {
         '/': {
             selected: <I.Home />,

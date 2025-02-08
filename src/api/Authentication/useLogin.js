@@ -12,14 +12,10 @@ const useLogin = () => {
       const response = await publicAxios.post(`/user/login`, {
         studentNumber,
         password,
-      });
+      }, { withCredentials: true });
 
       const { accessToken, refreshToken } = response.data.data;
       setAuthState({ accessToken, refreshToken });
-
-      // console.log("로그인 성공:", accessToken); 
-      // alert("로그인 성공");
-
       navigate('/meeting22');
 
     } catch (error) {
