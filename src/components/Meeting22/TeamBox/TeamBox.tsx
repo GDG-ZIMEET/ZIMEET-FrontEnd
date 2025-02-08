@@ -1,0 +1,20 @@
+import React from 'react';
+import Team from '../Team/Team'; 
+import * as S from './Styles'; 
+import { TeamType } from '../../../recoil/type/teamGallery';
+
+interface TeamBoxProps {
+  teamData: TeamType[]; // teamData는 Team 배열
+}
+
+const TeamBox: React.FC<TeamBoxProps> = ({ teamData }) => {
+  return (
+    <S.TeamBoxLayOut>
+      {teamData.map((team) => (
+        <Team team={team} />
+      ))}
+    </S.TeamBoxLayOut>
+  );
+};
+
+export default TeamBox;
