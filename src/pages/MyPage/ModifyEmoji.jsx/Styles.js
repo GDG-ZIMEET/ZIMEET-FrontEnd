@@ -58,7 +58,7 @@ export const CircleWrap = styled.div`
 
 export const EmojiWrap = styled.div`
   width: 100%;
-  aspect-ratio: 1; /* 원 비율 유지 */
+  aspect-ratio: 1;
   background-color: ${({ isSelected }) => (isSelected ? 'rgba(234,67,53,0.1)' : 'white')};
   display: flex;
   justify-content: center;
