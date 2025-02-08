@@ -77,10 +77,7 @@ export const EmojiWrap = styled.div`
     color: rgb(66, 133, 244);
   }
 `;
-export const TossEmoji = styled.p`
-  font-family: "TossFaceFontMac", sans-serif;
-  padding-bottom: 12%;
-  font-size: 40px;
+export const TossEmoji = styled.div`
 `;
 export const Text = styled.p`
   font-size: 12px;
