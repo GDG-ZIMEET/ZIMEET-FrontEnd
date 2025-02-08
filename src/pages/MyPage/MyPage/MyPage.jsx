@@ -62,7 +62,7 @@ const MyPage = () => {
                         <S.MyMeetingText>랜덤 미팅</S.MyMeetingText>
                         <S.MeetingCircleWrap>
                             <S.MeetingEmojiWrap>
-                                <S.MeetingIcons>🎫</S.MeetingIcons>
+                                <I.Ticket />
                             </S.MeetingEmojiWrap>
                         </S.MeetingCircleWrap>
                         <S.MyMeetingText>1개</S.MyMeetingText>

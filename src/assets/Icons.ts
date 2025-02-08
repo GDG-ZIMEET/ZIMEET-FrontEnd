@@ -46,11 +46,16 @@ export { ReactComponent as Music } from './icon/Chatting/music.svg';
 export { ReactComponent as Zimeet } from './icon/ZIMEET.svg';
 export { ReactComponent as AboutGdgocCuk } from './icon/About GDGoC CUK.svg';
 
-//myProfile
+//myPage
 export { ReactComponent as PinkCircle2 } from './icon/PinkCircle.svg';
 export { ReactComponent as BlueCircle } from './icon/BlueCircle.svg';
 export { ReactComponent as ProfileCircle } from './icon/ProfileCircle.svg';
 export { ReactComponent as EditMyInfo } from './icon/MyPage/EditMyInfo.svg';
+export { ReactComponent as Ticket } from './icon/MyPage/Ticket.svg';
+export { ReactComponent as Hi } from './icon/MyPage/Hi.svg';
+export { ReactComponent as Hi1 } from './icon/MyPage/Hi1.svg';
+export { ReactComponent as Hi3 } from './icon/MyPage/Hi3.svg';
+export { ReactComponent as Hi10 } from './icon/MyPage/Hi10.svg';
 
 //부스 포스터 사진
 export { ReactComponent as Houh } from './icon/boothDetail/Ho.svg';
