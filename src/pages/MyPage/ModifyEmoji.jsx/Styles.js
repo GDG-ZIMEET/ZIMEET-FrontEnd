@@ -44,6 +44,7 @@ export const EmojiContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5% 3%;
   justify-content: center;
+  padding-bottom: 40%;
 `;
 
 export const CircleWrap = styled.div`
@@ -65,24 +66,22 @@ export const EmojiWrap = styled.div`
   font-size: 55px;
   border-radius: 50%; 
   box-shadow: ${({ isSelected }) => (isSelected ? '0 0 3px red' : '0 0 3px rgba(0, 0, 0, 0.2)')};
+  transition: all 0.3s ease; /* 애니메이션 */
 `;
 
-export const TossEmoji = styled.p`
-  font-family: "TossFaceFontMac", sans-serif;
-  padding-bottom: 12.5%;
-`;
+export const TossEmoji = styled.div``;
 
 export const BtnContainer = styled.div`
-  padding-top: 20%;
-  height: 30%;
+  padding: 10% 0;
+  height: 28%;
 `;
 
 export const JoinBtn = styled.button`
   font-weight: 700;
   width: 100%;
-  height: 33%;
+  height: 30%;
   background-color: #ea4335;
   border-radius: 0.6rem;
-  margin: 17% 0 0 0;
+  margin: 30% 0 10% 0;
   color: white;
 `;
