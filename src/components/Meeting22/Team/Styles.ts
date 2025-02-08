@@ -12,6 +12,10 @@ export const TeamLayOut = styled.div`
   box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.15);
   margin: 1%;
   box-sizing: border-box;
+
+  img {
+    width: 60%;
+  }
 `;
 
 export const EmojiContainer = styled.div`
@@ -19,17 +23,22 @@ export const EmojiContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 48%;
+  width: 100%;
   height: 26%;
   margin-right: 2%;
-  `;
+`;
 
-export const MajorBox = styled.div`
-display: flex;
+export const MemberItem1 = styled.div`
+height: 100%;
 align-items: center;
-font-size: 12px;
-font-weight: 400;
-line-height: 30px;
+justify-content: center;
+position: relative;
+display: flex;
+aspect-ratio:1;
+background-color: rgba(234, 67, 53, 0.08); 
+font-size: 16px;
+margin-right: -5%;
+border-radius: 50%;
 `;
 
 export const NameContainer = styled.div`
@@ -39,20 +48,6 @@ export const NameContainer = styled.div`
   align-items: center;
   height:28%;
   box-sizing: border-box;
-`;
-
-
-export const MemberItem1 = styled.div`
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  display: flex;
-  aspect-ratio:1;
-  background-color: rgba(234, 67, 53, 0.08); 
-  font-size: 16px;
-  margin-right: -7%;
-  border-radius: 50%;
 `;
 
 export const TeamNameBox = styled.div`
@@ -71,6 +66,25 @@ export const CertificationIcon = styled(Certification)`
   height:90%;
   margin-right: 3%;
 `;
+
+export const MajorBox = styled.div`
+display: flex;
+align-items: center;
+font-size: 12px;
+font-weight: 400;
+line-height: 30px;
+`;
+
+
+
+
+
+
+
+
+
+
+
 
 export const MajorDisplay = styled.div`
   display: flex;

@@ -17,7 +17,9 @@ const MeetingRoading: React.FC = () => {
   return (
     <MeetingRodingContainer>
       <MeetingRandomTitle>팀 갤러리</MeetingRandomTitle>
-      <TypeButton />
+      <TypeButton selectedTeamType={''} setSelectedTeamType={function (teamType: string): void {
+        throw new Error('Function not implemented.');
+      } } />
       <MakeTeamBox showGender={true} isLoading={true} showExplain={false} />
       <Help showContainer={false} onClick={() => {}} />
       <WaitPeople>다른 참여자를 기다리는 중 (예상 시간 : 5분)</WaitPeople>

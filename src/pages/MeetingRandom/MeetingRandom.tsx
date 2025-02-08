@@ -32,7 +32,9 @@ const MeetingRandom: React.FC = () => {
   return (
     <S.MeetingRandomContainer>
       <S.MeetingRandomTitle>팀 갤러리</S.MeetingRandomTitle>
-      <TypeButton />
+      <TypeButton selectedTeamType={''} setSelectedTeamType={function (teamType: string): void {
+        throw new Error('Function not implemented.');
+      } } />
       <MakeTeamBox showGender={false} isLoading={false} showExplain={true} />
       <Help showContainer={true} onClick={handleHelpClick} />
       <S.TicketCount>남은 티켓 : 2개</S.TicketCount>
