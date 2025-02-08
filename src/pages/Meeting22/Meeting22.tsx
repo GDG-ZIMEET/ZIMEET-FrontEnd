@@ -36,7 +36,6 @@ const Meeting22 = () => {
 
   
   const handleLogin = () => {
-    setAuth({ accessToken: 'sampleAccessToken', refreshToken: 'sampleRefreshToken' });
     navigate('/login');
   };
 
