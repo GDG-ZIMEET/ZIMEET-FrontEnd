@@ -6,6 +6,6 @@ interface AuthState {
 }
 
 export const authState = atom<AuthState | null>({
-  key: 'authState',
+  key: 'authStateType', 
   default: null,
 });

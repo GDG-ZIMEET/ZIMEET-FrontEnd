@@ -41,13 +41,14 @@ const Meeting22 = () => {
   };
 
   return (
-    <>  {!isLoggedIn && (
+    <>  <NavigationBar />
+    {!isLoggedIn && (
       <LoginPopUp
         message="ZI밋에서 지금 바로 미팅하려면, 로그인이 필요해요!"
         onClose={handleLogin} 
       />
     )}
-        <Meeting22Layout isLoggedIn={isLoggedIn}>
+        <Meeting22Layout $isLoggedIn={isLoggedIn}>
           <Meeting22Title>팀 갤러리</Meeting22Title>
           <TypeButton selectedTeamType={teamType} setSelectedTeamType={setTeamType}/>
           <Meeting22Container>
@@ -58,7 +59,6 @@ const Meeting22 = () => {
             <TeamBox teamData={teamGalleryData || []} />
           )}
           </Meeting22Container>
-        <NavigationBar />
         </Meeting22Layout>  
     </>
   );

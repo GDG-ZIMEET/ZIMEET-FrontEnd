@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-interface Meeting22LayoutProps {
-  isLoggedIn: boolean;
-}
-
-export const Meeting22Layout = styled.div<Meeting22LayoutProps>`
+export const Meeting22Layout = styled.div<{ $isLoggedIn: boolean }>`
   padding: 6% 3% 0;
   background-color: #FFFFFF;
   top: 0;
@@ -12,11 +8,11 @@ export const Meeting22Layout = styled.div<Meeting22LayoutProps>`
   display: flex;
   flex-direction: column;
 
-  ${({ isLoggedIn }) =>
-    !isLoggedIn &&
+  ${({ $isLoggedIn }) =>
+    !$isLoggedIn &&
     `
     pointer-events: none;  
-    filter: blur(5px);     
+    filter: blur(5px); 
   `}
 `;
 

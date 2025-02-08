@@ -8,6 +8,10 @@ interface TeamProps {
 }
 
 const Team: React.FC<TeamProps> = ({ team }) => {
+  if (!team) {
+    return <div>팀 정보가 없습니다.</div>; 
+  }
+  
   const isVerified = team.verification === 1;
   const majorDisplay = team.major.join('/');
 
