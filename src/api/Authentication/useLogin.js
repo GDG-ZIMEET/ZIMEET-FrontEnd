@@ -16,6 +16,8 @@ const useLogin = () => {
 
       const { accessToken, refreshToken } = response.data.data;
       setAuthState({ accessToken, refreshToken });
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
       navigate('/meeting22');
 
     } catch (error) {
