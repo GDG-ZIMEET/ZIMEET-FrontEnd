@@ -8,11 +8,13 @@ import MyProfile from 'components/TeamIntro/Profile/MyProfile';
 import Profiles from 'components/TeamIntro/Profile/ProfileData';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
 import Heart from 'components/TeamIntro/Modal/Heart/Heart';
+import SentHiButton from 'components/TeamIntro/Modal/SentHiButton/SentHiButton';
 import SendQuestion from 'components/TeamIntro/Modal/SendQuestion/SendQuestion';
-import Send from 'components/TeamIntro/Modal/Send/Send'
+import Send from 'components/TeamIntro/Modal/Send/Send';
 
 const TeamIntro = () => {
-  const [isPremium, setIsPremium] = useRecoilState(isPremiumState); 
+  const [isPremium, setIsPremium] = useRecoilState(isPremiumState);
+  const [isHiSent, setIsHiSent] = useState(false); // TODO : API 연결 후 RecoilState로 변경
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showSend, setShowSend] = useState(false);
   const navigate = useNavigate(); 
@@ -48,13 +50,15 @@ const TeamIntro = () => {
     <S.Container>
       <Header />
       {profileData && profileData.map((profile, index) => (
-        <MyProfile 
-          key={index} 
-          profileData={profile} 
-          isMe={profile.isMe}  
+        <MyProfile
+          key={index}
+          profileData={profile}
+          isMe={profile.isMe}
           isPremium={isPremium} />
       ))}
-      <Heart onClick={openModal} />
+      {isHiSent
+          ? <SentHiButton/>
+          : <Heart onClick={openModal} /> }
       <NavigationBar />
       
       {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} />}
