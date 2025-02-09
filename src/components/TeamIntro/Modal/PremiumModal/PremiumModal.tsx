@@ -1,8 +1,12 @@
 import React from 'react';
-import * as S from '../PremiumModal/Styles';
+import * as S from './Styles';
 import HeartMail from '../../../../assets/icon/TeamInfo/HeartMail.svg'
 
-const PremiumModal = ({ }) => {
+interface PremiumModalProps {
+  onClose: () => void;
+}
+
+const PremiumModal: React.FC<PremiumModalProps> = ({ onClose, ...props }) => {
   return (
       <S.ModalContainer>
         <img src={HeartMail} alt="하트메일" className="mail" />

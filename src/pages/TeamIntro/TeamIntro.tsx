@@ -27,7 +27,6 @@ const TeamIntro = () => {
       setIsLoading(true);
 
       try {
-        // 팀 상세 데이터 가져오기
         if (teamId) {
           const response = await getTeamDetail(Number(teamId));
           if (response?.data) {
@@ -38,7 +37,7 @@ const TeamIntro = () => {
         }
 
         // 프리미엄 상태 확인
-        setIsPremium(true);
+        setIsPremium(false);
       } catch (error) {
         console.error('Error fetching team data:', error);
         setTeamDetailData(null);
@@ -72,7 +71,7 @@ const TeamIntro = () => {
   return (
     <S.TeamIntroLayout>
       <Header />
-      <S.TeamIntroContainer>
+      <S.TeamIntroContainer $isPremium={isPremium}>
         {teamDetailData?.userList.map((user: User) => (
         <MyProfile 
           key={user.userId} 
@@ -83,7 +82,7 @@ const TeamIntro = () => {
       <Heart onClick={openModal} />
       <NavigationBar />
       
-      {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} />}
+      {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} teamName={teamDetailData?.name || ''}/>}
       {showSend && <Send onClose={closeSendModal} />}
     </S.TeamIntroLayout>
   );

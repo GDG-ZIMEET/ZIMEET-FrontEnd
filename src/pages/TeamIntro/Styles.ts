@@ -8,9 +8,9 @@ export const TeamIntroLayout = styled.div`
     flex-direction: column;
 `;
 
-export const TeamIntroContainer = styled.div`
+export const TeamIntroContainer = styled.div<{ $isPremium: boolean }>`
     overflow-y: auto;
-    height: 72%;
+    height: ${({ $isPremium }) => ($isPremium ? '72%' : '63%')};
     ::-webkit-scrollbar {
         display: none;
     }

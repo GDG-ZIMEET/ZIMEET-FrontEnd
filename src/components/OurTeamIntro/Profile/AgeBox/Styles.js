@@ -38,12 +38,6 @@ export const NAC = styled.div`
   .bold {
     font-weight: bold;
   }
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      font-size: 12px;
-    }
-  }
 `;
 
 export const Music = styled.div`
