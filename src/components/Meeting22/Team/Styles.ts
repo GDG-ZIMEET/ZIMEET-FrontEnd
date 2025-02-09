@@ -7,7 +7,7 @@ export const TeamLayOut = styled.div`
   justify-content: space-evenly;
   align-items: center;  
   width: 46%;
-  height: 27.5%;
+  height: 28%;
   border-radius: 10px;
   box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.15);
   margin: 1%;
@@ -25,7 +25,7 @@ export const EmojiContainer = styled.div`
   position: relative;
   width: 100%;
   height: 26%;
-  margin-right: 2%;
+  margin: 6% 2% 0 0;
 `;
 
 export const MemberItem1 = styled.div`
@@ -47,6 +47,7 @@ export const NameContainer = styled.div`
   justify-content: center;
   align-items: center;
   height:28%;
+  width: 100%;
   box-sizing: border-box;
 `;
 
@@ -59,32 +60,23 @@ export const TeamNameBox = styled.div`
   color: #000;
   font-size: 13px;
   font-weight: 700;
+  font-family: 'Pretendard';
 `;
 
 export const CertificationIcon = styled(Certification)`
-  width:12%;
-  height:90%;
+  width:18%;
+  height:100%;
   margin-right: 3%;
 `;
 
 export const MajorBox = styled.div`
 display: flex;
+height: 50%;
 align-items: center;
 font-size: 12px;
 font-weight: 400;
 line-height: 30px;
 `;
-
-
-
-
-
-
-
-
-
-
-
 
 export const MajorDisplay = styled.div`
   display: flex;
@@ -94,14 +86,14 @@ export const MajorDisplay = styled.div`
   line-height: 30px;
   word-spacing: 1%;
   color: #0;
-  
 `;
-
 
 export const MemberInfo = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 2%;
+  margin-bottom: 5%;
 `;
 
 export const MemberItem2 = styled.div`
@@ -118,20 +110,4 @@ export const MemberItem2 = styled.div`
   background: #F5F5F5;
   padding: 2.5%;
   box-sizing: border-box;
-  
-`;
-
-export const MusicGenresDiv = styled.div`
-display: flex;
-width:80%;
-color: #00AA47;
-font-size: 11px;
-font-weight: 700;
-line-height: 19.5px;
-justify-content: center;
-align-items: center;
-border-radius: 20px;
-background: #F5F5F5;
-padding: 2.5%;
-box-sizing: border-box;
 `;

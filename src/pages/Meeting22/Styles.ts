@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Meeting22Layout = styled.div<{ $isLoggedIn: boolean }>`
-  padding: 6% 3% 0;
+  padding: 6% 0% 0;
   background-color: #FFFFFF;
   top: 0;
   height: 100%;
@@ -19,6 +19,7 @@ export const Meeting22Layout = styled.div<{ $isLoggedIn: boolean }>`
 
 export const Meeting22Title = styled.div`
   font-size: 15px;
+  margin-left: 3%;
   color: #000000;
   font-weight: 700;
 `;

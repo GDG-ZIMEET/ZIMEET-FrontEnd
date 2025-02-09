@@ -26,10 +26,10 @@ const Team: React.FC<TeamProps> = ({ team }) => {
       </S.EmojiContainer>
       <S.NameContainer>
         <S.TeamNameBox>
-          {isVerified && <S.CertificationIcon/>}{team.name}
+          {team.name}
         </S.TeamNameBox>
         <S.MajorBox>
-          <S.MajorDisplay>{majorDisplay} | {team.age}</S.MajorDisplay>
+        {isVerified && <S.CertificationIcon/>}<S.MajorDisplay>{majorDisplay} | {team.age}세</S.MajorDisplay>
         </S.MajorBox>
       </S.NameContainer>
       <S.MemberInfo>

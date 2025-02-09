@@ -2,10 +2,10 @@ import styled, { css } from 'styled-components';
 
 export const TypeLayout = styled.div`
   display: flex;
-  width: 100%;
+  width: 96%;
   box-sizing: border-box;
   padding: 0.7% 1% 0  0%;
-  margin: 3% 0 1% 0;
+  margin: 3% 3% 1% 3%;
   height: 5.5%;
 `;
 
