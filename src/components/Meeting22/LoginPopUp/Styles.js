@@ -8,7 +8,7 @@ export const BlurBackground = styled.div`
   right: 0;
   bottom: 0;
   backdrop-filter: blur(2px);
-  z-index: 999;
+  z-index: 99;
 `;
 
 export const PopupContainer = styled.div`
