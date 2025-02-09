@@ -25,7 +25,7 @@ export const EmojiContainer = styled.div`
   justify-content: center;
   position: relative;
   width: 100%;
-  height: 26%;
+  height: 28%;
   margin: 6% 2% 3% 0;
 `;
 
@@ -118,7 +118,6 @@ export const MemberItem2 = styled.div<{ width: string }>`
   align-items: center;
   border-radius: 20px;
   background: #F5F5F5;
-  padding: 0 3% 0;
   width: ${({ width }) => width};
   box-sizing: border-box;
 `;

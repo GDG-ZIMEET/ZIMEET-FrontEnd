@@ -34,22 +34,22 @@ const Team: React.FC<TeamProps> = ({ team }) => {
       </S.NameContainer>
       <S.MemberInfo>
         {team.music.length === 1 && (
-          <S.MemberItem2 width="72%">
+          <S.MemberItem2 width="65%">
             {team.music[0]}
           </S.MemberItem2>
         )}
         {team.music.length === 2 && (
           <>
-            <S.MemberItem2 width="38%">
+            <S.MemberItem2 width="35%">
               {team.music[0]}
             </S.MemberItem2>
-            <S.MemberItem2 width="38%">
+            <S.MemberItem2 width="35%">
               {team.music[1]}
             </S.MemberItem2>
           </>
         )}
         {team.music.length === 3 && (
-          <S.MemberItem2 width="72%">
+          <S.MemberItem2 width="65%">
             {team.music[0]}, {team.music[1]} 외
           </S.MemberItem2>
         )}
