@@ -1,16 +1,14 @@
 import styled from "styled-components";
-import * as I from "../../../assets/Icons";
 
 export const MyprofileLayout = styled.div`
   display: flex;
   justify-content: center;
-  height: 24%;
-  margin-top: 3%;
+  height: 35%;
   margin-bottom: 2%;
   box-sizing: border-box;
   @media (max-width: 768px) {
     @supports (-webkit-touch-callout: none) {
-      height: 30%;
+      height: 36%;
     }
   }
 `;
@@ -44,7 +42,7 @@ export const MyProfileBox1 = styled.div`
 `;
 
 export const MyProfileBox2 = styled.div`
-  width: 100%;
+  width: 95%;
   height: 55%;
   display: flex;
   justify-content: center;
@@ -64,7 +62,7 @@ export const ProfileIMG = styled.div`
 
 
 export const Avatar = styled.div`
-  width: 80%;
+  width: 70%;
   border-radius: 50%;
   aspect-ratio: 1;
   display: flex;
@@ -72,14 +70,9 @@ export const Avatar = styled.div`
   align-items: center;
   background-color: rgba(234, 67, 53, 0.08);
   position: absolute;
-  font-size: 20px;
-  font-family: 'TossFaceFontMac', sans-serif;
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      font-size: 14px;
+  img {
+    width: 60%;
     }
-  }
 `;
 
 export const Style = styled.div`

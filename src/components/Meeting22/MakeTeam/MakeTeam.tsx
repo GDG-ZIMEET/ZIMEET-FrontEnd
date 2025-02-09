@@ -40,6 +40,10 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ teamType }) => {
     navigate('/teamMaking');
   };
 
+  const handleDetailPage= () => {
+    navigate('/ourteamintro', { state: { teamType } });
+  };
+
   return (
     <S.CreateTeamLayOut>
       {isLoading ? (
@@ -58,7 +62,7 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ teamType }) => {
               {ourteamData.name} (우리팀)
             </S.TeamName>
           </S.TeamBox> 
-          <ViewMore />
+          <ViewMore onClick={handleDetailPage}/>
         </S.CreateTeamBox>    
       )}
     </S.CreateTeamLayOut>
