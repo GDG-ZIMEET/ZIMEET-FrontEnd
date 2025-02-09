@@ -12,7 +12,7 @@ export interface User {
     idealAge: string;
 }
   
-export interface TeamData {
+export interface OurTeamData {
 teamId: number;
 name: string;
 verification: number;
@@ -20,9 +20,25 @@ gender: string;
 userList: User[];
 }
   
-export interface TeamDetailResponseType {
+export interface OurTeamDetailResponseType {
 status: string;
 code: string;
 message: string;
-data: TeamData;
+data: OurTeamData;
+}
+
+export interface TeamData {
+    teamId: number;
+    name: string;
+    verification: number;
+    gender: string;
+    hi: number;
+    userList: User[];
+}
+
+export interface TeamDetailResponseType {
+    status: string;
+    code: string;
+    message: string;
+    data: TeamData;
 }

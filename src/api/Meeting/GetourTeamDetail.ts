@@ -1,11 +1,11 @@
 import { privateAxios } from '../axiosConfig';
-import { TeamDetailResponseType } from '../../recoil/type/Meeting/TeamDetail';
+import { OurTeamDetailResponseType } from '../../recoil/type/Meeting/TeamDetail';
 
 export const getOurTeamDetail = async (
   teamType: string
-): Promise<TeamDetailResponseType | null> => {
+): Promise<OurTeamDetailResponseType | null> => {
   try {
-    const { data } = await privateAxios.get<TeamDetailResponseType>('/meeting/myTeam/detail', {
+    const { data } = await privateAxios.get<OurTeamDetailResponseType>('/meeting/myTeam/detail', {
       params: {
         teamType  
       },
