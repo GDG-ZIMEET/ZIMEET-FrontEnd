@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './Styles';
-import { TeamType } from '../../../recoil/type/teamGallery';
+import { TeamType } from '../../../recoil/type/Meeting/teamGallery';
 import { getImageByEmoji } from 'utils/IconMapper';
 
 interface TeamProps {

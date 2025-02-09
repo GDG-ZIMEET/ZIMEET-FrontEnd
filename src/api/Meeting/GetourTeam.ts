@@ -1,0 +1,1 @@
+import { privateAxios } from '../axiosConfig';
