@@ -34,14 +34,14 @@ export const Component = styled.div`
 
 export const NAC = styled.div`
   font-size: 12px;
-
+  font-famaily: "Pretendard";
   .bold {
     font-weight: bold;
   }
 
   @media (max-width: 768px) {
     @supports (-webkit-touch-callout: none) {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 `;
@@ -50,6 +50,7 @@ export const Music = styled.div`
   width: 25%;
   height: 100%;
   font-size: 10px;
+  font-family: "Pretendard";
   background-color: #f2f2f2;
   border-radius: 20px;
   padding: 3%;
@@ -68,10 +69,4 @@ export const MajorContainer = styled.div`
 export const Major = styled.div`
   font-size: 12px;
   height: 100%;
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      font-size: 10px;
-    }
-  }
 `;

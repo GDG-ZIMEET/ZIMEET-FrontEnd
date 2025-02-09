@@ -36,20 +36,22 @@ const OurTeamIntro = () => {
     }, [teamType]);
 
     if (isLoading) {
-      return <S.Container><p>로딩 중...</p></S.Container>;
+      return <S.OurTeamIntroLayout><p>로딩 중...</p></S.OurTeamIntroLayout>;
     }
   
   return (
-    <S.Container>
+    <S.OurTeamIntroLayout>
       <Header />
-      {ourteamDetailData?.userList.map((user: User) => (
+      <S.OurTeamIntroContainer>
+        {ourteamDetailData?.userList.map((user: User) => (
         <MyProfile 
           key={user.userId} 
           profileData={user} />
         ))}
+      </S.OurTeamIntroContainer>
       <TipModal/>
       <NavigationBar />
-    </S.Container>
+    </S.OurTeamIntroLayout>
   );
 };
 

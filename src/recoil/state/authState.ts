@@ -7,5 +7,5 @@ interface AuthState {
 
 export const authState = atom<AuthState | null>({
   key: 'authStateType', 
-  default: { accessToken: 'ex', refreshToken: 'exr' },
+  default: null,
 });

@@ -32,21 +32,10 @@ export const Styles = styled.div`
   align-items: center;
   color: ${({ $isblue }) => ($isblue ? '#4285F4' : '#EA4335')};
   background-color: ${({ $isblue }) => ($isblue? 'rgba(66, 133, 244, 0.08)' : 'rgba(234, 67, 53, 0.08)')};
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      font-size: 12px;
-    }
-  }
 `;
 
 export const InfoTitle = styled.div`
   color: #000000;
   font-size: 12px;
   margin-right: 1%;
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      font-size: 10px;
-    }
-  }
 `;
