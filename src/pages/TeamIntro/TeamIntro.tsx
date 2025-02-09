@@ -82,7 +82,7 @@ const TeamIntro = () => {
       <Heart onClick={openModal} />
       <NavigationBar />
       
-      {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} teamName={teamDetailData?.name || ''}/>}
+      {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} teamName={teamDetailData?.name || ''} hi={teamDetailData?.hi || 0 }/>}
       {showSend && <Send onClose={closeSendModal} />}
     </S.TeamIntroLayout>
   );

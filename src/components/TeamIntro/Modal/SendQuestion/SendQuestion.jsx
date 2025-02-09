@@ -3,7 +3,7 @@ import * as S from './Styles';
 import Send from '../Send/Send';
 import hiIcon from '../../../../assets/icon/TeamInfo/HiIcon.svg';  
 
-const SendQuestion = ({ onClose, onConfirm, teamName }) => {
+const SendQuestion = ({ onClose, onConfirm, teamName, hi }) => {
   const [showSendQuestion, setShowSendQuestion] = useState(true);  
 
   const handleConfirm = () => {
@@ -28,7 +28,7 @@ const SendQuestion = ({ onClose, onConfirm, teamName }) => {
               하이는 우리 팀 하이 개수에서 차감되고,<br />
               보낸 하이는 취소할 수 없어요.
             </S.ModalText>
-            <S.TicketCount>우리 팀의 하이 : 2개</S.TicketCount>
+            <S.TicketCount>우리 팀의 하이 : {hi}개</S.TicketCount>
             <S.ButtonBox>
               <S.CancelButton onClick={handleClose}>취소</S.CancelButton>
               <S.ConfirmButton onClick={handleConfirm}><S.Hi><img src={hiIcon}/></S.Hi> <S.Text>보내기</S.Text></S.ConfirmButton>
