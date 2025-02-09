@@ -14,7 +14,7 @@ const Team: React.FC<TeamProps> = ({ team }) => {
   
   const isVerified = team.verification === 1;
   const majorDisplay = team.major.join('/');
-
+  
   return (
     <S.TeamLayOut>
       <S.EmojiContainer>
@@ -33,8 +33,26 @@ const Team: React.FC<TeamProps> = ({ team }) => {
         </S.MajorBox>
       </S.NameContainer>
       <S.MemberInfo>
-        {team.music.length > 0 && <S.MemberItem2>{team.music[0]}</S.MemberItem2>}
-        {team.music.length > 1 && <S.MemberItem2>{team.music[1]}</S.MemberItem2>} 
+        {team.music.length === 1 && (
+          <S.MemberItem2 width="72%">
+            {team.music[0]}
+          </S.MemberItem2>
+        )}
+        {team.music.length === 2 && (
+          <>
+            <S.MemberItem2 width="38%">
+              {team.music[0]}
+            </S.MemberItem2>
+            <S.MemberItem2 width="38%">
+              {team.music[1]}
+            </S.MemberItem2>
+          </>
+        )}
+        {team.music.length === 3 && (
+          <S.MemberItem2 width="72%">
+            {team.music[0]}, {team.music[1]} 외
+          </S.MemberItem2>
+        )}
       </S.MemberInfo>
     </S.TeamLayOut>
   );

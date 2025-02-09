@@ -26,5 +26,5 @@ export const Meeting22Title = styled.div`
 
 
 export const Meeting22Container = styled.div`
-  flex: 1;
+  height: 78.5%;
 `;
