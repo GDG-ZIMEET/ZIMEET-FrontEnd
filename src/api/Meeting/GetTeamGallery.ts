@@ -1,5 +1,5 @@
 import { privateAxios } from '../axiosConfig';
-import { TeamGalleryResponseType } from '../../recoil/type/teamGallery'; 
+import { TeamGalleryResponseType } from '../../recoil/type/Meeting/teamGallery'; 
 
 export const getTeamGallery = async (
   teamType: string,
@@ -12,7 +12,6 @@ export const getTeamGallery = async (
         page,     
       },
     });
-    console.log('data:', data);
     return data; 
   } catch (error) {
     console.error('Error fetching team gallery data:', error);

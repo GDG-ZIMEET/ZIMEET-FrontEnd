@@ -6,7 +6,7 @@ export const CreateTeamButton = styled.button`
   align-items: center;  
   background-color: #EA4335;
   width: 94%;
-  height: 100%;
+  height: 85%;
   color: white;
   border-radius: 10px;
   cursor: pointer;
@@ -22,11 +22,11 @@ export const CreateTeamButton = styled.button`
 
 export const CreateTeamLayOut = styled.div`
   display: flex;
-  height: 8.5%;
+  height: 10%;
   margin-top: 3%;
-  margin-bottom: 3%;
+  margin-bottom: 1%;
   justify-content: center; 
-  align-items: center;     
+  align-items: center; 
 `; 
 export const CreateTeamBox = styled.div`
   display: flex;
@@ -60,6 +60,10 @@ export const Emoji = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(234, 67, 53, 0.08);
+
+  img {
+    width: 60%;
+  }
 `;
 
 export const TeamName = styled.span`

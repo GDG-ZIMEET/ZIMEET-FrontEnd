@@ -59,7 +59,7 @@ const Meeting22 = () => {
           <Meeting22Title>팀 갤러리</Meeting22Title>
           <TypeButton selectedTeamType={teamType} setSelectedTeamType={setTeamType}/>
           <Meeting22Container>
-            <MakeTeam />
+            <MakeTeam teamType={teamType}/>
             {isLoading ? (
             <p>데이터를 불러오는 중입니다...</p>
           ) : (

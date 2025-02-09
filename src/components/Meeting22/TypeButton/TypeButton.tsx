@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { teamSizeState } from '../../../recoil/state/teamSizeState'
-import { getTeamGallery } from '../../../api/Meeting/GetTeamGallery';
 import * as S from './Styles';
 
 interface TypeButtonProps {
@@ -14,9 +11,8 @@ const TypeButton: React.FC<TypeButtonProps> = ({ selectedTeamType, setSelectedTe
   const navigate = useNavigate();
   const location = useLocation();
   const [selectedButton, setSelectedButton] = useState<string>('2to2');
-  const [teamSize, setTeamSize] = useRecoilState(teamSizeState);
 
-  // 클릭 시 색상 변경 및 페이지 이동
+  
   useEffect(() => {
     if (location.pathname === '/meeting22') {
       setSelectedButton('2to2');
@@ -30,16 +26,13 @@ const TypeButton: React.FC<TypeButtonProps> = ({ selectedTeamType, setSelectedTe
 
   const handleTypeChange = (teamType: string, button: string, size: number) => {
     setSelectedButton(button);
-    setTeamSize(size);
-    setSelectedTeamType(teamType); // 부모(Meeting22)에 팀 타입 변경 전달
+    setSelectedTeamType(teamType); 
   };
 
-  // 랜덤 선택 시 페이지 이동
   const handleRClick = () => {
     setSelectedButton('random');
-    setTeamSize(0);
     setSelectedTeamType('');
-    navigate('/meeting-random'); // 랜덤 선택 시만 페이지 이동
+    navigate('/meeting-random'); 
   };
 
   return (
