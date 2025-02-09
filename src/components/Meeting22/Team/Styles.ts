@@ -9,7 +9,7 @@ export const TeamLayOut = styled.div`
   width: 46%;
   height: 30%;
   border-radius: 10px;
-  box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
   margin: 1%;
   box-sizing: border-box;
   padding: 1% 0 1% 0;

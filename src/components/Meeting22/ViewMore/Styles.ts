@@ -9,9 +9,15 @@ font-size: 13px;
 font-weight: 400;
 font-family: 'Pretendard';
 line-height: 30px;
-margin:3%;
+margin-right: 2%;
 cursor: pointer;
 &:hover {
   background-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    margin-right: 1%;
+  }
 }
 `;
