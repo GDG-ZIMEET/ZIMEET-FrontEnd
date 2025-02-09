@@ -4,11 +4,15 @@ import AgeBox from './AgeBox/AgeBox';
 import ProfileDetail from './ProfileDetail/ProfileDetail';
 import PremiumModal from 'components/TeamIntro/Modal/PremiumModal/PremiumModal';
 import Detail from 'components/TeamIntro/Modal/Detail/Detail';
+import { User } from '../../../recoil/type/Meeting/TeamDetail';
+import { getImageByEmoji } from 'utils/IconMapper';
 
+interface UserDetailProps {
+  profileData: User; 
+  isPremium: boolean;
+}
 
-const MyProfile = ({ profileData, isPremium }) => {
-  const { avatar, nickname, mbti, style, idealType, preferredAge, Major, age, classNum, musicStyle } = profileData;
-
+const MyProfile: React.FC<UserDetailProps> = ({ profileData, isPremium }) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -24,18 +28,23 @@ const MyProfile = ({ profileData, isPremium }) => {
       <S.MyProfileContainer>
         <S.MyProfileBox1>
           <S.ProfileIMG>
-            <S.Avatar>{avatar}</S.Avatar>
+            <S.Avatar><img src={getImageByEmoji(profileData.emoji)} alt={profileData.emoji} /></S.Avatar>
           </S.ProfileIMG>
-          <AgeBox nickname={nickname} age={age} Major={Major} classNum={classNum} musicStyle={musicStyle} joinType={'3to3'} />
+          <AgeBox 
+            nickname={profileData.nickname} 
+            age={profileData.age} 
+            Major={profileData.major} 
+            classNum={profileData.studentNumber} 
+            musicStyle={profileData.music}/>
         </S.MyProfileBox1>
 
         <S.MyProfileBox2>
           {isPremium ? (
             <>
-              <ProfileDetail label="MBTI" value={mbti} />
-              <ProfileDetail label="스타일" value={style} />
-              <ProfileDetail label="이상형" value={idealType} />
-              <ProfileDetail label="선호나이" value={preferredAge} />
+              <ProfileDetail label="MBTI" value={profileData.mbti} />
+              <ProfileDetail label="스타일" value={profileData.style} />
+              <ProfileDetail label="이상형" value={profileData.idealType} />
+              <ProfileDetail label="선호나이" value={profileData.idealAge} />
             </>
           ) : (
             <>

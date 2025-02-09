@@ -1,30 +1,55 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { isPremiumState } from '../../recoil/state/authStore'; 
 import * as S from './Styles'; 
 import Header from 'components/TeamIntro/Header/Header';
 import MyProfile from 'components/TeamIntro/Profile/MyProfile';
-import Profiles from 'components/TeamIntro/Profile/ProfileData';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
 import Heart from 'components/TeamIntro/Modal/Heart/Heart';
 import SendQuestion from 'components/TeamIntro/Modal/SendQuestion/SendQuestion';
 import Send from 'components/TeamIntro/Modal/Send/Send'
+import { TeamData, User } from 'recoil/type/Meeting/TeamDetail';
+import { getTeamDetail } from 'api/Meeting/GetTeamDetail';
 
 const TeamIntro = () => {
+  const { teamId } = useParams<{ teamId: string }>();
+  const [teamDetailData, setTeamDetailData] = useState<TeamData | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isPremium, setIsPremium] = useRecoilState(isPremiumState); 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showSend, setShowSend] = useState(false);
   const navigate = useNavigate(); 
 
-  const profileData = Profiles.filter(profile => profile.isMe === true).slice(0, 2);
-
   useEffect(() => {
-    const checkPremiumStatus = async () => {
-      setIsPremium(true);
+    const fetchDataAndCheckPremium = async () => {
+      setIsLoading(true);
+
+      try {
+        // 팀 상세 데이터 가져오기
+        if (teamId) {
+          const response = await getTeamDetail(Number(teamId));
+          if (response?.data) {
+            setTeamDetailData(response.data);
+          } else {
+            setTeamDetailData(null);
+          }
+        }
+
+        // 프리미엄 상태 확인
+        setIsPremium(true);
+      } catch (error) {
+        console.error('Error fetching team data:', error);
+        setTeamDetailData(null);
+      } finally {
+        setIsLoading(false);
+      }
     };
-    checkPremiumStatus();
-  }, [setIsPremium]);
+
+    fetchDataAndCheckPremium();
+  }, [teamId, setIsPremium]);
+
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -45,21 +70,22 @@ const TeamIntro = () => {
   };
 
   return (
-    <S.Container>
+    <S.TeamIntroLayout>
       <Header />
-      {profileData && profileData.map((profile, index) => (
+      <S.TeamIntroContainer>
+        {teamDetailData?.userList.map((user: User) => (
         <MyProfile 
-          key={index} 
-          profileData={profile} 
-          isMe={profile.isMe}  
+          key={user.userId} 
+          profileData={user}
           isPremium={isPremium} />
-      ))}
+        ))}
+      </S.TeamIntroContainer>
       <Heart onClick={openModal} />
       <NavigationBar />
       
       {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} />}
       {showSend && <Send onClose={closeSendModal} />}
-    </S.Container>
+    </S.TeamIntroLayout>
   );
 };
 

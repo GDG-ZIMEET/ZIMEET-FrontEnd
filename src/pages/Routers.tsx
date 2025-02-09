@@ -51,7 +51,7 @@ const Routers: React.FC = () => {
       <Route path="/meeting-random" element={<MeetingRandom />} />
       <Route path="/meetingRoading" element={<MeetingRoading />} />
       <Route path="/help" element={<Help />} />
-      <Route path="/teamintro" element={<TeamIntro />} />
+      <Route path="/teamintro/:teamId" element={<TeamIntro />} />
       <Route path="/ourteamintro" element={<OurTeamIntro />} />
     </Routes>
   );
