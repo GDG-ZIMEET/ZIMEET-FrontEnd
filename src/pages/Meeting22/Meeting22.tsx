@@ -9,6 +9,7 @@ import MakeTeam from '../../components/Meeting22/MakeTeam/MakeTeam';
 import TeamBox from '../../components/Meeting22/TeamBox/TeamBox';
 import LoginPopUp from '../../components/Meeting22/LoginPopUp/LoginPopUp'; 
 import { getTeamGallery } from 'api/Meeting/GetTeamGallery';
+import { NonLoginDataTwoToTwo, NonLoginDataThreeToThree } from '../../data/NonLoginData';
 
 const Meeting22 = () => {
   const navigate = useNavigate();
@@ -22,8 +23,16 @@ const Meeting22 = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const data = await getTeamGallery(teamType, 1); 
-        setTeamGalleryData(data?.data.teamList || []);
+        if (isLoggedIn) {
+          const data = await getTeamGallery(teamType, 1);
+          setTeamGalleryData(data?.data.teamList || []);
+        } else {
+          if (teamType === 'TWO_TO_TWO') {
+            setTeamGalleryData(NonLoginDataTwoToTwo);
+          } else if (teamType === 'THREE_TO_THREE') {
+            setTeamGalleryData(NonLoginDataThreeToThree);
+          }
+        }
       } catch (error) {
         console.error('데이터 가져오기 실패:', error);
       } finally {
@@ -31,7 +40,7 @@ const Meeting22 = () => {
       }
     };
 
-    if (isLoggedIn) fetchData(); 
+    fetchData();
   }, [teamType, isLoggedIn]);
 
   
@@ -43,11 +52,10 @@ const Meeting22 = () => {
     <>  <NavigationBar />
     {!isLoggedIn && (
       <LoginPopUp
-        message="ZI밋에서 지금 바로 미팅하려면, 로그인이 필요해요!"
         onClose={handleLogin} 
       />
     )}
-        <Meeting22Layout $isLoggedIn={isLoggedIn}>
+        <Meeting22Layout>
           <Meeting22Title>팀 갤러리</Meeting22Title>
           <TypeButton selectedTeamType={teamType} setSelectedTeamType={setTeamType}/>
           <Meeting22Container>

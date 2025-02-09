@@ -11,7 +11,7 @@ const TeamBox: React.FC<TeamBoxProps> = ({ teamData }) => {
   return (
     <S.TeamBoxLayOut>
       {teamData.map((team) => (
-        <Team team={team} />
+        <Team key={team.teamId} team={team} />
       ))}
     </S.TeamBoxLayOut>
   );
