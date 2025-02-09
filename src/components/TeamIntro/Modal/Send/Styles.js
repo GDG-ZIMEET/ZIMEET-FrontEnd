@@ -20,20 +20,7 @@ export const ModalContent = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 83%; 
-  height: 22%;
-
-  
-  @media (min-width: 430px) {
-    width: 50%;
-  }
-
-  @media (min-width: 630px) {
-    width: 40%;
-  }
-
-  @media (min-width: 768px) {
-    width: 30%;
-  }
+  height: auto;
 `;
 
 export const ModalTitle = styled.div`
@@ -84,5 +71,6 @@ export const CancelButton = styled.button`
   width: 100%;
   font-weight: bold;
   border-radius: 12px;
+  padding: 4%;
   cursor: pointer;
 `;

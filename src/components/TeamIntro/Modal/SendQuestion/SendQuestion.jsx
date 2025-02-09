@@ -3,7 +3,7 @@ import * as S from './Styles';
 import Send from '../Send/Send';
 import hiIcon from '../../../../assets/icon/TeamInfo/HiIcon.svg';  
 
-const SendQuestion = ({ onClose, onConfirm }) => {
+const SendQuestion = ({ onClose, onConfirm, teamName, hi }) => {
   const [showSendQuestion, setShowSendQuestion] = useState(true);  
 
   const handleConfirm = () => {
@@ -22,13 +22,13 @@ const SendQuestion = ({ onClose, onConfirm }) => {
       {showSendQuestion && (
         <S.Modallayout>
           <S.ModalContent>
-            <S.ModalTitle>직전학기A+ 팀에게 하트를 보낼까요?</S.ModalTitle>
+            <S.ModalTitle>{teamName} 팀에게 하트를 보낼까요?</S.ModalTitle>
             <S.ModalText>
               우리팀이 보낸 하트를 수락하면 채팅방이 열려요!<br />
               하이는 우리 팀 하이 개수에서 차감되고,<br />
               보낸 하이는 취소할 수 없어요.
             </S.ModalText>
-            <S.TicketCount>우리 팀의 하이 : 2개</S.TicketCount>
+            <S.TicketCount>우리 팀의 하이 : {hi}개</S.TicketCount>
             <S.ButtonBox>
               <S.CancelButton onClick={handleClose}>취소</S.CancelButton>
               <S.ConfirmButton onClick={handleConfirm}><S.Hi><img src={hiIcon}/></S.Hi> <S.Text>보내기</S.Text></S.ConfirmButton>
