@@ -7,6 +7,7 @@ import TipModal from 'components/OurTeamIntro/Modal/TipModal/TipModal';
 import { getOurTeamDetail } from '../../api/Meeting/GetourTeamDetail';
 import { useLocation } from 'react-router-dom';
 import { TeamData, User } from '../../recoil/type/Meeting/TeamDetail';
+import Certification from 'components/OurTeamIntro/Modal/Certification/Certification';
 
 const OurTeamIntro = () => {
   const location = useLocation();
@@ -50,6 +51,7 @@ const OurTeamIntro = () => {
         ))}
       </S.OurTeamIntroContainer>
       <TipModal/>
+      {ourteamDetailData?.verification === 1 ? <Certification /> : <TipModal />}
       <NavigationBar />
     </S.OurTeamIntroLayout>
   );
