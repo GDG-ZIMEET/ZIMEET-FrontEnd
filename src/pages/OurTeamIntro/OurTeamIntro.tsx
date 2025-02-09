@@ -2,7 +2,6 @@ import React, { useEffect, useState }from 'react';
 import * as S from './Styles'; 
 import Header from 'components/OurTeamIntro/Header/Header'; 
 import MyProfile from 'components/OurTeamIntro/Profile/MyProfile';
-import Profiles from 'components/OurTeamIntro/Profile/ProfileData';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
 import TipModal from 'components/OurTeamIntro/Modal/TipModal/TipModal';
 import { getOurTeamDetail } from '../../api/Meeting/GetourTeamDetail';
