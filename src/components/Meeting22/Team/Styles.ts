@@ -12,6 +12,7 @@ export const TeamLayOut = styled.div`
   box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.15);
   margin: 1%;
   box-sizing: border-box;
+  padding: 1% 0 1% 0;
 
   img {
     width: 60%;
@@ -25,7 +26,7 @@ export const EmojiContainer = styled.div`
   position: relative;
   width: 100%;
   height: 26%;
-  margin: 6% 2% 5% 0;
+  margin: 6% 2% 3% 0;
 `;
 
 export const MemberItem1 = styled.div`
@@ -48,7 +49,7 @@ export const NameContainer = styled.div`
   align-items: center;
   height:28%;
   width: 100%;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
   box-sizing: border-box;
 `;
 
