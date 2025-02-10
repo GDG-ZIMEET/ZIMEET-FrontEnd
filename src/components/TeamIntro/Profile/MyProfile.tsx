@@ -10,9 +10,10 @@ import { getImageByEmoji } from 'utils/IconMapper';
 interface UserDetailProps {
   profileData: User; 
   isPremium: boolean;
+  gender: string;
 }
 
-const MyProfile: React.FC<UserDetailProps> = ({ profileData, isPremium }) => {
+const MyProfile: React.FC<UserDetailProps> = ({ profileData, isPremium, gender }) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -41,10 +42,10 @@ const MyProfile: React.FC<UserDetailProps> = ({ profileData, isPremium }) => {
         <S.MyProfileBox2>
           {isPremium ? (
             <>
-              <ProfileDetail label="MBTI" value={profileData.mbti} />
-              <ProfileDetail label="스타일" value={profileData.style} />
-              <ProfileDetail label="이상형" value={profileData.idealType} />
-              <ProfileDetail label="선호나이" value={profileData.idealAge} />
+              <ProfileDetail label="MBTI" value={profileData.mbti} gender={gender}/>
+              <ProfileDetail label="스타일" value={profileData.style} gender={gender}/>
+              <ProfileDetail label="이상형" value={profileData.idealType} gender={gender}/>
+              <ProfileDetail label="선호나이" value={profileData.idealAge} gender={gender}/>
             </>
           ) : (
             <>
