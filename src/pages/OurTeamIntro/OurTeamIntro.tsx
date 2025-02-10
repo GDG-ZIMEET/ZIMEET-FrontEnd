@@ -6,13 +6,13 @@ import NavigationBar from 'components/NavigationBar/NavigationBar';
 import TipModal from 'components/OurTeamIntro/Modal/TipModal/TipModal';
 import { getOurTeamDetail } from '../../api/Meeting/GetourTeamDetail';
 import { useLocation } from 'react-router-dom';
-import { OurTeamData, User } from '../../recoil/type/Meeting/TeamDetail';
+import { TeamData, User } from '../../recoil/type/Meeting/TeamDetail';
 import Certification from 'components/OurTeamIntro/Modal/Certification/Certification';
 
 const OurTeamIntro = () => {
   const location = useLocation();
   const { teamType } = location.state || {};
-  const [ourteamDetailData, setOurTeamDetailData] = useState<OurTeamData | null>(null);
+  const [ourteamDetailData, setOurTeamDetailData] = useState<TeamData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {

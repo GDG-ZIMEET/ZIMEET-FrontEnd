@@ -77,7 +77,7 @@ const Meeting22 = () => {
             {isLoading ? (
             <p>데이터를 불러오는 중입니다...</p>
           ) : (
-            <TeamBox teamData={teamGalleryData || []} ourTeamData={ourTeamData}/>
+            <TeamBox teamData={teamGalleryData || []} ourTeamData={ourTeamData} teamType={teamType}/>
           )}
           </Meeting22Container>
         </Meeting22Layout>  

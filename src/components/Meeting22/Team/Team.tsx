@@ -8,9 +8,10 @@ import Toast from '../../../components/Meeting22/Toast/Toast';
 interface TeamProps {
   team: TeamType;
   ourTeamData: any | null;
+  teamType: string;
 }
 
-const Team: React.FC<TeamProps> = ({ team, ourTeamData }) => {
+const Team: React.FC<TeamProps> = ({ team, ourTeamData, teamType }) => {
   const navigate = useNavigate();
   const [isToastOpen, setIsToastOpen] = useState(false);
 
@@ -26,7 +27,7 @@ const Team: React.FC<TeamProps> = ({ team, ourTeamData }) => {
       setIsToastOpen(true);
       return;
     }
-    navigate(`/teamintro/${team.teamId}`);
+    navigate(`/teamintro/${team.teamId}`, { state: { teamType } });
   };
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { isPremiumState } from '../../recoil/state/authStore'; 
@@ -15,6 +15,8 @@ import { getTeamDetail } from 'api/Meeting/GetTeamDetail';
 
 const TeamIntro = () => {
   const { teamId } = useParams<{ teamId: string }>();
+  const location = useLocation();
+  const { teamType } = location.state || {};
   const [teamDetailData, setTeamDetailData] = useState<TeamData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isPremium, setIsPremium] = useRecoilState(isPremiumState); 
@@ -82,7 +84,7 @@ const TeamIntro = () => {
       <Heart onClick={openModal} />
       <NavigationBar />
       
-      {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} teamName={teamDetailData?.name || ''} hi={teamDetailData?.hi || 0 }/>}
+      {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} teamName={teamDetailData?.name || ''} teamType={teamType} />}
       {showSend && <Send onClose={closeSendModal} />}
     </S.TeamIntroLayout>
   );
