@@ -7,9 +7,10 @@ import { getImageByEmoji } from 'utils/IconMapper';
 
 interface UserDetailProps {
   profileData: User; 
+  gender: string;
 }
 
-const MyProfile: React.FC<UserDetailProps> = ({ profileData }) => {
+const MyProfile: React.FC<UserDetailProps> = ({ profileData, gender }) => {
 
   return (
     <S.MyprofileLayout>
@@ -29,10 +30,10 @@ const MyProfile: React.FC<UserDetailProps> = ({ profileData }) => {
         </S.MyProfileBox1>
 
         <S.MyProfileBox2>
-          <ProfileDetail label="MBTI" value={profileData.mbti} />
-          <ProfileDetail label="스타일" value={profileData.style} />
-          <ProfileDetail label="이상형" value={profileData.idealType} />
-          <ProfileDetail label="선호나이" value={profileData.idealAge} />
+          <ProfileDetail label="MBTI" value={profileData.mbti} gender={gender}/>
+          <ProfileDetail label="스타일" value={profileData.style} gender={gender}/>
+          <ProfileDetail label="이상형" value={profileData.idealType} gender={gender}/>
+          <ProfileDetail label="선호나이" value={profileData.idealAge} gender={gender}/>
         </S.MyProfileBox2>
       </S.MyProfileContainer>
     </S.MyprofileLayout>

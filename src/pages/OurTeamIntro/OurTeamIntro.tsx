@@ -47,7 +47,9 @@ const OurTeamIntro = () => {
         {ourteamDetailData?.userList.map((user: User) => (
         <MyProfile 
           key={user.userId} 
-          profileData={user} />
+          profileData={user}
+          gender={ourteamDetailData.gender}
+           />
         ))}
       </S.OurTeamIntroContainer>
       <TipModal/>
