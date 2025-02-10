@@ -72,7 +72,7 @@ const TeamIntro = () => {
 
   return (
     <S.TeamIntroLayout>
-      <Header />
+      <Header verification={teamDetailData?.verification ?? 0} name={teamDetailData?.name || ''}/>
       <S.TeamIntroContainer $isPremium={isPremium}>
         {teamDetailData?.userList.map((user: User) => (
         <MyProfile 
