@@ -9,7 +9,9 @@ import MakeTeam from '../../components/Meeting22/MakeTeam/MakeTeam';
 import TeamBox from '../../components/Meeting22/TeamBox/TeamBox';
 import LoginPopUp from '../../components/Meeting22/LoginPopUp/LoginPopUp'; 
 import { getTeamGallery } from 'api/Meeting/GetTeamGallery';
+import { getOurTeam } from '../../api/Meeting/GetourTeam';
 import { NonLoginDataTwoToTwo, NonLoginDataThreeToThree } from '../../data/NonLoginData';
+import { OurTeamType } from '../../recoil/type/Meeting/ourTeamType';
 
 const Meeting22 = () => {
   const navigate = useNavigate();
@@ -18,6 +20,7 @@ const Meeting22 = () => {
   const [teamGalleryData, setTeamGalleryData] = useState<any | null>(null);
   const [teamType, setTeamType] = useState<string>('TWO_TO_TWO');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [ourTeamData, setOurTeamData] = useState<OurTeamType | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +43,18 @@ const Meeting22 = () => {
       }
     };
 
+    const fetchOurTeamData = async () => {
+      try {
+        const response = await getOurTeam(teamType); 
+        setOurTeamData(response?.data || null); 
+      } catch (error) {
+        console.error('우리팀 데이터 가져오기 실패:', error);
+        setOurTeamData(null);
+      }
+    };
+
     fetchData();
+    fetchOurTeamData();
   }, [teamType, isLoggedIn]);
 
   
@@ -59,11 +73,11 @@ const Meeting22 = () => {
           <Meeting22Title>팀 갤러리</Meeting22Title>
           <TypeButton selectedTeamType={teamType} setSelectedTeamType={setTeamType}/>
           <Meeting22Container>
-            <MakeTeam teamType={teamType}/>
+            <MakeTeam teamType={teamType} ourTeamData={ourTeamData} />
             {isLoading ? (
             <p>데이터를 불러오는 중입니다...</p>
           ) : (
-            <TeamBox teamData={teamGalleryData || []} />
+            <TeamBox teamData={teamGalleryData || []} ourTeamData={ourTeamData}/>
           )}
           </Meeting22Container>
         </Meeting22Layout>  

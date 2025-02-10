@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './Styles';
 import { TeamType } from '../../../recoil/type/Meeting/teamGallery';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { useNavigate } from 'react-router-dom';
+import Toast from '../../../components/Meeting22/Toast/Toast';
 
 interface TeamProps {
   team: TeamType;
+  ourTeamData: any | null;
 }
 
-const Team: React.FC<TeamProps> = ({ team }) => {
+const Team: React.FC<TeamProps> = ({ team, ourTeamData }) => {
   const navigate = useNavigate();
+  const [isToastOpen, setIsToastOpen] = useState(false);
 
   if (!team) {
     return <div>팀 정보가 없습니다.</div>; 
@@ -19,10 +22,15 @@ const Team: React.FC<TeamProps> = ({ team }) => {
   const majorDisplay = team.major.join('/');
   
   const handleTeamClick = () => {
+    if (!ourTeamData) {
+      setIsToastOpen(true);
+      return;
+    }
     navigate(`/teamintro/${team.teamId}`);
   };
 
   return (
+    <>
     <S.TeamLayOut onClick={handleTeamClick}>
       <S.EmojiContainer>
         {team.emoji.map((emoji, index) => (
@@ -62,6 +70,8 @@ const Team: React.FC<TeamProps> = ({ team }) => {
         )}
       </S.MemberInfo>
     </S.TeamLayOut>
+    <Toast isOpen={isToastOpen} onClose={() => setIsToastOpen(false)}/>
+    </>
   );
 };
 
