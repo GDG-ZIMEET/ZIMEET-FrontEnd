@@ -16,7 +16,7 @@ export const GdgocContainer = styled.div`
 export const AboutGdgocCuk = styled(I.AboutGdgocCuk)`
     height: 3%;
     width: 50%;
-    margin: 9% 0 0 5%;
+    margin: 5% 0 0 5%;
 `;
 
 export const Explanation1 = styled.div`
