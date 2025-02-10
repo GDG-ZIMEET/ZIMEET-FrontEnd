@@ -1,16 +1,14 @@
 import React from 'react';
-import { HeartButton, HeartLayOut, Hi, SendText } from './Styles';
-import hiIcon from '../../../../assets/icon/TeamInfo/HiIcon.svg';
-
-
+import * as S from './Styles';
 
 const Heart = ({ onClick }) => {
   return (
-    <HeartLayOut>
-      <HeartButton onClick={onClick}> 
-      <Hi><img src={hiIcon} /></Hi><SendText>보내기</SendText>
-      </HeartButton>
-    </HeartLayOut>
+    <S.HeartLayOut>
+      <S.HeartButton onClick={onClick}> 
+      <S.Hi />
+      <S.SendText>보내기</S.SendText>
+      </S.HeartButton>
+    </S.HeartLayOut>
   );
 };
 

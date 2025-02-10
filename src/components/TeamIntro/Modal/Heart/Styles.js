@@ -1,6 +1,5 @@
-import { padding } from 'polished';
 import styled from 'styled-components';
-
+import { ReactComponent as hiIcon } from '../../../../assets/icon/TeamInfo/HiIcon.svg';
 
 export const HeartButton = styled.button`
   display:flex;
@@ -34,14 +33,11 @@ export const HeartLayOut = styled.div`
   left: 7.5%;
 `;
 
-export const Hi = styled.span`
-  width:20%;
-  color: black;
-  text-align: center;
-  padding:2%;
+export const Hi = styled(hiIcon)`
+  width: 8%;
+  margin-right: 1%;
 `;
 
 export const SendText = styled.span`
-  color: white;
-  margin-left:-5%;  
+  color: white; 
 `;

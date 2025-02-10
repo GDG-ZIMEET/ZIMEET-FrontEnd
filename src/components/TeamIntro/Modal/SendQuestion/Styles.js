@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as hiIcon } from '../../../../assets/icon/TeamInfo/HiIcon.svg';
 
 
 export const Modallayout = styled.div`
@@ -47,30 +48,43 @@ export const HighlightText = styled.span`
 `;
 
 export const TicketCount = styled.div`
+  width: 38%;
+  height: 30%; 
   font-size: 10px;
   font-weight: 700;
   line-height: 19.5px;
   color: #EA4335;
   font-weight: bold;
   background-color: #F2F2F2;
-  height: 30%; 
   padding: 2%;
-  width: 38%; 
   border-radius: 20px;
   line-height: 1; 
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto; 
-  margin-bottom: 5%;
+  margin: 0 auto 5%; 
 `;
 
 export const ButtonBox = styled.div`
   display: flex;
-  height: 15%;
+  height: 5vh;
+`;
+
+export const CancelButton = styled.button`
+  background: #F2F2F2;
+  color: #A6A6A6;
+  border: none;
+  width: 29%;
+  height: 100%;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-right: 3%;
 `;
 
 export const ConfirmButton = styled.button`
+  width: 72%;
+  height: 100%;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -80,31 +94,15 @@ export const ConfirmButton = styled.button`
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  width: 72%;
 `;
 
-export const Hi = styled.div`
-  width: 30%;
-  color: black;
-  img{
-  width:100%;
-  height:100%;
-  }
-
-`;
-
-export const CancelButton = styled.button`
-  background: #F2F2F2;
-  color: #A6A6A6;
-  border: none;
-  width: 29%;
-  font-weight: bold;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-right: 3%;
+export const Hi = styled(hiIcon)`
+  width: 13%;
+  margin: 0 1% 0.5% 0;
 `;
 
 export const Text = styled.div`
-  margin-left:-7%;
-
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
 `;
