@@ -11,6 +11,7 @@ const Join = () => {
   const [studentId, setStudentId] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [phoneNum, setPhoneNum] = useState('');
   const navigate = useNavigate(); 
   
   const gradeOptions = Array.from({ length: 4 }, (_, index) => (
@@ -70,6 +71,13 @@ const Join = () => {
           placeholder="비밀번호는 암호화돼요."
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        <S.JoinText>전화번호</S.JoinText>
+        <S.JoinInput
+          type="text"
+          placeholder="숫자만 입력해주세요."
+          value={phoneNum}
+          onChange={(e) => setPhoneNum(e.target.value)}
         />
         <S.JoinText>학년 / 나이</S.JoinText>
         <S.SelectContainer>
