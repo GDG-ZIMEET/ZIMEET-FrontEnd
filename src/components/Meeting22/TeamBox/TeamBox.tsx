@@ -5,13 +5,14 @@ import { TeamType } from '../../../recoil/type/Meeting/teamGallery';
 
 interface TeamBoxProps {
   teamData: TeamType[]; 
+  ourTeamData: any | null;
 }
 
-const TeamBox: React.FC<TeamBoxProps> = ({ teamData }) => {
+const TeamBox: React.FC<TeamBoxProps> = ({ teamData, ourTeamData }) => {
   return (
     <S.TeamBoxLayOut>
       {teamData.map((team) => (
-        <Team key={team.teamId} team={team} />
+        <Team key={team.teamId} team={team} ourTeamData={ourTeamData}/>
       ))}
     </S.TeamBoxLayOut>
   );
