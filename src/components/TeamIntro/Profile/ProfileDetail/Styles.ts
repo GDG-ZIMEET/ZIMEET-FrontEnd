@@ -20,7 +20,7 @@ export const ProfileDetailBox = styled.div`
 `;
 
 
-export const Styles = styled.div`
+export const Styles = styled.div<{ $isblue: boolean }>`
   width: 90%;
   aspect-ratio: 1;
   border-radius: 50%;
