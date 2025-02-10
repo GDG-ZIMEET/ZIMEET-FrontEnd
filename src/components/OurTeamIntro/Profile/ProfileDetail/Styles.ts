@@ -20,7 +20,7 @@ export const ProfileDetailBox = styled.div`
 `;
 
 
-export const Styles = styled.div`
+export const Styles = styled.div<{ $isblue: boolean }>`
   width: 90%;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -32,6 +32,7 @@ export const Styles = styled.div`
   align-items: center;
   color: ${({ $isblue }) => ($isblue ? '#4285F4' : '#EA4335')};
   background-color: ${({ $isblue }) => ($isblue? 'rgba(66, 133, 244, 0.08)' : 'rgba(234, 67, 53, 0.08)')};
+
 `;
 
 export const InfoTitle = styled.div`
