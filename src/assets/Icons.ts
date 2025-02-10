@@ -20,6 +20,7 @@ export { ReactComponent as Schatting } from './icon/navigationbar/Schatting.svg'
 // 부스 아이콘
 export { ReactComponent as G } from './icon/booth/G.svg';
 export { ReactComponent as GGrey } from './icon/booth/G grey.svg';
+export { ReactComponent as GB } from './icon/booth/GB.svg';
 export { ReactComponent as DGoCCUK } from './icon/booth/DGoCCUK.svg';
 export { ReactComponent as D } from './icon/booth/D.svg';
 export { ReactComponent as DGrey } from './icon/booth/D grey.svg';
