@@ -47,7 +47,7 @@ export const ModalText = styled.p`
     word-wrap: break-word;
     text-align: center;
     margin-bottom: 8%;
-    line-height: 1.7;
+    line-height: 180%;
 `;
 
 export const ButtonBox = styled.div`
