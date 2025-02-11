@@ -34,12 +34,16 @@ export const HiWrpper = styled.div`
 export const HiQuantity = styled.div`
   height: 65%;
   background-color: black;
-  color: white;
-  font-weight: 700;
-  font-size: 12px;
   padding: 11%;
   border-top-left-radius: 0.8rem; border-top-right-radius: 0.8rem;
 `;
+
+export const HiQuantityText = styled.p`
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+`;
+
 export const HiPrice = styled.div`
   height: 35%;
   background-color: white;

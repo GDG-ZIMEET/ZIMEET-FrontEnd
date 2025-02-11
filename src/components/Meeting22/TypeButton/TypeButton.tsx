@@ -1,45 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { teamSizeState } from '../../../recoil/state/teamSizeState'
 import * as S from './Styles';
 
-const TypeButton: React.FC = () => {
+interface TypeButtonProps {
+  selectedTeamType: string;
+  setSelectedTeamType: (teamType: string) => void;
+}
+
+const TypeButton: React.FC<TypeButtonProps> = ({ selectedTeamType, setSelectedTeamType }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [selectedButton, setSelectedButton] = useState<string>('2to2');
-  const [teamSize, setTeamSize] = useRecoilState(teamSizeState);
 
-  // 클릭 시 색상 변경 및 페이지 이동
+  
   useEffect(() => {
     if (location.pathname === '/meeting22') {
       setSelectedButton('2to2');
-      setTeamSize(2); 
     } else if (location.pathname === '/meeting33') {
       setSelectedButton('3to3');
-      setTeamSize(3); 
     } else if (location.pathname === '/meeting-random') {
       setSelectedButton('random');
-      setTeamSize(0); 
     }
   }, [location.pathname]);
 
 
-  const handle2Click = () => {
-    setSelectedButton('2to2');
-    setTeamSize(2); 
-    navigate('/meeting22'); 
-  };
-
-  const handle3Click = () => {
-    setSelectedButton('3to3');
-    setTeamSize(3); 
-    navigate('/meeting22'); 
+  const handleTypeChange = (teamType: string, button: string, size: number) => {
+    setSelectedButton(button);
+    setSelectedTeamType(teamType); 
   };
 
   const handleRClick = () => {
     setSelectedButton('random');
-    setTeamSize(0); 
+    setSelectedTeamType('');
     navigate('/meeting-random'); 
   };
 
@@ -47,7 +39,7 @@ const TypeButton: React.FC = () => {
     <S.TypeLayout>
       <S.TypeComponent>
         <S.Twoto2
-          onClick={handle2Click}
+          onClick={() => handleTypeChange('TWO_TO_TWO', '2to2', 2)}
           selected={selectedButton === '2to2'}
         >
           2대2
@@ -55,7 +47,7 @@ const TypeButton: React.FC = () => {
       </S.TypeComponent>
       <S.TypeComponent>
         <S.Threeto3
-          onClick={handle3Click}
+          onClick={() => handleTypeChange('THREE_TO_THREE', '3to3', 3)}
           selected={selectedButton === '3to3'}
         >
           3대3

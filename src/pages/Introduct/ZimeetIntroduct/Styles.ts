@@ -10,14 +10,14 @@ export const ZimeetIntroductLayout = styled.div`
 
 export const ZimeetContainer = styled.div`
   width: 100%;
-  height: 85%;
+  height: 83%;
   overflow: auto;
 `;  
 
 
 export const Zimeet = styled(I.Zimeet)`
     height: 3%;
-    margin: 9% 0 0 5%;
+    margin: 5% 0 0 5%;
 `;
 
 export const Explanation1 = styled.div`

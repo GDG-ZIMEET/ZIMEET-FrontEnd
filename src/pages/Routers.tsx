@@ -7,7 +7,7 @@ import Join3 from './Authentication/Join/Join3';
 import Login from './Authentication/Login/Login';
 import MyPage from './MyPage/MyPage/MyPage';
 import ModifyProfile from './MyPage/ModifyProfile/ModifyProfile';
-import ModifyEmoji from './MyPage/ModifyEmoji.jsx/SelectEmoji';
+import ModifyEmoji from './MyPage/ModifyEmoji.jsx/ModifyEmoji';
 import Booth from './Booth/Booth';
 import BoothDetail from './Booth/BoothDetail/BoothDetail';
 import Chatting from './Chatting/Chatting/Chatting';
@@ -53,7 +53,7 @@ const Routers: React.FC = () => {
       <Route path="/meeting-random" element={<MeetingRandom />} />
       <Route path="/meetingRoading" element={<MeetingRoading />} />
       <Route path="/help" element={<Help />} />
-      <Route path="/teamintro" element={<TeamIntro />} />
+      <Route path="/teamintro/:teamId" element={<TeamIntro />} />
       <Route path="/ourteamintro" element={<OurTeamIntro />} />
     </Routes>
   );

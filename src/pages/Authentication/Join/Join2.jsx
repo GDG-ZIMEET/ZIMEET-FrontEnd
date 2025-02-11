@@ -47,16 +47,20 @@ const Join2 = () => {
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
         />
+        
         <S.EmojiContainer>
           <S.JoinText>이모지</S.JoinText>
           <S.EmojiText>이모지는 프로필 사진 대신 쓰여요.</S.EmojiText>
           <S.EmojiText>아래 동그라미를 터치해서 이모지를 변경할 수 있어요.</S.EmojiText>
           <S.CircleWrap onClick={() => navigate('/selectemoji')}>
             <S.EmojiWrap>
-              <S.TossEmoji>{selectedEmoji}</S.TossEmoji>
+              <S.TossEmoji>
+                <img src={selectedEmoji} alt="Selected Emoji" />
+              </S.TossEmoji>
             </S.EmojiWrap>
           </S.CircleWrap>
         </S.EmojiContainer>
+
         <S.BtnContainer>
           <S.JoinBtn disabled={!isFormComplete} onClick={handleNext}>
             {isFormComplete ? '다음으로' : '모든 정보를 입력해주세요.'}

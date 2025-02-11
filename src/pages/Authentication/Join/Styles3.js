@@ -63,10 +63,6 @@ export const HrLine = styled.hr`
   height: 2vh;
   background-color: #f3f3f3;
   border: none;
-  // margin: 0; /* 여백 제거 */
-  // width: 100vw; /* 뷰포트 너비를 100%로 설정 */
-  // position: relative; /* 부모 요소와의 위치를 상대적으로 설정 */
-  // left: calc(-50vw + 50%); /* 좌측 여백을 계산하여 중앙 정렬 */
 `;
 
 export const SelectTopContainer = styled.div`

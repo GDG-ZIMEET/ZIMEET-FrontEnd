@@ -10,8 +10,13 @@ export const DetailLayOut = styled.div`
   height: 10.5%;
   margin-top: 3%;
   position: absolute;  
+<<<<<<< HEAD
   bottom: 19.8%;
+=======
+  bottom: 19.5%;
+>>>>>>> origin/main
   left: 7.5%;
+  cursor: pointer;
 `;
 
 export const DetailButton = styled.button`
@@ -23,6 +28,12 @@ export const DetailButton = styled.button`
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
+<<<<<<< HEAD
+=======
+  &:hover {
+    background-color: #333;
+  }
+>>>>>>> origin/main
 `;
 
 

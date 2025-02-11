@@ -2,15 +2,13 @@ import * as I from '../../assets/Icons.ts';
 import * as S from './Styles';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { authState } from '../../recoil/state/authAtom.js'; 
+import { authState } from '../../recoil/state/authState.ts'; 
 
 const NavigationBar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const isLoggedIn = useRecoilValue(authState);
     
-    console.log("로그인 상태:", isLoggedIn); 
-
     const iconMapping = {
         '/': {
             selected: <I.Home />,
@@ -24,8 +22,8 @@ const NavigationBar = () => {
             selected: <I.Schatting />,
             default: <I.Chatting />,
         },
-        '/myinformation': {
-            selected: <I.MyInformation />,
+        '/mypage': {
+            selected: <I.SmyInformation />,
             default: <I.MyInformation />,
         },
     };
@@ -59,7 +57,7 @@ const NavigationBar = () => {
             </S.NavItem>
             <S.NavItem onClick={() => navigate('/mypage')}>
                 <S.IconWrapper style={{ margin: '5px' }}>
-                    {getIcon('/myinformation')}
+                    {getIcon('/mypage')}
                 </S.IconWrapper>
                 내정보
             </S.NavItem>

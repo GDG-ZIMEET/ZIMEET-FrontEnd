@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const NavBarContainer = styled.nav`
-  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -11,6 +10,10 @@ export const NavBarContainer = styled.nav`
   justify-content: space-around;
   align-items: center;
   border-top: 1px solid #f0f0f0;
+  
+  //마이페이지 navbar 중간에 위치함 수정용
+  position: fixed; 
+  z-index: 100; 
 `;
 
 export const NavItem = styled.div`
@@ -39,8 +42,8 @@ export const RedDotIconWrapper = styled.div`
 
 export const RedDot = styled.div`
   position: absolute;
-  top: 10%;   
-  left: 34%;  
+  top: 23%;   
+  left: 33%;  
   width: 8px;
   height: 8px;
   background-color: red;
