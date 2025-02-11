@@ -24,6 +24,7 @@ import ReceiveHi from './Chatting/ReceiveHi/ReceiveHi';
 import SentHi from "./Chatting/SentHi/SentHi";
 import TeamIntro from './TeamIntro/TeamIntro';
 import OurTeamIntro from './OurTeamIntro/OurTeamIntro';
+import ReceivedHiTeam from './Chatting/ReceivedHiTeam/ReceivedHiTeam';
 
 const Routers: React.FC = () => {
   return (
@@ -44,6 +45,7 @@ const Routers: React.FC = () => {
       <Route path="/chatting" element={<Chatting />} />
       <Route path="/chattingInventory" element={<ChattingInventory />} />
       <Route path="/receiveHi" element={<ReceiveHi />} />
+      <Route path="/receiveHi/team" element={<ReceivedHiTeam />} />
       <Route path="/sentHi" element={<SentHi />} />
       <Route path="/meeting22" element={<Meeting22 />} />
       <Route path="/teamMaking" element={<TeamMaking />} />

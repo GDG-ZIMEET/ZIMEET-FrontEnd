@@ -10,7 +10,7 @@ export const DetailLayOut = styled.div`
   height: 10.5%;
   margin-top: 3%;
   position: absolute;  
-  bottom: 19.5%;
+  bottom: 19.8%;
   left: 7.5%;
   cursor: pointer;
 `;
