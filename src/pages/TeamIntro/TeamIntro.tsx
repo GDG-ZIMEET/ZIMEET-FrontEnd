@@ -7,13 +7,15 @@ import * as S from './Styles';
 import Header from 'components/TeamIntro/Header/Header';
 import MyProfile from 'components/TeamIntro/Profile/MyProfile';
 import NavigationBar from 'components/NavigationBar/NavigationBar';
-import Heart from 'components/TeamIntro/Modal/Heart/Heart';
+import Heart from 'components/TeamIntro/Button/Heart/Heart';
 import SendQuestion from 'components/TeamIntro/Modal/SendQuestion/SendQuestion';
 import Send from 'components/TeamIntro/Modal/Send/Send'
+import SentHiButton from 'components/TeamIntro/Button/SentHiButton/SentHiButton';
 import { TeamData, User } from 'recoil/type/Meeting/TeamDetail';
 import { getTeamDetail } from 'api/Meeting/GetTeamDetail';
 
 const TeamIntro = () => {
+  const [isHiSent, setIsHiSent] = useState(false); // TODO : API 연결 후 RecoilState로 변경
   const { teamId } = useParams<{ teamId: string }>();
   const location = useLocation();
   const { teamType } = location.state || {};
@@ -82,7 +84,9 @@ const TeamIntro = () => {
           isPremium={isPremium} />
         ))}
       </S.TeamIntroContainer>
-      <Heart onClick={openModal} />
+      {isHiSent
+          ? <SentHiButton/>
+          : <Heart onClick={openModal} /> }
       <NavigationBar />
       
       {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} teamName={teamDetailData?.name || ''} teamType={teamType} />}

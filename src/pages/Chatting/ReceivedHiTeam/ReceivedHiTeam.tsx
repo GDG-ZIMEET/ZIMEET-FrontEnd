@@ -9,6 +9,7 @@ import AcceptHiModal from "../../../components/Chatting/ReceiveHi/Modal/AcceptHi
 import AcceptedHiModal from "../../../components/Chatting/ReceiveHi/Modal/AcceptedHiModal/AcceptedHiModal";
 import RefuseHiModal from "../../../components/Chatting/ReceiveHi/Modal/RefuseHiModal/RefuseHiModal";
 import RefusedHiModal from "../../../components/Chatting/ReceiveHi/Modal/RefusedHiModal/RefusedHiModal";
+import { User } from "recoil/type/Meeting/TeamDetail";
 
 const ReceivedHiTeam: React.FC = () => {
     const navigate = useNavigate();
@@ -18,7 +19,10 @@ const ReceivedHiTeam: React.FC = () => {
     const [isAcceptedModalOpen, setIsAcceptedModalOpen] = useState(false);
     const [isRefusedModalOpen, setIsRefusedModalOpen] = useState(false);
 
-    const profileData = Profiles.filter(profile => profile.isMe).slice(0, 2);
+    const teamDetailData = {
+        verification: 1, //api연결 후 수정 
+        name: 'Team Name' // api연결 후 수정 
+    };
 
     const openAcceptModal = () => {
         setIsAcceptModalOpen(true);
@@ -54,12 +58,13 @@ const ReceivedHiTeam: React.FC = () => {
 
     return (
         <S.Container>
-            <Header />
-            {profileData && profileData.map((profile, index) => (
-                <MyProfile
-                    key={index}
-                    profileData={profile}
-                    isPremium={isPremium} />
+            <Header verification={teamDetailData?.verification ?? 0} name={teamDetailData?.name || ''}/>
+            {Profiles?.userList.map((user: User) => (
+            <MyProfile 
+                key={user.userId} 
+                profileData={user}
+                gender={Profiles.gender}
+                isPremium={isPremium} />
             ))}
             <S.ButtonWrapper>
                 <S.RefuseButton onClick={openRefuseModal}>거절</S.RefuseButton>
