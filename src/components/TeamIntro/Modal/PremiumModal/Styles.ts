@@ -7,11 +7,7 @@ export const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-<<<<<<< HEAD:src/components/TeamIntro/Modal/PremiumModal/Styles.js
   margin-top: 5%;
-=======
-  margin-top:3%;
->>>>>>> origin/main:src/components/TeamIntro/Modal/PremiumModal/Styles.ts
   background-color: #F5F5F5;
   font-size: 12px;
   font-weight: 400;
