@@ -45,12 +45,20 @@ const Meeting22 = () => {
 
     const fetchOurTeamData = async () => {
       try {
-        const response = await getOurTeam(teamType); 
-        setOurTeamData(response?.data || null); 
-      } catch (error) {
-        console.error('우리팀 데이터 가져오기 실패:', error);
-        setOurTeamData(null);
-      }
+        if (isLoggedIn) {
+          const response = await getOurTeam(teamType);
+          setOurTeamData(response?.data || null);
+        } else {
+          if (teamType === 'TWO_TO_TWO') {
+            setOurTeamData(null);
+          } else if (teamType === 'THREE_TO_THREE') {
+            setOurTeamData(null);
+          }
+        }
+      } catch (error: any) {
+          console.error("❌ 우리팀 데이터 가져오기 실패:", error);
+          setOurTeamData(null);}
+        
     };
 
     fetchData();
