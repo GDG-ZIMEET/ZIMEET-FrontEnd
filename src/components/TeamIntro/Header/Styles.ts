@@ -16,9 +16,11 @@ export const BackContainer = styled.div`
   display: flex;
   align-items: center;
   width: 25%;
+  padding-left: 3%;
 `;
 
 export const BackButton = styled(I.Back)`
+  width: 11%;
   background: none;
   border: none;
   cursor: pointer;
