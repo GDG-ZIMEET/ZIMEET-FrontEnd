@@ -59,13 +59,16 @@ const ReceivedHiTeam: React.FC = () => {
     return (
         <S.Container>
             <Header verification={teamDetailData?.verification ?? 0} name={teamDetailData?.name || ''}/>
+            <S.TeamIntroContainer $isPremium={isPremium}>
             {Profiles?.userList.map((user: User) => (
-            <MyProfile 
-                key={user.userId} 
-                profileData={user}
-                gender={Profiles.gender}
-                isPremium={isPremium} />
-            ))}
+                <MyProfile 
+                    key={user.userId} 
+                    profileData={user}
+                    gender={Profiles.gender}
+                    isPremium={isPremium} />
+                ))}
+            </S.TeamIntroContainer>
+            
             <S.ButtonWrapper>
                 <S.RefuseButton onClick={openRefuseModal}>거절</S.RefuseButton>
                 <S.Button onClick={openAcceptModal}>하이 수락하기</S.Button>

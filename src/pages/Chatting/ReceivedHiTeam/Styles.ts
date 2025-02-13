@@ -8,6 +8,14 @@ export const Container = styled.div`
     background-color: #FFFFFF;
 `;
 
+export const TeamIntroContainer = styled.div<{ $isPremium: boolean }>`
+    overflow-y: auto;
+    height: ${({ $isPremium }) => ($isPremium ? '72%' : '63%')};
+    ::-webkit-scrollbar {
+        display: none;
+    }
+`;
+
 export const ButtonWrapper = styled.div`
     width: 85%;
     height: 6.5%;
