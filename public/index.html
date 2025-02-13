@@ -31,6 +31,15 @@
       window.amplitude.init('581d00580f1e4e401e93b13b39d01640',
             {"fetchRemoteConfig":true,"autocapture":true});
     </script>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "55e07c17-74b9-4a7b-b954-99b697acf9af",
+        });
+      });
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
