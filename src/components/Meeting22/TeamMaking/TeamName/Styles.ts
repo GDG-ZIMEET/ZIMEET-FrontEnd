@@ -49,3 +49,8 @@ export const Input = styled.input<{ $inputcolor: string }>`
     }
   }
 `;
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 12px;
+  margin: 1% 0 0 1%;
+`;
