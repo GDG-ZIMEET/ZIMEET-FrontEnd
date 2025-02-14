@@ -1,43 +1,14 @@
 import styled from 'styled-components';
+import { JoinLayout, JoinText} from '../Join1/Styles';
 
-export const JoinContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  padding: 5%;
-`;
+export { JoinLayout, JoinText};
 
-export const LogoContainer = styled.div`
+export const JoinContainer = styled.form`
+  height: 87%;
   overflow: hidden;
-  padding-bottom: 5%;
-`;
-
-export const Logo = styled.div`
-  width: 20%;
-  height: 20%;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-export const LogoTitle = styled.p`
-  font-weight: 700;
-  font-size: 17px;
-  line-height: 150%;
-`;
-
-export const LogoText = styled.p`
-  font-size: 14px;
-  color: #707070;
-  line-height: 150%;
-`;
-
-export const JoinForm = styled.form`
   font-family: Pretendard;
-  height: 100%;
-  overflow-y: auto;
-  padding-bottom: 55%;
+  padding: 8% 0 2% 0;
+  
 `;
 
 export const JoinInput = styled.input`
@@ -47,6 +18,7 @@ export const JoinInput = styled.input`
   border: 1px solid rgba(2, 32, 71, 0.05);
   border-radius: 0.6rem;
   margin-bottom: 10%;
+  font-size: 14px;
 
   &:focus {
     background-color: white;
@@ -57,10 +29,35 @@ export const JoinInput = styled.input`
     background-color: white;
     border: 1px solid #022047;
   }
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    font-size: 16px;
+  }
+`;
+
+export const SelectContainer = styled.div`
+  height: 70%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 8%;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    height: 70%;
+    margin-top: -5%;
+    margin-bottom: 5%;
+  }
 `;
 
 export const HrLine = styled.hr`
-  height: 2vh;
+  height: 2%;
   background-color: #f3f3f3;
   border: none;
 `;
@@ -69,30 +66,35 @@ export const SelectTopContainer = styled.div`
   height: 7%;
 `;
 
-export const SelectContainer = styled.div`
-  margin-top: 5%;
-`;
-
 export const ChooseOne = styled.p`
   font-weight: 700;
   font-size: 16px;
-  line-height: 150%;
-  padding-top: 5%;
+  margin-top: 5%;
 `;
+
+export const SelectBox = styled.div`
+  height: 31%;
+`;
+
+export const SelectAgeBox = styled.div`
+  height: 24%;`;
 
 export const SelectGrid = styled.div`
+  height: 55%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 4.5% 1%;
-  margin-bottom: 10%;
+  gap: 1%;
+  row-gap: 5%;
 `;
 
-
-export const OptionTitle = styled.p`
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 150%;
+export const SelectAgeGrid = styled.div`
+  height: 33%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1%;
+  row-gap: 5%;
 `;
+
 export const OptionText = styled.p`
   font-size: 12px;
   color: #707070;
@@ -101,7 +103,7 @@ export const OptionText = styled.p`
 `;
 
 export const SelectButton = styled.button`
-  padding: 10px;
+  height: 40%;
   width: 100%;
   background-color: ${({ selected }) => (selected ? '#000000' : 'rgba(0, 0, 0, 0.05)')};
   color: ${({ selected }) => (selected ? 'white' : 'black')};
@@ -109,10 +111,7 @@ export const SelectButton = styled.button`
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
-
-  &:hover {
-    background-color: ${({ selected }) => (selected ? '#000000' : 'rgba(0, 0, 0, 0.05)')};
-  }
+  height: 100%;
 `;
 
 export const BtnContainer = styled.div`
@@ -125,5 +124,5 @@ export const JoinBtn = styled.button`
   background-color: ${({ disabled }) => (disabled ? '#ececec' : '#ea4335')};
   border-radius: 0.6rem;
   color: ${({ disabled }) => (disabled ? '#7c7c7c' : 'white')};
-  margin: 8% 0;
+  font-size: 16px;
 `;
