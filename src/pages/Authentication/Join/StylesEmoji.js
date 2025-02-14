@@ -1,50 +1,28 @@
 import styled from 'styled-components';
 
-export const JoinContainer = styled.div`
+export const JoinLayout = styled.div`
   width: 100%;
   height: 100%;
   background-color: white;
-  padding: 5%;
-`;
-
-export const TopBarContainer = styled.div`
-  overflow: hidden;
-  padding-bottom: 5%;
-`;
-
-export const TopBar = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const BackBtn = styled.button`
-  font-size: 20px;
-  cursor: pointer;
-  font-family: Pretendard;
-  font-weight: 700;
-  padding: 0;
-`;
-
-export const TopBarText = styled.p`
-  font-family: Pretendard;
-  font-weight: 700;
-  font-size: 15px;
-  padding-top: 2%;
-  padding-left: 5%;
-`;
-
-export const Wrapper = styled.form`
-  font-family: Pretendard;
-  height: 100%;
-  overflow-y: scroll;
+  overflow:hidden;
 `;
 
 export const EmojiContainer = styled.div`
+  height: 80%;
+  width: 92%;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5% 3%;
   justify-content: center;
-  padding-bottom: 40%;
+  margin: 0 auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 export const CircleWrap = styled.div`
@@ -58,30 +36,31 @@ export const CircleWrap = styled.div`
 
 export const EmojiWrap = styled.div`
   width: 100%;
-  aspect-ratio: 1; /* 원 비율 유지 */
-  background-color: ${({ isSelected }) => (isSelected ? 'rgba(234,67,53,0.1)' : 'white')};
+  aspect-ratio: 1;
+  background-color: ${({ $isSelected }) => ($isSelected ? 'rgba(234,67,53,0.1)' : 'white')};
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 55px;
   border-radius: 50%; 
-  box-shadow: ${({ isSelected }) => (isSelected ? '0 0 3px red' : '0 0 3px rgba(0, 0, 0, 0.2)')};
-  transition: all 0.3s ease; /* 애니메이션 */
+  box-shadow: ${({ $isSelected }) => ($isSelected ? '0 0 3px red' : '0 0 3px rgba(0, 0, 0, 0.2)')};
+  transition: all 0.3s ease;
 `;
 
 export const TossEmoji = styled.div``;
 
 export const BtnContainer = styled.div`
-  padding: 10% 0;
-  height: 28%;
+  margin-top: 5%;
+  height: 7.5%;
+  width: 92%;
+  margin: 5% auto 0 auto;
 `;
 
 export const JoinBtn = styled.button`
   font-weight: 700;
   width: 100%;
-  height: 30%;
+  height: 100%;
   background-color: #ea4335;
   border-radius: 0.6rem;
-  margin: 30% 0 10% 0;
   color: white;
 `;

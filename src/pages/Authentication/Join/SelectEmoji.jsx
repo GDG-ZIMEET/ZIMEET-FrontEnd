@@ -2,30 +2,22 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './StylesEmoji';
 import { useSetRecoilState } from 'recoil';
-import { emojiState } from 'recoil/state/emojiState';
-import * as M from 'utils/IconMapper';
+import { joinState } from 'recoil/state/joinState';
+import { getAllIcons } from '../../../utils/IconMapper';
+import Header from '../../../components/Authentication/Join/SelectEmoji/Header/Header';
 
 const SelectEmoji = () => {
   const navigate = useNavigate();
-  const setEmoji = useSetRecoilState(emojiState);
+  const setJoinData = useSetRecoilState(joinState);
   const [selectedEmoji, setSelectedEmoji] = useState(null);
 
-  const handleBack = () => {
-    navigate(-1);
-  };
-
-  const emojis = M.getAllEmojis(); // 이모지 목록
-
   const handleSelect = (emoji) => {
-    const emojiImage = M.getImageByEmoji(emoji);  // 이미지 URL
-    setSelectedEmoji(emojiImage); 
+    setSelectedEmoji(emoji); 
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); 
-
+  const handleSubmit = () => {
     if (selectedEmoji) {
-      setEmoji(selectedEmoji);  
+      setJoinData((prev) => ({ ...prev, emoji: selectedEmoji }));
       navigate('/join2'); 
     } else {
       alert('이모지를 선택해주세요!'); 
@@ -33,39 +25,24 @@ const SelectEmoji = () => {
   };
 
   return (
-    <S.JoinContainer>
-      <S.TopBarContainer>
-        <S.TopBar>
-          <S.BackBtn onClick={handleBack}>&lt;</S.BackBtn>
-          <S.TopBarText>이모지 선택하기</S.TopBarText>
-        </S.TopBar>
-      </S.TopBarContainer>
+    <S.JoinLayout>
+      <Header />
+      <S.EmojiContainer>
+        {getAllIcons().map(([emoji, emojiImage], index) => (
+          <S.CircleWrap key={index} onClick={() => handleSelect(emoji)}>
+            <S.EmojiWrap $isSelected={selectedEmoji === emoji}>
+              <S.TossEmoji>
+                <img src={emojiImage} alt={emoji} />
+              </S.TossEmoji>
+            </S.EmojiWrap>
+          </S.CircleWrap>
+        ))}
+      </S.EmojiContainer>
 
-      <S.Wrapper>
-        <S.EmojiContainer>
-          {emojis.map((emoji, index) => {
-            const emojiImage = M.getImageByEmoji(emoji); 
-
-            return (
-              <S.CircleWrap
-                key={index}
-                onClick={() => handleSelect(emoji)}
-              >
-                <S.EmojiWrap isSelected={selectedEmoji === emojiImage}>
-                  <S.TossEmoji>
-                    <img src={emojiImage} alt={emoji} />
-                  </S.TossEmoji>
-                </S.EmojiWrap>
-              </S.CircleWrap>
-            );
-          })}
-        </S.EmojiContainer>
-
-        <S.BtnContainer>
-          <S.JoinBtn onClick={handleSubmit}>선택하기</S.JoinBtn> 
-        </S.BtnContainer>
-      </S.Wrapper>
-    </S.JoinContainer>
+      <S.BtnContainer>
+        <S.JoinBtn onClick={handleSubmit}>선택하기</S.JoinBtn> 
+      </S.BtnContainer>
+    </S.JoinLayout>
   );
 };
 

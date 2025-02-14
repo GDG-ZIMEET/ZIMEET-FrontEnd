@@ -1,151 +1,144 @@
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles3';
-import * as I from '../../../assets/Icons';
 import Modal from 'components/Join/Modal';
+import { joinState } from '../../../recoil/state/joinState';
+import { postJoin } from '../../../api/Authentication/PostJoin';
+import {  mbtiOptions, musicMap, styleMap, ageMap, faceMap } from '../../../data/SignUpData';
 
 const Join3 = () => {
   const navigate = useNavigate(); 
-  const [mbti, setMbti] = useState('');
-  const [selectedGenres, setSelectedGenres] = useState([]);
-  const [selectedStyles, setSelectedStyles] = useState([]);
-  const [selectedAges, setSelectedAges] = useState([]);
-  const [selectedFaces, setSelectedFaces] = useState([]);
+  const [joinData, setJoinData] = useRecoilState(joinState);
   const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
 
-  const validMBTIs = [
-    'ISTJ', 'ISFJ', 'ESTJ', 'ESFJ', 
-    'ISTP', 'ISFP', 'ESTP', 'ESFP', 
-    'INTJ', 'INTP', 'ENTJ', 'ENTP', 
-    'INFJ', 'INFP', 'ENFJ', 'ENTP'
-  ];
-
-  const genres = ['K-POP', 'POP', '발라드', '힙합', 'J-POP', '재즈', '밴드', '클래식'];
-  const styles = ['캐주얼', '스트릿', '단정', '빈티지', '힙', '스포티', '포멀', '큐티'];
-  const ages = ['연상', '동갑', '연하', '무관'];
-  const faces = ['강아지', '고양이', '햄스터', '여우', '곰', '공룡', '토끼', '늑대'];
-
-  const handleNext = (event) => {
+  const handleSignUp = async (event) => {
     event.preventDefault();
-    if (isFormComplete) {
-      setIsModalOpen(true); 
+    setIsLoading(true); 
+    
+    try {
+      const response = await postJoin(joinData);
+      if (response) {
+        setIsModalOpen(true);
+      } else {
+        alert('회원가입 실패. 다시 시도해주세요.');
+      }
+    } catch (error) {
+      alert('서버 오류가 발생했습니다.');
+    } finally {
+      setIsLoading(false);
     }
   };
+
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
     navigate('/meeting22');
   };
-
-  const toggleSelection = (item, selectedItems, setSelectedItems) => {
-    if (selectedItems.includes(item)) {
-      setSelectedItems(selectedItems.filter((selected) => selected !== item));
-    } else {
-      setSelectedItems([...selectedItems, item]);
-    }
-  };
-
   const isFormComplete = 
-    mbti &&
-    validMBTIs.includes(mbti) && 
-    selectedGenres.length > 0 &&
-    selectedStyles.length > 0 &&
-    selectedAges.length > 0 &&
-    selectedFaces.length > 0;
+    joinData.mbti &&
+    mbtiOptions.includes(joinData.mbti) && 
+    joinData.music && 
+    joinData.style && 
+    joinData.idealAge && 
+    joinData.idealType;
 
   return (
-    <S.JoinContainer>
+    <S.JoinLayout>
       <S.LogoContainer>
-        <S.Logo>
-          <I.ZimeetLogo />
-        </S.Logo>
+        <S.ZimeetLogo />
         <S.LogoTitle>마지막 파트!</S.LogoTitle>
         <S.LogoText>이성 팀에게 보이는 정보에요. 요즘은 솔직함이 트렌드 :)</S.LogoText>
       </S.LogoContainer>
-      <S.JoinForm as="form" onSubmit={handleNext}> 
-        <S.OptionTitle>MBTI</S.OptionTitle>
+
+      <S.JoinContainer as="form" onSubmit={handleSignUp}> 
+        <S.JoinText>MBTI</S.JoinText>
         <S.JoinInput
           type="text"
           placeholder="MBTI를 대문자로 입력해주세요"
-          value={mbti}
-          onChange={(e) => setMbti(e.target.value)}
+          value={joinData.mbti}
+          onChange={(e) => setJoinData({ ...joinData, mbti: e.target.value })}
         />
-        {validMBTIs.includes(mbti) && ( 
-          <>
-            <S.HrLine />
-            <S.SelectTopContainer>
-              <S.ChooseOne>한 개씩 고르기👆</S.ChooseOne>
-            </S.SelectTopContainer>
-
-            <S.SelectContainer>
-              <S.OptionTitle>음악 장르</S.OptionTitle>
-              <S.OptionText>어떤 음악을 좋아하시나요?</S.OptionText>
-              <S.SelectGrid>
-                {genres.map((genre) => (
-                  <S.SelectButton
-                    key={genre}
-                    type="button"
-                    onClick={() => toggleSelection(genre, selectedGenres, setSelectedGenres)}
-                    selected={selectedGenres.includes(genre)}
-                  >
-                    {genre}
-                  </S.SelectButton>
-                ))}
-              </S.SelectGrid>
-            </S.SelectContainer>
-
-            <S.SelectContainer>
-              <S.OptionTitle>내 스타일</S.OptionTitle>
-              <S.OptionText>어떤 패션 스타일을 좋아하시나요?</S.OptionText>
-              <S.SelectGrid>
-                {styles.map((style) => (
-                  <S.SelectButton
-                    key={style}
-                    type="button"
-                    onClick={() => toggleSelection(style, selectedStyles, setSelectedStyles)}
-                    selected={selectedStyles.includes(style)}
-                  >
-                    {style}
-                  </S.SelectButton>
-                ))}
-              </S.SelectGrid>
-            </S.SelectContainer>
-
-            <S.SelectContainer>
-              <S.OptionTitle>선호 나이</S.OptionTitle>
-              <S.OptionText>어떤 나이 차이를 좋아하시나요?</S.OptionText>
-              <S.SelectGrid>
-                {ages.map((age) => (
-                  <S.SelectButton
-                    key={age}
-                    type="button"
-                    onClick={() => toggleSelection(age, selectedAges, setSelectedAges)}
-                    selected={selectedAges.includes(age)}
-                  >
-                    {age}
-                  </S.SelectButton>
-                ))}
-              </S.SelectGrid>
-            </S.SelectContainer>
-
-            <S.SelectContainer>
-              <S.OptionTitle>선호 이상형</S.OptionTitle>
-              <S.OptionText>어떤 동물상을 좋아하시나요?</S.OptionText>
-              <S.SelectGrid>
-                {faces.map((face) => (
-                  <S.SelectButton
-                    key={face}
-                    type="button"
-                    onClick={() => toggleSelection(face, selectedFaces, setSelectedFaces)}
-                    selected={selectedFaces.includes(face)}
-                  >
-                    {face}
-                  </S.SelectButton>
-                ))}
-              </S.SelectGrid>
-            </S.SelectContainer>
-          </>
-        )}
+          <S.SelectContainer>
+            {mbtiOptions.includes(joinData.mbti) && (
+              <>
+                <S.HrLine />
+                <S.SelectTopContainer>
+                  <S.ChooseOne>한 개씩 고르기👆</S.ChooseOne>
+                </S.SelectTopContainer>
+          
+                <S.SelectBox>
+                  <S.JoinText>음악 장르</S.JoinText>
+                  <S.OptionText>어떤 음악을 좋아하시나요?</S.OptionText>
+                  <S.SelectGrid>
+                    {Object.values(musicMap).map((music) => (
+                      <S.SelectButton
+                        key={music}
+                        type="button"
+                        onClick={() => setJoinData({ ...joinData, music })}
+                        selected={joinData.music === music}
+                      >
+                        {Object.keys(musicMap).find((key) => musicMap[key] === music)}
+                      </S.SelectButton>
+                    ))}
+                  </S.SelectGrid>
+                </S.SelectBox>
+          
+                <S.SelectBox>
+                  <S.JoinText>내 스타일</S.JoinText>
+                  <S.OptionText>어떤 패션 스타일을 좋아하시나요?</S.OptionText>
+                  <S.SelectGrid>
+                    {Object.values(styleMap).map((style) => (
+                      <S.SelectButton
+                        key={style}
+                        type="button"
+                        onClick={() => setJoinData({ ...joinData, style })}
+                        selected={joinData.style === style}
+                      >
+                        {Object.keys(styleMap).find((key) => styleMap[key] === style)}
+                      </S.SelectButton>
+                    ))}
+                  </S.SelectGrid>
+                </S.SelectBox>
+          
+                <S.SelectAgeBox>
+                  <S.JoinText>선호 나이</S.JoinText>
+                  <S.OptionText>어떤 나이 차이를 좋아하시나요?</S.OptionText>
+                  <S.SelectAgeGrid>
+                    {Object.values(ageMap).map((age) => (
+                      <S.SelectButton
+                        key={age}
+                        type="button"
+                        onClick={() => setJoinData({ ...joinData, idealAge: age })}
+                        selected={joinData.idealAge === age}
+                      >
+                        {Object.keys(ageMap).find((key) => ageMap[key] === age)}
+                      </S.SelectButton>
+                    ))}
+                  </S.SelectAgeGrid>
+                </S.SelectAgeBox>
+          
+                <S.SelectBox>
+                  <S.JoinText>선호 이상형</S.JoinText>
+                  <S.OptionText>어떤 동물상을 좋아하시나요?</S.OptionText>
+                  <S.SelectGrid>
+                    {Object.values(faceMap).map((face) => (
+                      <S.SelectButton
+                        key={face}
+                        type="button"
+                        onClick={() => setJoinData({ ...joinData, idealType: face })}
+                        selected={joinData.idealType === face}
+                      >
+                        {Object.keys(faceMap).find((key) => faceMap[key] === face)} {/* 한글 표시 */}
+                      </S.SelectButton>
+                    ))}
+                  </S.SelectGrid>
+                </S.SelectBox>
+              </>
+            )}
+          </S.SelectContainer>
+        
         <S.BtnContainer>
           <S.JoinBtn 
             type="submit"
@@ -154,10 +147,10 @@ const Join3 = () => {
             {isFormComplete ? '회원가입 완료하기' : '모든 정보를 입력해주세요.'}
           </S.JoinBtn>
         </S.BtnContainer>
-      </S.JoinForm>
+      </S.JoinContainer>
 
       {isModalOpen && <Modal onClose={handleCloseModal} />}
-    </S.JoinContainer>
+    </S.JoinLayout>
   );
 };
 
