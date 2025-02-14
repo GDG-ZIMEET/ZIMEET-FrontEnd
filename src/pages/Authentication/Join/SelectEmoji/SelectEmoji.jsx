@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from './StylesEmoji';
+import * as S from './Styles';
 import { useSetRecoilState } from 'recoil';
 import { joinState } from 'recoil/state/joinState';
-import { getAllIcons } from '../../../utils/IconMapper';
-import Header from '../../../components/Authentication/Join/SelectEmoji/Header/Header';
+import { getAllIcons } from '../../../../utils/IconMapper';
+import Header from '../../../../components/Authentication/Join/SelectEmoji/Header/Header';
 
 const SelectEmoji = () => {
   const navigate = useNavigate();

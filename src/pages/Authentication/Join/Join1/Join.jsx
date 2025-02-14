@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
-import { joinState } from '../../../recoil/state/joinState';
+import { joinState } from '../../../../recoil/state/joinState';
 import { gradeOptions, gradeDisplayOptions } from 'data/SignUpData';
 
 const Join = () => {

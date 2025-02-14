@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Join from './Authentication/Join/Join';
-import Join2 from './Authentication/Join/Join2';
-import SelectEmoji from './Authentication/Join/SelectEmoji';
-import Join3 from './Authentication/Join/Join3';
+import Join from './Authentication/Join/Join1/Join';
+import Join2 from './Authentication/Join/Join2/Join2';
+import SelectEmoji from './Authentication/Join/SelectEmoji/SelectEmoji';
+import Join3 from './Authentication/Join/Join3/Join3';
 import Login from './Authentication/Login/Login';
 import MyPage from './MyPage/MyPage/MyPage';
 import ModifyProfile from './MyPage/ModifyProfile/ModifyProfile';

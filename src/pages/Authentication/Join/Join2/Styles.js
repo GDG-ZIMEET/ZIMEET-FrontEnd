@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { JoinLayout,LogoContainer,ZimeetLogo, LogoTitle, LogoText, JoinContainer, JoinText, JoinInput,SelectContainer } from '../Join/Styles';
+import { JoinLayout,LogoContainer,ZimeetLogo, LogoTitle, LogoText, JoinContainer, JoinText, JoinInput,SelectContainer } from '../Join1/Styles';
 
 export { JoinLayout, LogoContainer, ZimeetLogo, LogoTitle, LogoText, JoinContainer, JoinText, JoinInput,SelectContainer};
 

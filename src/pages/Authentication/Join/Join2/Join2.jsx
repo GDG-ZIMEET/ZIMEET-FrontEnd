@@ -1,9 +1,9 @@
-import * as S from './Styles2';
+import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { joinState } from '../../../recoil/state/joinState';
+import { joinState } from '../../../../recoil/state/joinState';
 import { getImageByEmoji } from 'utils/IconMapper';
-import { majorOptions } from '../../../data/SignUpData';
+import { majorOptions } from '../../../../data/SignUpData';
 
 const Join2 = () => {
   const [joinData, setJoinData] = useRecoilState(joinState);

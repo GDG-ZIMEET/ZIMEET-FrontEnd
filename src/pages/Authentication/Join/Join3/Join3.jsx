@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import * as S from './Styles3';
+import * as S from './Styles';
 import Modal from 'components/Join/Modal';
-import { joinState } from '../../../recoil/state/joinState';
-import { postJoin } from '../../../api/Authentication/PostJoin';
-import {  mbtiOptions, musicMap, styleMap, ageMap, faceMap } from '../../../data/SignUpData';
+import { joinState } from '../../../../recoil/state/joinState';
+import { postJoin } from '../../../../api/Authentication/PostJoin';
+import {  mbtiOptions, musicMap, styleMap, ageMap, faceMap } from '../../../../data/SignUpData';
 
 const Join3 = () => {
   const navigate = useNavigate(); 
