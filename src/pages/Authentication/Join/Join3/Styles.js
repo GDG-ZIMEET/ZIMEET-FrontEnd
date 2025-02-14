@@ -124,4 +124,5 @@ export const JoinBtn = styled.button`
   background-color: ${({ disabled }) => (disabled ? '#ececec' : '#ea4335')};
   border-radius: 0.6rem;
   color: ${({ disabled }) => (disabled ? '#7c7c7c' : 'white')};
+  font-size: 16px;
 `;

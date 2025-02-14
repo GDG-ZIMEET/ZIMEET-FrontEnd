@@ -56,13 +56,26 @@ export const TossEmoji = styled.div`
 
 export const BtnContainer = styled.div`
   height: 25%;
+  margin-top: 5%;
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    margin: 0;
+  }
 `
 export const JoinBtn = styled.button`
   font-weight: 700;
   width: 100%;
-  height: 40%;
+  height: 36%;
+  font-size: 16px;
   background-color: ${({ disabled }) => (disabled ? '#ececec' : '#ea4335')};
   border-radius: 0.6rem;
-  margin: 17% 0 0 0;
+  margin: 30% 0 0 0;
   color: ${({ disabled }) => (disabled ? '#7c7c7c' : 'white')};
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    height: 38%;
+    margin: 17% 0 0 0;
+  }
 `;
