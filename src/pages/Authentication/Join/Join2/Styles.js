@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { JoinLayout,LogoContainer,ZimeetLogo, LogoTitle, LogoText, JoinContainer, JoinText, JoinInput,SelectContainer } from '../Join1/Styles';
+import { JoinLayout ,JoinContainer, JoinText, JoinInput,SelectContainer } from '../Join1/Styles';
 
-export { JoinLayout, LogoContainer, ZimeetLogo, LogoTitle, LogoText, JoinContainer, JoinText, JoinInput,SelectContainer};
+export { JoinLayout,  JoinContainer, JoinText, JoinInput,SelectContainer};
 
 export const JoinSelect = styled.select`
   width: 100%; 

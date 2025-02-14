@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { JoinLayout,LogoContainer,ZimeetLogo, LogoTitle, LogoText, JoinText} from '../Join1/Styles';
+import { JoinLayout, JoinText} from '../Join1/Styles';
 
-export { JoinLayout, LogoContainer, ZimeetLogo, LogoTitle, LogoText, JoinText};
+export { JoinLayout, JoinText};
 
 export const JoinContainer = styled.form`
   height: 87%;

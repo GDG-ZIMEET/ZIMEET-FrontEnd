@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { joinState } from '../../../../recoil/state/joinState';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { majorOptions } from '../../../../data/SignUpData';
+import { LogoContainer } from 'components/Authentication/Join/LogoContainer/LogoContainer';
 
 const Join2 = () => {
   const [joinData, setJoinData] = useRecoilState(joinState);
@@ -22,11 +23,7 @@ const Join2 = () => {
   
   return (
     <S.JoinLayout>
-      <S.LogoContainer>
-        <S.ZimeetLogo />
-        <S.LogoTitle>프로필 꾸미기</S.LogoTitle>
-        <S.LogoText>ZI밋의 컨셉은 블라인드! 그만큼 아래 내용이 중요해요.</S.LogoText>
-      </S.LogoContainer>
+      <LogoContainer title="프로필 꾸미기" text="ZI밋의 컨셉은 블라인드! 그만큼 아래 내용이 중요해요." />
       <S.JoinContainer>
         <S.JoinText>학과</S.JoinText>
         <S.SelectContainer>

@@ -6,6 +6,7 @@ import Modal from 'components/Join/Modal';
 import { joinState } from '../../../../recoil/state/joinState';
 import { postJoin } from '../../../../api/Authentication/PostJoin';
 import {  mbtiOptions, musicMap, styleMap, ageMap, faceMap } from '../../../../data/SignUpData';
+import { LogoContainer } from 'components/Authentication/Join/LogoContainer/LogoContainer';
 
 const Join3 = () => {
   const navigate = useNavigate(); 
@@ -46,11 +47,7 @@ const Join3 = () => {
 
   return (
     <S.JoinLayout>
-      <S.LogoContainer>
-        <S.ZimeetLogo />
-        <S.LogoTitle>마지막 파트!</S.LogoTitle>
-        <S.LogoText>이성 팀에게 보이는 정보에요. 요즘은 솔직함이 트렌드 :)</S.LogoText>
-      </S.LogoContainer>
+      <LogoContainer title="마지막 파트!" text="이성 팀에게 보이는 정보에요. 요즘은 솔직함이 트렌드 :)" />
 
       <S.JoinContainer as="form" onSubmit={handleSignUp}> 
         <S.JoinText>MBTI</S.JoinText>

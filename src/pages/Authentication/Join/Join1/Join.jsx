@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import { joinState } from '../../../../recoil/state/joinState';
 import { gradeOptions, gradeDisplayOptions } from 'data/SignUpData';
+import { LogoContainer } from 'components/Authentication/Join/LogoContainer/LogoContainer';
 
 const Join = () => {
   const [joinData, setJoinData] = useRecoilState(joinState);
@@ -36,12 +37,8 @@ const Join = () => {
 
   return (
     <S.JoinLayout>
-      <S.LogoContainer>
-        <S.ZimeetLogo />
-        <S.LogoTitle>기본 정보</S.LogoTitle>
-        <S.LogoText>딱, 필요한 정보만, 간결하게!</S.LogoText>
-      </S.LogoContainer>
-
+      <LogoContainer title="기본 정보" text="딱, 필요한 정보만, 간결하게!" />
+      
       <S.JoinContainer>
         <S.JoinText>이름</S.JoinText>
         <S.JoinInput
