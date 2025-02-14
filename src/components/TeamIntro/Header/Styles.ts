@@ -50,6 +50,7 @@ export const CertificationIcon = styled(Certification)`
   margin: 0 2% 1% 0;
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {
+    height:56%;
     margin-right: 0%;
     }
   }

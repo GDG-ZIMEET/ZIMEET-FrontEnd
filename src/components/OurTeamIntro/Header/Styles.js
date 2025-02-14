@@ -1,26 +1,37 @@
 import { styled } from "styled-components";
 import * as I from "../../../assets/Icons";
 
-export const Header = styled.div`
+export const HeaderLayout = styled.div`
   width: 100%;
   height: 7%;
   display: flex;
   justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 3%;
 `;
 
-export const HeaderWrapper = styled.div`
+export const BackContainer = styled.div`
   display: flex;
-  width: 90%;
+  align-items: center;
+  width: 33%;
+  height: 100%;
+  padding-left: 3%;
 `;
 export const BackButton = styled(I.Back)`
+  width: 11%;
+  height: 36%;
   background: none;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   margin-right: 10px;
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    height: 55%;
+  }
 `;
 
 export const Title = styled.h2`
@@ -31,11 +42,12 @@ export const Title = styled.h2`
 `;
 
 export const DeleteButton = styled.button`
-  display:flex;
-  background: none;
-  border: none;
+  display: flex;
+  height:100%;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 3%;
   cursor: pointer;
-  height: 90%;
 `;
 
 export const DeleteIcon = styled.img`
