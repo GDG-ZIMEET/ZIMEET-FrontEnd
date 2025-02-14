@@ -1,7 +1,4 @@
 import { atom } from "recoil";
-import IconMapper from "utils/IconMapper";
-
-const defaultEmoji = Object.keys(IconMapper)[0] || "Blossom";
 
 export const joinState = atom({
   key: "joinState",
@@ -9,16 +6,29 @@ export const joinState = atom({
     name: "",
     studentNumber: "",
     password: "",
+    phoneNum: "",
     nickname: "",
     grade: "",
-    age: null,
+    age: "",
     gender: "",
     major: "",
-    emoji: defaultEmoji,
+    emoji: "Jewel",
     mbti: "",
     music: "",
     style: "",
     idealAge: "",
     idealType: "",
   },
+  effects_UNSTABLE: [
+    ({ setSelf, onSet }) => {
+      const savedSession = sessionStorage.getItem("joinState");
+      if (savedSession) {
+        setSelf(JSON.parse(savedSession)); 
+      }
+
+      onSet((newValue) => {
+        sessionStorage.setItem("joinState", JSON.stringify(newValue));
+      });
+    },
+  ],
 });
