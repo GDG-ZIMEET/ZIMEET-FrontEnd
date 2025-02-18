@@ -32,11 +32,11 @@ const Join3 = () => {
     }
   };
 
-
   const handleCloseModal = () => {
     setIsModalOpen(false);
     navigate('/meeting22');
   };
+
   const isFormComplete = 
     joinData.mbti &&
     mbtiOptions.includes(joinData.mbti) && 
@@ -55,7 +55,7 @@ const Join3 = () => {
           type="text"
           placeholder="MBTI를 대문자로 입력해주세요"
           value={joinData.mbti}
-          onChange={(e) => setJoinData({ ...joinData, mbti: e.target.value })}
+          onChange={(e) => setJoinData({ ...joinData, mbti: e.target.value.toUpperCase() })}
         />
           <S.SelectContainer>
             {mbtiOptions.includes(joinData.mbti) && (
