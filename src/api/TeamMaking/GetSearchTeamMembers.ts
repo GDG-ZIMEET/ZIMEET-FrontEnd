@@ -2,7 +2,7 @@ import { privateAxios } from '../axiosConfig';
 import { SearchTeamMemberResponseType } from '../../recoil/type/TeamMaking/SearchTeamMember';
 
 
-export const GetCheckDuplicate = async (
+export const getSearchTeamMember = async (
   nickname: string | null, 
   phoneNumber: string | null
 ): Promise<SearchTeamMemberResponseType | null> => {

@@ -2,7 +2,7 @@ import { privateAxios } from '../axiosConfig';
 import { UserResponseType } from '../../recoil/type/TeamMaking/UserType';
 
 
-export const GetCheckDuplicate = async (
+export const getuserProfile = async (
   nickname: string 
 ): Promise<UserResponseType | null> => {
   try {

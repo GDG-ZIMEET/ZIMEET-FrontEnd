@@ -14,7 +14,7 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ ourTeamData, teamType }) => {
   const navigate = useNavigate();
 
   const handleCreateTeam = () => {
-    navigate('/teamMaking');
+    navigate('/teamMaking', { state: { teamType } });
   };
 
   const handleDetailPage= () => {
