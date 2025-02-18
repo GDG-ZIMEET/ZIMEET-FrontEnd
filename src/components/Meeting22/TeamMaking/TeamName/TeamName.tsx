@@ -32,8 +32,7 @@ const TeamName: React.FC<TeamNameProps> = ({ teamName, setTeamName, setinputColo
       return;
     }
 
-    const encodedTeamName = encodeURIComponent(teamName);
-    const OkTeamName = await GetCheckDuplicate(encodedTeamName);
+    const OkTeamName = await GetCheckDuplicate(teamName);
     
     setIsDuplicate(OkTeamName?.data.check ?? 1);
     setinputColor(OkTeamName?.data.check === 0 ? 'red' : 'black');
