@@ -3,15 +3,20 @@ import * as I from '../../../../assets/Icons';
 
 export const TeamLayout = styled.div`
   width: 100%;
-  height: 69%;
+  height: 70%;
   overflow: hidden;
 `;
 
 export const TeamContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 88%;
   overflow-y: auto;
   overflow-x: hidden;
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    height: 83%;
+  }}
 `;
 
 export const Title = styled.div`
@@ -30,7 +35,7 @@ export const Title = styled.div`
 export const Description = styled.div`
   font-size: 12px;
   color: #000000;
-  margin-left: 6%;
+  margin: 0 0 3% 6%;
 
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {

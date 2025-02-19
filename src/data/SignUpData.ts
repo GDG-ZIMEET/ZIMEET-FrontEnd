@@ -52,6 +52,9 @@ export const musicMap: { [key: string]: string } = {
     '클래식': 'CLASSICAL',
   };
   
+export const mappingMusic = (music: string): string => {
+  return Object.keys(musicMap).find(key => musicMap[key] === music) || '';
+};
   
   //스타일 
   export const styleMap: { [key: string]: string } = {
@@ -65,6 +68,9 @@ export const musicMap: { [key: string]: string } = {
     '큐티': 'CUTIE',
   };
   
+  export const mappingStyle = (style: string): string => {
+    return Object.keys(styleMap).find(key => styleMap[key] === style) || '';
+  };
   
   //이상형 나이 
   export const ageMap: { [key: string]: string } = {
@@ -72,6 +78,10 @@ export const musicMap: { [key: string]: string } = {
     '연하': 'YOUNGER',
     '동갑': 'SAME',
     '무관': 'NO_MATTER',
+  };
+
+  export const mappingAge = (age: string): string => {
+    return Object.keys(ageMap).find(key => ageMap[key] === age) || '';
   };
   
   //이상형 유형
@@ -84,6 +94,10 @@ export const musicMap: { [key: string]: string } = {
     '공룡': 'DINOSAUR',
     '토끼': 'RABBIT',
     '늑대': 'WOLF',
+  };
+
+  export const mappingFace = (face: string): string => {
+    return Object.keys(faceMap).find(key => faceMap[key] === face) || '';
   };
   
   

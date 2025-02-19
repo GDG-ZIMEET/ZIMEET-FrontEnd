@@ -101,10 +101,6 @@ export const SearchButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
   font-size: 12px;
-
-  &:hover {
-    background-color: #008A3A;
-  }
 `;
 
 export const AddFriendButton = styled.button`
@@ -136,7 +132,12 @@ export const ConfirmationText = styled.p`
   }
 `;
 
-export const FriendInfo = styled.div`
+export const SearchUserList = styled.div`
+  list-style: none;
+  padding: 0;
+`;
+
+export const FriendInfo = styled.div<{ $isSelected: boolean }>`
   height: 7%;
   font-size: 12px;
   color: #000000;
@@ -146,6 +147,8 @@ export const FriendInfo = styled.div`
   display: flex;
   align-items: center;
   background-color: rgba(0, 170, 71, 0.1);
+  background-color:'rgba(0, 170, 71, 0.1)';
+  border:  ${({ $isSelected }) => $isSelected ? '1px solid black' : 'none'};
   @media (max-width: 768px) {
     @supports (-webkit-touch-callout: none) {
       font-size: 12px;
