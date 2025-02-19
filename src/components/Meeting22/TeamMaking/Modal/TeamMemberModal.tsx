@@ -54,8 +54,8 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend 
   };
 
   const handleAddFriend = () => {
-    if (matchedFriend) {
-      onAddFriend(matchedFriend);
+    if (selectUser) {
+      onAddFriend(selectUser);
     }
     onClose();
   };
@@ -88,7 +88,7 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend 
             <S.SearchButton onClick={handleSearch}>검색</S.SearchButton>
             )}
           </S.DropBox>
-          {searchUsers ? (
+          {searchUsers.length > 0 ? (
           <>
             <S.ConfirmationText>이 친구가 맞나요?</S.ConfirmationText>
             <S.SearchUserList>
@@ -102,7 +102,9 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend 
             </S.SearchUserList>
             <S.AddFriendButton onClick={handleAddFriend}>친구로 추가하기</S.AddFriendButton>
           </>
-        )}
+          ) : (
+            <p/>
+          )}
       </S.ModalContent>
     </S.ModalOverlay>
   );
