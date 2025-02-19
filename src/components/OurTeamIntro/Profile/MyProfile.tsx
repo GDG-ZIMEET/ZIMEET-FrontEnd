@@ -4,17 +4,32 @@ import AgeBox from './AgeBox/AgeBox';
 import ProfileDetail from './ProfileDetail/ProfileDetail';
 import { User } from '../../../recoil/type/Meeting/TeamDetail';
 import { getImageByEmoji } from 'utils/IconMapper';
+import { MyProfileType } from '../../../recoil/type/MyPage/MyProfileType';
+import { TeamMemberWithProfileType } from '../../../recoil/type/TeamMaking/TeamMemberWithProfileType';
 
 interface UserDetailProps {
   profileData: User; 
   gender: string;
+  isTeamMaking?: boolean;
 }
 
-const MyProfile: React.FC<UserDetailProps> = ({ profileData, gender }) => {
+interface MyProfileProps {
+  profileData: MyProfileType;
+  gender: string;
+  isTeamMaking?: boolean;
+}
+
+interface MemberProfileProps {
+  profileData: TeamMemberWithProfileType;
+  gender: string;
+  isTeamMaking?: boolean;
+}
+
+const MyProfile: React.FC<UserDetailProps | MyProfileProps | MemberProfileProps> = ({ profileData, gender, isTeamMaking = false }) => {
 
   return (
-    <S.MyprofileLayout>
-      <S.MyProfileContainer>
+    <S.MyprofileLayout $isTeamMaking={isTeamMaking}>
+      <S.MyProfileContainer $isTeamMaking={isTeamMaking}>
         <S.MyProfileBox1>
           <S.ProfileIMG>
             <S.Avatar>

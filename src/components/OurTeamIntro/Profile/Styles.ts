@@ -1,19 +1,18 @@
 import styled from "styled-components";
 
-export const MyprofileLayout = styled.div`
+export const MyprofileLayout = styled.div<{ $isTeamMaking: boolean }>`
   display: flex;
   justify-content: center;
   height: 35%;
   margin-bottom: 2%;
-  box-sizing: border-box;
   @media (max-width: 768px) {
     @supports (-webkit-touch-callout: none) {
-      height: 36%;
+      height: ${({ $isTeamMaking }) => $isTeamMaking ? '45%' : '36%'};
     }
   }
 `;
 
-export const MyProfileContainer = styled.div`
+export const MyProfileContainer = styled.div<{ $isTeamMaking: boolean }>`
   height: 100%;
   width: 88%;
   padding: 0 2.5%;
@@ -22,7 +21,8 @@ export const MyProfileContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   border-radius: 15px;
-  box-shadow: 0px 3px 24px 0px rgba(0, 0, 0, 0.15);
+  border: ${({ $isTeamMaking }) => $isTeamMaking ? '1px solid black' : 'none' };
+  box-shadow: ${({ $isTeamMaking }) => $isTeamMaking ? 'none' : '0px 3px 24px 0px rgba(0, 0, 0, 0.15);' };
 `;
 
 export const MyProfileBox1 = styled.div`
