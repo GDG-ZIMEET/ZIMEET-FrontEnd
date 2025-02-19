@@ -18,7 +18,6 @@ export const GetCheckDuplicate = async (
         name  
       },
     });
-    console.log(data);
     return data; 
   } catch (error) {
     console.error('Error fetching team gallery data:', error);
