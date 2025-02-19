@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
-import { GetCheckDuplicate } from '../../../../api/Meeting/GetCheckDuplicate';
+import { GetCheckDuplicate } from '../../../../api/TeamMaking/GetCheckDuplicate';
 
 interface TeamNameProps {
   teamName: string;

@@ -1,38 +1,61 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
-import { Profiles, MyProfileData } from '../Profile/ProfileData';
+import { getSearchTeamMember } from 'api/TeamMaking/GetSearchTeamMembers';
+import { SearchTeamMemberType } from 'recoil/type/TeamMaking/SearchTeamMember';
 
 interface TeamMemberModalProps {
   onClose: () => void;
-  onAddFriend: (friend: MyProfileData) => void;
+  onAddFriend: (friend:  SearchTeamMemberType) => void;
 }
 
 const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend }) => {
   const [searchType, setSearchType] = useState('nickname');
+  const [selectUser, setSelectUser] = useState<SearchTeamMemberType | null>(null);
+  const [nickname, setNickname] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [searchUsers, setSearchUsers] = useState<SearchTeamMemberType[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const [matchedFriend, setMatchedFriend] = useState<MyProfileData | null>(null);
+
+  const handleSearch = async () => {
+    try {
+      setSearchUsers([]);
+      const response = await getSearchTeamMember(nickname, phoneNumber);
+      if (response && Array.isArray(response.data.searchList)) {
+        setSearchUsers(response.data.searchList); // ✅ 검색된 팀원 목록 저장
+      } else {
+        setSearchUsers([]); // 검색 결과 없을 경우 리스트 초기화
+      }
+    } catch (error) {
+      console.error('Error fetching search team member data:', error);
+      setSearchUsers([]); // 검색 실패 시 리스트 초기화
+    }
+  };
 
   const handleSearchTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSearchType(event.target.value);
     setInputValue('');
-    setMatchedFriend(null);
+    setNickname('');
+    setPhoneNumber('');
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
+  
+    if (searchType === 'nickname') {
+      setNickname(event.target.value);
+    } else {
+      setPhoneNumber(event.target.value);
+    }
   };
+  
 
-  const handleSearch = () => {
-    const friend = Profiles.find((friend) =>
-      searchType === 'nickname' ? friend.nickname === inputValue : friend.number === inputValue
-    );
-
-    setMatchedFriend(friend || null);
+  const handleSelectTeamMember = (member: SearchTeamMemberType) => {
+    setSelectUser(member); 
   };
 
   const handleAddFriend = () => {
-    if (matchedFriend) {
-      onAddFriend(matchedFriend);
+    if (selectUser) {
+      onAddFriend(selectUser);
     }
     onClose();
   };
@@ -56,24 +79,32 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend 
               placeholder={searchType === 'nickname' ? '닉네임을 똑같이 입력해주세요.' : '전화번호를 입력해주세요.'
               }
               style={{
-                backgroundColor: matchedFriend ? 'white' : '#F9FAFB',
-                color: matchedFriend ? 'black' : '#8B95A1',
-                border: matchedFriend ? '1px solid #00AA47' : '1px solid rgba(2, 32, 71, 0.05)',
+                backgroundColor: searchUsers ? 'white' : '#F9FAFB',
+                color: searchUsers ? 'black' : '#8B95A1',
+                border: searchUsers ? '1px solid #00AA47' : '1px solid rgba(2, 32, 71, 0.05)',
               }}
             />
             {inputValue && (
             <S.SearchButton onClick={handleSearch}>검색</S.SearchButton>
             )}
           </S.DropBox>
-        {matchedFriend && (
+          {searchUsers.length > 0 ? (
           <>
             <S.ConfirmationText>이 친구가 맞나요?</S.ConfirmationText>
-            <S.FriendInfo>
-              {matchedFriend.nickname} / {matchedFriend.Major} / {matchedFriend.grade}학년 / {matchedFriend.number}
-            </S.FriendInfo>
+            <S.SearchUserList>
+              {searchUsers.map((user) => (
+                <S.FriendInfo
+                  key={user.userId}
+                  $isSelected={selectUser?.userId === user.userId}
+                  onClick={() => handleSelectTeamMember(user)}>
+                  {user.nickname} / {user.major} / {user.grade}학년 / {user.phoneNumber}
+                </S.FriendInfo>))}
+            </S.SearchUserList>
             <S.AddFriendButton onClick={handleAddFriend}>친구로 추가하기</S.AddFriendButton>
           </>
-        )}
+          ) : (
+            <p/>
+          )}
       </S.ModalContent>
     </S.ModalOverlay>
   );
