@@ -10,5 +10,7 @@ export interface SearchTeamMemberResponseType {
     status: string;
     code: string;
     message: string;
-    data: SearchTeamMemberType[];
+    data: {
+        searchList: SearchTeamMemberType[];
+    }
 }
