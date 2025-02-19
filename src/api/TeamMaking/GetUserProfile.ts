@@ -6,11 +6,7 @@ export const getuserProfile = async (
   nickname: string 
 ): Promise<UserResponseType | null> => {
   try {
-    const { data } = await privateAxios.get<UserResponseType>('/user/profile', {
-        params: {
-            nickname 
-          },
-    });
+    const { data } = await privateAxios.get<UserResponseType>(`/user/profile/${nickname}`);
     return data; 
   } catch (error) {
     console.error('Error fetching searchMember data:', error);

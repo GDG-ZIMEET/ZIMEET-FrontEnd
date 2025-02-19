@@ -1,20 +1,18 @@
 import styled from 'styled-components';
 
 export const MakingButtonLayout = styled.div`
-  bottom: 10%;
   width: 100%;
-  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 3%;
-  height: 10%;
+  margin-top: -18%;
+  height: 8%;
 
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {
-    margin-top: -0%;
-    height: 14%;
+    margin-top: -20%;
+    height: 10%;
   }}
 `;
 
@@ -27,7 +25,7 @@ export const TwoLimitText = styled.div<{ $situation: number }>`
 
 export const SituationBox = styled.div<{ $situation: number }>`
   width: 88%;
-  height: 60%;
+  height: 100%;
   background-color: ${({ $situation }) => ($situation === 5 ? '#EA4335' : '#ECECEC')};
   color: ${({ $situation }) => ($situation === 5 ? 'white' : '#7C7C7C')};
   font-weight: bold;
