@@ -18,7 +18,6 @@ export const MyPageBox = styled.div`
   height: 88%;
   display: flex;
   flex-direction: column;
-  // overflow: auto;
 `;
 
 //logo
@@ -29,7 +28,6 @@ export const LogoContainer = styled.div`
   overflow: hidden;
   padding: 3% 0;
   
-  background-color: black;
   width: 100%;
   position: absolute;
   z-index: 2;
@@ -43,7 +41,6 @@ export const Logo = styled.div`
   }
 `;
 
-
 export const BlackContainer = styled.div`
   width: 100%;
   background-color: black;
@@ -51,14 +48,15 @@ export const BlackContainer = styled.div`
   justify-content: center;
   padding: 0; margin: 0;
 `;
+
 export const WhiteArea = styled.div`
   width: 100%;
   background-color: white;
   position: relative;  
   z-index: 0;
   border-radius: 2rem 2rem 0 0;
-  margin-top: -50%;
-  padding-top: 50%;
+  margin-top: ${(props) => (props.isLoggedIn ? '-50%' : '-33%')};
+  padding-top: ${(props) => (props.isLoggedIn ? '45%' : '30%')};
   padding-bottom: 7%;
 `;
 
@@ -101,6 +99,9 @@ export const MyEmoji = styled.p`
   font-size: 20px;
 `;
 export const MyInfo = styled.div`
+  &.loggedOut {
+    text-align: center;
+  }
 `;
 export const MyNameText = styled.p`
   font-family: Pretendard;
@@ -112,6 +113,10 @@ export const MyInfoText = styled.p`
   font-family: Pretendard;
   font-size: 12px;
   padding-bottom: 3%;
+
+  &.bold {
+    font-weight: 700;
+  }
 `;
 export const MyInfoModifyWrapper = styled.div`
   align-self: flex-start;
@@ -130,8 +135,38 @@ export const MyMeetingContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   padding: 3%;
-  border-bottom-left-radius: 1rem; border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem; 
+  border-bottom-right-radius: 1rem;
+
+  &.loggedOut {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 60%;
+    padding: 7% 5%;
+  }
 `;
+
+export const LoginBtn = styled.button`
+  font-weight: 700;
+  width: 100%; height: 80%;
+  background-color: #EA4335;
+  border-radius: 0.6rem;
+  margin-bottom: 2%;
+  color: white;
+`;
+export const LoginText = styled.p`
+  font-family: Pretendard;
+  font-size: 12px;
+
+  &.bold {
+    font-weight: 700;
+  }
+`;
+export const BoldText = styled.span`
+  font-weight: bold;
+`;
+
 export const MyMeeting = styled.div`
   width: 30%;
   align-items: center;
@@ -167,7 +202,6 @@ export const MeetingIcons = styled.p`
   font-size: 30px;
 `;
 
-
 export const ComponentContainer = styled.div`
   z-index: 1;
   width: 100%;
@@ -177,7 +211,7 @@ export const ComponentContainer = styled.div`
   gap: 3%;
   padding-top: 6%;
   flex: 1;
-  padding-bottom: 50%;
+  padding-bottom: ${(props) => (props.isLoggedIn ? '70%' : '50%')};
 `;
 
 export const OutContainer = styled.div`
@@ -191,4 +225,3 @@ export const OutText = styled.a`
   font-size: 14px;
   padding: 3%;
 `;
-

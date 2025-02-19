@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ItemShopContainer = styled.div`
   width: 90%;
   font-family: Pretendard;
+  // height: ${({ isLoggedIn }) => (isLoggedIn ? 'auto' : '10%')}; 
 `;
 export const Title = styled.p`
     font-family: Pretendard;

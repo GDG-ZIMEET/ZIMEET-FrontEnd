@@ -15,9 +15,11 @@ const useLogin = () => {
       }, { withCredentials: true });
 
       const { accessToken, refreshToken } = response.data.data;
-      setAuthState({ accessToken, refreshToken });
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
+      const newAuthState = { accessToken, refreshToken };
+      // setAuthState({ accessToken, refreshToken });
+      // localStorage.setItem('accessToken', accessToken);
+      // localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('authState', JSON.stringify(newAuthState));
       navigate('/meeting22');
 
     } catch (error) {

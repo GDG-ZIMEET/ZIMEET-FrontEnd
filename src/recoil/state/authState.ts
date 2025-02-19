@@ -5,6 +5,7 @@ interface AuthState {
   refreshToken: string;
 }
 
+<<<<<<< Updated upstream
 
 const getSessionAuthState = (): AuthState | null => {
   const storedAuth = sessionStorage.getItem('authState');
@@ -31,4 +32,12 @@ export const authState = atom<AuthState | null>({
       });
     },
   ],
+=======
+const storedAuthState = localStorage.getItem('authState');
+const initialAuthState: AuthState | null = storedAuthState ? JSON.parse(storedAuthState) : null;
+
+export const authState = atom<AuthState | null>({
+  key: 'authStateType',
+  default: initialAuthState,
+>>>>>>> Stashed changes
 });
