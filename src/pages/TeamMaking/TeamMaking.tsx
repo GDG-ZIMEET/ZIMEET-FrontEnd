@@ -16,9 +16,11 @@ const TeamMaking: React.FC = () => {
   const [situation, setSituation] = useState(1);
   const [teamName, setTeamName] = useState('');
   const [inputcolor, setinputColor] = useState('rgba(2, 32, 71, 0.05)');
-  
-  const [teamMembers, setTeamMembers] = useState<TeamMemberWithProfileType[]>([]);
-  const teamMemberIds = teamMembers.map(member => member.userId);
+
+  const [teamMembers, setTeamMembers] = useState<TeamMemberWithProfileType[]>(
+    [],
+  );
+  const teamMemberIds = teamMembers.map((member) => member.userId);
 
   const handleMakingButtonClick = async () => {
     if (teamName.trim() === '') {
@@ -47,8 +49,7 @@ const TeamMaking: React.FC = () => {
       } else {
         setSituation(5);
       }
-    }
-    else {
+    } else {
       if (teamMembers.length === 0 && !teamName) {
         setSituation(1);
       } else if (teamMembers.length === 1 && !teamName) {
@@ -57,7 +58,7 @@ const TeamMaking: React.FC = () => {
         setSituation(3);
       } else {
         setSituation(5);
-      } 
+      }
     }
   }, [teamMembers, teamName, teamType]);
 
@@ -69,15 +70,13 @@ const TeamMaking: React.FC = () => {
         setTeamName={setTeamName}
         setinputColor={setinputColor}
         $inputcolor={inputcolor}
-       />
-      <Teams 
+      />
+      <Teams
         teamMembersInfo={teamMembers}
         setTeamMembersInfo={setTeamMembers}
         teamType={teamType}
-       />
-      <MakingButton 
-        situation={situation} 
-        onClick={handleMakingButtonClick}/>
+      />
+      <MakingButton situation={situation} onClick={handleMakingButtonClick} />
       <NavigationBar />
     </S.TeamMakingLayout>
   );
