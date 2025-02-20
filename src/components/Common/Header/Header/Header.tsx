@@ -1,7 +1,11 @@
 import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
 
-const Header = () => {
+interface HeaderProps {
+  title: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ title }) => {
   const navigate = useNavigate();
   const handleBackClick = () => {
     navigate(-1);
@@ -11,7 +15,7 @@ const Header = () => {
     <S.HeaderLayout>
       <S.BackContainer>
         <S.BackButton onClick={handleBackClick} />
-        <S.Title>제목</S.Title>
+        <S.Title>{title}</S.Title>
       </S.BackContainer>
     </S.HeaderLayout>
   );

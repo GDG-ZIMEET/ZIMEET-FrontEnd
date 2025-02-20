@@ -9,6 +9,7 @@ export const HeaderLayout = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 3%;
+  background-color: #ffffff;
 `;
 
 export const BackContainer = styled.div`
@@ -20,7 +21,7 @@ export const BackContainer = styled.div`
 
 export const BackButton = styled(I.Back)`
   width: 9%;
-  height: 70%;
+  height: 60%;
   background: none;
   border: none;
   cursor: pointer;

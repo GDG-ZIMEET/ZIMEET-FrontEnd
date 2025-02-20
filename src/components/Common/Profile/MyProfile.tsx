@@ -6,6 +6,12 @@ import { User } from '../../../recoil/type/Meeting/TeamDetail';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { MyProfileType } from '../../../recoil/type/MyPage/MyProfileType';
 import { TeamMemberWithProfileType } from '../../../recoil/type/TeamMaking/TeamMemberWithProfileType';
+import {
+  mappingMusic,
+  mappingStyle,
+  mappingAge,
+  mappingFace,
+} from 'data/SignUpData';
 
 interface UserDetailProps {
   profileData: User;
@@ -44,8 +50,8 @@ const MyProfile: React.FC<
             nickname={profileData.nickname}
             age={profileData.age}
             Major={profileData.major}
-            classNum={profileData.studentNumber}
-            musicStyle={profileData.music}
+            classNum={profileData.studentNumber.slice(0, 2)}
+            musicStyle={mappingMusic(profileData.music)}
           />
         </S.MyProfileBox1>
 
@@ -57,17 +63,17 @@ const MyProfile: React.FC<
           />
           <ProfileDetail
             label="스타일"
-            value={profileData.style}
+            value={mappingStyle(profileData.style)}
             gender={gender}
           />
           <ProfileDetail
             label="이상형"
-            value={profileData.idealType}
+            value={mappingFace(profileData.idealType)}
             gender={gender}
           />
           <ProfileDetail
             label="선호나이"
-            value={profileData.idealAge}
+            value={ mappingAge(profileData.idealAge)}
             gender={gender}
           />
         </S.MyProfileBox2>

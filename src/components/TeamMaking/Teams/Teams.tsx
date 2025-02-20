@@ -42,11 +42,6 @@ const Teams: React.FC<TeamsProps> = ({
         if (response) {
           setMyProfileData({
             ...response.data,
-            studentNumber: response.data.studentNumber?.slice(0, 2) || '',
-            music: mappingMusic(response.data.music ?? '') || '',
-            style: mappingStyle(response.data.style) || '',
-            idealAge: mappingAge(response.data.idealAge) || '',
-            idealType: mappingFace(response.data.idealType) || '',
           });
         } else {
           setMyProfileData(null);
@@ -77,10 +72,10 @@ const Teams: React.FC<TeamsProps> = ({
                   emoji: response?.data.emoji || '',
                   age: response?.data.age || 0,
                   mbti: response?.data.mbti || '',
-                  style: mappingStyle(response?.data.style ?? ''),
-                  idealType: mappingFace(response?.data.idealType ?? ''),
-                  idealAge: mappingAge(response?.data.idealAge ?? ''),
-                  music: mappingMusic(response?.data.music ?? ''),
+                  style: response?.data.style ?? '',
+                  idealType: response?.data.idealType ?? '',
+                  idealAge: response?.data.idealAge ?? '',
+                  music: response?.data.music ?? '',
                 };
               }),
             );
