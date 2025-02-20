@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ teamType }) => {
         </S.DropdownMenu>
       )}
 
-      {isModalOpen && <DeleteModal onClose={handleCloseModal} />}
+      {isModalOpen && <DeleteModal teamType={teamType} onClose={handleCloseModal} />}
     </S.HeaderLayout>
   );
 };

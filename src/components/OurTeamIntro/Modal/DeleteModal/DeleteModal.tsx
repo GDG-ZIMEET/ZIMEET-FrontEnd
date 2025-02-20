@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './Styles'; 
 import { getTeamdeleteCount } from '../../../../api/TeamMaking/GetTeamdeleteCount';
 import { deleteTeam } from '../../../../api/TeamMaking/DeleteTeam';
 
 interface DeleteModalProps {
+  teamType: string;
   onClose: () => void;
 }
 
-const DeleteModal: React.FC<DeleteModalProps> = ({ onClose }) => {
+const DeleteModal: React.FC<DeleteModalProps> = ({ teamType, onClose }) => {
   const [teamdeleteCount, setTeamdeleteCount] = useState(0);
+  const navigate = useNavigate();
 
-  const handleDeleteConfirm = () => {
-    onClose(); 
+  const handleDeleteConfirm = async () => {
+    const response = await deleteTeam(teamType);
+    if (response) {
+      navigate('/meeting22');
+    }
+    else {
+      console.error('팀 삭제 실패');
+    }
   };
 
   useEffect(() => {
