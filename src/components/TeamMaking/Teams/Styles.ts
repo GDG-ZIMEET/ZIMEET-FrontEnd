@@ -9,13 +9,12 @@ export const TeamLayout = styled.div`
 
 export const TeamContainer = styled.div`
   width: 100%;
-  height: 88%;
+  height: 84%;
   overflow-y: auto;
   overflow-x: hidden;
-
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {
-    height: 83%;
+    height: 80.5%;
   }}
 `;
 
