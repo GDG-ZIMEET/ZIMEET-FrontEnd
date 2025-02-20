@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import * as I from "../../../../assets/Icons";
+import * as I from "../../../assets/Icons";
 
 export const Header = styled.div`
   width: 100%;

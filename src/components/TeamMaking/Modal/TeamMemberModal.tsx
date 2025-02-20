@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './Styles';
 import { getSearchTeamMember } from 'api/TeamMaking/GetSearchTeamMembers';
 import { SearchTeamMemberType } from 'recoil/type/TeamMaking/SearchTeamMember';
