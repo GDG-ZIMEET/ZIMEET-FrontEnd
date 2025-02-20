@@ -7,12 +7,6 @@ import { MyProfileType } from 'recoil/type/MyPage/MyProfileType';
 import { TeamMemberWithProfileType } from 'recoil/type/TeamMaking/TeamMemberWithProfileType';
 import { SearchTeamMemberType } from 'recoil/type/TeamMaking/SearchTeamMember';
 import { getuserProfile } from 'api/TeamMaking/GetUserProfile';
-import {
-  mappingMusic,
-  mappingStyle,
-  mappingAge,
-  mappingFace,
-} from 'data/SignUpData';
 
 interface TeamsProps {
   teamMembersInfo: TeamMemberWithProfileType[];
