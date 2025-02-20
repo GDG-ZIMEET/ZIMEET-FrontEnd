@@ -3,7 +3,7 @@ import * as I from '../../../assets/Icons';
 import Event from 'components/MyPage/Event/Event';
 import ItemShop from 'components/MyPage/ItemShop/Main/ItemShop';
 import QnA from 'components/MyPage/QnA/QnA';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
+import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import { NavBarContainer } from 'components/NavigationBar/Styles';
 
 const MyPage = () => {

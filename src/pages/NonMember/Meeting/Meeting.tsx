@@ -5,7 +5,7 @@ import TypeButton from '../../../components/Non-member/Meeting/TypeButton/TypeBu
 import MakeTeamBox from '../../../components/Non-member/Meeting/MakeTeamBox/MakeTeamBox';
 import Help from '../../../components/Non-member/Meeting/Help/Help';
 import JoinRandomMeetingButton from '../../../components/Non-member/Meeting/JoinButton/JoinRandomMeetingButton';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
+import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 
 const Meeting: React.FC = () => {const navigate = useNavigate();
 

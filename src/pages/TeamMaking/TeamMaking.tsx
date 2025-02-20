@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './Styles';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
+import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import Teams from 'components/Meeting22/TeamMaking/Teams/Teams';
 import Header from 'components/Meeting22/TeamMaking/Header/Header';
 import TeamName from 'components/Meeting22/TeamMaking/TeamName/TeamName';

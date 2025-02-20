@@ -5,7 +5,7 @@ import TypeButton from '../../../components/Meeting22/TypeButton/TypeButton';
 import MakeTeamBox from '../../../components/MeetingRandom/MakeTeamBox/MakeTeamBox';
 import Help from '../../../components/MeetingRandom/Help/Help';
 import JoinRandomMeetingButton from '../../../components/MeetingRandom/JoinButton/JoinRandomMeetingButton';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
+import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 
 const MeetingRoading: React.FC = () => {
   const navigate = useNavigate();

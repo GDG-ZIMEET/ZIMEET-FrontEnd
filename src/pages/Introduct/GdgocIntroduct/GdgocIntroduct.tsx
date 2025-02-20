@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Styles';
 import Header from '../../../components/Booth/Header/Header';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
+import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 
 const GdgocIntroduct: React.FC = () => {
