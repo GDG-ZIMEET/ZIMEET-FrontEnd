@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 import * as S from './Styles';
 import AgeBox from './AgeBox/AgeBox';
 import ProfileDetail from './ProfileDetail/ProfileDetail';
@@ -8,7 +8,7 @@ import { MyProfileType } from '../../../recoil/type/MyPage/MyProfileType';
 import { TeamMemberWithProfileType } from '../../../recoil/type/TeamMaking/TeamMemberWithProfileType';
 
 interface UserDetailProps {
-  profileData: User; 
+  profileData: User;
   gender: string;
   isTeamMaking?: boolean;
 }
@@ -25,30 +25,51 @@ interface MemberProfileProps {
   isTeamMaking?: boolean;
 }
 
-const MyProfile: React.FC<UserDetailProps | MyProfileProps | MemberProfileProps> = ({ profileData, gender, isTeamMaking = false }) => {
-
+const MyProfile: React.FC<
+  UserDetailProps | MyProfileProps | MemberProfileProps
+> = ({ profileData, gender, isTeamMaking = false }) => {
   return (
     <S.MyprofileLayout $isTeamMaking={isTeamMaking}>
       <S.MyProfileContainer $isTeamMaking={isTeamMaking}>
         <S.MyProfileBox1>
           <S.ProfileIMG>
             <S.Avatar>
-              <img src={getImageByEmoji(profileData.emoji)} alt={profileData.emoji} />
+              <img
+                src={getImageByEmoji(profileData.emoji)}
+                alt={profileData.emoji}
+              />
             </S.Avatar>
           </S.ProfileIMG>
-          <AgeBox 
-            nickname={profileData.nickname} 
-            age={profileData.age} 
-            Major={profileData.major} 
-            classNum={profileData.studentNumber} 
-            musicStyle={profileData.music}/>
+          <AgeBox
+            nickname={profileData.nickname}
+            age={profileData.age}
+            Major={profileData.major}
+            classNum={profileData.studentNumber}
+            musicStyle={profileData.music}
+          />
         </S.MyProfileBox1>
 
         <S.MyProfileBox2>
-          <ProfileDetail label="MBTI" value={profileData.mbti} gender={gender}/>
-          <ProfileDetail label="스타일" value={profileData.style} gender={gender}/>
-          <ProfileDetail label="이상형" value={profileData.idealType} gender={gender}/>
-          <ProfileDetail label="선호나이" value={profileData.idealAge} gender={gender}/>
+          <ProfileDetail
+            label="MBTI"
+            value={profileData.mbti}
+            gender={gender}
+          />
+          <ProfileDetail
+            label="스타일"
+            value={profileData.style}
+            gender={gender}
+          />
+          <ProfileDetail
+            label="이상형"
+            value={profileData.idealType}
+            gender={gender}
+          />
+          <ProfileDetail
+            label="선호나이"
+            value={profileData.idealAge}
+            gender={gender}
+          />
         </S.MyProfileBox2>
       </S.MyProfileContainer>
     </S.MyprofileLayout>
