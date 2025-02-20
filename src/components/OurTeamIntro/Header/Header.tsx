@@ -5,7 +5,11 @@ import DeleteIcon from '../../../assets/icon/TeamInfo/DeleteIcon.svg'
 import Trash from '../../../assets/icon/TeamInfo/Trash.svg'
 import DeleteModal from '../Modal/DeleteModal/DeleteModal'; 
 
-const Header = () => {
+interface HeaderProps {
+  teamType: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ teamType }) => {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,7 +44,7 @@ const Header = () => {
         </S.DropdownMenu>
       )}
 
-      {isModalOpen && <DeleteModal onClose={handleCloseModal} />}
+      {isModalOpen && <DeleteModal teamType={teamType} onClose={handleCloseModal} />}
     </S.HeaderLayout>
   );
 };

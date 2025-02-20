@@ -48,7 +48,7 @@ const OurTeamIntro = () => {
 
   return (
     <S.OurTeamIntroLayout>
-      <Header />
+      <Header teamType={teamType}/>
       <S.OurTeamIntroContainer>
         {ourteamDetailData?.userList.map((user: User) => (
           <MyProfile
