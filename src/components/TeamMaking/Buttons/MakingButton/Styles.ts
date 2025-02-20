@@ -6,12 +6,12 @@ export const MakingButtonLayout = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: -18%;
+  margin-top: -24%;
   height: 8%;
 
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {
-    margin-top: -20%;
+    margin-top: -23.5%;
     height: 10%;
   }}
 `;

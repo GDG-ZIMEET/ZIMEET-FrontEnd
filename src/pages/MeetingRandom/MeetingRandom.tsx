@@ -6,7 +6,7 @@ import MakeTeamBox from '../../components/MeetingRandom/MakeTeamBox/MakeTeamBox'
 import Help from '../../components/MeetingRandom/Help/Help';
 import JoinRandomMeetingButton from '../../components/MeetingRandom/JoinButton/JoinRandomMeetingButton';
 import Modal from '../../components/MeetingRandom/Modal/Modal';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
+import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 
 const MeetingRandom: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

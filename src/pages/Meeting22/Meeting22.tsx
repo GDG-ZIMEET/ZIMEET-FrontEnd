@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { authState } from '../../recoil/state/authState';
 import { Meeting22Layout, Meeting22Title, Meeting22Container} from './Styles';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
+import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import TypeButton from '../../components/Meeting22/TypeButton/TypeButton';
 import MakeTeam from '../../components/Meeting22/MakeTeam/MakeTeam'; 
 import TeamBox from '../../components/Meeting22/TeamBox/TeamBox';

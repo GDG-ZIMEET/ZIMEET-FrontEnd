@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
+import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 
 const Help: React.FC = () => {
   const navigate = useNavigate();

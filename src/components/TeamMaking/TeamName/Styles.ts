@@ -13,12 +13,6 @@ export const Title = styled.label`
   font-weight: bold;
   color: #000000;
   margin-bottom: 3%;
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      font-size: 14px;
-    }
-  }
 `;
 
 
@@ -26,12 +20,6 @@ export const Description = styled.p`
   font-size: 12px;
   color: #000000;
   margin-bottom: 3%;
-
-  @media (max-width: 768px) {
-    @supports (-webkit-touch-callout: none) {
-      font-size: 12px;
-    }
-  }
 `;
 
 export const Input = styled.input<{ $inputcolor: string }>`

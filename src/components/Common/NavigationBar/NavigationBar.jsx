@@ -1,8 +1,8 @@
-import * as I from '../../assets/Icons.ts'; 
+import * as I from '../../../assets/Icons'; 
 import * as S from './Styles';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { authState } from '../../recoil/state/authState.ts'; 
+import { authState } from '../../../recoil/state/authState.ts'; 
 
 const NavigationBar = () => {
     const navigate = useNavigate();

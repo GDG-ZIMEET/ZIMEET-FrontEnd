@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Styles';
 import ChattingInventoryTypeButton from '../../../components/Chatting/ChattingInventory/ChattingInventoryTypeButton/ChattingInventoryTypeButton';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
+import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import Teams from 'components/Chatting/ReceiveHi/Teams/Teams';
 
 const ReceiveHi: React.FC = () => {

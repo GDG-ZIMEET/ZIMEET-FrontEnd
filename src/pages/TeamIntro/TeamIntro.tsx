@@ -6,7 +6,7 @@ import { isPremiumState } from '../../recoil/state/authStore';
 import * as S from './Styles'; 
 import Header from 'components/TeamIntro/Header/Header';
 import MyProfile from 'components/TeamIntro/Profile/MyProfile';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
+import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import Heart from 'components/TeamIntro/Button/Heart/Heart';
 import SendQuestion from 'components/TeamIntro/Modal/SendQuestion/SendQuestion';
 import Send from 'components/TeamIntro/Modal/Send/Send'

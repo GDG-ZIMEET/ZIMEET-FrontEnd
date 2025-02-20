@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './Styles';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
-import Teams from 'components/Meeting22/TeamMaking/Teams/Teams';
-import Header from 'components/Meeting22/TeamMaking/Header/Header';
-import TeamName from 'components/Meeting22/TeamMaking/TeamName/TeamName';
-import MakingButton from 'components/Meeting22/TeamMaking/Buttons/MakingButton/MakingButton';
+import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
+import Teams from 'components/TeamMaking/Teams/Teams';
+import Header from 'components/Common/Header/Header/Header';
+import TeamName from 'components/TeamMaking/TeamName/TeamName';
+import MakingButton from 'components/TeamMaking/Buttons/MakingButton/MakingButton';
 import { TeamMemberWithProfileType } from 'recoil/type/TeamMaking/TeamMemberWithProfileType';
 import { postTeamMake } from 'api/TeamMaking/PostTeamMaking';
 
@@ -63,7 +63,7 @@ const TeamMaking: React.FC = () => {
 
   return (
     <S.TeamMakingLayout>
-      <Header />
+      <Header title='팀 만들기'/>
       <TeamName
         teamName={teamName}
         setTeamName={setTeamName}

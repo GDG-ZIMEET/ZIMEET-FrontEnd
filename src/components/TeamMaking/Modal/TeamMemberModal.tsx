@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './Styles';
 import { getSearchTeamMember } from 'api/TeamMaking/GetSearchTeamMembers';
 import { SearchTeamMemberType } from 'recoil/type/TeamMaking/SearchTeamMember';
+import { mappinggrade } from 'data/SignUpData';
 
 interface TeamMemberModalProps {
   onClose: () => void;
@@ -21,13 +22,13 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend 
       setSearchUsers([]);
       const response = await getSearchTeamMember(nickname, phoneNumber);
       if (response && Array.isArray(response.data.searchList)) {
-        setSearchUsers(response.data.searchList); // ✅ 검색된 팀원 목록 저장
+        setSearchUsers(response.data.searchList);
       } else {
-        setSearchUsers([]); // 검색 결과 없을 경우 리스트 초기화
+        setSearchUsers([]); 
       }
     } catch (error) {
       console.error('Error fetching search team member data:', error);
-      setSearchUsers([]); // 검색 실패 시 리스트 초기화
+      setSearchUsers([]); 
     }
   };
 
@@ -97,7 +98,7 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend 
                   key={user.userId}
                   $isSelected={selectUser?.userId === user.userId}
                   onClick={() => handleSelectTeamMember(user)}>
-                  {user.nickname} / {user.major} / {user.grade}학년 / {user.phoneNumber}
+                  {user.nickname} / {user.major} / {mappinggrade(user.grade)}학년 / {user.phoneNumber}
                 </S.FriendInfo>))}
             </S.SearchUserList>
             <S.AddFriendButton onClick={handleAddFriend}>친구로 추가하기</S.AddFriendButton>

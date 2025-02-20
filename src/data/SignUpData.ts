@@ -2,6 +2,11 @@
 export const gradeOptions = ["FIRST", "SECOND", "THIRD", "FOURTH"];
 export const gradeDisplayOptions = [1, 2, 3, 4];
 
+export const mappinggrade = (grade: string): string => {
+  const index = gradeOptions.indexOf(grade);
+  return index !== -1 ? gradeDisplayOptions[index].toString() : '';
+};
+
 //학과
 export const majorOptions = [
     "인문계열",

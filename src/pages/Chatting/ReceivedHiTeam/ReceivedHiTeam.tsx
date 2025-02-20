@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Profiles from "../../../components/TeamIntro/Profile/ProfileData";
 import Header from "../../../components/TeamIntro/Header/Header";
 import MyProfile from "../../../components/TeamIntro/Profile/MyProfile";
-import NavigationBar from "../../../components/NavigationBar/NavigationBar";
+import NavigationBar from "../../../components/Common/NavigationBar/NavigationBar";
 import AcceptHiModal from "../../../components/Chatting/ReceiveHi/Modal/AcceptHiModal/AcceptHiModal";
 import AcceptedHiModal from "../../../components/Chatting/ReceiveHi/Modal/AcceptedHiModal/AcceptedHiModal";
 import RefuseHiModal from "../../../components/Chatting/ReceiveHi/Modal/RefuseHiModal/RefuseHiModal";
