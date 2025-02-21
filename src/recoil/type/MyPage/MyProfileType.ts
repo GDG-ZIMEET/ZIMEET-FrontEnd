@@ -13,6 +13,7 @@ export interface MyProfileType {
     style: string;
     idealAge: string;
     idealType: string;
+    level: string;
 }
 
 export interface MyProfileResponseType {
