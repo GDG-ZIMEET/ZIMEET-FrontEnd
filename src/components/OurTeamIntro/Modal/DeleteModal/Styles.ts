@@ -76,6 +76,7 @@ export const CancelButton = styled.button`
   margin-right: 3%;
 `;
 
+
 export const CloseButton = styled.button`
   padding: 4% 2%;
   background: #000000;

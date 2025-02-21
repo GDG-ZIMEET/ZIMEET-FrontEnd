@@ -1,8 +1,10 @@
 import * as S from './Styles';
 
-const QnA = () => {
+const QnA = ({myProfileData}) => {
+  const isLoggedIn = !!myProfileData?.data;
+
   return (
-        <S.QnAContainer>
+        <S.QnAContainer isLoggedIn={isLoggedIn}>
             <S.Title>문의하기</S.Title>
             <S.QnAs>
                 <S.QnAContent>1대1 문의하기</S.QnAContent>
