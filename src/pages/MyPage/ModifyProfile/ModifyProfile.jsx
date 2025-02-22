@@ -6,7 +6,6 @@ import ModifyNickname from 'components/MyPage/ModifyNickname/ModifyNickname';
 import { getmyProfile } from 'api/Mypage/GetmyProfile';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { mappingStyle, mappingAge, mappingFace } from 'data/SignUpData';
-import { Header } from '../../../components/Common/Header/Header/Header';
 
 const ModifyProfile = () => {
   const navigate = useNavigate();
@@ -52,7 +51,6 @@ const ModifyProfile = () => {
         <S.BackBtn onClick={handleBack} />
         <S.TopBarText>프로필 수정</S.TopBarText>
       </S.TopBarContainer>
-      <Header title='프로필 수정' />
 
       {isLoading? (
         <>
