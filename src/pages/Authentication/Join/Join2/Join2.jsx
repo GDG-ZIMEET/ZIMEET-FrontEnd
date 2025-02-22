@@ -25,10 +25,9 @@ const Join2 = () => {
   };
 
   const handleNicknameChange = (e) => {
-    const regex = /^[ㄱ-ㅎ|가-힣\s]{2,7}$/; 
     const value = e.target.value;
     setJoinData({ ...joinData, nickname: value });
-    setIsNicknameValid(value === '' || regex.test(value));
+    setIsNicknameValid(value.length >= 2 && value.length <= 7);
     // console.log(isNicknameValid)
   };
 
