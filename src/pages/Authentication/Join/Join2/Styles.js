@@ -79,3 +79,10 @@ export const JoinBtn = styled.button`
     margin: 17% 0 0 0;
   }
 `;
+
+//에러메세지
+export const ErrorMessage = styled.div`
+  color: red;
+  font-size: 12px;
+  margin: -7% 0 6% 3%;
+`;
