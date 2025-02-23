@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import PeoplePlusButton from '../Buttons/PlusButton/PeoplePlusButton';
 import MyProfile from '../../Common/Profile/MyProfile';
-import { getmyProfile } from 'api/MyPage/GetmyProfile';
+import { getmyProfile } from 'api/Mypage/GetmyProfile';
 import { MyProfileType } from 'recoil/type/MyPage/MyProfileType';
 import { TeamMemberWithProfileType } from 'recoil/type/TeamMaking/TeamMemberWithProfileType';
 import { SearchTeamMemberType } from 'recoil/type/TeamMaking/SearchTeamMember';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { authState } from '../../recoil/state/authState';
 import { Meeting22Layout, Meeting22Title, Meeting22Container} from './Styles';

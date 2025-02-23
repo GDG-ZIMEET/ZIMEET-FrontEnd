@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as I from '../../../assets/Icons';
 
 export const MyPageContainer = styled.div`
   width: 100%; 
@@ -9,7 +10,6 @@ export const MyPageContainer = styled.div`
   align-items: center;
   position: relative; 
   overflow: auto;
-
   min-height: 100vh;
 `;
 
@@ -27,18 +27,14 @@ export const LogoContainer = styled.div`
   align-items: center;
   overflow: hidden;
   padding: 3% 0;
-  
   width: 100%;
   position: absolute;
   z-index: 2;
 `;
-export const Logo = styled.div`
-  width: 12%;
-  text-align: center;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+
+export const ZimeetLogo = styled(I.ZimeetLogo) `
+  margin-top:-13%;
+  width: 14%;
 `;
 
 export const BlackContainer = styled.div`
@@ -129,6 +125,9 @@ export const MyInfoModifyWrapper = styled.div`
   }
 `;
 
+export const EditMyInfo = styled(I.EditMyInfo) `
+`;
+
 //MyMeeting
 export const MyMeetingContainer = styled.div`
   background-color: #f6f5fa;
@@ -199,6 +198,10 @@ export const MeetingEmojiWrap = styled.div`
   border-radius: 50%; 
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 `;
+
+export const Ticket = styled(I.Ticket) `
+`;
+
 export const MeetingIcons = styled.p`
   font-size: 30px;
 `;

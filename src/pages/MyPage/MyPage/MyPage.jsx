@@ -1,25 +1,29 @@
 import * as S from './Styles';
-import * as I from '../../../assets/Icons';
+import { useRecoilState } from 'recoil';
 import Event from 'components/MyPage/Event/Event';
 import ItemShop from 'components/MyPage/ItemShop/Main/ItemShop';
 import QnA from 'components/MyPage/QnA/QnA';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import { useEffect, useState } from 'react';
-import { getmyProfile } from 'api/MyPage/GetmyProfile';
+import { getmyProfile } from 'api/Mypage/GetmyProfile';
 import { useNavigate } from 'react-router-dom';
 import {getImageByEmoji} from 'utils/IconMapper';
+import { authState } from '../../../recoil/state/authState';
 
 const MyPage = () => {
   const [myProfileData, setMyProfileData] = useState(null);
+  const [auth,] = useRecoilState(authState);
+  const isLoggedIn = !!auth?.accessToken;
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMyProfile = async () => {
+      setIsLoading(true);
       try {
-        const response = await getmyProfile();
-        if (response) {
-          setMyProfileData(response);
+        if (isLoggedIn) {
+          const response = await getmyProfile();
+          setMyProfileData(response || null);
         } else {
           setMyProfileData(null);
         }
@@ -30,16 +34,15 @@ const MyPage = () => {
         setIsLoading(false);
       }
     };
+
     fetchMyProfile();
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <S.MyPageContainer>
       <S.MyPageBox>
         <S.LogoContainer>
-          <S.Logo>
-            <I.ZimeetLogo />
-          </S.Logo>
+            <S.ZimeetLogo />
         </S.LogoContainer>
 
         <S.BlackContainer>
@@ -52,7 +55,7 @@ const MyPage = () => {
                     </S.MyInfo>
                 </S.MyInfoContainer>
               </>
-            ) : myProfileData ? (
+            ) : isLoggedIn ? (
               <>
                 <S.MyInfoContainer>
                   <S.EmojiContainer>
@@ -68,7 +71,7 @@ const MyPage = () => {
                     <S.MyInfoText>{myProfileData.data.level === 'LIGHT' ? 'ZI밋 라이트 등급' : myProfileData.data.level === 'PLUS' ? 'ZI밋 플러스 등급' : ''}</S.MyInfoText>
                   </S.MyInfo>
                   <S.MyInfoModifyWrapper>
-                     <I.EditMyInfo />
+                     <S.EditMyInfo />
                   </S.MyInfoModifyWrapper>
                 </S.MyInfoContainer>
                 
@@ -100,7 +103,7 @@ const MyPage = () => {
                     <S.MyMeetingText>랜덤 미팅</S.MyMeetingText>
                     <S.MeetingCircleWrap>
                       <S.MeetingEmojiWrap>
-                          <I.Ticket />
+                          <S.Ticket />
                       </S.MeetingEmojiWrap>
                     </S.MeetingCircleWrap>
                     <S.MyMeetingText>1개</S.MyMeetingText>
@@ -124,9 +127,9 @@ const MyPage = () => {
             )}
           </S.InfoContainer>
         </S.BlackContainer>
-        <S.WhiteArea isLoggedIn={!isLoading && myProfileData}></S.WhiteArea>
+        <S.WhiteArea isLoggedIn={isLoggedIn} />
 
-        <S.ComponentContainer isLoggedIn={!isLoading && myProfileData}>
+        <S.ComponentContainer isLoggedIn={isLoggedIn}>
           <Event />
           <ItemShop myProfileData={myProfileData} />
           <QnA myProfileData={myProfileData}/>
