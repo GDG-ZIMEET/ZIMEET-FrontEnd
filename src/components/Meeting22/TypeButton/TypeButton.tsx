@@ -1,27 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import * as S from './Styles';
 
 interface TypeButtonProps {
-  selectedTeamType: string;
   setSelectedTeamType: (teamType: string) => void;
 }
 
-const TypeButton: React.FC<TypeButtonProps> = ({ selectedTeamType, setSelectedTeamType }) => {
-  const navigate = useNavigate();
+const TypeButton: React.FC<TypeButtonProps> = ({ setSelectedTeamType }) => {
   const location = useLocation();
   const [selectedButton, setSelectedButton] = useState<string>('2to2');
-
-  
-  useEffect(() => {
-    if (location.pathname === '/meeting22') {
-      setSelectedButton('2to2');
-    } else if (location.pathname === '/meeting33') {
-      setSelectedButton('3to3');
-    } else if (location.pathname === '/meeting-random') {
-      setSelectedButton('random');
-    }
-  }, [location.pathname]);
 
 
   const handleTypeChange = (teamType: string, button: string, size: number) => {
@@ -31,8 +18,7 @@ const TypeButton: React.FC<TypeButtonProps> = ({ selectedTeamType, setSelectedTe
 
   const handleRClick = () => {
     setSelectedButton('random');
-    setSelectedTeamType('');
-    navigate('/meeting-random'); 
+    setSelectedTeamType('Random');
   };
 
   return (

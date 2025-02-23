@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { authState } from '../../recoil/state/authState';
-import { Meeting22Layout, Meeting22Title, Meeting22Container} from './Styles';
+import * as S from './Styles';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import TypeButton from '../../components/Meeting22/TypeButton/TypeButton';
 import MakeTeam from '../../components/Meeting22/MakeTeam/MakeTeam'; 
@@ -12,10 +12,12 @@ import { getTeamGallery } from 'api/Meeting/GetTeamGallery';
 import { getOurTeam } from '../../api/Meeting/GetourTeam';
 import { NonLoginDataTwoToTwo, NonLoginDataThreeToThree } from '../../data/NonLoginData';
 import { OurTeamType } from '../../recoil/type/Meeting/ourTeamType';
+import MeetingRandomMain from '../../components/MeetingRandom/MeetingRandomMain';
+
 
 const Meeting22 = () => {
   const navigate = useNavigate();
-  const [auth, setAuth] = useRecoilState(authState); 
+  const [auth,] = useRecoilState(authState); 
   const isLoggedIn = !!auth?.accessToken;
   const [teamGalleryData, setTeamGalleryData] = useState<any | null>(null);
   const [teamType, setTeamType] = useState<string>('TWO_TO_TWO');
@@ -26,8 +28,8 @@ const Meeting22 = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        if (isLoggedIn) {
-          const data = await getTeamGallery(teamType, 1);
+        if (isLoggedIn && teamType !== 'Random') {
+          const data = await getTeamGallery(teamType, 0);
           setTeamGalleryData(data?.data.teamList || []);
         } else {
           if (teamType === 'TWO_TO_TWO') {
@@ -45,7 +47,7 @@ const Meeting22 = () => {
 
     const fetchOurTeamData = async () => {
       try {
-        if (isLoggedIn) {
+        if (isLoggedIn && teamType !== 'Random') {
           const response = await getOurTeam(teamType);
           setOurTeamData(response?.data || null);
         } else {
@@ -71,24 +73,29 @@ const Meeting22 = () => {
   };
 
   return (
-    <>  <NavigationBar />
-    {!isLoggedIn && (
-      <LoginPopUp
-        onClose={handleLogin} 
-      />
-    )}
-        <Meeting22Layout>
-          <Meeting22Title>팀 갤러리</Meeting22Title>
-          <TypeButton selectedTeamType={teamType} setSelectedTeamType={setTeamType}/>
-          <Meeting22Container>
-            <MakeTeam teamType={teamType} ourTeamData={ourTeamData} />
-            {isLoading ? (
-            <p>데이터를 불러오는 중입니다...</p>
+    <>  
+      <NavigationBar />
+      {!isLoggedIn && (
+        <LoginPopUp onClose={handleLogin} />
+      )}
+      <S.Meeting22Layout>
+        <S.Meeting22Title>팀 갤러리</S.Meeting22Title>
+        <TypeButton setSelectedTeamType={setTeamType} />
+        <S.Meeting22Container>
+          {teamType !== 'Random' ? (
+            <>
+              <MakeTeam teamType={teamType} ourTeamData={ourTeamData} />
+              {isLoading ? (
+                <p>데이터를 불러오는 중입니다...</p>
+              ) : (
+                <TeamBox teamData={teamGalleryData || []} ourTeamData={ourTeamData} teamType={teamType} />
+              )}
+            </>
           ) : (
-            <TeamBox teamData={teamGalleryData || []} ourTeamData={ourTeamData} teamType={teamType}/>
+            <MeetingRandomMain />
           )}
-          </Meeting22Container>
-        </Meeting22Layout>  
+        </S.Meeting22Container>
+      </S.Meeting22Layout>  
     </>
   );
 };

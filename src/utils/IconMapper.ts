@@ -140,4 +140,10 @@ export const getAllImagePaths = (): string[] => Object.values(IconMapper);
 // 모든 이미지, 이모지 리스트 GET
 export const getAllIcons = (): [string, string][] => Object.entries(IconMapper);
 
+// 랜덤 이모지 GET
+export const getRandomEmoji = (): string => {
+    const emojis = getAllEmojis();
+    const randomIndex = Math.floor(Math.random() * emojis.length);
+    return emojis[randomIndex];
+};
 export default IconMapper;

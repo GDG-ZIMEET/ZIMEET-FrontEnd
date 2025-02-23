@@ -5,6 +5,8 @@ export { ReactComponent as HeaderLogo } from './icon/booth/headerLogo.svg';
 
 //랜덤미팅
 export { ReactComponent as SpeechBubble } from './icon/MeetingRandom/speechBubble.svg';
+export { ReactComponent as RandomAfter } from './icon/MeetingRandom/RandomAfter.svg';
+export { ReactComponent as RandomBefore } from './icon/MeetingRandom/RandomBefore.svg';
 
 //네비게이션바
 export { ReactComponent as Chatting } from './icon/navigationbar/chatting.svg';
