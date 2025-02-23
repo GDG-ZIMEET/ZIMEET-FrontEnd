@@ -58,6 +58,7 @@ export const MNInput = styled.input`
 
 
 export const BtnContainer = styled.div`
+  padding-top: 2%;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -80,4 +81,11 @@ export const SaveBtn = styled.button`
   border-radius: 0.8rem;
   background-color: ${({ disabled }) => (disabled ? '#ececec' : '#ea4335')};
   color: ${({ disabled }) => (disabled ? '#7c7c7c' : 'white')};
+`;
+
+//에러메세지
+export const ErrorMessage = styled.div`
+  color: red;
+  font-size: 12px;
+  margin: -2.5% 0 6% 3%;
 `;

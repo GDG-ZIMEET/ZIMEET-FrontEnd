@@ -6,6 +6,7 @@ export const JoinContainer = styled.div`
   height: 100%;
   background-color: white;
   font-family: Pretendard;
+  overflow-y: auto;
 `;
 
 //상단바
@@ -71,13 +72,15 @@ export const EmojiWrap = styled.div`
   align-items: center;
   font-size: 55px;
   border-radius: 50%; 
+  color: #EA4335;
 
   &.blue {
     background-color: rgba(66, 133, 244, 0.1);
     color: rgb(66, 133, 244);
   }
 `;
-export const TossEmoji = styled.div`
+export const TossEmoji = styled.img`
+  width: 70%; height: 70%;
 `;
 export const Text = styled.p`
   font-size: 12px;
@@ -130,11 +133,12 @@ export const PreferItems = styled.p`
 export const BtnContainer = styled.div`
   padding: 5% 0;
   height: 100%;
+  text-align: center;
 `;
 
 export const ModifyBtn = styled.button`
   font-weight: 700;
-  width: 100%; height: 100%;
+  width: 90%; height: 100%;
   padding: 4%;
   border-radius: 0.6rem;
   background-color: ${({ disabled }) => (disabled ? '#ececec' : '#ea4335')};
