@@ -14,7 +14,7 @@ const Join = () => {
   const [isNameValid, setIsNameValid] = useState(true);
   const [isStudentNumberValid, setIsStudentNumberValid] = useState(true);
   const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isPhoneNumValid, setIsPhoneNumValid] = useState(true);
+  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
   const [isSelected, setIsSelected] = useState(false);
 
   const ageOptions = Array.from({ length: 9 }, (_, index) => (
@@ -29,14 +29,14 @@ const Join = () => {
     joinData.name &&
     joinData.studentNumber &&
     joinData.password &&
-    joinData.phoneNum &&
+    joinData.phoneNumber &&
     joinData.grade &&
     joinData.age &&
     joinData.gender &&
     isNameValid &&
     isStudentNumberValid &&
     isPasswordValid &&
-    isPhoneNumValid &&
+    isPhoneNumberValid &&
     isPasswordMatch
   ;
 
@@ -73,12 +73,12 @@ const Join = () => {
     // console.log(isPasswordValid)
   };
 
-  const handlePhoneNumChange = (e) => {
+  const handlePhoneNumberChange = (e) => {
     const regex = /^010\d{8}$/;
     const value = e.target.value;
-    setJoinData({ ...joinData, phoneNum: value });
-    setIsPhoneNumValid(regex.test(value));
-    // console.log(isPhoneNumValid)
+    setJoinData({ ...joinData, phoneNumber: value });
+    setIsPhoneNumberValid(regex.test(value));
+    // console.log(isPhoneNumberValid)
   };
 
   const handleGradeChange = (e) => {
@@ -138,10 +138,10 @@ const Join = () => {
         <S.JoinInput
           type="text"
           placeholder="숫자만 입력해주세요."
-          value={joinData.phoneNum}
-          onChange={handlePhoneNumChange}
+          value={joinData.phoneNumber}
+          onChange={handlePhoneNumberChange}
         />
-        {!isPhoneNumValid && <S.ErrorMessage>010으로 시작하는 숫자 11자리를 입력해주세요.</S.ErrorMessage>}
+        {!isPhoneNumberValid && <S.ErrorMessage>010으로 시작하는 숫자 11자리를 입력해주세요.</S.ErrorMessage>}
         <S.JoinText>학년 / 나이</S.JoinText>
         <S.SelectContainer>
           <S.SelectBox>

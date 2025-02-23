@@ -6,7 +6,7 @@ export const joinState = atom({
     name: "",
     studentNumber: "",
     password: "",
-    phoneNum: "",
+    phoneNumber: "",
     nickname: "",
     grade: "",
     age: "",
