@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { authState } from '../../recoil/state/authState';
-import { Meeting22Layout, Meeting22Title, Meeting22Container, TicketCount} from './Styles';
+import * as S from './Styles';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import TypeButton from '../../components/Meeting22/TypeButton/TypeButton';
 import MakeTeam from '../../components/Meeting22/MakeTeam/MakeTeam'; 
@@ -12,11 +12,8 @@ import { getTeamGallery } from 'api/Meeting/GetTeamGallery';
 import { getOurTeam } from '../../api/Meeting/GetourTeam';
 import { NonLoginDataTwoToTwo, NonLoginDataThreeToThree } from '../../data/NonLoginData';
 import { OurTeamType } from '../../recoil/type/Meeting/ourTeamType';
-import MakeTeamBox from '../../components/MeetingRandom/MakeTeamBox/MakeTeamBox';
-import Help from '../../components/MeetingRandom/Help/Help';
-import JoinRandomMeetingButton from '../../components/MeetingRandom/JoinButton/JoinRandomMeetingButton';
-import Modal from '../../components/MeetingRandom/Modal/Modal';
-import { getImageByEmoji } from 'utils/IconMapper';
+import MeetingRandomMain from '../../components/MeetingRandom/MeetingRandomMain';
+
 
 const Meeting22 = () => {
   const navigate = useNavigate();
@@ -25,9 +22,7 @@ const Meeting22 = () => {
   const [teamGalleryData, setTeamGalleryData] = useState<any | null>(null);
   const [teamType, setTeamType] = useState<string>('TWO_TO_TWO');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isRandomLoading, setIsRandomLoading] = useState<boolean>(false);
   const [ourTeamData, setOurTeamData] = useState<OurTeamType | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,32 +72,17 @@ const Meeting22 = () => {
     navigate('/login');
   };
 
-  const handleHelpClick = () => {
-    navigate('/help');
-  };
-  const handleJoinClick = () => {
-    setIsModalOpen(true);
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-  const handleConfirm = () => {
-    setIsModalOpen(false);
-    setIsRandomLoading(true);
-  };
-
   return (
-    <>  <NavigationBar />
-    {!isLoggedIn && (
-      <LoginPopUp
-        onClose={handleLogin} 
-      />
-    )}
-        <Meeting22Layout>
-          <Meeting22Title>팀 갤러리</Meeting22Title>
-          <TypeButton setSelectedTeamType={setTeamType}/>
-          <Meeting22Container>
-           {teamType !== 'Random' ? (
+    <>  
+      <NavigationBar />
+      {!isLoggedIn && (
+        <LoginPopUp onClose={handleLogin} />
+      )}
+      <S.Meeting22Layout>
+        <S.Meeting22Title>팀 갤러리</S.Meeting22Title>
+        <TypeButton setSelectedTeamType={setTeamType} />
+        <S.Meeting22Container>
+          {teamType !== 'Random' ? (
             <>
               <MakeTeam teamType={teamType} ourTeamData={ourTeamData} />
               {isLoading ? (
@@ -112,16 +92,10 @@ const Meeting22 = () => {
               )}
             </>
           ) : (
-            <>
-              <MakeTeamBox isRandomLoading={isRandomLoading}/>
-              <Help isRandomLoading={!isRandomLoading} onClick={handleHelpClick} />
-              <TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : 2개</TicketCount>
-              <JoinRandomMeetingButton isRandomLoading={isRandomLoading} onClick={handleJoinClick} />
-              {isModalOpen && <Modal onClose={handleCloseModal} onConfirm={handleConfirm} />}
-            </>
+            <MeetingRandomMain />
           )}
-          </Meeting22Container>
-        </Meeting22Layout>  
+        </S.Meeting22Container>
+      </S.Meeting22Layout>  
     </>
   );
 };
