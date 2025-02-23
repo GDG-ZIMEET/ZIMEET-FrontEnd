@@ -26,15 +26,15 @@ export const LogoContainer = styled.div`
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  padding: 3% 0;
-  width: 100%;
+  padding: 14% 0 0 0;
+  width: 100%; height: 7%;
   position: absolute;
   z-index: 2;
 `;
 
 export const ZimeetLogo = styled(I.ZimeetLogo) `
   margin-top:-13%;
-  width: 14%;
+  width: 12%;
 `;
 
 export const BlackContainer = styled.div`
