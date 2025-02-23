@@ -69,17 +69,17 @@ export const SelectBox = styled.div`
   display: flex;
   align-items: center;
 `;
+
 export const JoinSelect = styled.select`
   width: 63%; 
   height: 100%;
-  background-color: white;
   border: 1px solid #aaaaaa;
-  color: #8B95A1;
+  border: 1px solid ${({ isSelected }) => (isSelected ? '#022047' : '#aaaaaa')};
+  color: #022047;
   border-radius: 0.6rem;
   margin: 0;
   display: flex;
 `; 
-
 export const SelectText = styled.p`
   font-size: 16px;
   margin-left: 3%;

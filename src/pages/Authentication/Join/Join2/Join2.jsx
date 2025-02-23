@@ -1,4 +1,5 @@
 import * as S from './Styles';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { joinState } from '../../../../recoil/state/joinState';
@@ -8,19 +9,28 @@ import { LogoContainer } from 'components/Authentication/Join/LogoContainer/Logo
 
 const Join2 = () => {
   const [joinData, setJoinData] = useRecoilState(joinState);
+  const [isNicknameValid, setIsNicknameValid] = useState(true);
   const navigate = useNavigate();
 
   const isFormComplete = 
     joinData.major && 
     joinData.nickname && 
-    joinData.emoji;
+    joinData.emoji&&
+    isNicknameValid;
 
   const handleNext = () => {
     if (isFormComplete) {
       navigate('/join3'); 
     }
   };
-  
+
+  const handleNicknameChange = (e) => {
+    const value = e.target.value;
+    setJoinData({ ...joinData, nickname: value });
+    setIsNicknameValid(value.length >= 2 && value.length <= 7);
+    // console.log(isNicknameValid)
+  };
+
   return (
     <S.JoinLayout>
       <LogoContainer title="프로필 꾸미기" text="ZI밋의 컨셉은 블라인드! 그만큼 아래 내용이 중요해요." />
@@ -44,15 +54,15 @@ const Join2 = () => {
           type="text"
           placeholder="나를 표현할 닉네임을 입력해주세요"
           value={joinData.nickname}
-          onChange={(e) => setJoinData({ ...joinData, nickname: e.target.value })}
+          onChange={handleNicknameChange}
         />
-        
+        {!isNicknameValid && <S.ErrorMessage>2글자 이상 7글자 이하로 작성해주세요.</S.ErrorMessage>}
         <S.EmojiContainer>
           <S.JoinText>이모지</S.JoinText>
           <S.EmojiText>이모지는 프로필 사진 대신 쓰여요. <br />
           아래 동그라미를 터치해서 이모지를 변경할 수 있어요.</S.EmojiText>
-          <S.CircleWrap onClick={() => navigate('/selectemoji')}>
-            <S.EmojiWrap>
+          <S.CircleWrap>
+            <S.EmojiWrap onClick={() => navigate('/selectemoji')}>
               <S.TossEmoji>
                 <img src={getImageByEmoji(joinData.emoji)} alt={joinData.emoji} />
               </S.TossEmoji>
