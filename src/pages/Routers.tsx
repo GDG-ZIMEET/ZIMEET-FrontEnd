@@ -14,9 +14,6 @@ import Chatting from './Chatting/Chatting/Chatting';
 import ChattingInventory from './Chatting/ChattingInventory/ChattingInventory';
 import Meeting22 from './Meeting22/Meeting22';
 import TeamMaking from './TeamMaking/TeamMaking';
-import MeetingRandom from './MeetingRandom/MeetingRandom';
-import MeetingRoading from './MeetingRandom/MeetingRoading/MeetingRoading';
-import Help from './MeetingRandom/Help/Help';
 import Meeting from './NonMember/Meeting/Meeting';
 import ZimeetIntroduct from './Introduct/ZimeetIntroduct/ZimeetIntroduct';
 import GdgocIntroduct from './Introduct/GdgocIntroduct/GdgocIntroduct';
@@ -50,9 +47,6 @@ const Routers: React.FC = () => {
       <Route path="/meeting22" element={<Meeting22 />} />
       <Route path="/teamMaking" element={<TeamMaking />} />
       <Route path="/nonmember-Meeting" element={<Meeting />} />
-      <Route path="/meeting-random" element={<MeetingRandom />} />
-      <Route path="/meetingRoading" element={<MeetingRoading />} />
-      <Route path="/help" element={<Help />} />
       <Route path="/teamintro/:teamId" element={<TeamIntro />} />
       <Route path="/ourteamintro" element={<OurTeamIntro />} />
     </Routes>
