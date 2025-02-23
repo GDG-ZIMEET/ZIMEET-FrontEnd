@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const QnAContainer = styled.div`
     font-family: Pretendard;
     width: 90%;
-    padding: 35% 0 10% 0;
+    padding: ${({ isLoggedIn }) => (isLoggedIn ? '35% 0 10% 0' : '5% 0 10% 0')}; 
 `;
 
 export const Title = styled.p`
@@ -36,4 +36,3 @@ export const MoveBtn = styled.button`
     padding-bottom: 2%;
     font-weight: 700;
 `;
-
