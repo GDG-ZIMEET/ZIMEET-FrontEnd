@@ -1,13 +1,14 @@
 import styled from 'styled-components';
+import * as I from 'assets/Icons';
 
 export const MakeTeamLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1% 0 0 0; 
-  height: 53%;
-  margin-top: 5%;
+  height: 70%;
+  width: 94%;
+  margin: 5% 0 0 3%;
 `;
 
 export const explainComponent = styled.div`
@@ -17,32 +18,31 @@ export const explainComponent = styled.div`
   width: 100%;
 `;
 
-export const line1 = styled.div<{ showExplain: boolean }>`
+export const line1 = styled.div<{ $isRandomLoading: boolean }>`
   font-size: 14px;
   width: 100%;
   color: #000000;
   font-weight: bold;
-  opacity: ${({ showExplain }) => (showExplain ? '1' : '0')};
+  opacity: ${({ $isRandomLoading }) => ($isRandomLoading ? '1' : '0')};
   transition: opacity 0.3s ease-in-out;
   margin-bottom: 2%;
 `;
 
-export const Line2 = styled.div<{ showExplain: boolean }>`
+export const Line2 = styled.div<{ $isRandomLoading: boolean }>`
   font-size: 14px;
   width: 100%;
   color: #000000;
-  opacity: ${({ showExplain }) => (showExplain ? '1' : '0')};
+  opacity: ${({ $isRandomLoading }) => ($isRandomLoading ? '1' : '0')};
   transition: opacity 0.3s ease-in-out;
 `;
 
 
-export const GirlComponent = styled.div<{ show: boolean }>`
+export const GirlComponent = styled.div`
   font-size: 15px;
   color: #000000;
   margin-bottom: 2%;
   font-weight: bold;
   align-self: flex-start;
-  visibility: ${props => (props.show ? 'visible' : 'hidden')};
 `;
 
 export const TeamRow = styled.div`
@@ -52,13 +52,12 @@ export const TeamRow = styled.div`
   justify-content: space-between; 
 `;
 
-export const BoyComponent = styled.div<{ show: boolean }>`
+export const BoyComponent = styled.div`
   font-size: 15px;
   color: #000000;
   margin-bottom: 2%;
   font-weight: bold;
   align-self: flex-start;
-  visibility: ${props => (props.show ? 'visible' : 'hidden')};
 `;
 
 export const FirstPerson = styled.div`
@@ -71,11 +70,8 @@ export const FirstPerson = styled.div`
   align-items: center;
   margin: 0 2.5% 0 0;
   border-radius: 9%;
-  font-family: 'TossFaceFontMac', sans-serif;
-
-  @media (min-width: 430px) { 
-    font-size: 52px;
-    height: 16 0%;
+  img {
+    width: 58%;
   }
 `;
 
@@ -93,9 +89,12 @@ export const SixthPerson = styled(FirstPerson)`
   margin-right: 0;
 `;
 
-export const Loding = styled.div`
-  font-size: 35px;
-  margin-top: 4.5%;
-  align-self: center;
-  font-family: 'TossFaceFontMac', sans-serif;
+export const LoadingBefore = styled(I.RandomBefore)`
+  margin-top: 2.5%;
+  height: 30%;
+`;
+
+export const LoadingAfter = styled(I.RandomAfter)`
+  margin-top: 2.5%;
+  height: 30%;
 `;

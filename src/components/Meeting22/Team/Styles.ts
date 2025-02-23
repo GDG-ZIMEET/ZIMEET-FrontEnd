@@ -81,11 +81,12 @@ export const CertificationIcon = styled(Certification)`
 export const MajorBox = styled.div`
 display: flex;
 height: 50%;
+width: 100%;
 align-items: center;
 justify-content: center;
 font-size: 12px;
 font-weight: 400;
-line-height: 30px;
+line-height: 1px;
 `;
 
 export const MajorDisplay = styled.div`
@@ -96,6 +97,7 @@ export const MajorDisplay = styled.div`
   line-height: 30px;
   word-spacing: 1%;
   color: #0;
+  line-height: 16px;
   font-family: 'Pretendard';
 `;
 
