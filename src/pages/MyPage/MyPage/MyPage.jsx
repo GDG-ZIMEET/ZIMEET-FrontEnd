@@ -71,7 +71,7 @@ const MyPage = () => {
                     <S.MyInfoText>{myProfileData.data.level === 'LIGHT' ? 'ZI밋 라이트 등급' : myProfileData.data.level === 'PLUS' ? 'ZI밋 플러스 등급' : ''}</S.MyInfoText>
                   </S.MyInfo>
                   <S.MyInfoModifyWrapper>
-                     <S.EditMyInfo />
+                    <S.EditMyInfo onClick={() => navigate('/modifyProfile')} />
                   </S.MyInfoModifyWrapper>
                 </S.MyInfoContainer>
                 
