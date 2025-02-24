@@ -12,7 +12,7 @@ const MeetingRandomMain: React.FC = () => {
   const navigate = useNavigate();
   
   const handleHelpClick = () => {
-    navigate('/help');
+    navigate('/notion/termsOfService');
   };
 
   const handleJoinClick = () => {

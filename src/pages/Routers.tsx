@@ -22,6 +22,7 @@ import SentHi from './Chatting/SentHi/SentHi';
 import TeamIntro from './TeamIntro/TeamIntro';
 import OurTeamIntro from './OurTeamIntro/OurTeamIntro';
 import ReceivedHiTeam from './Chatting/ReceivedHiTeam/ReceivedHiTeam';
+import Notion from './Notion/NotionMain';
 
 const Routers: React.FC = () => {
   return (
@@ -49,6 +50,15 @@ const Routers: React.FC = () => {
       <Route path="/nonmember-Meeting" element={<Meeting />} />
       <Route path="/teamintro/:teamId" element={<TeamIntro />} />
       <Route path="/ourteamintro" element={<OurTeamIntro />} />
+      {/* Notion */}
+      <Route path="/notion/randomMeetingHelp" element={<Notion />} />
+      <Route path="/notion/personalInfoPolicy" element={<Notion />} />
+      <Route path="/notion/termsOfService" element={<Notion />} />
+      <Route path="/notion/faq" element={<Notion />} />
+      <Route path="/notion/notificationSetting" element={<Notion />} />
+      <Route path="/notion/meetingGuide" element={<Notion />} />
+      <Route path="/notion/randomMeetingGuide" element={<Notion />} />
+      <Route path="/notion/developmentTeam" element={<Notion />} />
     </Routes>
   );
 };
