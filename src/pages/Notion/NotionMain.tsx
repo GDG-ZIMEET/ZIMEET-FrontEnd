@@ -49,30 +49,30 @@ const NotionMain: React.FC = () => {
                         height="900" />
             );
             break;
-            case '/notion/meetingGuide':
-        headerTitle = "미팅 잘하는 법";
-        component = (
-            <iframe src="" 
+        case '/notion/meetingGuide':
+            headerTitle = "미팅 잘하는 법";
+            component = (
+                <iframe src="" 
                         width="100%" 
                         height="900" />
-        );
-        break;
+            );
+            break;
         case '/notion/randomMeetingGuide':
-        headerTitle = "랜덤미팅 참여 방법";
-        component = (
-            <iframe src="" 
+            headerTitle = "랜덤미팅 참여 방법";
+            component = (
+                <iframe src="" 
                         width="100%" 
                         height="900" />
-        );
-        break;  
+            );
+            break;  
         case '/notion/developmentTeam':
-        headerTitle = "ZI밋 개발팀 소개";
-        component = (
-            <iframe src="" 
+            headerTitle = "ZI밋 개발팀 소개";
+            component = (
+                <iframe src="" 
                         width="100%" 
                         height="900" />
-        );
-        break;   
+            );
+            break;   
         default:
             headerTitle = "로딩 실패";
             component = <div>로딩 실패</div>;
