@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/zimeet_icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -37,6 +37,10 @@
       OneSignalDeferred.push(async function(OneSignal) {
         await OneSignal.init({
           appId: "55e07c17-74b9-4a7b-b954-99b697acf9af",
+          serviceWorkerPath: "/OneSignalSDKWorker.js",
+          notifyButton: {
+            enable: true
+          }
         });
       });
     </script>
