@@ -3,9 +3,21 @@ import * as I from '../../../../assets/Icons';
 
 export const TeamComponent = styled.div`
   width: 102%;
-  height: 80%;
+  height: 79%;
   margin-left: -1%;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+`;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `;
 
 export const NoTeamsMessageContainer = styled.div`
@@ -35,7 +47,7 @@ export const Team = styled.div`
   margin: 3% auto;
   background-color: #FFFFFF;
   border-radius: 8px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
 `;
 
 export const TeamHeader = styled.div`
@@ -69,17 +81,20 @@ export const JoinMemberBox = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-`;
-
-export const PinkCircle = styled(I.PinkCircle)`
-  width: 120%;
-  height: 100%;
-  position: absolute;
+  margin-right: -5%;
 `;
 
 export const JoinMember = styled.div`
-  font-size: 26px;
-  position: relative;
+  height: 60%;
+ align-items: center;
+ justify-content: center;
+ position: relative;
+ display: flex;
+  aspect-ratio:1;
+  background-color: rgba(234, 67, 53, 0.08); 
+  border-radius: 50%;
+  img{
+    width: 60%;}
 `;
 
 export const Introduction = styled.div`
