@@ -1,52 +1,99 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
-import { teams } from './TeamData';
+import { getImageByEmoji } from 'utils/IconMapper';
+import { getchattingRoomList } from 'api/Chatting/GetChattingRoomList';
+import { ChattingRoomType } from 'recoil/type/Chatting/ChattingRoomListType';
+import zimeetLoading from '../../../../assets/icon/zimeetLoding.svg';
 
 const Teams: React.FC = () => {
   const navigate = useNavigate();
+  const [chattingRoomList, setchattingRoomList] = useState<ChattingRoomType[] | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleTeamClick = (id: string) => {
-    if (id === '1') {
-      navigate('/chatting');
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchchattingRoomList = async () => {
+      try {
+        const response = await getchattingRoomList();
+        if (response) {
+          setchattingRoomList(response.data);
+        } else {
+          setchattingRoomList(null);}
+      } catch (error) {
+        console.error('Error fetching chatting room list:', error);
+        setchattingRoomList(null);
+      } finally {
+        setIsLoading(false);
+      }};
+    fetchchattingRoomList();
+  }, []);
+
+  const handleTeamClick = (id: number) => {
+    navigate(`/chatting/${id}`);
+  };
+
+  //시간계산
+  const formatWriteTime = (writeTime: string) => {
+    const date = new Date(writeTime);
+    const now = new Date();
+    const isToday = date.toDateString() === now.toDateString();
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    
+    //오늘 날짜인 경우
+    const period = hours < 12 ? '오전' : '오후';
+    if (hours > 12) {
+        hours -= 12; 
+    } else if (hours === 0) {
+        hours = 12; 
+    }
+    const formattedTime = `${period} ${hours}시 ${formattedMinutes}분`;
+    //아닌경우 
+    const formattedTimeNotToday = `${hours}:${formattedMinutes}`;
+
+    if (isToday) {
+      return formattedTime;
+    } else {
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      return `${month}/${day} ${formattedTimeNotToday}`;
     }
   };
 
   return (
     <S.TeamComponent>
-      {teams.length === 0 ? (
-        <S.NoTeamsMessageContainer>
-          <S.ZimeetLogo />
-          <S.NoTeamsMessage>매력적인 팀을 만들어서 하이를 보내거나, <br /> 받은 하이를 수락하면 채팅방이 열려요!</S.NoTeamsMessage>
-        </S.NoTeamsMessageContainer>
+      {isLoading ? (
+      <S.LoadingContainer>
+        <img src={zimeetLoading} alt="Loading..." />
+      </S.LoadingContainer>
+      ) : chattingRoomList === null ? (
+      <S.NoTeamsMessageContainer>
+        <S.ZimeetLogo />
+        <S.NoTeamsMessage>매력적인 팀을 만들어서 하이를 보내거나, <br /> 받은 하이를 수락하면 채팅방이 열려요!</S.NoTeamsMessage>
+      </S.NoTeamsMessageContainer>
       ) : (
-        teams.map(team => (
-          <S.Team key={team.id} onClick={() => handleTeamClick(team.id)}>
-            <S.TeamHeader>
-              <S.TeamName>{team.name} 팀</S.TeamName>
-              <S.WriteTime>{team.writeTime}</S.WriteTime>
-            </S.TeamHeader>
-            <S.JoinMembersAndIntroduction>
-              <S.JoinMembers>
-                <S.JoinMemberBox>
-                  <S.PinkCircle />
-                  <S.JoinMember>{team.join1}</S.JoinMember>
-                </S.JoinMemberBox>
-                <S.JoinMemberBox>
-                  <S.PinkCircle />
-                  <S.JoinMember>{team.join2}</S.JoinMember>
-                </S.JoinMemberBox>
-                {team.joinType === '3to3' && (
-                  <S.JoinMemberBox>
-                    <S.PinkCircle />
-                    <S.JoinMember>{team.join3}</S.JoinMember>
-                  </S.JoinMemberBox>
-                )}
-              </S.JoinMembers>
-              <S.Introduction>{team.introduction}</S.Introduction>
-            </S.JoinMembersAndIntroduction>
-          </S.Team>
-        ))
+      chattingRoomList.map(team => (
+        <S.Team key={team.chatRoomId.toString()} onClick={() => handleTeamClick(team.chatRoomId)}>
+        <S.TeamHeader>
+          <S.TeamName>{team.chatRoomName} 팀</S.TeamName>
+          <S.WriteTime>{formatWriteTime(team.lastestTime)}</S.WriteTime>
+        </S.TeamHeader>
+        <S.JoinMembersAndIntroduction>
+          <S.JoinMembers>
+          {team.userProfiles.map((profile) => (
+            <S.JoinMemberBox key={profile.userId}>
+            <S.JoinMember>
+              <img src={getImageByEmoji(profile.emoji)} alt={profile.emoji} />
+            </S.JoinMember>
+            </S.JoinMemberBox>
+          ))}
+          </S.JoinMembers>
+          <S.Introduction>{team.latestMessage}</S.Introduction>
+        </S.JoinMembersAndIntroduction>
+        </S.Team>
+      ))
       )}
     </S.TeamComponent>
   );
