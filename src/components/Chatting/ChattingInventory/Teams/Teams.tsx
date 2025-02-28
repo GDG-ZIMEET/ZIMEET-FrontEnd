@@ -75,7 +75,7 @@ const Teams: React.FC = () => {
         <S.Team key={team.chatRoomId.toString()} onClick={() => handleTeamClick(team.chatRoomId)}>
         <S.TeamHeader>
           <S.TeamName>{team.chatRoomName} 팀</S.TeamName>
-          <S.WriteTime>{formatWriteTime(team.lastestTime)} <b>&gt;</b></S.WriteTime>
+          <S.WriteTime>{formatWriteTime(team.lastestTime)}</S.WriteTime>
         </S.TeamHeader>
         <S.JoinMembersAndIntroduction>
           <S.JoinMembers>

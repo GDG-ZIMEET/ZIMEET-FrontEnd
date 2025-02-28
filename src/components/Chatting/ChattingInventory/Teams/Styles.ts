@@ -71,10 +71,10 @@ export const WriteTime = styled.div`
   font-size: 10px;
   color: #FA2D4C;
 
-  b {
-    color: #000000;
-    font-size: 12px;
-    margin-left: 2px;
+  &::after {
+    font-size: 14px;
+    content: ' >';
+    color: #000000; 
   }
 `;
 
