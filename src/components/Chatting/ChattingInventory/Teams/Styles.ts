@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as I from '../../../../assets/Icons';
+import zimeetLoading from '../../../../assets/icon/zimeetLoding.svg';
 
 export const TeamComponent = styled.div`
   width: 102%;
@@ -13,11 +14,15 @@ export const TeamComponent = styled.div`
   scrollbar-width: none;
 `;
 
-export const LoadingContainer = styled.div`
+export const LoadingContainer = styled.img.attrs({
+  src: zimeetLoading
+})`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 60%;
+  margin: 0 auto;
 `;
 
 export const NoTeamsMessageContainer = styled.div`

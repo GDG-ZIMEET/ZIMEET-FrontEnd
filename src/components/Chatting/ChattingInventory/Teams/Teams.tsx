@@ -4,7 +4,6 @@ import * as S from './Styles';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { getchattingRoomList } from 'api/Chatting/GetChattingRoomList';
 import { ChattingRoomType } from 'recoil/type/Chatting/ChattingRoomListType';
-import zimeetLoading from '../../../../assets/icon/zimeetLoding.svg';
 
 const Teams: React.FC = () => {
   const navigate = useNavigate();
@@ -64,10 +63,8 @@ const Teams: React.FC = () => {
 
   return (
     <S.TeamComponent>
-      {isLoading ? (
-      <S.LoadingContainer>
-        <img src={zimeetLoading} alt="Loading..." />
-      </S.LoadingContainer>
+      {!isLoading ? (
+      <S.LoadingContainer />
       ) : chattingRoomList === null ? (
       <S.NoTeamsMessageContainer>
         <S.ZimeetLogo />
