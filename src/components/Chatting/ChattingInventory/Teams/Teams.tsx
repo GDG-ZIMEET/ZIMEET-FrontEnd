@@ -63,7 +63,7 @@ const Teams: React.FC = () => {
 
   return (
     <S.TeamComponent>
-      {!isLoading ? (
+      {isLoading ? (
       <S.LoadingContainer />
       ) : chattingRoomList === null ? (
       <S.NoTeamsMessageContainer>

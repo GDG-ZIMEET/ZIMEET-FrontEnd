@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as I from '../../../../assets/Icons';
+import zimeetLoading from '../../../../assets/icon/zimeetLoding.svg';
 
 export const TeamComponent = styled.div`
   width: 102%;
@@ -12,6 +13,17 @@ export const TeamComponent = styled.div`
   &::-webkit-scrollbar {
    display: none;
   }
+`;
+
+export const LoadingContainer = styled.img.attrs({
+  src: zimeetLoading
+})`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 60%;
+  margin: 0 auto;
 `;
 
 export const NoTeamsMessageContainer = styled.div`
@@ -79,20 +91,23 @@ export const JoinMemberBox = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  position: relative;
   margin-right: -5%;
 `;
 
 
 export const JoinMember = styled.div`
-  width: 100%;
-  aspect-ratio: 1;
+  height: 60%;
+ align-items: center;
+ justify-content: center;
+ position: relative;
+ display: flex;
+  aspect-ratio:1;
+  background-color: rgba(234, 67, 53, 0.08); 
   border-radius: 50%;
-  background-color: rgba(234, 67, 53, 0.08);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 26px;
-  position: relative;
+  img{
+    width: 60%;}
 `;
 
 export const Introduction = styled.div`

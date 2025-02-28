@@ -70,6 +70,12 @@ export const TeamName = styled.div`
 export const WriteTime = styled.div`
   font-size: 10px;
   color: #FA2D4C;
+
+  &::after {
+    font-size: 14px;
+    content: ' >';
+    color: #000000; 
+  }
 `;
 
 export const JoinMembers = styled.div`
