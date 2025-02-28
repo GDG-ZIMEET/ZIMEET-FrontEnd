@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { getsendHi } from 'api/Hi/GetsendHi';
-import { sendHiType } from 'recoil/type/Hi/sendHiType';
+import { HiType } from 'recoil/type/Hi/HiType';
 
 const Teams: React.FC = () => {
-    const [sendHiList, setsendHiList] = useState<sendHiType[] | null>(null);
+    const [sendHiList, setsendHiList] = useState<HiType[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {

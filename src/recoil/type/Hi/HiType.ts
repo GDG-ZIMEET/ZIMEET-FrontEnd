@@ -4,7 +4,7 @@ export interface Users {
     music: string;
 }
   
-export interface sendHiType {
+export interface HiType {
     myTeamId: number;
     teamId: number;
     teamName: string;
@@ -13,9 +13,9 @@ export interface sendHiType {
     dateTime: string;
 }
   
-export interface sendHiResponseType {
+export interface HiResponseType {
     status: string;
     code: string;
     message: string;
-    data: sendHiType[];
+    data: HiType[];
 }
