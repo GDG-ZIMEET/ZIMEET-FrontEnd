@@ -6,6 +6,7 @@ import { getreceiveHi } from 'api/Hi/GetreceiveHi';
 import { HiType } from 'recoil/type/Hi/HiType';
 
 const Teams: React.FC = () => {
+  const navigate = useNavigate();
   const [receiveHiList, setreceiveHiList] = useState<HiType[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -29,6 +30,10 @@ const Teams: React.FC = () => {
     fetchreceiveHiList();
   }, []);
 
+  const handleTeamClick = () => {
+    navigate(`/receiveHi/team`);
+  };
+
   const emoji = ["Chick", "Clover", "Dog"];
   const major = ["바메화공", "ICT", "경영"];
   const music = ["발라드", "댄스", "힙합"];
@@ -44,7 +49,7 @@ const Teams: React.FC = () => {
         </S.NoTeamsMessageContainer>
       ) : (
         receiveHiList.map(team => (
-          <S.Team key={team.teamId} >
+          <S.Team key={team.teamId} onClick={() => handleTeamClick()} >
             <S.TeamHeader>
               <S.TeamName>{team.teamName} 팀</S.TeamName>
               <S.WriteTime>{team.dateTime}</S.WriteTime>
