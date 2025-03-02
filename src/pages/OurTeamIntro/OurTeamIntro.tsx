@@ -55,6 +55,7 @@ const OurTeamIntro = () => {
             key={user.userId}
             profileData={user}
             gender={ourteamDetailData.gender}
+            isPremium={true}
           />
         ))}
       </S.OurTeamIntroContainer>

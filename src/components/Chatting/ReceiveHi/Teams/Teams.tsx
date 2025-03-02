@@ -37,8 +37,6 @@ const Teams: React.FC = () => {
     }
   };
 
-  const emoji = ["Chick", "Clover", "Dog"];
-  const major = ["바메화공", "ICT", "경영"];
   const music = ["발라드", "댄스", "힙합"];
   
   return (
@@ -59,21 +57,23 @@ const Teams: React.FC = () => {
             </S.TeamHeader>
             <S.JoinMembersAndIntroduction>
               <S.JoinMembers>
-                {emoji.map((profile, index) => (
+                {team.userProfileDtos.map((profile, index) => (
                   <S.JoinMemberBox key={index}>
                     <S.JoinMember>
-                      <img src={getImageByEmoji(profile)} alt={profile} />
+                      <img src={getImageByEmoji(profile.emoji)} alt={profile.emoji} />
                     </S.JoinMember>
                   </S.JoinMemberBox>
                 ))}
               </S.JoinMembers>
               <S.Introduction>
                 <S.Major>
-                  {major.join(' / ')} | {team.age}세
+                  {team.userProfileDtos.map((profile) => profile.major).join(' / ')} | {team.age}세
                 </S.Major>
                 <S.MusicStylesContainer>
                   <S.MusicEmoji/>
-                  <S.MusicStyles>{music.join(', ')}</S.MusicStyles>
+                  <S.MusicStyles>
+                    {team.userProfileDtos.map((profile) => profile.music).join(', ')}
+                  </S.MusicStyles>
                 </S.MusicStylesContainer>
               </S.Introduction>
             </S.JoinMembersAndIntroduction>

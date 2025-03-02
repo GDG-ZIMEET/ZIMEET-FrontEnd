@@ -72,9 +72,9 @@ const MyProfile: React.FC<
         {isPremium ? (
             <>
               <ProfileDetail label="MBTI" value={profileData.mbti} gender={gender}/>
-              <ProfileDetail label="스타일" value={profileData.style} gender={gender}/>
-              <ProfileDetail label="이상형" value={profileData.idealType} gender={gender}/>
-              <ProfileDetail label="선호나이" value={profileData.idealAge} gender={gender}/>
+              <ProfileDetail label="스타일" value={mappingStyle(profileData.style)} gender={gender}/>
+              <ProfileDetail label="이상형" value={mappingFace(profileData.idealType)} gender={gender}/>
+              <ProfileDetail label="선호나이" value={mappingAge(profileData.idealAge)} gender={gender}/>
             </>
           ) : (
             <>
