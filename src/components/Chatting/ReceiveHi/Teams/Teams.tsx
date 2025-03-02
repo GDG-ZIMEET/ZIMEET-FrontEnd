@@ -33,8 +33,8 @@ const Teams: React.FC = () => {
   const handleTeamClick = (teamId: number) => {
     const selectedTeam = receiveHiList?.find(team => team.teamId === teamId);
     if (selectedTeam) {
-    navigate(`/teamintro/${teamId}`, { state: { team: selectedTeam, from: "receiveHi" } });
-  }
+    navigate(`/teamintro/${teamId}`);
+    }
   };
 
   const emoji = ["Chick", "Clover", "Dog"];

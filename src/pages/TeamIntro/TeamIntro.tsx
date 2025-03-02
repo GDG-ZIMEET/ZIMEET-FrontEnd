@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import { isPremiumState } from '../../recoil/state/authStore'; 
 import * as S from './Styles'; 
 import Header from 'components/TeamIntro/Header/Header';
-import MyProfile from 'components/TeamIntro/Profile/MyProfile';
+import MyProfile from 'components/Common/Profile/MyProfile';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import Heart from 'components/TeamIntro/Button/Heart/Heart';
 import SendQuestion from 'components/TeamIntro/Modal/SendQuestion/SendQuestion';
@@ -22,7 +22,7 @@ const TeamIntro = () => {
   const [isHiSent, setIsHiSent] = useState(false); 
   const { teamId } = useParams<{ teamId: string }>();
   const location = useLocation();
-  const { teamType, HiType, from } = location.state || {};
+  const { teamType, from } = location.state || {};
   const [teamDetailData, setTeamDetailData] = useState<TeamData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isPremium, setIsPremium] = useRecoilState(isPremiumState); 
@@ -58,7 +58,7 @@ const TeamIntro = () => {
         setIsLoading(false);
       }
     };
-
+      
     fetchDataAndCheckPremium();
   }, [teamId, setIsPremium]);
 
@@ -123,7 +123,8 @@ const closeRefusedModal = () => {
           key={user.userId} 
           profileData={user}
           gender={teamDetailData.gender}
-          isPremium={isPremium} />
+          isPremium={isPremium}
+        />
         ))}
       </S.TeamIntroContainer>
       {isHiSent
