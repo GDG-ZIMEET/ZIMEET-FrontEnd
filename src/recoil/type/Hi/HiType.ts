@@ -8,7 +8,7 @@ export interface HiType {
     myTeamId: number;
     teamId: number;
     teamName: string;
-    teamList: Users[];
+    userProfileDtos: Users[];
     age: number;
     dateTime: string;
 }

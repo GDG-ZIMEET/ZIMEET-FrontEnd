@@ -30,8 +30,11 @@ const Teams: React.FC = () => {
     fetchreceiveHiList();
   }, []);
 
-  const handleTeamClick = () => {
-    navigate(`/receiveHi/team`);
+  const handleTeamClick = (teamId: number) => {
+    const selectedTeam = receiveHiList?.find(team => team.teamId === teamId);
+    if (selectedTeam) {
+    navigate(`/teamintro/${teamId}`, { state: { team: selectedTeam, from: "receiveHi" } });
+  }
   };
 
   const emoji = ["Chick", "Clover", "Dog"];
@@ -49,7 +52,7 @@ const Teams: React.FC = () => {
         </S.NoTeamsMessageContainer>
       ) : (
         receiveHiList.map(team => (
-          <S.Team key={team.teamId} onClick={() => handleTeamClick()} >
+          <S.Team key={team.teamId} onClick={() => handleTeamClick(team.teamId)} >
             <S.TeamHeader>
               <S.TeamName>{team.teamName} 팀</S.TeamName>
               <S.WriteTime>{team.dateTime}</S.WriteTime>
