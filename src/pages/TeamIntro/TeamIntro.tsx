@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { isPremiumState } from '../../recoil/state/authStore'; 
 import * as S from './Styles'; 
 import Header from 'components/TeamIntro/Header/Header';
@@ -17,6 +17,8 @@ import AcceptHiModal from "components/Chatting/ReceiveHi/Modal/AcceptHiModal/Acc
 import AcceptedHiModal from "components/Chatting/ReceiveHi/Modal/AcceptedHiModal/AcceptedHiModal";
 import RefuseHiModal from "components/Chatting/ReceiveHi/Modal/RefuseHiModal/RefuseHiModal";
 import RefusedHiModal from "components/Chatting/ReceiveHi/Modal/RefusedHiModal/RefusedHiModal";
+import patchrefuseHi from 'api/Hi/PatchrefuseHi';
+import { ourteamIds } from 'recoil/state/ourTeamIds';
 
 const TeamIntro = () => {
   const [isHiSent, setIsHiSent] = useState(false); 
@@ -26,6 +28,7 @@ const TeamIntro = () => {
   const [teamDetailData, setTeamDetailData] = useState<TeamData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isPremium, setIsPremium] = useRecoilState(isPremiumState); 
+  const ourTeamIdsValue = useRecoilValue(ourteamIds);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showSend, setShowSend] = useState(false);
   const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
@@ -35,6 +38,7 @@ const TeamIntro = () => {
   
   const navigate = useNavigate(); 
 
+  //팀 상세데이터 가져오기
   useEffect(() => {
     const fetchDataAndCheckPremium = async () => {
       setIsLoading(true);
@@ -105,9 +109,26 @@ const closeRefuseModal = () => {
     setIsRefuseModalOpen(false);
 };
 
-const openRefusedModal = () => {
-    setIsRefuseModalOpen(false);
-    setIsRefusedModalOpen(true);
+const openRefusedModal = async () => {
+    if (!teamDetailData) return;
+
+    try {
+      if (!ourTeamIdsValue) {
+        console.error("우리팀이 없습니다.");
+        return;
+      }
+      const toId = teamDetailData.userList.length === 3 ? ourTeamIdsValue[1] : ourTeamIdsValue[0];
+      
+      await patchrefuseHi({
+          toId: toId,
+          fromId: teamDetailData.teamId,  
+      });
+
+      setIsRefuseModalOpen(false);
+      setIsRefusedModalOpen(true);
+    } catch (error) {
+      console.error("하이 거절 API 요청 실패:", error);
+  }
 };
 const closeRefusedModal = () => {
     setIsRefusedModalOpen(false);

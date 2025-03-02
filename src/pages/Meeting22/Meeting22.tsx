@@ -13,7 +13,7 @@ import { getOurTeam } from '../../api/Meeting/GetourTeam';
 import { NonLoginDataTwoToTwo, NonLoginDataThreeToThree } from '../../data/NonLoginData';
 import { OurTeamType } from '../../recoil/type/Meeting/ourTeamType';
 import MeetingRandomMain from '../../components/MeetingRandom/MeetingRandomMain';
-
+import { ourteamIds } from '../../recoil/state/ourTeamIds';
 
 const Meeting22 = () => {
   const navigate = useNavigate();
@@ -23,7 +23,8 @@ const Meeting22 = () => {
   const [teamType, setTeamType] = useState<string>('TWO_TO_TWO');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ourTeamData, setOurTeamData] = useState<OurTeamType | null>(null);
-
+  const [teamIds, setTeamIds ] = useRecoilState(ourteamIds);
+  
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -50,6 +51,16 @@ const Meeting22 = () => {
         if (isLoggedIn && teamType !== 'Random') {
           const response = await getOurTeam(teamType);
           setOurTeamData(response?.data || null);
+          setTeamIds((prev) => {
+            if (!response?.data) return prev;
+            const newTeamIds: number[] = prev ? [...prev] : [0, 0];
+            if (teamType === 'TWO_TO_TWO') {
+              newTeamIds[0] = response.data.teamId;
+            } else if (teamType === 'THREE_TO_THREE') {
+              newTeamIds[1] = response.data.teamId;
+            }
+            return newTeamIds;
+          });
         } else {
           if (teamType === 'TWO_TO_TWO') {
             setOurTeamData(null);
