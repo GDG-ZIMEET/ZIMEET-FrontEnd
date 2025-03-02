@@ -11,7 +11,6 @@ export class Amplitude {
 
         setDeviceId(deviceId);
 
-        // 저장된 userId 가져오기
         const userId = localStorage.getItem('amplitude_user_id');
         if (userId) {
             setUserId(userId);
