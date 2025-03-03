@@ -162,7 +162,15 @@ const closeRefusedModal = () => {
         )))}
       <NavigationBar />
       
-      {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} teamName={teamDetailData?.name || ''} teamType={teamType} />}
+      {isModalOpen && teamDetailData?.teamId !== undefined && (
+        <SendQuestion
+          onClose={closeModal}
+          onConfirm={confirmModal}
+          teamName={teamDetailData?.name || ''}
+          teamId={teamDetailData.teamId}
+          teamType={teamType}
+        />
+      )}
       {showSend && <Send onClose={closeSendModal} />}
       
       {isAcceptModalOpen && <AcceptHiModal onClose={closeAcceptModal} onConfirm={openAcceptedModal} teamName={teamDetailData?.name || ''}/>}
