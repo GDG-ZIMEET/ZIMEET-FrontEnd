@@ -13,8 +13,7 @@ interface SendQuestionProps {
   teamType: string;
 }
 
-const SendQuestion: React.FC<SendQuestionProps> = ({ onClose, onConfirm, teamName, teamId, teamType }) => {
-  const [showSendQuestion, setShowSendQuestion] = useState(true);  
+const SendQuestion: React.FC<SendQuestionProps> = ({ onClose, onConfirm, teamName, teamId, teamType }) => {  
   const [hiCount, setHiCount] = useState(0);
   const ourTeamIdsValue = useRecoilValue(ourteamIds);
 

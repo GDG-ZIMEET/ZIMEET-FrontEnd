@@ -19,6 +19,7 @@ import RefuseHiModal from "components/Chatting/ReceiveHi/Modal/RefuseHiModal/Ref
 import RefusedHiModal from "components/Chatting/ReceiveHi/Modal/RefusedHiModal/RefusedHiModal";
 import patchrefuseHi from 'api/Hi/PatchrefuseHi';
 import { ourteamIds } from 'recoil/state/ourTeamIds';
+import { getacceptHi } from 'api/Chatting/GetacceptHi';
 
 const TeamIntro = () => {
   const [isHiSent, setIsHiSent] = useState(false); 
@@ -35,7 +36,6 @@ const TeamIntro = () => {
   const [isRefuseModalOpen, setIsRefuseModalOpen] = useState(false);
   const [isAcceptedModalOpen, setIsAcceptedModalOpen] = useState(false);
   const [isRefusedModalOpen, setIsRefusedModalOpen] = useState(false);
-  
   const navigate = useNavigate(); 
 
   //팀 상세데이터 가져오기
@@ -93,9 +93,26 @@ const closeAcceptModal = () => {
     setIsAcceptModalOpen(false);
 };
 
-const openAcceptedModal = () => {
+const openAcceptedModal = async () => {
+  if (!teamDetailData) return;
+
+  try {
+    if (!ourTeamIdsValue) {
+      console.error("우리팀이 없습니다.");
+      return;
+    }
+    const toId = teamDetailData.userList.length === 3 ? ourTeamIdsValue[1] : ourTeamIdsValue[0];
+    const requestData = {
+      toId: toId,
+      fromId: teamDetailData.teamId
+    };
+
+    await getacceptHi(requestData);
     setIsAcceptModalOpen(false);
     setIsAcceptedModalOpen(true);
+  } catch (error) {
+    console.error("하이 수락 api 요청 실패",error);
+  }
 };
 const closeAcceptedModal = () => {
     setIsAcceptedModalOpen(false);
