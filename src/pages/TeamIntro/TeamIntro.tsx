@@ -139,25 +139,27 @@ const closeRefusedModal = () => {
     <S.TeamIntroLayout>
       <Header verification={teamDetailData?.verification ?? 0} name={teamDetailData?.name || ''}/>
       <S.TeamIntroContainer $isPremium={isPremium}>
-        {teamDetailData?.userList.map((user: User) => (
-        <MyProfile 
-          key={user.userId} 
-          profileData={user}
-          gender={teamDetailData.gender}
-          isPremium={isPremium}
-        />
-        ))}
+      {teamDetailData?.userList.map((user: User) => (
+      <MyProfile 
+        key={user.userId} 
+        profileData={user}
+        gender={teamDetailData.gender}
+        isPremium={isPremium}
+      />
+      ))}
       </S.TeamIntroContainer>
       {isHiSent
-          ? <SentHiButton/>
-          : (from === "meeting" ? (
-              <Heart onClick={openModal} /> 
-          ) : (
-              <S.ButtonWrapper>
-                <S.RefuseButton onClick={openRefuseModal}>거절</S.RefuseButton>
-                <S.Button onClick={openAcceptModal}>하이 수락하기</S.Button>
-              </S.ButtonWrapper>
-          ))}
+        ? <SentHiButton/>
+        : (from === "meeting" ? (
+          <Heart onClick={openModal} /> 
+        ) : (from === "sendHi" ?(
+        <SentHiButton/>
+        ) : (
+          <S.ButtonWrapper>
+          <S.RefuseButton onClick={openRefuseModal}>거절</S.RefuseButton>
+          <S.Button onClick={openAcceptModal}>하이 수락하기</S.Button>
+          </S.ButtonWrapper>
+        )))}
       <NavigationBar />
       
       {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} teamName={teamDetailData?.name || ''} teamType={teamType} />}

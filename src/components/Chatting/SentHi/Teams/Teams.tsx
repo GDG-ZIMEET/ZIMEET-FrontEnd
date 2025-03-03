@@ -6,6 +6,7 @@ import { getsendHi } from 'api/Hi/GetsendHi';
 import { HiType } from 'recoil/type/Hi/HiType';
 
 const Teams: React.FC = () => {
+    const navigate = useNavigate();
     const [sendHiList, setsendHiList] = useState<HiType[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -27,10 +28,13 @@ const Teams: React.FC = () => {
           fetchsendHiList();
       }, []);
       
+    const handleTeamClick = (teamId: number) => {
+    const selectedTeam = sendHiList?.find(team => team.teamId === teamId);
+    if (selectedTeam) {
+       navigate(`/teamintro/${teamId}`, { state: { from: "sendHi" } });
+    }
+    };
 
-  const emoji = ["Chick", "Clover", "Dog"];
-  const major = ["바메화공", "ICT", "경영"];
-  const music = ["발라드", "댄스", "힙합"];
     return (
         <S.TeamComponent>
             {isLoading ? (
@@ -42,28 +46,30 @@ const Teams: React.FC = () => {
                 </S.NoTeamsMessageContainer>
             ) : (
                 sendHiList.map(team => (
-                    <S.Team key={team.teamId} >
+                    <S.Team key={team.teamId} onClick={() => handleTeamClick(team.teamId)} >
                         <S.TeamHeader>
                             <S.TeamName>{team.teamName} 팀</S.TeamName>
                             <S.WriteTime>{team.dateTime}</S.WriteTime>
                         </S.TeamHeader>
                         <S.JoinMembersAndIntroduction>
                             <S.JoinMembers>
-                                {emoji.map((profile, index) => (
+                                {team.userProfileDtos.map((profile, index) => (
                                     <S.JoinMemberBox key={index}>
                                         <S.JoinMember>
-                                            <img src={getImageByEmoji(profile)} alt={profile} />
+                                            <img src={getImageByEmoji(profile.emoji)} alt={profile.emoji} />
                                         </S.JoinMember>
                                     </S.JoinMemberBox>
                                 ))}
                             </S.JoinMembers>
                             <S.Introduction>
                                 <S.Major>
-                                    {major.join(' / ')} | {team.age}세
+                                  {team.userProfileDtos.map((profile) => profile.major).join(' / ')} | {team.age}세
                                 </S.Major>
                                 <S.MusicStylesContainer>
                                     <S.MusicEmoji/>
-                                    <S.MusicStyles>{music.join(', ')}</S.MusicStyles>
+                                    <S.MusicStyles>
+                                        {team.userProfileDtos.map((profile) => profile.music).join(', ')}
+                                    </S.MusicStyles>
                                 </S.MusicStylesContainer>
                             </S.Introduction>
                         </S.JoinMembersAndIntroduction>
