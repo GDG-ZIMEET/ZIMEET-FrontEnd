@@ -36,8 +36,6 @@ const Teams: React.FC = () => {
     navigate(`/teamintro/${teamId}`);
     }
   };
-
-  const music = ["발라드", "댄스", "힙합"];
   
   return (
     <S.TeamComponent>

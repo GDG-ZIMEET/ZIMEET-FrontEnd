@@ -118,14 +118,14 @@ const openRefusedModal = async () => {
         return;
       }
       const toId = teamDetailData.userList.length === 3 ? ourTeamIdsValue[1] : ourTeamIdsValue[0];
-      
-      await patchrefuseHi({
-          toId: toId,
-          fromId: teamDetailData.teamId,  
-      });
+      const requestData = {
+        toId: toId,
+        fromId: teamDetailData.teamId
+      };
 
-      setIsRefuseModalOpen(false);
-      setIsRefusedModalOpen(true);
+    await patchrefuseHi(requestData);
+    setIsRefuseModalOpen(false);
+    setIsRefusedModalOpen(true);
     } catch (error) {
       console.error("하이 거절 API 요청 실패:", error);
   }
