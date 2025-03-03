@@ -7,10 +7,10 @@ const publicAxios = axios.create({
   baseURL,
   headers: { 'Content-Type': 'application/json' },
 });
-
 const privateAxios = axios.create({
   baseURL,
   headers: { 'Content-Type': 'application/json' },
+  withCredentials: true
 });
 
 // 요청 인터셉터 - accessToken 추가

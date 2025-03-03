@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles'; 
 import { getTeamdeleteCount } from '../../../../api/TeamMaking/GetTeamdeleteCount';
-import { deleteTeam } from '../../../../api/TeamMaking/DeleteTeam';
+import { deleteTeam } from '../../../../api/Meeting/DeleteTeam';
+import { useResetRecoilState } from 'recoil';
+import { ourteamIds } from 'recoil/state/ourTeamIds';
 
 interface DeleteModalProps {
   teamType: string;
@@ -12,10 +14,12 @@ interface DeleteModalProps {
 const DeleteModal: React.FC<DeleteModalProps> = ({ teamType, onClose }) => {
   const [teamdeleteCount, setTeamdeleteCount] = useState(0);
   const navigate = useNavigate();
+  const resetTeamIds = useResetRecoilState(ourteamIds);
 
   const handleDeleteConfirm = async () => {
     const response = await deleteTeam(teamType);
     if (response) {
+      resetTeamIds();
       navigate('/meeting22');
     }
     else {

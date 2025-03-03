@@ -27,7 +27,7 @@ const Team: React.FC<TeamProps> = ({ team, ourTeamData, teamType }) => {
       setIsToastOpen(true);
       return;
     }
-    navigate(`/teamintro/${team.teamId}`, { state: { teamType } });
+    navigate(`/teamintro/${team.teamId}`, { state: { teamType , from: "meeting"} });
   };
 
   return (

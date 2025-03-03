@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { isPremiumState } from '../../recoil/state/authStore'; 
 import * as S from './Styles'; 
 import Header from 'components/TeamIntro/Header/Header';
-import MyProfile from 'components/TeamIntro/Profile/MyProfile';
+import MyProfile from 'components/Common/Profile/MyProfile';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import Heart from 'components/TeamIntro/Button/Heart/Heart';
 import SendQuestion from 'components/TeamIntro/Modal/SendQuestion/SendQuestion';
@@ -13,19 +13,32 @@ import Send from 'components/TeamIntro/Modal/Send/Send'
 import SentHiButton from 'components/TeamIntro/Button/SentHiButton/SentHiButton';
 import { TeamData, User } from 'recoil/type/Meeting/TeamDetail';
 import { getTeamDetail } from 'api/Meeting/GetTeamDetail';
+import AcceptHiModal from "components/Chatting/ReceiveHi/Modal/AcceptHiModal/AcceptHiModal";
+import AcceptedHiModal from "components/Chatting/ReceiveHi/Modal/AcceptedHiModal/AcceptedHiModal";
+import RefuseHiModal from "components/Chatting/ReceiveHi/Modal/RefuseHiModal/RefuseHiModal";
+import RefusedHiModal from "components/Chatting/ReceiveHi/Modal/RefusedHiModal/RefusedHiModal";
+import patchrefuseHi from 'api/Hi/PatchrefuseHi';
+import { ourteamIds } from 'recoil/state/ourTeamIds';
 
 const TeamIntro = () => {
-  const [isHiSent, setIsHiSent] = useState(false); // TODO : API 연결 후 RecoilState로 변경
+  const [isHiSent, setIsHiSent] = useState(false); 
   const { teamId } = useParams<{ teamId: string }>();
   const location = useLocation();
-  const { teamType } = location.state || {};
+  const { teamType, from } = location.state || {};
   const [teamDetailData, setTeamDetailData] = useState<TeamData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isPremium, setIsPremium] = useRecoilState(isPremiumState); 
+  const ourTeamIdsValue = useRecoilValue(ourteamIds);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showSend, setShowSend] = useState(false);
+  const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
+  const [isRefuseModalOpen, setIsRefuseModalOpen] = useState(false);
+  const [isAcceptedModalOpen, setIsAcceptedModalOpen] = useState(false);
+  const [isRefusedModalOpen, setIsRefusedModalOpen] = useState(false);
+  
   const navigate = useNavigate(); 
 
+  //팀 상세데이터 가져오기
   useEffect(() => {
     const fetchDataAndCheckPremium = async () => {
       setIsLoading(true);
@@ -49,11 +62,11 @@ const TeamIntro = () => {
         setIsLoading(false);
       }
     };
-
+      
     fetchDataAndCheckPremium();
   }, [teamId, setIsPremium]);
 
-
+  //미팅모달 
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -72,25 +85,98 @@ const TeamIntro = () => {
     navigate('/Meeting22');  
   };
 
+  //하이모달
+  const openAcceptModal = () => {
+    setIsAcceptModalOpen(true);
+};
+const closeAcceptModal = () => {
+    setIsAcceptModalOpen(false);
+};
+
+const openAcceptedModal = () => {
+    setIsAcceptModalOpen(false);
+    setIsAcceptedModalOpen(true);
+};
+const closeAcceptedModal = () => {
+    setIsAcceptedModalOpen(false);
+    navigate('/chattingInventory');
+};
+
+const openRefuseModal = () => {
+    setIsRefuseModalOpen(true);
+};
+const closeRefuseModal = () => {
+    setIsRefuseModalOpen(false);
+};
+
+const openRefusedModal = async () => {
+    if (!teamDetailData) return;
+
+    try {
+      if (!ourTeamIdsValue) {
+        console.error("우리팀이 없습니다.");
+        return;
+      }
+      const toId = teamDetailData.userList.length === 3 ? ourTeamIdsValue[1] : ourTeamIdsValue[0];
+      const requestData = {
+        toId: toId,
+        fromId: teamDetailData.teamId
+      };
+
+    await patchrefuseHi(requestData);
+    setIsRefuseModalOpen(false);
+    setIsRefusedModalOpen(true);
+    } catch (error) {
+      console.error("하이 거절 API 요청 실패:", error);
+  }
+};
+const closeRefusedModal = () => {
+    setIsRefusedModalOpen(false);
+    navigate('/receiveHi');
+};
+
   return (
     <S.TeamIntroLayout>
       <Header verification={teamDetailData?.verification ?? 0} name={teamDetailData?.name || ''}/>
       <S.TeamIntroContainer $isPremium={isPremium}>
-        {teamDetailData?.userList.map((user: User) => (
-        <MyProfile 
-          key={user.userId} 
-          profileData={user}
-          gender={teamDetailData.gender}
-          isPremium={isPremium} />
-        ))}
+      {teamDetailData?.userList.map((user: User) => (
+      <MyProfile 
+        key={user.userId} 
+        profileData={user}
+        gender={teamDetailData.gender}
+        isPremium={isPremium}
+      />
+      ))}
       </S.TeamIntroContainer>
       {isHiSent
-          ? <SentHiButton/>
-          : <Heart onClick={openModal} /> }
+        ? <SentHiButton/>
+        : (from === "meeting" ? (
+          <Heart onClick={openModal} /> 
+        ) : (from === "sendHi" ?(
+        <SentHiButton/>
+        ) : (
+          <S.ButtonWrapper>
+          <S.RefuseButton onClick={openRefuseModal}>거절</S.RefuseButton>
+          <S.Button onClick={openAcceptModal}>하이 수락하기</S.Button>
+          </S.ButtonWrapper>
+        )))}
       <NavigationBar />
       
-      {isModalOpen && <SendQuestion onClose={closeModal} onConfirm={confirmModal} teamName={teamDetailData?.name || ''} teamType={teamType} />}
+      {isModalOpen && teamDetailData?.teamId !== undefined && (
+        <SendQuestion
+          onClose={closeModal}
+          onConfirm={confirmModal}
+          teamName={teamDetailData?.name || ''}
+          teamId={teamDetailData.teamId}
+          teamType={teamType}
+        />
+      )}
       {showSend && <Send onClose={closeSendModal} />}
+      
+      {isAcceptModalOpen && <AcceptHiModal onClose={closeAcceptModal} onConfirm={openAcceptedModal} teamName={teamDetailData?.name || ''}/>}
+      {isAcceptedModalOpen && <AcceptedHiModal onClose={closeAcceptedModal}/>}
+      {isRefuseModalOpen && <RefuseHiModal onClose={closeRefuseModal} onConfirm={openRefusedModal} teamName={teamDetailData?.name || ''}/>}
+      {isRefusedModalOpen && <RefusedHiModal onClose={closeRefusedModal}/>}
     </S.TeamIntroLayout>
   );
 };
