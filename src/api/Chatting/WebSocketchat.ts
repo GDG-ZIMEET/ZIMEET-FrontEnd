@@ -1,25 +1,31 @@
 import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
-import { publicAxios } from 'api/axiosConfig';
-import { useNavigate } from "react-router-dom";
 
-const baseURL = process.env.REACT_APP_BASE_URL;
+const baseURL = process.env.REACT_APP_SOCKET_URL;
 let stompClient: Client | null = null;
 
 export const connectWebSocket = ( roomId: string, onMessageReceived: (message: any) => void) => {
+    if (stompClient && stompClient.connected) {
+        console.warn("WebSocket already connected.");
+        return;
+    }
+
     const socket = new SockJS(`${baseURL}/ws/chat`);
-    
+
     stompClient = new Client({
         webSocketFactory: () => socket,
-        reconnectDelay: 5000, 
+        reconnectDelay: 5000, // 자동 재연결 설정
         onConnect: () => {
-            console.log('웹소켓 연결 성공');
+            console.log('✅ WebSocket 연결 성공');
             stompClient?.subscribe(`/topic/${roomId}`, (message) => {
                 onMessageReceived(JSON.parse(message.body));
             });
         },
+        onWebSocketError: (error) => {
+            console.error("WebSocket 오류 발생:", error);
+        },
         onStompError: (frame) => {
-            console.error('STOMP Error:', frame);
+            console.error("STOMP 프로토콜 오류:", frame);
         }
     });
 
@@ -28,7 +34,11 @@ export const connectWebSocket = ( roomId: string, onMessageReceived: (message: a
 
 export const sendMessage = (roomId: string, message: object, updateMessages: (newMessage: any) => void )  => {
     if (!stompClient || !stompClient.connected) {
-        console.error("🚨 STOMP Client is not connected.");
+        console.error("STOMP Client is not connected.");
+        return;
+    }
+    if (!roomId) {
+        console.error("Invalid roomId:", roomId);
         return;
     }
 
@@ -46,5 +56,6 @@ export const disconnectWebSocket = () => {
     if (stompClient) {
         stompClient.deactivate();
         console.log('WebSocket 연결 해제됨');
+        stompClient = null;
     }
 };

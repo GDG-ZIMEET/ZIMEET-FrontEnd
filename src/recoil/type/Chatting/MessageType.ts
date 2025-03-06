@@ -1,6 +1,6 @@
 export interface getMessageResponseType {
     id: string;
-    type: 'ENTER' | 'TALK' | 'EXIT';
+    type: string;
     roomId: number;
     senderId: number;
     senderName: string;
