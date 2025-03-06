@@ -15,13 +15,12 @@ export const MessageContainer = styled.div<{ isMine: boolean }>`
   justify-content: ${({ isMine }) => (isMine ? 'flex-end' : 'flex-start')};
 `;
 
-export const Avatar = styled.div<{ show: boolean }>`
+export const Avatar = styled.div`
   width: 40px;
   height: 35px;
   border-radius: 50%;
   margin: 0 1% 7% 1%;
   background-color: rgba(234, 67, 53, 0.08);
-  visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,7 +45,7 @@ export const MessageUser = styled.strong`
   height: 20%;
 `;
 
-export const MessageText = styled.span<{ isMine: boolean; isSameUser: boolean }>`
+export const MessageText = styled.span<{ isMine: boolean }>`
   display: inline-block;
   font-size: 14px;
   background-color: ${({ isMine }) => (isMine ? '#EA4335' : '#EFEFEF')};
@@ -56,7 +55,6 @@ export const MessageText = styled.span<{ isMine: boolean; isSameUser: boolean }>
   width: fit-content;
   max-width: 100%;
   word-break: break-word;
-  ${({ isSameUser }) => isSameUser && 'margin-top: -6%;'}
 `;
 
 export const MessagesEnd = styled.div`

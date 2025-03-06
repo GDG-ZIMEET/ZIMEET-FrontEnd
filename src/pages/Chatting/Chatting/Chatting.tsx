@@ -1,27 +1,40 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './Styles';
 import ChatHeader from '../../../components/Chatting/Chat/Header/ChatHeader';
 import ChattingBox from '../../../components/Chatting/Chat/ChattingBox/ChattingBox';
 import ChatInputBox from '../../../components/Chatting/Chat/Input/ChatInputBox';
 import ChatSidebar from '../../../components/Chatting/Chat/Sidebar/ChatSidebar';
+import { getMessages } from '../../../api/Chatting/GetMessage';
+import { getMessageResponseType } from '../../../recoil/type/Chatting/MessageType';
 
 const Chatting = () => {
-  const [messages, setMessages] = useState([
-    { id: 1, user: '학점 4.5', text: '안녕하세요!', avatar: '🏅' },
-    { id: 2, user: '불멍', text: '반갑습니다!', avatar: '🔥' },
-    { id: 3, user: '불멍', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: '🔥' },
-    { id: 4, user: 'User3', text: '오늘 날씨 좋네요.', avatar: '🌞' },
-    { id: 5, user: 'User3', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: '🌞' },
-    { id: 6, user: 'User3', text: '여러 개 입력한 메시지 중 두 번째입니다.', avatar: '🌞' },
-    { id: 7, user: 'User1', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: '🏅' },
-    { id: 8, user: 'User1', text: '여러 개 입력한 메시지 중 두 번째입니다.', avatar: '🏅' },
-    { id: 9, user: 'User1', text: '여러 개 입력한 메시지 중 세 번째입니다.', avatar: '🏅' },
-    { id: 10, user: 'User1', text: '여러 개 입력한 메시지 중 네 번째입니다.', avatar: '🏅' },
-  ]);
+  const { chatRoonId } = useParams<{ chatRoonId: string }>();
+  const [messages, setMessages] = useState<getMessageResponseType[]>([]);
   const [input, setInput] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await getMessages(Number(chatRoonId), 0, 15);
+        if (response) {
+          const sortedMessages = response.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+          setMessages(sortedMessages);
+        }
+      } catch (error) {
+        console.error('Failed to fetch messages:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (chatRoonId) {
+      fetchMessages();
+    }
+  }, [chatRoonId]);
 
   const handleSend = () => {
     if (input.trim()) {
@@ -31,7 +44,7 @@ const Chatting = () => {
   };
 
   const handleBackClick = () => {
-    navigate(-1); 
+    navigate(-1);
   };
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -44,17 +57,23 @@ const Chatting = () => {
   return (
     <S.ChattingContainer>
       <ChatHeader onBackClick={handleBackClick} onHamburgerClick={toggleSidebar} />
-      <ChattingBox messages={messages} />
-      <ChatInputBox 
-        input={input} 
-        setInput={setInput} 
-        handleSend={handleSend} 
-      />
-      <ChatSidebar 
-        isOpen={isSidebarOpen} 
-        toggleSidebar={toggleSidebar} 
-        uniqueUsers={uniqueUsers} 
-      />
+      {isLoading ? (
+        <S.LoadingContainer />
+      ) : (
+        <>
+          <ChattingBox messages={messages} chatRoonId={chatRoonId}/>
+          <ChatInputBox 
+            input={input} 
+            setInput={setInput} 
+            handleSend={handleSend} 
+          />
+          <ChatSidebar 
+            isOpen={isSidebarOpen} 
+            toggleSidebar={toggleSidebar} 
+            uniqueUsers={uniqueUsers} 
+          />
+        </>
+      )}
     </S.ChattingContainer>
   );
 };

@@ -2,6 +2,7 @@ import { atom } from 'recoil';
 
 interface AuthState {
   accessToken: string;
+  userId: number;
 }
 
 
@@ -13,15 +14,15 @@ const getSessionAuthState = (): AuthState | null => {
 
 const setSessionAuthState = (auth: AuthState | null) => {
   if (auth) {
-    sessionStorage.setItem('setSessionAuthState', JSON.stringify(auth));
+    sessionStorage.setItem('authState', JSON.stringify(auth));
   } else {
-    sessionStorage.removeItem('setSessionAuthState');
+    sessionStorage.removeItem('authState');
   }
 };
 
 
 export const authState = atom<AuthState | null>({
-  key: 'authStateType', 
+  key: 'authState', 
   default: getSessionAuthState(), 
   effects_UNSTABLE: [
     ({ onSet }) => {

@@ -14,10 +14,8 @@ const useLogin = () => {
         password,
       }, { withCredentials: true });
 
-      const { accessToken, refreshToken } = response.data.data;
-      setAuthState({ accessToken, refreshToken });
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
+      const { accessToken, userId } = response.data.data;
+      setAuthState({ accessToken, userId });
       navigate('/meeting22');
 
     } catch (error) {

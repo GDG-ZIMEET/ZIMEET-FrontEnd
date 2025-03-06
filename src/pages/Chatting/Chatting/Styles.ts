@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import zimeetLoading from '../../../../assets/icon/zimeetLoding.svg';
 
 export const ChattingContainer = styled.div`
   display: flex;
@@ -7,6 +8,15 @@ export const ChattingContainer = styled.div`
   overflow: hidden;
 `;
 
-
+export const LoadingContainer = styled.img.attrs({
+  src: zimeetLoading
+})`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 60%;
+  margin: 0 auto;
+`;
 
 
