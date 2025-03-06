@@ -41,7 +41,6 @@ const Teams: React.FC = () => {
   //WebSocket 채팅방 목록 업데이트
   useEffect(() => {
     connectWebSocket("all_rooms", (message) => {
-      console.log(" 새 메시지 수신:", message);
 
       setchattingRoomList((prevRooms) => {
         const updatedRooms = (prevRooms || []).map((room) =>
@@ -62,6 +61,7 @@ const Teams: React.FC = () => {
     };
   }, []);
 
+  //팀 클릭시 채팅방으로 이동
   const handleTeamClick = (team: ChattingRoomType) => {
     navigate(`/chatting/${team.chatRoomId}`, { state: team });
   };

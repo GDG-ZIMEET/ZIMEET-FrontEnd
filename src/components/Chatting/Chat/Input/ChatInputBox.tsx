@@ -16,9 +16,10 @@ const ChatInputBox: React.FC<ChatInputBoxProps> = ({ input, setInput, handleSend
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
+      {input &&
       <S.SendButton onClick={handleSend}>
         <S.ChattingButton />
-      </S.SendButton>
+      </S.SendButton>}
     </S.InputContainer>
   );
 };

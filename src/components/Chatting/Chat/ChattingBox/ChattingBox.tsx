@@ -14,7 +14,6 @@ const ChattingBox: React.FC<ChattingBoxProps> = ({ messages }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { userId } = useRecoilValue(authState);
   
-  console.log('유저id',userId);
   //스크롤을 최신 메시지로 이동
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });

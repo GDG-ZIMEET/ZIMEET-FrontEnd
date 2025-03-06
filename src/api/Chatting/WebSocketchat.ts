@@ -20,9 +20,7 @@ export const connectWebSocket = ( roomId: string, onMessageReceived: (message: a
             Authorization: `Bearer ${token}`
         },
         onConnect: () => {
-            console.log('✅ WebSocket 연결 성공');
             stompClient?.subscribe(`/topic/${roomId}`, (message) => {
-                console.log("📩 수신한 메시지:", message.body);
                 onMessageReceived(JSON.parse(message.body));
             });
         },
@@ -62,7 +60,6 @@ export const sendMessage = (roomId: string, message: object )  => {
 export const disconnectWebSocket = () => {
     if (stompClient) {
         stompClient.deactivate();
-        console.log('WebSocket 연결 해제됨');
         stompClient = null;
     }
 };

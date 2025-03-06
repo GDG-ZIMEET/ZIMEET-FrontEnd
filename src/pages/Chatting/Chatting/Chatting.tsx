@@ -55,7 +55,6 @@ const Chatting = () => {
     if (!chatRoom || !chatRoom.chatRoomId) return;
 
     connectWebSocket(chatRoom.chatRoomId.toString(), (message) => {
-      console.log("📩 받은 메시지 추가:", message);
       setMessages((prev) => [...prev, message]);
     });
 
@@ -94,7 +93,7 @@ const Chatting = () => {
 
   return (
     <S.ChattingContainer>
-      <ChatHeader onBackClick={handleBackClick} onHamburgerClick={toggleSidebar} />
+      <ChatHeader onBackClick={handleBackClick} chatRoomName = {chatRoom.chatRoomName} onHamburgerClick={toggleSidebar} />
       {isLoading ? (
         <S.LoadingContainer />
       ) : (

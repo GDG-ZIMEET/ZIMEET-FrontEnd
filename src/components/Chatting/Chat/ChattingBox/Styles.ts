@@ -7,6 +7,11 @@ export const ChattingBox = styled.div`
   flex: 1;
   padding: 3%;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 export const LoadingContainer = styled.img.attrs({
@@ -53,13 +58,13 @@ export const MessageContent = styled.div<{ $isMine: boolean; $isFirstOfGroup: bo
 export const MessageUser = styled.strong`
   font-size: 12px;
   margin-bottom: 5px;
-  color: #666;
+  color: #000;
 `;
 
 export const MessageText = styled.span<{ $isMine: boolean }>`
   display: inline-block;
   font-size: 14px;
-  background-color: ${({ $isMine }) => ($isMine ? '#EA4335' : '#EFEFEF')};
+  background-color: ${({ $isMine }) => ($isMine ? '#FF6B6A' : '#EFEFEF')};
   color: ${({ $isMine }) => ($isMine ? 'white' : 'black')};
   border-radius: 20px;
   padding: 10px;
