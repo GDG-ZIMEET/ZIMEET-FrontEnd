@@ -18,3 +18,5 @@ export const LoadingContainer = styled.img.attrs({
   width: 60%;
   margin: 0 auto;
 `;
+
+

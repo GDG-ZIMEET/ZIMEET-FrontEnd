@@ -4,6 +4,7 @@ import { getMessageResponseType } from '../../../../recoil/type/Chatting/Message
 import { authState } from 'recoil/state/authState';
 import { useRecoilValue } from 'recoil';
 import { getImageByEmoji } from 'utils/IconMapper';
+import { u } from 'framer-motion/dist/types.d-6pKw1mTI';
 
 interface ChattingBoxProps {
   messages: getMessageResponseType[];
@@ -11,8 +12,9 @@ interface ChattingBoxProps {
 
 const ChattingBox: React.FC<ChattingBoxProps> = ({ messages }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const auth = useRecoilValue(authState);
+  const { userId } = useRecoilValue(authState);
   
+  console.log('유저id',userId);
   //스크롤을 최신 메시지로 이동
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -22,20 +24,20 @@ const ChattingBox: React.FC<ChattingBoxProps> = ({ messages }) => {
   return (
     <S.ChattingBox>
       {messages.map((message, index) => {
-          const isMine = auth?.userId === message.senderId;
+          const isMine = userId === message.senderId;
           const isFirstOfGroup =
            index === 0 || messages[index - 1].senderId !== message.senderId;
 
           return (
-          <S.MessageContainer key={message.id} isMine={isMine}>
+          <S.MessageContainer key={message.id} $isMine={isMine}>
             {!isMine && isFirstOfGroup && (
               <S.Avatar>
-                {getImageByEmoji(message.emoji)}
+                <img src={getImageByEmoji(message.emoji)} alt={message.emoji} />
               </S.Avatar>
             )}
-            <S.MessageContent isMine={isMine}>
+            <S.MessageContent $isMine={isMine} $isFirstOfGroup={isFirstOfGroup}>
               {isFirstOfGroup && !isMine && <S.MessageUser>{message.senderName}</S.MessageUser>}
-              <S.MessageText isMine={isMine} >{message.content}</S.MessageText>
+              <S.MessageText $isMine={isMine} >{message.content}</S.MessageText>
             </S.MessageContent>
           </S.MessageContainer>
         );

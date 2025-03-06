@@ -15,7 +15,8 @@ const useLogin = () => {
       }, { withCredentials: true });
 
       const { accessToken, userId } = response.data.data;
-      setAuthState({ accessToken, userId });
+      setAuthState({ userId , isAuthorized: true });
+      localStorage.setItem('accessToken', accessToken);
       navigate('/meeting22');
 
     } catch (error) {

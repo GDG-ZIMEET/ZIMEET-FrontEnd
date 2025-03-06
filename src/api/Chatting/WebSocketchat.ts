@@ -2,6 +2,7 @@ import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 
 const baseURL = process.env.REACT_APP_SOCKET_URL;
+const token = localStorage.getItem('accessToken');
 let stompClient: Client | null = null;
 
 export const connectWebSocket = ( roomId: string, onMessageReceived: (message: any) => void) => {
@@ -14,10 +15,14 @@ export const connectWebSocket = ( roomId: string, onMessageReceived: (message: a
 
     stompClient = new Client({
         webSocketFactory: () => socket,
-        reconnectDelay: 5000, // 자동 재연결 설정
+        reconnectDelay: 5000, 
+        connectHeaders: {
+            Authorization: `Bearer ${token}`
+        },
         onConnect: () => {
             console.log('✅ WebSocket 연결 성공');
             stompClient?.subscribe(`/topic/${roomId}`, (message) => {
+                console.log("📩 수신한 메시지:", message.body);
                 onMessageReceived(JSON.parse(message.body));
             });
         },
@@ -32,7 +37,7 @@ export const connectWebSocket = ( roomId: string, onMessageReceived: (message: a
     stompClient.activate();
 };
 
-export const sendMessage = (roomId: string, message: object, updateMessages: (newMessage: any) => void )  => {
+export const sendMessage = (roomId: string, message: object )  => {
     if (!stompClient || !stompClient.connected) {
         console.error("STOMP Client is not connected.");
         return;
@@ -43,11 +48,13 @@ export const sendMessage = (roomId: string, message: object, updateMessages: (ne
     }
 
     const newMessage = { ...message, sentAt: new Date().toISOString() };
-    updateMessages(newMessage);
 
     //서버로 메시지 전송
     stompClient.publish({
         destination: `/app/chat/${roomId}`,
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify(newMessage),
     });
 };

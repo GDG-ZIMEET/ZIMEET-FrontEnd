@@ -9,14 +9,13 @@ import ChatSidebar from '../../../components/Chatting/Chat/Sidebar/ChatSidebar';
 import { getMessages } from '../../../api/Chatting/GetMessage';
 import { getMessageResponseType } from '../../../recoil/type/Chatting/MessageType';
 import { connectWebSocket,sendMessage, disconnectWebSocket } from '../../../api/Chatting/WebSocketchat';
-import { authState } from '../../../recoil/state/authState';
 import { v4 as uuidv4 } from 'uuid';
+import { authState } from 'recoil/state/authState';
 
 const Chatting = () => {
   const location = useLocation();
   const chatRoom = location.state || null;
-  const my = useRecoilValue(authState);
-  const myId = my?.userId;
+  const { userId } = useRecoilValue(authState);
   const [messages, setMessages] = useState<getMessageResponseType[]>([]);
   const [input, setInput] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -56,6 +55,7 @@ const Chatting = () => {
     if (!chatRoom || !chatRoom.chatRoomId) return;
 
     connectWebSocket(chatRoom.chatRoomId.toString(), (message) => {
+      console.log("📩 받은 메시지 추가:", message);
       setMessages((prev) => [...prev, message]);
     });
 
@@ -73,18 +73,17 @@ const Chatting = () => {
       id: uuidv4(),
       type: "TALK",
       roomId: chatRoom.chatRoomId.toString(),
+      senderId: userId,
       senderName: "",
       content: input,
       sendAt: new Date().toISOString(),
       emoji: "",
     };
 
-    sendMessage(chatRoom.chatRoomId.toString(), newMessage, (msg) => {
-    setMessages((prev) => [...prev, msg]); 
-  });
+    sendMessage(chatRoom.chatRoomId.toString(), newMessage);
 
-    setInput("");
-  };
+  setInput("");
+};
 
   const handleBackClick = () => {
     navigate(-1);
