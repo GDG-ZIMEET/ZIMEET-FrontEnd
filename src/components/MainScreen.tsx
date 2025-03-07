@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import useLoginCheck from 'api/Authentication/useLoginCheck';
 
 const PhoneContainer = styled.div`
   width: 100vw;
@@ -33,6 +34,8 @@ interface SmartphoneScreenProps {
 
 const MainScreen: React.FC<SmartphoneScreenProps> = ({ children }) => {
 
+  useLoginCheck();
+  
   return (
     <PhoneContainer >
       <PhoneScreen >

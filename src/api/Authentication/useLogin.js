@@ -9,15 +9,14 @@ const useLogin = () => {
     setErrorMessage('');
 
     try {
-      const response = await publicAxios.post(`/user/login`, {
+      const response = await publicAxios.post('/user/login', {
         studentNumber,
         password,
       }, { withCredentials: true });
 
-      const { accessToken, refreshToken } = response.data.data;
-      setAuthState({ accessToken, refreshToken });
+      const { accessToken, userId } = response.data.data;
+      setAuthState({ userId , isAuthorized: true });
       localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
       navigate('/meeting22');
 
     } catch (error) {
