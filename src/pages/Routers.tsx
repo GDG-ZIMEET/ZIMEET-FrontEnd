@@ -39,7 +39,7 @@ const Routers: React.FC = () => {
       <Route path="/boothDetail/:clubId" element={<BoothDetail />} />
       <Route path="/zimeetIntroduct" element={<ZimeetIntroduct />} />
       <Route path="/gdgocIntroduct" element={<GdgocIntroduct />} />
-      <Route path="/chatting" element={<Chatting />} />
+      <Route path="/chatting/:chatRoomId" element={<Chatting />} />
       <Route path="/chattingInventory" element={<ChattingInventory />} />
       <Route path="/receiveHi" element={<ReceiveHi />} />
       <Route path="/sentHi" element={<SentHi />} />
