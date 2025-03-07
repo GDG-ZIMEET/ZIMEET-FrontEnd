@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as I from '../../../assets/Icons';
+import zimeetLoading from '../../../assets/icon/zimeetLoding.svg';
 
 export const MyPageContainer = styled.div`
   width: 100%; 
@@ -18,6 +19,17 @@ export const MyPageBox = styled.div`
   height: 88%;
   display: flex;
   flex-direction: column;
+`;
+
+export const LoadingContainer = styled.img.attrs({
+  src: zimeetLoading
+})`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 60%;
+  margin: 0 auto;
 `;
 
 //logo

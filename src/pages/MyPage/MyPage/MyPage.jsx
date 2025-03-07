@@ -47,15 +47,9 @@ const MyPage = () => {
 
         <S.BlackContainer>
           <S.InfoContainer>
-            {isLoading ? (
-              <>
-                <S.MyInfoContainer>
-                    <S.MyInfo>                   
-                    <S.MyNameText>로딩중입니다</S.MyNameText>
-                    </S.MyInfo>
-                </S.MyInfoContainer>
-              </>
-            ) : isLoggedIn ? (
+          {isLoading ? (
+              <S.LoadingContainer />
+          ) : isLoggedIn ? (
               <>
                 <S.MyInfoContainer>
                   <S.EmojiContainer>
