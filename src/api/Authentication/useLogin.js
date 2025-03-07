@@ -9,26 +9,26 @@ const useLogin = () => {
     setErrorMessage('');
 
     try {
-      const response = await publicAxios.post(
-        `/user/login`,
-        { studentNumber, password },
-        { withCredentials: true } 
-      );
-      
+      const response = await publicAxios.post(/user/login, {
+        studentNumber,
+        password,
+      }, { withCredentials: true });
+
       const { accessToken, userId } = response.data.data;
-
-      if (!accessToken) {
-        throw new Error('서버에서 액세스 토큰을 반환하지 않았습니다.');
-      }
-
-      setAuthState({ isAuthenticated: true, accessToken, userId });
-
+      setAuthState({ userId });
+      localStorage.setItem('accessToken', accessToken);
       navigate('/meeting22');
+
     } catch (error) {
       const errorMessage = error.response?.data?.message || '로그인 실패';
       setErrorMessage(errorMessage);
 
-      console.error('Error:', error.response?.status, error.response?.data?.message || error.message);
+      if (error.response) {
+        console.error('Error Code:', error.response.status);
+        console.error('Error Message:', error.response.data.message);
+      } else {
+        console.error('Error:', error.message);
+      }
     }
   };
 

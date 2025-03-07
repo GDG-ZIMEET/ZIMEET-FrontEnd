@@ -35,7 +35,7 @@ interface SmartphoneScreenProps {
 const MainScreen: React.FC<SmartphoneScreenProps> = ({ children }) => {
 
   useLoginCheck();
-
+  
   return (
     <PhoneContainer >
       <PhoneScreen >
