@@ -17,8 +17,7 @@ import { ourteamIds } from '../../recoil/state/ourTeamIds';
 
 const Meeting22 = () => {
   const navigate = useNavigate();
-  const [auth,] = useRecoilState(authState); 
-  const isLoggedIn = !!auth?.accessToken;
+  const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
   const [teamGalleryData, setTeamGalleryData] = useState<any | null>(null);
   const [teamType, setTeamType] = useState<string>('TWO_TO_TWO');
   const [isLoading, setIsLoading] = useState<boolean>(false);
