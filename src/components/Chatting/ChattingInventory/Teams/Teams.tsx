@@ -4,7 +4,7 @@ import * as S from './Styles';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { getchattingRoomList } from 'api/Chatting/GetChattingRoomList';
 import { ChattingRoomType } from 'recoil/type/Chatting/ChattingRoomListType';
-
+import { connectWebSocket, disconnectWebSocket } from 'api/Chatting/WebSocketchat';
 const Teams: React.FC = () => {
   const navigate = useNavigate();
   const [chattingRoomList, setchattingRoomList] = useState<ChattingRoomType[] | null>(null);
@@ -12,24 +12,58 @@ const Teams: React.FC = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const fetchchattingRoomList = async () => {
+    const fetchChattingRoomList = async () => {
       try {
         const response = await getchattingRoomList();
         if (response) {
-          setchattingRoomList(response.data);
+          const sortedRooms = response.data.sort(
+            (a, b) => new Date(b.lastestTime || 0).getTime() - new Date(a.lastestTime || 0).getTime()
+          );
+          setchattingRoomList(sortedRooms);
         } else {
-          setchattingRoomList(null);}
+          setchattingRoomList([]);
+        }
       } catch (error) {
-        console.error('Error fetching chatting room list:', error);
-        setchattingRoomList(null);
+        console.error("chatting room 리스트 가져오기 실패:", error);
+        setchattingRoomList([]);
       } finally {
         setIsLoading(false);
-      }};
-    fetchchattingRoomList();
+      }
+    };
+
+    fetchChattingRoomList();
+
+    return () => {
+      disconnectWebSocket();
+    };
   }, []);
 
-  const handleTeamClick = (id: number) => {
-    navigate(`/chatting/${id}`);
+  //WebSocket 채팅방 목록 업데이트
+  useEffect(() => {
+    connectWebSocket("all_rooms", (message) => {
+
+      setchattingRoomList((prevRooms) => {
+        const updatedRooms = (prevRooms || []).map((room) =>
+          room.chatRoomId === message.roomId
+            ? { ...room, latestMessage: message.content, lastestTime: message.sendAt }
+            : room
+        );
+
+        // 최신 메시지 기준으로 정렬
+        return [...updatedRooms].sort(
+          (a, b) => new Date(b.lastestTime || 0).getTime() - new Date(a.lastestTime || 0).getTime()
+        );
+      });
+    });
+
+    return () => {
+      disconnectWebSocket();
+    };
+  }, []);
+
+  //팀 클릭시 채팅방으로 이동
+  const handleTeamClick = (team: ChattingRoomType) => {
+    navigate(`/chatting/${team.chatRoomId}`, { state: team });
   };
 
   //시간계산
@@ -40,25 +74,12 @@ const Teams: React.FC = () => {
     let hours = date.getHours();
     const minutes = date.getMinutes();
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-    
-    //오늘 날짜인 경우
     const period = hours < 12 ? '오전' : '오후';
-    if (hours > 12) {
-        hours -= 12; 
-    } else if (hours === 0) {
-        hours = 12; 
-    }
+    if (hours > 12) hours -= 12;
+    else if (hours === 0) hours = 12;
     const formattedTime = `${period} ${hours}시 ${formattedMinutes}분`;
-    //아닌경우 
     const formattedTimeNotToday = `${hours}:${formattedMinutes}`;
-
-    if (isToday) {
-      return formattedTime;
-    } else {
-      const month = date.getMonth() + 1;
-      const day = date.getDate();
-      return `${month}/${day} ${formattedTimeNotToday}`;
-    }
+    return isToday ? formattedTime : `${date.getMonth() + 1}/${date.getDate()} ${formattedTimeNotToday}`;
   };
 
   return (
@@ -72,7 +93,7 @@ const Teams: React.FC = () => {
       </S.NoTeamsMessageContainer>
       ) : (
       chattingRoomList.map(team => (
-        <S.Team key={team.chatRoomId.toString()} onClick={() => handleTeamClick(team.chatRoomId)}>
+        <S.Team key={team.chatRoomId.toString()} onClick={() => handleTeamClick(team)}>
         <S.TeamHeader>
           <S.TeamName>{team.chatRoomName} 팀</S.TeamName>
           <S.WriteTime>{formatWriteTime(team.lastestTime)}</S.WriteTime>
