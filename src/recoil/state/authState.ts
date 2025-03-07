@@ -2,6 +2,7 @@ import { atom } from 'recoil';
 
 interface AuthState {
   accessToken: string;
+  userId: number;
 }
 
 
