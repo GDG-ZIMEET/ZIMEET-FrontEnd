@@ -12,8 +12,7 @@ import { authState } from '../../../recoil/state/authState';
 
 const MyPage = () => {
   const [myProfileData, setMyProfileData] = useState(null);
-  const [auth,] = useRecoilState(authState);
-  const isLoggedIn = !!auth?.accessToken;
+  const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
