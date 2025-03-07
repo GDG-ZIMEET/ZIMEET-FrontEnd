@@ -52,10 +52,8 @@ const ModifyProfile = () => {
         <S.TopBarText>프로필 수정</S.TopBarText>
       </S.TopBarContainer>
 
-      {isLoading? (
-        <>
-          <S.ProfileValues>로딩 중 입니다.</S.ProfileValues>
-        </>
+      {isLoading ? (
+        <S.LoadingContainer />
       ) : myProfileData? (
         <>
           <S.ContentContainer>
