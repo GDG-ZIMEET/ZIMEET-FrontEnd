@@ -240,4 +240,9 @@ export const OutContainer = styled.div`
 export const OutText = styled.a`
   font-size: 14px;
   padding: 3%;
+
+  &.modal{
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;

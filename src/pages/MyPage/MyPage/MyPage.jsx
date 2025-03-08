@@ -9,12 +9,24 @@ import { getmyProfile } from 'api/Mypage/GetmyProfile';
 import { useNavigate } from 'react-router-dom';
 import {getImageByEmoji} from 'utils/IconMapper';
 import { authState } from '../../../recoil/state/authState';
+import ModalWithdraw from 'components/MyPage/ModalWithdraw/ModalWithdraw';
+import ModalLogout from 'components/MyPage/ModalLogout/ModalLogout';
 
 const MyPage = () => {
   const [myProfileData, setMyProfileData] = useState(null);
   const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
   const [isLoading, setIsLoading] = useState(true);
+  const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const navigate = useNavigate();
+  
+  const handleWithdrawClick =()=> {
+    setIsWithdrawModalOpen(true);
+  }
+
+  const handleLogoutClick =()=> {
+    setIsLogoutModalOpen(true);
+  }
 
   useEffect(() => {
     const fetchMyProfile = async () => {
@@ -130,11 +142,14 @@ const MyPage = () => {
           <S.OutContainer>
             <S.OutText href='/'>개인정보처리방침</S.OutText>
             <S.OutText href='/'>이용약관</S.OutText>
-            <S.OutText href='/'>회원탈퇴</S.OutText>
-            <S.OutText href='/'>로그아웃</S.OutText>
+            <S.OutText className='modal' onClick={handleWithdrawClick} >회원탈퇴</S.OutText>
+            <S.OutText className='modal' onClick={handleLogoutClick}>로그아웃</S.OutText>
           </S.OutContainer>
         </S.ComponentContainer>
       </S.MyPageBox>
+
+      <ModalWithdraw isOpen={isWithdrawModalOpen} onClose={() => setIsWithdrawModalOpen(false)} />
+      <ModalLogout isOpen={isLogoutModalOpen} onClose={() => setIsLogoutModalOpen(false)} />
       <NavigationBar />
     </S.MyPageContainer>
   );
