@@ -71,3 +71,26 @@ export const UserContainer = styled.div`
   border: 2px solid #F2F2F2;
   gap: 5%;
 `;
+
+export const PremiumOverlay = styled.div`
+  width: 70%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border: 2px solid #F2F2F2;
+  background: #F2F2F2;
+  gap: 5%;
+`;
+
+export const PremiumText = styled.div`
+  font-size: 12px;
+  color: #000000;
+  font-family: 'Pretendard';
+  text-align: center;
+  line-height: 2.5;
+  b{
+    font-weight: bold;
+  }
+`;
