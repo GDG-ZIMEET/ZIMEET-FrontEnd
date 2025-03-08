@@ -28,8 +28,8 @@ export const LoadingContainer = styled.img.attrs({
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 60%;
-  margin: 0 auto;
+  width: 40%;
+  margin: 10% auto;
 `;
 
 //logo

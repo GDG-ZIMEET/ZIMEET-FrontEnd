@@ -16,8 +16,8 @@ export const LoadingContainer = styled.img.attrs({
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 60%;
+  height: 90%;
+  width: 30%;
   margin: 0 auto;
 `;
 
