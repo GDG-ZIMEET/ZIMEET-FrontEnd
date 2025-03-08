@@ -3,6 +3,7 @@ import * as S from './Styles';
 import { getchatUsers } from 'api/Chatting/GetChatUsers';
 import { ChatRoomType } from 'recoil/type/Chatting/ChatRoomUsers';
 import { getImageByEmoji } from 'utils/IconMapper';
+import { useNavigate } from 'react-router-dom';
 
 interface ChatSidebarProps {
   SideisOpen: boolean; 
@@ -14,6 +15,7 @@ interface ChatSidebarProps {
 const ChatSidebar: React.FC<ChatSidebarProps> = ({ SideisOpen, SideisClose, roomId ,handleExitClick}) => {
   const [chatUsers, setChatUsers] = React.useState<ChatRoomType[]>();
   const [isLoading, setIsLoading] = React.useState(true);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const fetchChatUsers = async () => {
@@ -36,6 +38,10 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ SideisOpen, SideisClose, room
     fetchChatUsers();
   }, [roomId]);
 
+  const handleUserDetailClick = (nickname: string) => {
+    navigate(`/chatuserdetail`, { state: { nickname: nickname } });
+  }
+
   return (
     <>
       <S.SidebarOverlay $isOpen={SideisOpen} onClick={SideisClose} />
@@ -51,7 +57,7 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ SideisOpen, SideisClose, room
             <S.Avatar>
               <img src={getImageByEmoji(profile.emoji)} alt={profile.emoji} />
             </S.Avatar> 
-            <S.UserName>{profile.name}</S.UserName> 
+            <S.UserName onClick={() => handleUserDetailClick(profile.name)}>{profile.name}</S.UserName> 
               </S.UserItem>
           ))}
           <S.TeamName $isour={true}>{chatUsers[1].teamName} 팀</S.TeamName>
@@ -60,7 +66,7 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ SideisOpen, SideisClose, room
             <S.Avatar>
               <img src={getImageByEmoji(profile.emoji)} alt={profile.emoji} />
             </S.Avatar>  
-            <S.UserName>{profile.name}</S.UserName>
+            <S.UserName onClick={() => handleUserDetailClick(profile.name.replace('(나)', ''))}>{profile.name}</S.UserName>
               </S.UserItem>
           ))}
         </>
