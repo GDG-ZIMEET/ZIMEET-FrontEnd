@@ -84,6 +84,24 @@ const Chatting = () => {
   setInput("");
 };
 
+const handleUserExit = () => {
+  if (!chatRoom || !chatRoom.chatRoomId) return;
+
+  const exitMessage = {
+    id: uuidv4(),
+    type: "EXIT",
+    roomId: chatRoom.chatRoomId.toString(),
+    senderId: userId,
+    senderName: "",
+    content: `${userId}님이 채팅방을 나갔습니다.`,
+    sendAt: new Date().toISOString(),
+    emoji: "",
+  };
+
+  sendMessage(chatRoom.chatRoomId.toString(), exitMessage);
+  navigate('/chattingInventory');
+};
+
   const handleBackClick = () => {
     navigate(-1);
   };
@@ -107,6 +125,7 @@ const Chatting = () => {
           <ChatSidebar 
             isOpen={isSidebarOpen} 
             toggleSidebar={toggleSidebar} 
+            handleUserExit={handleUserExit}
             roomId={chatRoom.chatRoomId}
           />
         </>

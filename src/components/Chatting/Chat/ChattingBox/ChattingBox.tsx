@@ -4,7 +4,6 @@ import { getMessageResponseType } from '../../../../recoil/type/Chatting/Message
 import { authState } from 'recoil/state/authState';
 import { useRecoilValue } from 'recoil';
 import { getImageByEmoji } from 'utils/IconMapper';
-import { u } from 'framer-motion/dist/types.d-6pKw1mTI';
 
 interface ChattingBoxProps {
   messages: getMessageResponseType[];
@@ -27,6 +26,13 @@ const ChattingBox: React.FC<ChattingBoxProps> = ({ messages }) => {
           const isFirstOfGroup =
            index === 0 || messages[index - 1].senderId !== message.senderId;
 
+          if (message.type === "EXIT") {
+            return (
+              <S.ExitMessageContainer key={message.id}>
+                {message.content}
+              </S.ExitMessageContainer>
+            );
+          }
           return (
           <S.MessageContainer key={message.id} $isMine={isMine}>
             {!isMine && isFirstOfGroup && (
