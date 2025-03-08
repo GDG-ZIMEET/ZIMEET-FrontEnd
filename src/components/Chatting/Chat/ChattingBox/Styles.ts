@@ -25,6 +25,14 @@ export const LoadingContainer = styled.img.attrs({
   margin: 0 auto;
 `;
 
+export const ExitMessageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  color: #000;
+  margin: 5% 0;
+`;
+
 export const MessageContainer = styled.div<{ $isMine: boolean }>`
   width: 100%;
   display: flex;
@@ -34,11 +42,12 @@ export const MessageContainer = styled.div<{ $isMine: boolean }>`
 
 export const Avatar = styled.div`
   height: 60%;
-  margin-top: -5%;
- align-items: center;
- justify-content: center;
- position: relative;
- display: flex;
+  margin-top: -2%;
+  margin-right: 1%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  display: flex;
   aspect-ratio:1;
   background-color: rgba(234, 67, 53, 0.08); 
   border-radius: 50%;
@@ -52,12 +61,13 @@ export const MessageContent = styled.div<{ $isMine: boolean; $isFirstOfGroup: bo
   align-items: ${({ $isMine }) => ($isMine ? 'flex-end' : 'flex-start')};
   max-width: 70%;
   margin-bottom: 1%;
-  margin-left: ${({ $isMine, $isFirstOfGroup }) => (!$isMine && $isFirstOfGroup ? '0' : '11%')};
+  margin-top: ${({ $isMine, $isFirstOfGroup }) => (!$isMine && $isFirstOfGroup ? '5%' : '0')};
+  margin-left: ${({ $isMine, $isFirstOfGroup }) => (!$isMine && $isFirstOfGroup ? '0' : '12%')};
 `;
 
 export const MessageUser = styled.strong`
   font-size: 12px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   color: #000;
 `;
 
