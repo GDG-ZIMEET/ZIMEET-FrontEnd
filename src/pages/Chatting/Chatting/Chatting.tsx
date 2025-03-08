@@ -11,6 +11,7 @@ import { getMessageResponseType } from '../../../recoil/type/Chatting/MessageTyp
 import { connectWebSocket,sendMessage, disconnectWebSocket } from '../../../api/Chatting/WebSocketchat';
 import { v4 as uuidv4 } from 'uuid';
 import { authState } from 'recoil/state/authState';
+import { deleteuser } from 'api/Chatting/DeleteUser';
 
 const Chatting = () => {
   const location = useLocation();
@@ -84,7 +85,7 @@ const Chatting = () => {
   setInput("");
 };
 
-const handleUserExit = () => {
+const handleUserExit = async () => {
   if (!chatRoom || !chatRoom.chatRoomId) return;
 
   const exitMessage = {
@@ -99,6 +100,13 @@ const handleUserExit = () => {
   };
 
   sendMessage(chatRoom.chatRoomId.toString(), exitMessage);
+
+  try {
+    await deleteuser(chatRoom.chatRoomId);
+  } catch (error) {
+    console.error('유저 삭제 실패:', error);
+  }
+
   navigate('/chattingInventory');
 };
 
