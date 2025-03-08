@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import chatout from "../../../../assets/icon/Chatting/chatout.svg";
 
 export const Sidebar = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -28,43 +29,99 @@ export const SidebarOverlay = styled.div<{ isOpen: boolean }>`
 
 
 export const SidebarContent = styled.div`
-  padding: 8% 6%;
   font-weight: bold;
   width: 100%;
   height: 100%;
 `;
 
 export const SidebarTitle = styled.p`
-  font-size: 16px;
-  margin-bottom: 22%;
+  font-size: 14px;
+  height: 8%;
+  padding-left: 5%;
+  margin-bottom: 12%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #000;
 `;
 
+
 export const UserList = styled.div`
-  height: 60%;
+  height: 80%;
 `;
+
+export const TeamName = styled.p<{ $isour: boolean }>`
+  font-size: 12px;
+  margin-left:  5%;
+  margin-top: ${({ $isour }) => ($isour ? '15%' : '0%')};
+  height: 8%;
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-family: 'Pretendard', sans-serif;
+`;
+
 
 export const UserItem = styled.div`
   font-size: 15px;
-  margin-bottom: 7%;
+  height: 8%;
   display: flex;
   align-items: center;
 `;
 
 export const UserName = styled.span`
-  margin: 0 0 5% 4%;
-  font-size: 13px;
+  font-size: 12px;
+  width: 70%;
+  display: flex;
+  font-family: 'Pretendard', sans-serif;
+  justify-content: space-between;
+  align-items: center;
+  
+  &::after {
+    font-size: 20px;
+    content: ' >';
+    margin-bottom: 1%;
+    color: #000000; 
+  }
 `;
 
 
-export const Avatar = styled.div<{ show: boolean; isSidebar?: boolean }>`
-  width: ${({ isSidebar }) => (isSidebar ? '30px' : '40px')}; // 사이드바에서는 30px, 화면에서는 40px
-  height: ${({ isSidebar }) => (isSidebar ? '30px' : '35px')}; // 사이드바에서는 30px, 화면에서는 35px
+export const Avatar = styled.div `
+  width: 12%;
   border-radius: 50%;
-  margin: 0 1% 7% 1%;
   background-color: rgba(234, 67, 53, 0.08);
-  visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   display: flex;
   align-items: center;
   justify-content: center; 
+  aspect-ratio:1;
+  margin:  0 3% 0 5%;
+  img{
+    width: 60%;
+  }
 `;
 
+//채팅방나가기
+export const ChatRoomoutContainer = styled.div`
+  height: 10%;
+  display: flex;
+  pointer: cursor;
+`;
+
+export const Chatroom = styled.p`
+  font-size: 12px;
+  color: #000;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 4%;
+  font-family: 'Pretendard';
+
+`;
+
+export const Chatout = styled.img.attrs({
+  src: chatout
+})`
+  width: 8%;
+  height: 100%;
+  margin-left: 6%;
+`;
