@@ -2,20 +2,20 @@ import React from 'react';
 import * as S from './Styles';
 import { getchatUsers } from 'api/Chatting/GetChatUsers';
 import { ChatRoomType } from 'recoil/type/Chatting/ChatRoomUsers';
-import { ourteamIds } from 'recoil/state/ourTeamIds';
-import { useRecoilValue } from 'recoil';
 import { getImageByEmoji } from 'utils/IconMapper';
+import { useNavigate } from 'react-router-dom';
 
 interface ChatSidebarProps {
-  isOpen: boolean;
-  toggleSidebar: () => void;
+  SideisOpen: boolean; 
+  SideisClose: () => void;
   roomId: number;
-  handleUserExit: () => void;
+  handleExitClick: () => void;
 }
 
-const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, toggleSidebar, roomId, handleUserExit }) => {
+const ChatSidebar: React.FC<ChatSidebarProps> = ({ SideisOpen, SideisClose, roomId ,handleExitClick}) => {
   const [chatUsers, setChatUsers] = React.useState<ChatRoomType[]>();
   const [isLoading, setIsLoading] = React.useState(true);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const fetchChatUsers = async () => {
@@ -38,10 +38,14 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, toggleSidebar, roomId
     fetchChatUsers();
   }, [roomId]);
 
+  const handleUserDetailClick = (nickname: string) => {
+    navigate(`/chatuserdetail`, { state: { nickname: nickname } });
+  }
+
   return (
     <>
-      <S.SidebarOverlay $isOpen={isOpen} onClick={toggleSidebar} />
-      <S.Sidebar $isOpen={isOpen}>
+      <S.SidebarOverlay $isOpen={SideisOpen} onClick={SideisClose} />
+      <S.Sidebar $isOpen={SideisOpen} >
         <S.SidebarContent>
           <S.SidebarTitle>채팅방</S.SidebarTitle>
           <S.UserList>
@@ -53,7 +57,7 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, toggleSidebar, roomId
             <S.Avatar>
               <img src={getImageByEmoji(profile.emoji)} alt={profile.emoji} />
             </S.Avatar> 
-            <S.UserName>{profile.name}</S.UserName> 
+            <S.UserName onClick={() => handleUserDetailClick(profile.name)}>{profile.name}</S.UserName> 
               </S.UserItem>
           ))}
           <S.TeamName $isour={true}>{chatUsers[1].teamName} 팀</S.TeamName>
@@ -62,13 +66,13 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, toggleSidebar, roomId
             <S.Avatar>
               <img src={getImageByEmoji(profile.emoji)} alt={profile.emoji} />
             </S.Avatar>  
-            <S.UserName>{profile.name}</S.UserName>
+            <S.UserName onClick={() => handleUserDetailClick(profile.name.replace('(나)', ''))}>{profile.name}</S.UserName>
               </S.UserItem>
           ))}
         </>
           )}
           </S.UserList>
-            <S.ChatRoomoutContainer onClick={handleUserExit}>
+            <S.ChatRoomoutContainer onClick={handleExitClick}>
             <S.Chatout />
             <S.Chatroom>채팅방나가기</S.Chatroom>
             </S.ChatRoomoutContainer>

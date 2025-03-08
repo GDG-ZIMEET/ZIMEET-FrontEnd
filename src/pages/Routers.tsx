@@ -22,6 +22,7 @@ import SentHi from './Chatting/SentHi/SentHi';
 import TeamIntro from './TeamIntro/TeamIntro';
 import OurTeamIntro from './OurTeamIntro/OurTeamIntro';
 import Notion from './Notion/NotionMain';
+import UserDetail from './Chatting/UserDetail/ChatUserdetail';
 
 const Routers: React.FC = () => {
   return (
@@ -40,6 +41,7 @@ const Routers: React.FC = () => {
       <Route path="/zimeetIntroduct" element={<ZimeetIntroduct />} />
       <Route path="/gdgocIntroduct" element={<GdgocIntroduct />} />
       <Route path="/chatting/:chatRoomId" element={<Chatting />} />
+      <Route path="/chatuserdetail" element={<UserDetail />} />
       <Route path="/chattingInventory" element={<ChattingInventory />} />
       <Route path="/receiveHi" element={<ReceiveHi />} />
       <Route path="/sentHi" element={<SentHi />} />

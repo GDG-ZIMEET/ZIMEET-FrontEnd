@@ -12,6 +12,7 @@ import { connectWebSocket,sendMessage, disconnectWebSocket } from '../../../api/
 import { v4 as uuidv4 } from 'uuid';
 import { authState } from 'recoil/state/authState';
 import { deleteuser } from 'api/Chatting/DeleteUser';
+import ExitModal  from 'components/Chatting/ExitModal/ExitModal';
 
 const Chatting = () => {
   const location = useLocation();
@@ -21,6 +22,7 @@ const Chatting = () => {
   const [input, setInput] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isExitModalOpen, setIsExitModalOpen] = useState(false);
   const navigate = useNavigate();
 
   //채팅방 없으면 홈으로
@@ -113,13 +115,32 @@ const handleUserExit = async () => {
   const handleBackClick = () => {
     navigate(-1);
   };
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+
+  const SidebarOpen = () => {
+    setIsSidebarOpen(true);
+  }
+
+  const SidebarClose = () => {
+    setIsSidebarOpen(false);
+  }
+
+  const handleExitClick = () => {
+    setIsSidebarOpen(false);
+    setIsExitModalOpen(true);
+  }
+
+  const handleExitConfirm = () => {
+    setIsExitModalOpen(false);
+    handleUserExit();
+  }
+
+  const handleExitclose = () => {
+    setIsExitModalOpen(false);
+  }
 
   return (
     <S.ChattingContainer>
-      <ChatHeader onBackClick={handleBackClick} chatRoomName = {chatRoom.chatRoomName} onHamburgerClick={toggleSidebar} />
+      <ChatHeader onBackClick={handleBackClick} chatRoomName = {chatRoom.chatRoomName} onHamburgerClick={SidebarOpen} />
       {isLoading ? (
         <S.LoadingContainer />
       ) : (
@@ -131,11 +152,12 @@ const handleUserExit = async () => {
             handleSend={handleSendMessage} 
           />
           <ChatSidebar 
-            isOpen={isSidebarOpen} 
-            toggleSidebar={toggleSidebar} 
-            handleUserExit={handleUserExit}
+            SideisOpen={isSidebarOpen} 
+            SideisClose={SidebarClose} 
             roomId={chatRoom.chatRoomId}
+            handleExitClick={handleExitClick}
           />
+          {isExitModalOpen && <ExitModal isout={handleExitConfirm} isclose={handleExitclose} />}
         </>
       )}
     </S.ChattingContainer>
