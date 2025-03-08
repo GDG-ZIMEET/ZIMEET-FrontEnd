@@ -41,13 +41,13 @@ const Teams: React.FC = () => {
     <S.TeamComponent>
       {isLoading ? (
         <S.LoadingContainer />
-      ) : receiveHiList === null ? (
+      ) : receiveHiList && receiveHiList.length === 0 ? (
         <S.NoTeamsMessageContainer>
           <S.ZimeetLogo />
           <S.NoTeamsMessage>아직 받은 하이가 없네요!<br /> 팀을 만들어서 하이를 보내보세요!</S.NoTeamsMessage>
         </S.NoTeamsMessageContainer>
       ) : (
-        receiveHiList.map(team => (
+        receiveHiList?.map(team => (
           <S.Team key={team.teamId} onClick={() => handleTeamClick(team.teamId)} >
             <S.TeamHeader>
               <S.TeamName>{team.teamName} 팀</S.TeamName>

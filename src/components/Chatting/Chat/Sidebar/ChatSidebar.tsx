@@ -2,18 +2,16 @@ import React from 'react';
 import * as S from './Styles';
 import { getchatUsers } from 'api/Chatting/GetChatUsers';
 import { ChatRoomType } from 'recoil/type/Chatting/ChatRoomUsers';
-import { ourteamIds } from 'recoil/state/ourTeamIds';
-import { useRecoilValue } from 'recoil';
 import { getImageByEmoji } from 'utils/IconMapper';
 
 interface ChatSidebarProps {
-  isOpen: boolean;
-  toggleSidebar: () => void;
+  SideisOpen: boolean; 
+  SideisClose: () => void;
   roomId: number;
-  handleUserExit: () => void;
+  handleExitClick: () => void;
 }
 
-const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, toggleSidebar, roomId, handleUserExit }) => {
+const ChatSidebar: React.FC<ChatSidebarProps> = ({ SideisOpen, SideisClose, roomId ,handleExitClick}) => {
   const [chatUsers, setChatUsers] = React.useState<ChatRoomType[]>();
   const [isLoading, setIsLoading] = React.useState(true);
 
@@ -40,8 +38,8 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, toggleSidebar, roomId
 
   return (
     <>
-      <S.SidebarOverlay $isOpen={isOpen} onClick={toggleSidebar} />
-      <S.Sidebar $isOpen={isOpen}>
+      <S.SidebarOverlay $isOpen={SideisOpen} onClick={SideisClose} />
+      <S.Sidebar $isOpen={SideisOpen} >
         <S.SidebarContent>
           <S.SidebarTitle>채팅방</S.SidebarTitle>
           <S.UserList>
@@ -68,7 +66,7 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, toggleSidebar, roomId
         </>
           )}
           </S.UserList>
-            <S.ChatRoomoutContainer onClick={handleUserExit}>
+            <S.ChatRoomoutContainer onClick={handleExitClick}>
             <S.Chatout />
             <S.Chatroom>채팅방나가기</S.Chatroom>
             </S.ChatRoomoutContainer>

@@ -99,6 +99,7 @@ const Teams: React.FC<TeamsProps> = ({
             profileData={MyProfileData}
             gender={MyProfileData.gender}
             isTeamMaking={true}
+            isPremium={true}
           />
         ) : null}
         <S.Title>팀원</S.Title>
