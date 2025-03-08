@@ -13,7 +13,7 @@ export class Amplitude {
 
         const userId = localStorage.getItem('amplitude_user_id');
         if (userId) {
-            setUserId(userId);
+            this.setUser(userId);
         }
     }
 
@@ -25,14 +25,9 @@ export class Amplitude {
         }
     }
 
-    setUserId(userId: string): void {
+    setUser(userId: string): void {
         localStorage.setItem('amplitude_user_id', userId);
         setUserId(userId);
-    }
-
-    clearUserId(): void {
-        localStorage.removeItem('amplitude_user_id');
-        setUserId('unknown');
     }
 
     setUserInformation(properties: Record<string, any>): void {
