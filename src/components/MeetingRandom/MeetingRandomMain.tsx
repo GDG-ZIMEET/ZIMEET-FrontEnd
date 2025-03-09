@@ -6,7 +6,7 @@ import Modal from './Modal/Modal';
 import { TicketCount } from './Styles';
 import { useNavigate } from 'react-router-dom';
 import { getRandomTicket } from 'api/Meeting/GetRandomTicket';
-import { connectWebSocketRandom, disconnectWebSocket, cancelMatching } from "api/Meeting/WebRandom";
+import { connectWebSocketRandom, cancelMatching } from "api/Meeting/WebRandom";
 
 const MeetingRandomMain: React.FC = () => {
   const [isRandomLoading, setIsRandomLoading] = useState<boolean>(false);

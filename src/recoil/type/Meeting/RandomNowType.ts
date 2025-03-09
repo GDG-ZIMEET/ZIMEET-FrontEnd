@@ -1,0 +1,16 @@
+export interface User {
+    userId: number;
+    emoji: string;
+    gender: string;
+}
+
+export interface RandomNowResponseType {
+status: string;
+code: string;
+message: string;
+data: {
+    matchId: number;
+    userList: User[];
+    matchingStatus: string;
+    };
+};

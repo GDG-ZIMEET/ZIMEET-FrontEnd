@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import { getImageByEmoji, getRandomEmoji } from 'utils/IconMapper';
+import { getRandomNow } from 'api/Meeting/GetRandomnow';
+import { User } from 'recoil/type/Meeting/RandomNowType';
 
 interface MakeTeamBoxProps {
   isRandomLoading: boolean;
 }
 
 const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ isRandomLoading }) => {
+  const [randomNowData, setRandomNowData] = useState<User[] | null>(null);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getRandomNow();
+      if (response) {
+        setRandomNowData(response.data.userList);
+      }
+    };
+    fetchData();
+  }
+  , []);
+
   return (
     <S.MakeTeamLayout>
        <S.explainComponent>

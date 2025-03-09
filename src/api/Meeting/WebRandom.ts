@@ -1,5 +1,4 @@
 import { Client } from "@stomp/stompjs";
-import { c } from "framer-motion/dist/types.d-6pKw1mTI";
 import SockJS from "sockjs-client";
 
 const baseURL = process.env.REACT_APP_SOCKET_URL;

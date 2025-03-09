@@ -1,31 +1,25 @@
 import React from 'react';
 import * as S from './Styles';
+import { getImageByEmoji, getRandomEmoji } from 'utils/IconMapper';
 
-interface MakeTeamBoxProps {
-  showGender: boolean;
-  isLoading: boolean;
-  showExplain: boolean;
-}
+const MakeTeamBox: React.FC = () => {
 
-const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ showGender, isLoading, showExplain }) => {
   return (
     <S.MakeTeamLayout>
        <S.explainComponent>
-         <S.line1 showExplain={showExplain}>친구도 얻고, 연인도 얻고!</S.line1>
-         <S.Line2 showExplain={showExplain}>랜덤 미팅은 1인 신청으로 빠르게 참여!</S.Line2>
+         <S.line1 />
+         <S.Line2 />
       </S.explainComponent>
-      <S.GirlComponent show={showGender}>여자</S.GirlComponent>
       <S.TeamRow>
-        <S.FirstPerson>👻</S.FirstPerson>
-        <S.SecondPerson>😺</S.SecondPerson>
-        <S.ThirdPerson>{isLoading ? '❔' : '🐴'}</S.ThirdPerson>
+        <S.FirstPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.FirstPerson>
+        <S.SecondPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.SecondPerson>
+        <S.ThirdPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.ThirdPerson>
       </S.TeamRow>
-      <S.Loding>{isLoading ? '💗' : '💓'}</S.Loding>
-      <S.BoyComponent show={showGender}>남자</S.BoyComponent>
+      <S.LoadingBefore />
       <S.TeamRow>
-        <S.FourthPerson>🐕</S.FourthPerson>
-        <S.FifthPerson>⚾</S.FifthPerson>
-        <S.SixthPerson>🔥</S.SixthPerson>
+        <S.FourthPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.FourthPerson>
+        <S.FifthPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.FifthPerson>
+        <S.SixthPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.SixthPerson>
       </S.TeamRow>
     </S.MakeTeamLayout>
   );
