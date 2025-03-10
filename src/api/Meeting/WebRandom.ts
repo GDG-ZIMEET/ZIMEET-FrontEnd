@@ -1,21 +1,18 @@
-import { Client } from "@stomp/stompjs";
+import { Client, StompSubscription } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 
 const baseURL = process.env.REACT_APP_SOCKET_URL;
 const token = localStorage.getItem("accessToken");
 let stompClient: Client | null = null;
+let subscription: StompSubscription | null = null; // 구독 추적 변수
 
-export const connectWebSocketRandom = async (
-  onMatchingIdReceived: (matchingId: string) => void, // 매칭 ID 콜백
-  onMessageReceived: (message: any) => void // 상태 업데이트 콜백
-) => {
+export const connectWebSocketRandom = async (handleMatchingStatus: (data: any) => void, matchingId?: number) => {
   if (stompClient && stompClient.connected) {
-    console.warn("WebSocket already 연결됨.");
+    console.warn("WebSocket 이미 연결됨.");
     return;
   }
 
-  const socket = new SockJS(`${baseURL}/ws`); 
-
+  const socket = new SockJS(`${baseURL}/ws`);
   stompClient = new Client({
     webSocketFactory: () => socket,
     reconnectDelay: 5000,
@@ -23,17 +20,25 @@ export const connectWebSocketRandom = async (
       Authorization: `Bearer ${token}`,
     },
     onConnect: async () => {
-
       try {
-        //참가 요청
-        const matchingId = await sendMatchingRequest();
-        onMatchingIdReceived(matchingId);
+        const matchId = matchingId ?? 0; // matchingId가 undefined면 0 사용
+        await sendMatchingRequest(matchId);
+        console.log("매칭 요청 성공, 매칭 ID:", matchId);
 
-        // 받은 매칭 ID로 구독 시작
-        stompClient?.subscribe(`/topic/matching/${matchingId}`, (message) => {
-          const updateInfo = JSON.parse(message.body);
-          onMessageReceived(updateInfo);
-        });
+        // 기존 구독이 있으면 해제
+        if (subscription) {
+          subscription.unsubscribe();
+          console.log("기존 구독 취소됨.");
+        }
+
+        // 새 구독 설정
+        subscription = stompClient?.subscribe(`/topic/matching/${matchId}`, (message) => {
+          console.log("메시지 수신:", message.body);
+          const data = JSON.parse(message.body);
+          console.log("파싱된 데이터:", data);
+          handleMatchingStatus(data);
+        }) || null;
+
       } catch (error) {
         console.error("매칭 ID 요청 실패:", error);
       }
@@ -46,62 +51,53 @@ export const connectWebSocketRandom = async (
     },
   });
 
-  stompClient.activate(); 
+  stompClient.activate();
 };
 
-//참가 요청을 보내는 함수
-const sendMatchingRequest = (): Promise<string> => {
+// 참가 요청을 보내는 함수
+const sendMatchingRequest = (matchingId: number): Promise<string> => {
   return new Promise((resolve, reject) => {
     if (!stompClient) {
       reject("WebSocket 연결이 없습니다.");
       return;
     }
+
+    console.log("매칭 요청 전송...");
     
-    // 참가 요청 보내기
     stompClient.publish({
       destination: "/app/matching/join",
-      body: JSON.stringify({}), 
+      headers: { Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ matchingId }),
     });
 
-    // 서버 응답 
-    stompClient.onUnhandledMessage = (message) => {
-      try {
-        const data = JSON.parse(message.body);
-        if (data.matchingId) {
-          resolve(data.matchingId); // 매칭 ID
-        } else {
-          reject("Invalid response: No matchingId found");
-        }
-      } catch (error) {
-        reject(error);
-      }
-    };
+    resolve(matchingId.toString());
   });
 };
 
-
-//웹소켓 연결 해제 함수
-export const disconnectWebSocket = () => {
-  if (stompClient) {
-    stompClient.deactivate();
-    stompClient = null;
-    console.log("WebSocket 연결 해제됨");
-  }
-};
-
+// 매칭 취소 함수 (기존 구독도 해제)
 export const cancelMatching = () => {
-    if (!stompClient) {
-      console.warn("WebSocket이 연결되지 않았습니다.");
-      return;
-    }
+  if (!stompClient) {
+    console.warn("WebSocket이 연결되지 않았습니다.");
+    return;
+  }
+
+  console.log("매칭 취소 요청 전송...");
   
-    console.log("매칭 취소 요청 전송...");
-    
-    stompClient.publish({
-      destination: "/app/matching/cancel",
-      body: JSON.stringify({}), 
-    });
-  
-    // 매칭 취소 후 WebSocket 연결 해제
-    disconnectWebSocket();
-  };
+  stompClient.publish({
+    destination: "/app/matching/cancel",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({}),
+  });
+
+  // 기존 구독 해제
+  if (subscription) {
+    subscription.unsubscribe();
+    console.log("기존 구독 해제됨.");
+    subscription = null;
+  }
+
+  stompClient.deactivate().then(() => {
+    console.log("WebSocket 연결 해제됨");
+    stompClient = null;
+  });
+};

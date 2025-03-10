@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import { authState } from '../../recoil/state/authState';
 import * as S from './Styles';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import TypeButton from '../../components/Meeting22/TypeButton/TypeButton';
@@ -97,7 +96,7 @@ const Meeting22 = () => {
         <>
           <MakeTeam teamType={teamType} ourTeamData={ourTeamData} />
           {isLoading ? (
-          <p>데이터를 불러오는 중입니다...</p>
+          <S.LoadingContainer />
           ) : (
           <TeamBox teamData={teamGalleryData || []} ourTeamData={ourTeamData} teamType={teamType} />
           )}

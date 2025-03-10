@@ -6,14 +6,16 @@ import Modal from './Modal/Modal';
 import { TicketCount } from './Styles';
 import { useNavigate } from 'react-router-dom';
 import { getRandomTicket } from 'api/Meeting/GetRandomTicket';
-import { connectWebSocketRandom, cancelMatching } from "api/Meeting/WebRandom";
+import { connectWebSocketRandom,  cancelMatching } from "api/Meeting/WebRandom";
+import { getRandomNow } from 'api/Meeting/GetRandomnow';
+import { RandomNowResponseType } from 'recoil/type/Meeting/RandomNowType';
 
 const MeetingRandomMain: React.FC = () => {
   const [isRandomLoading, setIsRandomLoading] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [ticket, setTicket] = useState<number | null>(null);
-  const [matchingId, setMatchingId] = useState<string | null>(null);
-  const [matchingStatus, setMatchingStatus] = useState<any>(null);
+  const [randomNowData, setRandomNowData] = useState<RandomNowResponseType | null>(null);
+  const [matchingStatus, setMatchingStatus] = useState<string>('');
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -25,6 +27,18 @@ const MeetingRandomMain: React.FC = () => {
       };
       fetchData();
     }, []);
+  useEffect(() => {
+    if (isRandomLoading) {
+      const fetchRandomNowData = async () => {
+        const response = await getRandomNow();
+        console.log('랜덤데이터',response);
+        if (response) {
+          setRandomNowData(response);
+        }
+      };
+      fetchRandomNowData();
+    }
+  }, [isRandomLoading]);
     
   const handleHelpClick = () => {
     navigate('/notion/termsOfService');
@@ -41,32 +55,29 @@ const MeetingRandomMain: React.FC = () => {
     setIsModalOpen(false);
     setIsRandomLoading(true);
     //실시간 상태 구독
-    connectWebSocketRandom(handleMatchingId, handleMatchingStatus);
-  };
-
-  // 매칭 ID를 저장하는 콜백 함수
-  const handleMatchingId = (id: string) => {
-    setMatchingId(id);
+    connectWebSocketRandom(handleMatchingStatus,randomNowData?.data.matchingId);
   };
 
   // 매칭 상태를 업데이트하는 콜백 함수
-  const handleMatchingStatus = (status: any) => {
-    setMatchingStatus(status);
-    if (status.matchingComplete) {
-      setIsRandomLoading(false);
+  const handleMatchingStatus = (data: any) => {
+    if (data.status === 'COMPLETE') {
+      setMatchingStatus('매칭 완료');
+      console.log('매칭 완료');
+    } else {
+      setMatchingStatus(`대기중: ${data.users.length}/6명`);
+      console.log(`대기중: ${data.users.length}/6명`);
     }
   };
 
   const handleCancel = () => {
     cancelMatching(); // 서버에 취소 요청
     setIsRandomLoading(false); // 로딩 상태 해제
-    setMatchingId(null); // 매칭 ID 초기화
-    setMatchingStatus(null); // 매칭 상태 초기화
+    setRandomNowData(null);
   };
 
   return (
     <>
-      <MakeTeamBox isRandomLoading={isRandomLoading} />
+      <MakeTeamBox isRandomLoading={isRandomLoading} randomNowData={randomNowData}/>
       <Help isRandomLoading={!isRandomLoading} onClick={handleHelpClick} />
       <TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : {ticket}개</TicketCount>
       <JoinRandomMeetingButton isRandomLoading={isRandomLoading} onClick={isRandomLoading ? handleCancel : handleJoinClick}/>

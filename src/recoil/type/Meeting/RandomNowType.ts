@@ -9,7 +9,7 @@ status: string;
 code: string;
 message: string;
 data: {
-    matchId: number;
+    matchingId: number;
     userList: User[];
     matchingStatus: string;
     };
