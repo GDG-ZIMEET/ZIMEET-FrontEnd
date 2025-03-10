@@ -23,7 +23,6 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ SideisOpen, SideisClose, room
         const response = await getchatUsers(roomId);
         if (response) {
           setChatUsers(response.data);
-          console.log(response.data);
         } else {
           setChatUsers([]);
         }

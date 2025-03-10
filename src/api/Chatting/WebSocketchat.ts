@@ -11,7 +11,7 @@ export const connectWebSocket = ( roomId: string, onMessageReceived: (message: a
         return;
     }
 
-    const socket = new SockJS(`${baseURL}/ws/chat`);
+    const socket = new SockJS(`${baseURL}/ws`);
 
     stompClient = new Client({
         webSocketFactory: () => socket,

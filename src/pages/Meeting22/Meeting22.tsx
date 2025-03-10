@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import { authState } from '../../recoil/state/authState';
 import * as S from './Styles';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import TypeButton from '../../components/Meeting22/TypeButton/TypeButton';
@@ -14,6 +13,7 @@ import { NonLoginDataTwoToTwo, NonLoginDataThreeToThree } from '../../data/NonLo
 import { OurTeamType } from '../../recoil/type/Meeting/ourTeamType';
 import MeetingRandomMain from '../../components/MeetingRandom/MeetingRandomMain';
 import { ourteamIds } from '../../recoil/state/ourTeamIds';
+import NonLogInMeeting from '../../pages/NonMember/Meeting/Meeting';
 
 const Meeting22 = () => {
   const navigate = useNavigate();
@@ -85,26 +85,26 @@ const Meeting22 = () => {
   return (
     <>  
       <NavigationBar />
-      {!isLoggedIn && (
-        <LoginPopUp onClose={handleLogin} />
+      {!isLoggedIn && teamType !== 'Random' && (
+      <LoginPopUp onClose={handleLogin} />
       )}
       <S.Meeting22Layout>
-        <S.Meeting22Title>팀 갤러리</S.Meeting22Title>
-        <TypeButton setSelectedTeamType={setTeamType} />
-        <S.Meeting22Container>
-          {teamType !== 'Random' ? (
-            <>
-              <MakeTeam teamType={teamType} ourTeamData={ourTeamData} />
-              {isLoading ? (
-                <p>데이터를 불러오는 중입니다...</p>
-              ) : (
-                <TeamBox teamData={teamGalleryData || []} ourTeamData={ourTeamData} teamType={teamType} />
-              )}
-            </>
+      <S.Meeting22Title>팀 갤러리</S.Meeting22Title>
+      <TypeButton setSelectedTeamType={setTeamType} />
+      <S.Meeting22Container>
+        {teamType !== 'Random' ? (
+        <>
+          <MakeTeam teamType={teamType} ourTeamData={ourTeamData} />
+          {isLoading ? (
+          <S.LoadingContainer />
           ) : (
-            <MeetingRandomMain />
+          <TeamBox teamData={teamGalleryData || []} ourTeamData={ourTeamData} teamType={teamType} />
           )}
-        </S.Meeting22Container>
+        </>
+        ) : (
+        isLoggedIn ? <MeetingRandomMain /> : <NonLogInMeeting />
+        )}
+      </S.Meeting22Container>
       </S.Meeting22Layout>  
     </>
   );
