@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { joinState } from '../../../../recoil/state/joinState';
 import { getImageByEmoji } from 'utils/IconMapper';
-import { majorOptions } from '../../../../data/SignUpData';
+import { majorMap } from '../../../../data/SignUpData';
 import { LogoContainer } from 'components/Authentication/Join/LogoContainer/LogoContainer';
 
 const Join2 = () => {
@@ -30,7 +30,7 @@ const Join2 = () => {
     setIsNicknameValid(value.length >= 2 && value.length <= 7);
     // console.log(isNicknameValid)
   };
-
+  
   return (
     <S.JoinLayout>
       <LogoContainer title="프로필 꾸미기" text="ZI밋의 컨셉은 블라인드! 그만큼 아래 내용이 중요해요." />
@@ -42,9 +42,9 @@ const Join2 = () => {
             onChange={(e) => setJoinData({ ...joinData, major: e.target.value })}
           >
             <option value="">학과를 선택해주세요.</option>
-            {majorOptions.map((major, index) => (
-              <option key={index} value={major}>
-                {major}
+            {Object.keys(majorMap).map((key, index) => (
+              <option key={index} value={key}>
+                {key}
               </option>
             ))}
           </S.JoinSelect>
