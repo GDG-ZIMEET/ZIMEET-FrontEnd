@@ -31,7 +31,6 @@ const MeetingRandomMain: React.FC = () => {
     if (isRandomLoading) {
       const fetchRandomNowData = async () => {
         const response = await getRandomNow();
-        console.log('랜덤데이터',response);
         if (response) {
           setRandomNowData(response);
         }
@@ -67,10 +66,8 @@ const MeetingRandomMain: React.FC = () => {
   const handleMatchingStatus = (data: any) => {
     if (data.status === 'COMPLETE') {
       setMatchingStatus('매칭 완료');
-      console.log('매칭 완료');
     } else {
       setMatchingStatus(`대기중: ${data.users.length}/6명`);
-      console.log(`대기중: ${data.users.length}/6명`);
     }
   };
 

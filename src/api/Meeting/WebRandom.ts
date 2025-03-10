@@ -21,21 +21,17 @@ export const connectWebSocketRandom = async (handleMatchingStatus: (data: any) =
     },
     onConnect: async () => {
       try {
-        const matchId = matchingId ?? 0; // matchingId가 undefined면 0 사용
+        const matchId = matchingId ?? 0;
         await sendMatchingRequest(matchId);
-        console.log("매칭 요청 성공, 매칭 ID:", matchId);
 
         // 기존 구독이 있으면 해제
         if (subscription) {
           subscription.unsubscribe();
-          console.log("기존 구독 취소됨.");
         }
 
         // 새 구독 설정
         subscription = stompClient?.subscribe(`/topic/matching/${matchId}`, (message) => {
-          console.log("메시지 수신:", message.body);
           const data = JSON.parse(message.body);
-          console.log("파싱된 데이터:", data);
           handleMatchingStatus(data);
         }) || null;
 
@@ -61,8 +57,6 @@ const sendMatchingRequest = (matchingId: number): Promise<string> => {
       reject("WebSocket 연결이 없습니다.");
       return;
     }
-
-    console.log("매칭 요청 전송...");
     
     stompClient.publish({
       destination: "/app/matching/join",
@@ -80,8 +74,6 @@ export const cancelMatching = () => {
     console.warn("WebSocket이 연결되지 않았습니다.");
     return;
   }
-
-  console.log("매칭 취소 요청 전송...");
   
   stompClient.publish({
     destination: "/app/matching/cancel",
@@ -92,12 +84,10 @@ export const cancelMatching = () => {
   // 기존 구독 해제
   if (subscription) {
     subscription.unsubscribe();
-    console.log("기존 구독 해제됨.");
     subscription = null;
   }
 
   stompClient.deactivate().then(() => {
-    console.log("WebSocket 연결 해제됨");
     stompClient = null;
   });
 };
