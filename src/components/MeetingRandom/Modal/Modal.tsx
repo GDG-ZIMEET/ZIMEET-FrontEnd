@@ -11,12 +11,6 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ onClose, onConfirm, ticket }) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (ticket !== null && ticket <= 0) {
-      alert('티켓 수가 부족합니다');
-      navigate('/mypage');
-    }
-  }, [ticket]);
 
   return (
     <S.Modallayout>

@@ -56,6 +56,11 @@ const MeetingRandomMain: React.FC = () => {
     setIsRandomLoading(true);
     //실시간 상태 구독
     connectWebSocketRandom(handleMatchingStatus,randomNowData?.data.matchingId);
+    
+    if (ticket !== null && ticket <= 0) {
+      alert('티켓 수가 부족합니다');
+      navigate('/mypage');
+    }
   };
 
   // 매칭 상태를 업데이트하는 콜백 함수
