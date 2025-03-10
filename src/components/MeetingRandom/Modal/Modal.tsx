@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
+import { useNavigate } from 'react-router-dom';
+
 interface ModalProps {
   onClose: () => void;
   onConfirm: () => void;
   ticket: number | null;
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose, onConfirm,ticket }) => {
-  
+const Modal: React.FC<ModalProps> = ({ onClose, onConfirm, ticket }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (ticket !== null && ticket <= 0) {
+      alert('티켓 수가 부족합니다');
+      navigate('/mypage');
+    }
+  }, [ticket]);
 
   return (
     <S.Modallayout>
