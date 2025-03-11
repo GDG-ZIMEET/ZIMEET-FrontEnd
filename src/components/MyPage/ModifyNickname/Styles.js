@@ -78,9 +78,9 @@ export const SaveBtn = styled.button`
   font-weight: 600;
   font-size: 16px;
   padding: 3.5%;
-  border-radius: 0.8rem;
-  background-color: ${({ disabled }) => (disabled ? '#ececec' : '#ea4335')};
-  color: ${({ disabled }) => (disabled ? '#7c7c7c' : 'white')};
+  border-radius: 0.6rem;
+  background-color: ${({ disabled }) => (disabled ? '#868686' : '#ea4335')};
+  color: white;
 `;
 
 //에러메세지

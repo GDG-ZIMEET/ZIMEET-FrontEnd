@@ -72,7 +72,7 @@ const MyPage = () => {
                   </S.EmojiContainer>
                   <S.MyInfo>                   
                     <S.MyNameText>{myProfileData.data.name} | {myProfileData.data.nickname}</S.MyNameText>
-                    <S.MyInfoText>{myProfileData.data.major} ∙ {myProfileData.data.studentNumber} ∙ {myProfileData.data.age}세</S.MyInfoText>
+                    <S.MyInfoText>{myProfileData.data.major} ∙ {myProfileData.data.studentNumber.slice(2, 4)}학번 ∙ {myProfileData.data.age}세</S.MyInfoText>
                     <S.MyInfoText>{myProfileData.data.level === 'LIGHT' ? 'ZI밋 라이트 등급' : myProfileData.data.level === 'PLUS' ? 'ZI밋 플러스 등급' : ''}</S.MyInfoText>
                   </S.MyInfo>
                   <S.MyInfoModifyWrapper>

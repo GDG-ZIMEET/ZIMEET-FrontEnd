@@ -79,9 +79,9 @@ export const BtnContainer = styled.div`
 export const JoinBtn = styled.button`
   font-weight: 700;
   width: 100%;
-  height: 30%;
+  height: 40%;
   background-color: #ea4335;
   border-radius: 0.6rem;
-  margin: 30% 0 10% 0;
+  margin: 25% 0 20% 0;
   color: white;
 `;

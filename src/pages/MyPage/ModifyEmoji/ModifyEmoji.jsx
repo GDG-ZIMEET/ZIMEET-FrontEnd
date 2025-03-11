@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import * as M from 'utils/IconMapper';
 import { updateEmoji } from 'api/Mypage/UpdateEmoji';
+import Header from 'components/Common/Header/Header/Header';
 
-const SelectEmoji = () => {
+const ModifyEmoji = () => {
   const navigate = useNavigate();
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,12 +55,7 @@ const SelectEmoji = () => {
 
   return (
     <S.JoinContainer>
-      <S.TopBarContainer>
-        <S.TopBar>
-          <S.BackBtn onClick={handleBack}>&lt;</S.BackBtn>
-          <S.TopBarText>이모지 선택하기</S.TopBarText>
-        </S.TopBar>
-      </S.TopBarContainer>
+      <Header title='이모지 선택하기' />
 
       <S.Wrapper>
         <S.EmojiContainer>
@@ -89,4 +85,4 @@ const SelectEmoji = () => {
   );
 };
 
-export default SelectEmoji;
+export default ModifyEmoji;
