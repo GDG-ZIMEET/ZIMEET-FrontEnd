@@ -16,7 +16,7 @@ const ModifyEmoji = () => {
 
   const handleSubmit = () => {
     if (selectedEmoji) {
-      sessionStorage.setItem('selectedEmoji', selectedEmoji); // 상태 저장
+      sessionStorage.setItem('selectedEmoji', selectedEmoji);
       navigate('/modifyprofile', { replace: true }); // 새로고침 방지
     } else {
       alert('이모지를 선택해주세요!');

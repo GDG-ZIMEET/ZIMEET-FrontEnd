@@ -34,7 +34,7 @@ const ModifyProfile = () => {
             setSelectedEmoji(storedEmoji || response.data.emoji);
           } else {
             setSelectedEmoji(response.data.emoji);
-            sessionStorage.removeItem('selectedEmoji'); // 기존 값 삭제
+            sessionStorage.removeItem('selectedEmoji'); 
           }
           
           sessionStorage.setItem('previousPage', 'modifyprofile');

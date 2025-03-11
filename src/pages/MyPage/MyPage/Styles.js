@@ -228,7 +228,7 @@ export const ComponentContainer = styled.div`
   gap: 3%;
   padding-top: 6%;
   flex: 1;
-  padding-bottom: ${(props) => (props.isLoggedIn ? '70%' : '50%')};
+  padding-bottom: ${({ $isLoggedIn }) => ($isLoggedIn ? '70%' : '50%')};
 `;
 
 export const OutContainer = styled.div`
