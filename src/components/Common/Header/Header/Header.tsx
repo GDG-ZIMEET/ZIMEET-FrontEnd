@@ -1,5 +1,5 @@
 import * as S from './Styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface HeaderProps {
   title: string;
@@ -7,8 +7,14 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ title }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const handleBackClick = () => {
-    navigate(-1);
+    if (location.pathname === '/modifyprofile') {
+      navigate('/mypage');
+    } else {
+      navigate(-1);
+    }
   };
 
   return (

@@ -1,18 +1,65 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as S from './Styles';
 import ModifyNickname from 'components/MyPage/ModifyNickname/ModifyNickname';
+import Header from 'components/Common/Header/Header/Header';
 
 import { getmyProfile } from 'api/Mypage/GetmyProfile';
+import { updateEmoji } from 'api/Mypage/UpdateEmoji';
+import { updateNickname } from 'api/Mypage/UpdateNickname';
 import { getImageByEmoji } from 'utils/IconMapper';
-import { mappingStyle, mappingAge, mappingFace } from 'data/SignUpData';
+import { mappingStyle, mappingAge, mappingFace, mappinggrade } from 'data/SignUpData';
 
 const ModifyProfile = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isModalOpen, setModalOpen] = useState(false);
-
   const [myProfileData, setMyProfileData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedEmoji, setSelectedEmoji] = useState(null);
+  const [updatedNickname, setUpdatedNickname] = useState('');
+  const [isModified, setIsModified] = useState(false);
+
+  useEffect(() => {
+    const fetchMyProfile = async () => {
+      try {
+        const response = await getmyProfile();
+        if (response) {
+          setMyProfileData(response);
+          setUpdatedNickname(response.data.nickname);
+          
+          const previousPage = sessionStorage.getItem('previousPage');
+          if (previousPage === 'modifyemoji') {
+            const storedEmoji = sessionStorage.getItem('selectedEmoji');
+            setSelectedEmoji(storedEmoji || response.data.emoji);
+          } else {
+            setSelectedEmoji(response.data.emoji);
+            sessionStorage.removeItem('selectedEmoji'); 
+          }
+          
+          sessionStorage.setItem('previousPage', 'modifyprofile');
+          setIsModified(false);
+        }
+      } catch (error) {
+        console.error('Error fetching profile data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchMyProfile();
+  }, []);
+
+  useEffect(() => {
+    if (!location.pathname.includes('modifyprofile') && !location.pathname.includes('modifyemoji')) {
+      sessionStorage.removeItem('previousPage');
+    }
+  }, [location]);
+
+  useEffect(() => {
+    if (myProfileData) {
+      setIsModified(selectedEmoji !== myProfileData.data.emoji || updatedNickname !== myProfileData.data.nickname);
+    }
+  }, [selectedEmoji, updatedNickname, myProfileData]);
 
   const handleBack = () => {
     navigate(-1);
@@ -23,44 +70,43 @@ const ModifyProfile = () => {
   };
 
   const handleEmojiClick = () => {
-    navigate('/modifyemoji'); 
+    sessionStorage.setItem('previousPage', 'modifyemoji');
+    navigate('/modifyemoji');
   };
 
-  useEffect(() => {
-    const fetchMyProfile = async () => {
-      try {
-        const response = await getmyProfile();
-        if (response) {
-          setMyProfileData(response);
-        } else {
-          setMyProfileData(null);
+  const handleSaveChanges = async () => {
+    try {
+      if (myProfileData) {
+        if (selectedEmoji !== myProfileData.data.emoji) {
+          await updateEmoji({ emoji: selectedEmoji });
+          sessionStorage.removeItem('selectedEmoji');
         }
-      } catch (error) {
-        console.error('Error fetching profile data:', error);
-        setMyProfileData(null);
-      } finally {
-        setIsLoading(false);
+        if (updatedNickname !== myProfileData.data.nickname) {
+          await updateNickname({ nickname: updatedNickname });
+        }
+        alert('프로필이 성공적으로 업데이트되었습니다.');
+        setIsModified(false);
+        sessionStorage.removeItem('previousPage');
+        navigate('/mypage');
       }
-    };
-    fetchMyProfile();
-  }, []);
+    } catch (error) {
+      alert('업데이트에 실패했습니다. 다시 시도해주세요.');
+    }
+  };
 
   return (
     <S.JoinContainer>
-      <S.TopBarContainer>
-        <S.BackBtn onClick={handleBack} />
-        <S.TopBarText>프로필 수정</S.TopBarText>
-      </S.TopBarContainer>
+      <Header title='프로필 수정' />
 
       {isLoading ? (
         <S.LoadingContainer />
-      ) : myProfileData? (
+      ) : myProfileData ? (
         <>
           <S.ContentContainer>
             <S.EmojiContainer>
               <S.CircleWrap className='emoji' onClick={handleEmojiClick}>
                 <S.EmojiWrap>
-                  <S.TossEmoji src={getImageByEmoji(myProfileData.data.emoji)} ></S.TossEmoji>
+                  <S.TossEmoji src={getImageByEmoji(selectedEmoji)}></S.TossEmoji>
                 </S.EmojiWrap>
               </S.CircleWrap>
               <S.Text>이모지를 눌러서 바꿔보세요!</S.Text>
@@ -73,7 +119,7 @@ const ModifyProfile = () => {
               </S.ProfileWrapper>
               <S.ProfileWrapper onClick={handleNicknameClick} style={{ cursor: 'pointer' }}>
                 <S.ProfileItems>닉네임</S.ProfileItems>
-                <S.ProfileValues className='nickname'>{myProfileData.data.nickname}</S.ProfileValues>
+                <S.ProfileValues className='nickname'>{updatedNickname}</S.ProfileValues>
               </S.ProfileWrapper>
               <S.ProfileWrapper>
                 <S.ProfileItems>학과/계열</S.ProfileItems>
@@ -85,7 +131,7 @@ const ModifyProfile = () => {
               </S.ProfileWrapper>
               <S.ProfileWrapper>
                 <S.ProfileItems>학년 | 나이</S.ProfileItems>
-                <S.ProfileValues>{myProfileData.data.grade} | {myProfileData.data.age}</S.ProfileValues>
+                <S.ProfileValues>{mappinggrade(myProfileData.data.grade)}학년 | {myProfileData.data.age}세</S.ProfileValues>
               </S.ProfileWrapper>
               <S.ProfileWrapper>
                 <S.ProfileItems>MBTI</S.ProfileItems>
@@ -93,6 +139,7 @@ const ModifyProfile = () => {
               </S.ProfileWrapper>
             </S.ProfileContainer>
 
+            
             <S.PreferContainer>
               <S.PreferWrapper>
                 <S.CircleWrap>
@@ -133,8 +180,8 @@ const ModifyProfile = () => {
 
             <S.BtnContainer>
               <S.Text>닉네임과 이모지만 변경할 수 있어요.</S.Text>
-              <S.ModifyBtn>
-                변경된 내용이 없어요.
+              <S.ModifyBtn onClick={handleSaveChanges} disabled={!isModified}>
+                {isModified ? '변경사항 저장' : '변경된 내용이 없어요.'}
               </S.ModifyBtn>
             </S.BtnContainer>
           </S.ContentContainer>
@@ -145,8 +192,14 @@ const ModifyProfile = () => {
         </>
       )}
 
-
-      <ModifyNickname isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+      <ModifyNickname 
+        isOpen={isModalOpen} 
+        onClose={() => setModalOpen(false)} 
+        onUpdateNickname={(newNickname) => {
+          setUpdatedNickname(newNickname);
+          setIsModified(true);
+        }}
+      />
     </S.JoinContainer>
   );
 };

@@ -29,6 +29,9 @@ const MyPage = () => {
   }
 
   useEffect(() => {
+    sessionStorage.removeItem('previousPage');
+    sessionStorage.removeItem('selectedEmoji');
+    
     const fetchMyProfile = async () => {
       setIsLoading(true);
       try {
@@ -72,7 +75,7 @@ const MyPage = () => {
                   </S.EmojiContainer>
                   <S.MyInfo>                   
                     <S.MyNameText>{myProfileData.data.name} | {myProfileData.data.nickname}</S.MyNameText>
-                    <S.MyInfoText>{myProfileData.data.major} ∙ {myProfileData.data.studentNumber} ∙ {myProfileData.data.age}세</S.MyInfoText>
+                    <S.MyInfoText>{myProfileData.data.major} ∙ {myProfileData.data.studentNumber.slice(2, 4)}학번 ∙ {myProfileData.data.age}세</S.MyInfoText>
                     <S.MyInfoText>{myProfileData.data.level === 'LIGHT' ? 'ZI밋 라이트 등급' : myProfileData.data.level === 'PLUS' ? 'ZI밋 플러스 등급' : ''}</S.MyInfoText>
                   </S.MyInfo>
                   <S.MyInfoModifyWrapper>
@@ -132,9 +135,9 @@ const MyPage = () => {
             )}
           </S.InfoContainer>
         </S.BlackContainer>
-        <S.WhiteArea isLoggedIn={isLoggedIn} />
+        <S.WhiteArea $isLoggedIn={isLoggedIn} />
 
-        <S.ComponentContainer isLoggedIn={isLoggedIn}>
+        <S.ComponentContainer $isLoggedIn={isLoggedIn}>
           <Event />
           <ItemShop myProfileData={myProfileData} />
           <QnA myProfileData={myProfileData}/>

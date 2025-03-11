@@ -4,7 +4,7 @@ import * as I from '../../../../assets/Icons';
 const ItemHi33 = () => {
   return (
         <S.ItemHi22Container>
-            <S.Title>2대2 하이</S.Title>
+            <S.Title>3대3 하이</S.Title>
             <S.HiContainer>
                 <S.HiWrpper>
                     <S.HiWrpper>
