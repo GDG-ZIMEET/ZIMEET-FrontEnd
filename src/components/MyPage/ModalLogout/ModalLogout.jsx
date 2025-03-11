@@ -1,11 +1,8 @@
-import { useState } from "react";
+import useLogout from '../../../api/Authentication/useLogout';
 import * as S from "./Styles"; 
 
 const ModalLogout = ({ isOpen, onClose }) => {
-  
-  const handleLogout = async () => {
-
-  };
+  const handleLogout = useLogout();
 
   if (!isOpen) return null;
 

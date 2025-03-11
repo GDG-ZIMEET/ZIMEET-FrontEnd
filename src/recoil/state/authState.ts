@@ -8,12 +8,16 @@ interface AuthState {
 // `localStorage`에서 로그인 상태를 불러오기
 const getStoredAuthState = (): AuthState => {
   const storedState = localStorage.getItem("authState");
-  return storedState ? JSON.parse(storedState) : { userId: null, isAuthenticated: false };
+  return storedState ? JSON.parse(storedState) : { userId: 0, isAuthenticated: false };
 };
 
 // `localStorage`에 로그인 상태를 저장
 const setStoredAuthState = (authState: AuthState) => {
-  localStorage.setItem("authState", JSON.stringify(authState));
+  if (!authState.isAuthenticated) {
+    localStorage.removeItem("authState"); // 로그아웃 상태일 경우 저장 안함
+  } else {
+    localStorage.setItem("authState", JSON.stringify(authState));
+  }
 };
 
 // Recoil 상태에  자동 저장
