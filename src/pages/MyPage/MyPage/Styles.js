@@ -28,7 +28,7 @@ export const LoadingContainer = styled.img.attrs({
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 40%;
+  width: 50%;
   margin: 10% auto;
 `;
 
@@ -63,10 +63,11 @@ export const WhiteArea = styled.div`
   position: relative;  
   z-index: 0;
   border-radius: 2rem 2rem 0 0;
-  margin-top: ${(props) => (props.isLoggedIn ? '-50%' : '-33%')};
-  padding-top: ${(props) => (props.isLoggedIn ? '45%' : '30%')};
+  margin-top: ${({ $isLoggedIn }) => ($isLoggedIn ? '-50%' : '-33%')};
+  padding-top: ${({ $isLoggedIn }) => ($isLoggedIn ? '45%' : '30%')};
   padding-bottom: 7%;
 `;
+
 
 //MyInfo
 export const InfoContainer = styled.div` 

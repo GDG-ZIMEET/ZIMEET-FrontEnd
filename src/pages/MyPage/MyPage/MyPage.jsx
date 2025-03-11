@@ -29,6 +29,9 @@ const MyPage = () => {
   }
 
   useEffect(() => {
+    sessionStorage.removeItem('previousPage');
+    sessionStorage.removeItem('selectedEmoji');
+    
     const fetchMyProfile = async () => {
       setIsLoading(true);
       try {
@@ -132,9 +135,9 @@ const MyPage = () => {
             )}
           </S.InfoContainer>
         </S.BlackContainer>
-        <S.WhiteArea isLoggedIn={isLoggedIn} />
+        <S.WhiteArea $isLoggedIn={isLoggedIn} />
 
-        <S.ComponentContainer isLoggedIn={isLoggedIn}>
+        <S.ComponentContainer $isLoggedIn={isLoggedIn}>
           <Event />
           <ItemShop myProfileData={myProfileData} />
           <QnA myProfileData={myProfileData}/>
