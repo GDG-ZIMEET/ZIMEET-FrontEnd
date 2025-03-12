@@ -1,5 +1,5 @@
 import * as S from './Styles';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import Event from 'components/MyPage/Event/Event';
 import ItemShop from 'components/MyPage/ItemShop/Main/ItemShop';
 import QnA from 'components/MyPage/QnA/QnA';
@@ -11,10 +11,13 @@ import {getImageByEmoji} from 'utils/IconMapper';
 import { authState } from '../../../recoil/state/authState';
 import ModalWithdraw from 'components/MyPage/ModalWithdraw/ModalWithdraw';
 import ModalLogout from 'components/MyPage/ModalLogout/ModalLogout';
+import useLoginCheck from 'api/Authentication/useLoginCheck';
 
 const MyPage = () => {
+  useLoginCheck(); 
+
+  const { userId, isAuthenticated: isLoggedIn } = useRecoilValue(authState);
   const [myProfileData, setMyProfileData] = useState(null);
-  const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
   const [isLoading, setIsLoading] = useState(true);
   const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
@@ -33,6 +36,12 @@ const MyPage = () => {
     sessionStorage.removeItem('selectedEmoji');
     
     const fetchMyProfile = async () => {
+      if (!isLoggedIn) {
+        setMyProfileData(null);
+        setIsLoading(false);
+        return;
+      }
+
       setIsLoading(true);
       try {
         if (isLoggedIn) {
@@ -63,7 +72,7 @@ const MyPage = () => {
           <S.InfoContainer>
           {isLoading ? (
               <S.LoadingContainer />
-          ) : isLoggedIn ? (
+          ) : isLoggedIn && myProfileData ? (
               <>
                 <S.MyInfoContainer>
                   <S.EmojiContainer>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BannerContainer = styled.div`
   width: 100%;
-  height: ${({ isLoggedIn }) => (isLoggedIn ? '13%' : '55%')}; 
+  height: ${({ $isLoggedIn }) => ($isLoggedIn ? '13%' : '55%')}; 
   border-radius: 0.8rem;
   display: flex;
   justify-content: space-around;

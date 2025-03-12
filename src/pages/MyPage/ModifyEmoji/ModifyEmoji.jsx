@@ -32,7 +32,7 @@ const ModifyEmoji = () => {
             const emojiImage = M.getImageByEmoji(emoji);
             return (
               <S.CircleWrap key={index} onClick={() => handleSelect(emoji)}>
-                <S.EmojiWrap isSelected={selectedEmoji === emoji}>
+                <S.EmojiWrap $isSelected={selectedEmoji === emoji}>
                   <S.TossEmoji>
                     <img src={emojiImage} alt={emoji} />
                   </S.TossEmoji>
