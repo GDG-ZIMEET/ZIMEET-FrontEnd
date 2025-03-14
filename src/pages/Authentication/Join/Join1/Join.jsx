@@ -5,6 +5,7 @@ import * as S from './Styles';
 import { joinState } from '../../../../recoil/state/joinState';
 import { gradeOptions, gradeDisplayOptions } from 'data/SignUpData';
 import { LogoContainer } from 'components/Authentication/Join/LogoContainer/LogoContainer';
+import { checkDuplicateNumber } from 'api/Authentication/checkDuplicateNumber';
 
 const Join = () => {
   const [joinData, setJoinData] = useRecoilState(joinState);
@@ -16,6 +17,10 @@ const Join = () => {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
   const [isSelected, setIsSelected] = useState(false);
+  const [isChecking, setIsChecking] = useState(false);
+  const [studentNumberError, setStudentNumberError] = useState('');
+  const [phoneNumberError, setPhoneNumberError] = useState('');
+
 
   const ageOptions = Array.from({ length: 9 }, (_, index) => (
     <option key={index} value={index + 20}>
@@ -42,12 +47,28 @@ const Join = () => {
 
   const isButtonDisabled = !isFormComplete;
 
-  const handleNext = () => {
+  const handleNext = async (e) => {
+    e.preventDefault();
+  
     if (!isPasswordMatch) return;
     if (isFormComplete) {
-      navigate('/join2');
+      setIsChecking(true);
+      
+      const isUnique = await checkDuplicateNumber(
+        joinData.studentNumber,
+        joinData.phoneNumber,
+        setStudentNumberError,
+        setPhoneNumberError
+      );
+  
+      setIsChecking(false);
+      
+      if (isUnique) {
+        navigate('/join2');
+      }
     }
   };
+  
 
   const handleNameChange = (e) => {
     const regex = /^[ㄱ-ㅎ|가-힣\s]+$/;
@@ -62,6 +83,7 @@ const Join = () => {
     const value = e.target.value;
     setJoinData({ ...joinData, studentNumber: value });
     setIsStudentNumberValid(regex.test(value));
+    setStudentNumberError("");
     // console.log(isStudentNumberValid)
   };
 
@@ -78,6 +100,7 @@ const Join = () => {
     const value = e.target.value;
     setJoinData({ ...joinData, phoneNumber: value });
     setIsPhoneNumberValid(regex.test(value));
+    setPhoneNumberError("");
     // console.log(isPhoneNumberValid)
   };
 
@@ -118,6 +141,7 @@ const Join = () => {
           onChange={handleStudentNumberChange}
         />
         {!isStudentNumberValid && <S.ErrorMessage>학번 9자리를 입력해주세요.</S.ErrorMessage>}
+        {studentNumberError && <S.ErrorMessage>{studentNumberError}</S.ErrorMessage>}
         <S.JoinText>비밀번호</S.JoinText>
         <S.JoinInput
           type="password"
@@ -142,6 +166,7 @@ const Join = () => {
           onChange={handlePhoneNumberChange}
         />
         {!isPhoneNumberValid && <S.ErrorMessage>010으로 시작하는 숫자 11자리를 입력해주세요.</S.ErrorMessage>}
+        {phoneNumberError && <S.ErrorMessage>{phoneNumberError}</S.ErrorMessage>}
         <S.JoinText>학년 / 나이</S.JoinText>
         <S.SelectContainer>
           <S.SelectBox>
@@ -193,10 +218,11 @@ const Join = () => {
         <S.BtnContainer>
           <S.BtnText>위 내용은 수정할 수 없어요. 꼼꼼히 확인해주세요</S.BtnText>
           <S.JoinBtn 
+            type="button"
             disabled={isButtonDisabled}
             onClick={handleNext}
           >
-            {isButtonDisabled ? '모든 정보를 입력해주세요.' : '다음으로'}
+            {isButtonDisabled ? '모든 정보를 입력해주세요.' : isChecking ? '중복 확인 중...' : '다음으로'}
           </S.JoinBtn>
         </S.BtnContainer>
       </S.JoinContainer>
