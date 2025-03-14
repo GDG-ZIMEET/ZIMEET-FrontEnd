@@ -1,19 +1,17 @@
 import { useState } from "react";
 import * as S from "./Styles";
+import useWithdraw from "api/Authentication/useWithdraw";
 
 const ModalWithdraw = ({ isOpen, onClose }) => {
   const [withdrawText, setWithdrawText] = useState("");
   const [isTextValid, setIsTextValid] = useState(false);
   const isFormComplete = isTextValid;
+  const handleWithdraw = useWithdraw(); 
 
   const checkWithdrawComment = (e) => {
     const value = e.target.value;
     setWithdrawText(value);
     setIsTextValid(value === "ZI밋 아쉽지만 탈퇴할게요");
-  };
-
-  const handleWithdraw = async () => {
-    
   };
 
   if (!isOpen) return null;
