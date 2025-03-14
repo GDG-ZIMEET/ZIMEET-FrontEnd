@@ -6,10 +6,13 @@ import { joinState } from '../../../../recoil/state/joinState';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { majorMap } from '../../../../data/SignUpData';
 import { LogoContainer } from 'components/Authentication/Join/LogoContainer/LogoContainer';
+import { checkDuplicateNickname } from 'api/Authentication/checkDuplicateNickname';
 
 const Join2 = () => {
   const [joinData, setJoinData] = useRecoilState(joinState);
   const [isNicknameValid, setIsNicknameValid] = useState(true);
+  const [isChecking, setIsChecking] = useState(false);
+  const [nicknameError, setNicknameError] = useState('');
   const navigate = useNavigate();
 
   const isFormComplete = 
@@ -18,9 +21,16 @@ const Join2 = () => {
     joinData.emoji&&
     isNicknameValid;
 
-  const handleNext = () => {
+  const handleNext = async (e) => {
+    e.preventDefault(); 
+    
     if (isFormComplete) {
-      navigate('/join3'); 
+      setIsChecking(true);
+      const isUnique = await checkDuplicateNickname(joinData.nickname, setNicknameError);
+      setIsChecking(false);
+      if (isUnique) {
+        navigate('/join3');
+      }
     }
   };
 
@@ -28,6 +38,7 @@ const Join2 = () => {
     const value = e.target.value;
     setJoinData({ ...joinData, nickname: value });
     setIsNicknameValid(value.length >= 2 && value.length <= 7);
+    setNicknameError("");
     // console.log(isNicknameValid)
   };
   
@@ -57,6 +68,7 @@ const Join2 = () => {
           onChange={handleNicknameChange}
         />
         {!isNicknameValid && <S.ErrorMessage>2글자 이상 7글자 이하로 작성해주세요.</S.ErrorMessage>}
+        {nicknameError && <S.ErrorMessage>{nicknameError}</S.ErrorMessage>}
         <S.EmojiContainer>
           <S.JoinText>이모지</S.JoinText>
           <S.EmojiText>이모지는 프로필 사진 대신 쓰여요. <br />
@@ -71,8 +83,12 @@ const Join2 = () => {
         </S.EmojiContainer>
 
         <S.BtnContainer>
-          <S.JoinBtn disabled={!isFormComplete} onClick={handleNext}>
-            {isFormComplete ? '다음으로' : '모든 정보를 입력해주세요.'}
+          <S.JoinBtn 
+            type="button"
+            disabled={!isFormComplete} 
+            onClick={handleNext}
+          >
+            {!isFormComplete ? '모든 정보를 입력해주세요.' : isChecking ? '중복 확인 중...' : '다음으로'}
           </S.JoinBtn>
         </S.BtnContainer>
       </S.JoinContainer>
