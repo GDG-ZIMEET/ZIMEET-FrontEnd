@@ -59,13 +59,13 @@ export const CircleWrap = styled.div`
 export const EmojiWrap = styled.div`
   width: 100%;
   aspect-ratio: 1;
-  background-color: ${({ isSelected }) => (isSelected ? 'rgba(234,67,53,0.1)' : 'white')};
+  background-color: ${({ $isSelected }) => ($isSelected ? 'rgba(234,67,53,0.1)' : 'white')};
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 55px;
   border-radius: 50%; 
-  box-shadow: ${({ isSelected }) => (isSelected ? '0 0 3px red' : '0 0 3px rgba(0, 0, 0, 0.2)')};
+  box-shadow: ${({ $isSelected }) => ($isSelected ? '0 0 3px red' : '0 0 3px rgba(0, 0, 0, 0.2)')};
   transition: all 0.3s ease; /* 애니메이션 */
 `;
 
