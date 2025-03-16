@@ -2,11 +2,14 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import * as S from './Styles';
 import { boothDetailState } from '../../../recoil/state/boothState';
-import { getLogoComponent } from '../../../utils/PosterMap';
+import { getLogoComponent } from '../../../utils/ClubLogoMapper';
 
-const AccountCopy: React.FC = () => {
+interface AccountCopyProps {
+  clubId: string;
+}
+
+const AccountCopy: React.FC<AccountCopyProps> = ({ clubId }) => {
   const boothDetail = useRecoilValue(boothDetailState);
-  const clubId = boothDetail?.data.clubId || '';
   const LogoComponent = getLogoComponent(Number(clubId));
 
   const handleCopy = async () => {
@@ -26,7 +29,9 @@ const AccountCopy: React.FC = () => {
 
   return (
     <S.AccountCopyLayout>
-      <S.LogoComponent as={LogoComponent}  />
+      <S.LogoWrapper>
+        <S.LogoImage src={LogoComponent} alt="부스 로고" />
+      </S.LogoWrapper>
       <S.Title>{boothDetail?.data.name}</S.Title>
       <S.CopyButton onClick={handleCopy}>계좌번호 복사</S.CopyButton>
     </S.AccountCopyLayout>

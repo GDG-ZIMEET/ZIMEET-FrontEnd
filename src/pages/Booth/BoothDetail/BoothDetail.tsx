@@ -38,7 +38,7 @@ const BoothDetail: React.FC = () => {
       {PosterComponent && (
         <S.PosterComponent src={PosterComponent} alt="부스 포스터" />
       )}
-      <AccountCopy />
+      <AccountCopy clubId={clubId || '0'} />
       <ItemInventory />
       <Explanation />
       <NavigationBar />
