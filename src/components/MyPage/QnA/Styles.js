@@ -14,7 +14,7 @@ export const Title = styled.p`
 `;
 
 export const QnAs = styled.div`
-    width: 100%; height:15%;
+    width: 100%; height:16%;
     background-color: #f6f5fa;
     padding: 4%;
     border-radius: 0.8rem;
@@ -27,7 +27,6 @@ export const QnAs = styled.div`
 export const QnAContent = styled.p`
     font-weight: 700;
     font-size: 15px;
-
 `;
 export const MoveBtn = styled.button`
     align-self: flex-start;
@@ -35,4 +34,5 @@ export const MoveBtn = styled.button`
     font-size: 20px;
     padding-bottom: 2%;
     font-weight: 700;
+    border: 1px solid red;
 `;

@@ -171,7 +171,7 @@ const Join = () => {
         <S.SelectContainer>
           <S.SelectBox>
             <S.JoinSelect
-              isSelected={joinData.grade !== undefined}
+              $isSelected={joinData.grade !== undefined}
               value={gradeDisplayOptions[gradeOptions.indexOf(joinData.grade)] || ''}
               onChange={handleGradeChange}
             >
@@ -186,7 +186,7 @@ const Join = () => {
           </S.SelectBox>
           <S.SelectBox>
             <S.JoinSelect
-              isSelected={joinData.age !== ''}
+              $isSelected={joinData.age !== ''}
               value={joinData.age}
               onChange={handleAgeChange}
             >
