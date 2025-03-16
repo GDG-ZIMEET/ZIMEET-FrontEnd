@@ -78,4 +78,4 @@ export { ReactComponent as PhotoZone } from './icon/boothDetail/photozone.svg';
 export { ReactComponent as Piano } from './icon/boothDetail/piano.svg';
 
 //부스 로고
-export { ReactComponent as NonLogo } from './icon/boothDetail/GDGlogo.svg';
+export { ReactComponent as NonLogo } from './icon/boothDetail/logo/GDGlogo.svg';
