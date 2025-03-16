@@ -46,20 +46,13 @@ export const BoothTime = styled.div`
   margin-bottom: 3%;
 `;
 export const SquareRL = styled.div`
-  width: 100%;
-  text-align: center;
-  height: 8%;
-  display: flex;
-  align-items: between center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  margin-bottom: 3%;
+  width: 13%;
+  height: 100%;
 `;
 
 export const SquareRLButton = css<{ selected: boolean }>`
-  width: 48%;
-  height: 100%;
+  width: 100%;
+  height: 50%;
   background-color: ${({ selected }) => (selected ? 'grey' : '#F2F2F2')};
   border-radius: 5px;
   color: ${({ selected }) => (selected ? 'white' : 'black')};
@@ -76,24 +69,21 @@ export const SquareLeft = styled.button<{ selected: boolean }>`
 `;
 
 export const SquareRight = styled(SquareLeft)`
+  margin-top: 10%;
 `;
 
 export const Booths = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  overflow-y: auto;
-  height: calc(100% - 5% - 3%);
+  overflow-y: hidden;
+  height: 92%;
   scrollbar-width: none; 
-  
-  &::-webkit-scrollbar {
-    display: none; 
-  }
 `;
 
 export const Booth = styled.div`
   width: 48%;
-  height: 22%;
+  height: auto;
   margin-bottom: 5%;
   border-radius: 5px;
   background-color: ${props => props.color};

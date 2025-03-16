@@ -9,14 +9,14 @@ import Explanation from 'components/BoothDetail/Explanation/Explanation';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 import { GetboothDetail } from '../../../api/booth/GetboothDetail';
-import { boothDetailState } from '../../../recoil/state/boothState';
-import { getPosterComponent } from '../../../utils/ClubPosterMapper';
+import { getPosterComponent } from '../../../utils/PosterMap';
+import { BoothDetailResponseType } from 'recoil/type/booth';
 
 
 const BoothDetail: React.FC = () => {
   const { clubId } = useParams<{ clubId: string }>();
-  const [, setBoothDetail] = useRecoilState(boothDetailState);
-
+  const [boothDetail, setBoothDetail] = useState<BoothDetailResponseType | undefined>(undefined);
+  
   useEffect(() => {
     const fetchBoothDetail = async () => {
       if (clubId) {
@@ -28,13 +28,13 @@ const BoothDetail: React.FC = () => {
     };
 
     fetchBoothDetail();
-  }, [clubId, setBoothDetail]);
+  }, [clubId]);
   
   const PosterComponent = getPosterComponent(Number(clubId));
 
   return (
     <S.BoothDetailLayout>
-      <BackHeader />
+      <BackHeader boothtype={boothDetail?.data.category}/>
       {PosterComponent && (
         <S.PosterComponent src={PosterComponent} alt="부스 포스터" />
       )}

@@ -18,6 +18,7 @@ export const ColorType = styled.div`
   font-weight: bold;
   margin: 4% 0 0 3%;
   height: 2%;
+  font-family: 'Pretendard', sans-serif;
 `;
 
 export const Explanation = styled.p`
@@ -25,7 +26,6 @@ export const Explanation = styled.p`
   color: #000000;
   margin: 3% 0 0 3%;
   height: 2%;
-  text-decoration: underline;
   underline: #000000;
   b {
     font-weight: bold;
