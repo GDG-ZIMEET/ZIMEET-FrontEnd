@@ -152,8 +152,8 @@ const MyPage = () => {
           <QnA myProfileData={myProfileData}/>
 
           <S.OutContainer>
-            <S.OutText href='/'>개인정보처리방침</S.OutText>
-            <S.OutText href='/'>이용약관</S.OutText>
+            <S.OutText href='/notion/personalInfoPolicy'>개인정보처리방침</S.OutText>
+            <S.OutText href='/notion/termsOfService'>이용약관</S.OutText>
             <S.OutText className='modal' onClick={handleWithdrawClick} >회원탈퇴</S.OutText>
             <S.OutText className='modal' onClick={handleLogoutClick}>로그아웃</S.OutText>
           </S.OutContainer>
