@@ -4,13 +4,17 @@ import * as S from './Styles';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { getsendHi } from 'api/Hi/GetsendHi';
 import { HiType } from 'recoil/type/Hi/HiType';
+import { useRecoilValue } from 'recoil';
+import { ourteamIds } from 'recoil/state/ourTeamIds';
 
 const Teams: React.FC = () => {
     const navigate = useNavigate();
     const [sendHiList, setsendHiList] = useState<HiType[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-
+    const isourteam = useRecoilValue(ourteamIds);
+     
     useEffect(() => {
+        if (isourteam === null) return;
         setIsLoading(true);
         const fetchsendHiList = async () => {
           try {
@@ -37,13 +41,13 @@ const Teams: React.FC = () => {
 
     return (
         <S.TeamComponent>
-            {isLoading ? (
-                <S.LoadingContainer />
-            ) : sendHiList === null ? ( 
+            { sendHiList === null ? ( 
                 <S.NoTeamsMessageContainer>
                     <S.ZimeetLogo />
                     <S.NoTeamsMessage>아직 보낸 하이가 없네요!<br /> 팀을 만들고 적극적으로 하이를 보내보세요!</S.NoTeamsMessage>
                 </S.NoTeamsMessageContainer>
+            ) : (isLoading ? (
+                <S.LoadingContainer />
             ) : (
                 sendHiList.map(team => (
                     <S.Team key={team.teamId} onClick={() => handleTeamClick(team.teamId)} >
@@ -74,7 +78,7 @@ const Teams: React.FC = () => {
                             </S.Introduction>
                         </S.JoinMembersAndIntroduction>
                     </S.Team>
-                ))
+                )))
             )}
         </S.TeamComponent>
     );

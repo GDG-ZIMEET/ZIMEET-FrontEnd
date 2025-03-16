@@ -5,12 +5,17 @@ import { getImageByEmoji } from 'utils/IconMapper';
 import { getchattingRoomList } from 'api/Chatting/GetChattingRoomList';
 import { ChattingRoomType } from 'recoil/type/Chatting/ChattingRoomListType';
 import { connectWebSocket, disconnectWebSocket } from 'api/Chatting/WebSocketchat';
+import { ourteamIds } from 'recoil/state/ourTeamIds';
+import { useRecoilValue } from 'recoil';
+
 const Teams: React.FC = () => {
   const navigate = useNavigate();
   const [chattingRoomList, setchattingRoomList] = useState<ChattingRoomType[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  const isourteam = useRecoilValue(ourteamIds);
+  
   useEffect(() => {
+    if (isourteam === null) return;
     setIsLoading(true);
     const fetchChattingRoomList = async () => {
       try {
@@ -40,6 +45,7 @@ const Teams: React.FC = () => {
 
   //WebSocket 채팅방 목록 업데이트
   useEffect(() => {
+    if (isourteam === null) return;
     connectWebSocket("all_rooms", (message) => {
 
       setchattingRoomList((prevRooms) => {
@@ -84,15 +90,15 @@ const Teams: React.FC = () => {
 
   return (
     <S.TeamComponent>
-      {isLoading ? (
-      <S.LoadingContainer />
-      ) : chattingRoomList === null ? (
+      {isourteam === null ? (
       <S.NoTeamsMessageContainer>
         <S.ZimeetLogo />
         <S.NoTeamsMessage>매력적인 팀을 만들어서 하이를 보내거나, <br /> 받은 하이를 수락하면 채팅방이 열려요!</S.NoTeamsMessage>
       </S.NoTeamsMessageContainer>
+      ) : ( isLoading ? (
+        <S.LoadingContainer />
       ) : (
-      chattingRoomList.map(team => (
+      chattingRoomList?.map(team => (
         <S.Team key={team.chatRoomId.toString()} onClick={() => handleTeamClick(team)}>
         <S.TeamHeader>
           <S.TeamName>{team.chatRoomName} 팀</S.TeamName>
@@ -111,7 +117,7 @@ const Teams: React.FC = () => {
           <S.Introduction>{team.latestMessage}</S.Introduction>
         </S.JoinMembersAndIntroduction>
         </S.Team>
-      ))
+      )))
       )}
     </S.TeamComponent>
   );
