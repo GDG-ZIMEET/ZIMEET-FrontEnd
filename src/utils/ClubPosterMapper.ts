@@ -67,12 +67,7 @@ const posterMap: { [key: number]: string } = {
 };
 
 const getPosterComponent = (clubId: number) => {
-  return posterMap[clubId];
-};
-
-//로고 기본값 설정
-const getLogoComponent = (clubId: number) => {
   return posterMap[clubId] || posterMap[0];
 };
 
-export { getPosterComponent, getLogoComponent };
+export { getPosterComponent };
