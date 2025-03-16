@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import * as I from '../../../assets/Icons';
+import { ReactComponent as Heart3D } from '../../../assets/icon/booth/Heart3D.svg';
+import { ReactComponent as Hi3D } from '../../../assets/icon/booth/Hi3D.svg';
+import { ReactComponent as Chat3D } from '../../../assets/icon/booth/Chat3D.svg';
 
 export const ZimeetIntroductLayout = styled.div`
   width: 100%;
@@ -66,13 +69,29 @@ export const Introduct = styled.div`
   color: #000000;
   line-height: 1.5;
   text-align: center;
+
+  b {
+    font-weight: bold;
+    text-decoration: underline;
+  }
 `;
 
-export const Icon3D = styled.div`
+export const Heart3d = styled(Heart3D)`
   width: 30%;
   height: 30%;
   margin-bottom: 4%;
-  border: 1px solid red;
+`;
+
+export const Hi3d = styled(Hi3D)`
+  width: 30%;
+  height: 30%;
+  margin-bottom: 4%;
+`;
+
+export const Chat3d = styled(Chat3D)`
+  width: 30%;
+  height: 30%;
+  margin-bottom: 4%;
 `;
 
 

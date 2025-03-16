@@ -1,64 +1,83 @@
-import React, { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import Booth from './Booth';
 import { Getbooths } from '../../../api/booth/Getbooths';
-import { boothState, selectedButtonState, selectedSquareRLState } from '../../../recoil/state/boothState';
 import { Club } from '../../../recoil/type/booth';
 
-const Booths: React.FC = () => {
-  const [booths, setBooths] = useRecoilState<Club[]>(boothState);
-  const [selectedSquareRL, setSelectedSquareRL] = useRecoilState(selectedSquareRLState);
-  const selectedButton = useRecoilValue(selectedButtonState);
+interface BoothsProps {
+  selectedSpace: string;
+}
+
+const Booths: React.FC<BoothsProps> = ({ selectedSpace }) => {
+  const [booths, setBooths] = useState<Club[]>([]);
+  const [selectedFB, setSelectedFB] = useState('front');
 
   const handleClick = (buttonType: string) => {
-    setSelectedSquareRL(buttonType);
+    setSelectedFB(buttonType);
   };
 
   useEffect(() => {
     const fetchBooths = async () => {
-      let place = selectedButton;
-      if (selectedButton === 'SSQUARE') {
-        place = selectedSquareRL;
-      }
-      const response = await Getbooths(place);
+      const response = await Getbooths(selectedSpace);
       if (response) {
         setBooths(response.data.clubList);
       }
     };
 
     fetchBooths();
-  }, [selectedButton, selectedSquareRL, setBooths]);
+  }, [selectedSpace]);
+
+  // 데이터 슬라이스 
+  const displayedBooths =
+    selectedSpace === 'S_LEFT' || selectedSpace === 'S_RIGHT'
+      ? selectedFB === 'front'
+        ? booths.slice(0, 6)
+        : booths.slice(6)
+      : selectedSpace === 'A'
+      ? selectedFB === 'front'
+        ? booths.slice(0, 8)
+        : booths.slice(8)
+      : booths;
+
+  const aroundSpace = 
+    selectedSpace === 'S_LEFT' || selectedSpace === 'S_RIGHT' 
+    ? 'K관'
+    : selectedSpace === 'A'
+      ? selectedFB === 'front'
+        ? 'N관'
+        : 'M관'
+      : 'N관';
+    
 
   return (
     <S.BoothLayout>
-      <S.NBuilding>N관</S.NBuilding>
+      <S.NBuilding>{aroundSpace}</S.NBuilding>
       <S.BoothsContainer>
-          {selectedButton === 'SSQUARE' ? (
-          <S.SquareRL>
-            <S.SquareLeft
-              onClick={() => handleClick('S_LEFT')}
-              selected={selectedSquareRL === 'S_LEFT'}
-            >
-              좌
-            </S.SquareLeft>
-            <S.SquareRight
-              onClick={() => handleClick('S_RIGHT')}
-              selected={selectedSquareRL === 'S_RIGHT'}
-            >
-              우
-            </S.SquareRight>
-          </S.SquareRL>
-        ) : (
-          <S.BoothTime>부스 운영 시간 : 10 : 00 ~ 16 : 00</S.BoothTime>
-        )}
+        <S.BoothTime>부스 운영 시간 : 10 : 00 ~ 16 : 00</S.BoothTime>
         <S.Booths>
-          {booths.map((booth) => (
+          {displayedBooths.map((booth) => (
           <Booth key={booth.clubId} booth={booth} />
         ))}
         </S.Booths>
       </S.BoothsContainer>
-      <S.Andrea>안드레아</S.Andrea>
+      {!(selectedSpace === 'F') ? (
+        <S.SquareRL>
+          <S.SquareLeft
+            onClick={() => handleClick('front')}
+            selected={selectedFB === 'front'}
+          >
+            앞
+          </S.SquareLeft>
+          <S.SquareRight
+            onClick={() => handleClick('back')}
+            selected={selectedFB === 'back'}
+          >
+            뒤
+          </S.SquareRight>
+        </S.SquareRL>
+      ) : (
+        <S.Andrea> M관 </S.Andrea>
+      )}
     </S.BoothLayout>
   );
 };
