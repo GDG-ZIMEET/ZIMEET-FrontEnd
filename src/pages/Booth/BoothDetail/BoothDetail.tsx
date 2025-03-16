@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
 import * as S from './Styles';
 import BackHeader from '../../../components/BoothDetail/BackHeader/BackHeader';
 import AccountCopy from '../../../components/BoothDetail/AccountCopy/AccountCopy';
@@ -9,7 +8,7 @@ import Explanation from 'components/BoothDetail/Explanation/Explanation';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 import { GetboothDetail } from '../../../api/booth/GetboothDetail';
-import { getPosterComponent } from '../../../utils/PosterMap';
+import { getPosterComponent } from '../../../utils/ClubPosterMapper';
 import { BoothDetailResponseType } from 'recoil/type/booth';
 
 
