@@ -36,7 +36,7 @@ const NotionMain: React.FC = () => {
         case '/notion/faq':
             headerTitle = "자주 묻는 질문";
             component = (
-                <iframe src="" 
+                <iframe src="https://efficacious-ease-5ad.notion.site/ebd/1974f19e53cc80bea925d6a5879ccd81" 
                         width="100%" 
                         height="900" />
             );

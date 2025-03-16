@@ -7,21 +7,25 @@ const QnA = ({myProfileData}) => {
   const navigate = useNavigate();
 
   const handleNavigate = (path) => {
-    navigate(path);
+    if (path.startsWith("http")) {
+      window.location.href = path; 
+    } else {
+      navigate(path); 
+    }
   };
 
   return (
         <S.QnAContainer $isLoggedIn={isLoggedIn}>
             <S.Title>문의하기</S.Title>
-            <S.QnAs >
+            <S.QnAs onClick={() => handleNavigate('http://pf.kakao.com/_uVsTn/chat')}>
                 <S.QnAContent>1대1 문의하기</S.QnAContent>
                 <View/>
             </S.QnAs>
-            <S.QnAs>
+            <S.QnAs onClick={() => handleNavigate('/notion/faq')}>
                 <S.QnAContent>자주 묻는 질문</S.QnAContent>
                 <View/>
             </S.QnAs>
-            <S.QnAs>
+            <S.QnAs onClick={() => handleNavigate('/notion/notificationSetting')}>
                 <S.QnAContent>알림 설정하는 법</S.QnAContent>
                 <View/>
             </S.QnAs>
