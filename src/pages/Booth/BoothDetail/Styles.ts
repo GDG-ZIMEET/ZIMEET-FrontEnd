@@ -13,13 +13,14 @@ export const BoothDetailLayout = styled.div`
 
 
 export const PosterComponent = styled.img`
-  margin-top: 3%;
-  width: 80%;
-  height: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  border-radius: 10px;
+    margin-top: 3%;
+    width: 80%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 10px;
+    object-fit: contain;
 `;
 
 

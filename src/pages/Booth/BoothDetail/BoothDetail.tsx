@@ -10,7 +10,7 @@ import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 import { GetboothDetail } from '../../../api/booth/GetboothDetail';
 import { boothDetailState } from '../../../recoil/state/boothState';
-import { getPosterComponent } from '../../../utils/PosterMap';
+import { getPosterComponent } from '../../../utils/ClubPosterMapper';
 
 
 const BoothDetail: React.FC = () => {
@@ -36,7 +36,7 @@ const BoothDetail: React.FC = () => {
     <S.BoothDetailLayout>
       <BackHeader />
       {PosterComponent && (
-        <S.PosterComponent as={PosterComponent} />
+        <S.PosterComponent src={PosterComponent} alt="부스 포스터" />
       )}
       <AccountCopy />
       <ItemInventory />
