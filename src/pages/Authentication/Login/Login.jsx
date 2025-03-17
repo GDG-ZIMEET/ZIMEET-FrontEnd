@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import * as I from '../../../assets/Icons';
 import useLogin from 'api/Authentication/useLogin';
+import * as amplitude from '@amplitude/analytics-browser';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,7 +12,12 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  useEffect(() => {
+    amplitude.track('[접속]로그인');
+  }, []);
+
   const handleJoin = () => {
+    amplitude.track('[클릭]로그인_회원가입버튼');
     navigate('/join');
   };
 
@@ -28,17 +34,24 @@ const Login = () => {
           type="text"
           placeholder="학번"
           value={studentNumber}
-          onChange={(e) => setStudentNumber(e.target.value)}
+          onChange={(e) => {
+            setStudentNumber(e.target.value);
+            amplitude.track('[입력]로그인_학번');
+          }}
         />
         <S.LoginInput
           type="password"
           placeholder="비밀번호"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            amplitude.track('[입력]로그인_비밀번호');
+          }}
         />
         <S.LoginBtn
           onClick={(e) => {
             e.preventDefault();
+            amplitude.track('[클릭]로그인_로그인버튼');
             handleLogin({ studentNumber, password, setErrorMessage, navigate });
           }}
         >
