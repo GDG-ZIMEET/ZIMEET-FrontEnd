@@ -9,8 +9,8 @@ const App: React.FC = () => {
     let vh = 0;
 
     useEffect(() => {
-        amplitude.init('581d00580f1e4e401e93b13b39d01640', {"autocapture":true});
-        amplitude.track('Sign Up222');
+        amplitude.init(process.env.REACT_APP_AMPLITUDE_PRODUCTION_KEY || '', {"autocapture":true});
+        amplitude.track('[접속]ZIMEET_실행');
 
       vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
