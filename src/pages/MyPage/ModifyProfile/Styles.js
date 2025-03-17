@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as I from "../../../assets/Icons";
+import zimeetLoading from '../../../assets/icon/zimeetLoading.svg';
 
 export const JoinContainer = styled.div`
   width: 100%;
@@ -7,6 +8,17 @@ export const JoinContainer = styled.div`
   background-color: white;
   font-family: Pretendard;
   overflow-y: auto;
+`;
+
+export const LoadingContainer = styled.img.attrs({
+  src: zimeetLoading
+})`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 30%;
+  margin: 0 auto;
 `;
 
 //상단바

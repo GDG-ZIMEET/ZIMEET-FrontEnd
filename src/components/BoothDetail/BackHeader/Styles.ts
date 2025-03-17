@@ -23,4 +23,5 @@ export const Title = styled.h2`
   color: #000000;
   margin-left: auto; 
   margin-right: 3%;
+  font-family: 'Pretendard', sans-serif;
 `;

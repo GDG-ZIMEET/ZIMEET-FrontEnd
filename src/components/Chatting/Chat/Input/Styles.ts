@@ -22,17 +22,19 @@ export const ChatInput = styled.input`
 `;
 
 export const SendButton = styled.button`
-  width: 13%;
+  width: 15%;
   height: 75%;
-  background-color: #EA4335; 
+  background-color: #FF6B6A; 
   color: white;
   border-radius: 500px;
   cursor: pointer;
   margin-right: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ChattingButton = styled(I.ChattingButton)`
-  width: 90%;
-  height: 90%;
-  margin: 4% 0 0 0;
+  width: 70%;
+  height: 70%;
 `;

@@ -1,27 +1,80 @@
 import React from 'react';
 import * as S from './Styles';
+import { getchatUsers } from 'api/Chatting/GetChatUsers';
+import { ChatRoomType } from 'recoil/type/Chatting/ChatRoomUsers';
+import { getImageByEmoji } from 'utils/IconMapper';
+import { useNavigate } from 'react-router-dom';
 
 interface ChatSidebarProps {
-  isOpen: boolean;
-  toggleSidebar: () => void;
-  uniqueUsers: { avatar: string; user: string }[];
+  SideisOpen: boolean; 
+  SideisClose: () => void;
+  roomId: number;
+  handleExitClick: () => void;
 }
 
-const ChatSidebar: React.FC<ChatSidebarProps> = ({ isOpen, toggleSidebar, uniqueUsers }) => {
+const ChatSidebar: React.FC<ChatSidebarProps> = ({ SideisOpen, SideisClose, roomId ,handleExitClick}) => {
+  const [chatUsers, setChatUsers] = React.useState<ChatRoomType[]>();
+  const [isLoading, setIsLoading] = React.useState(true);
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    const fetchChatUsers = async () => {
+      try {
+        const response = await getchatUsers(roomId);
+        if (response) {
+          setChatUsers(response.data);
+        } else {
+          setChatUsers([]);
+        }
+      } catch (error) {
+        console.error("chatting room 리스트 가져오기 실패:", error);
+        setChatUsers([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchChatUsers();
+  }, [roomId]);
+
+  const handleUserDetailClick = (nickname: string) => {
+    navigate(`/chatuserdetail`, { state: { nickname: nickname } });
+  }
+
   return (
     <>
-      <S.SidebarOverlay isOpen={isOpen} onClick={toggleSidebar} />
-      <S.Sidebar isOpen={isOpen}>
+      <S.SidebarOverlay $isOpen={SideisOpen} onClick={SideisClose} />
+      <S.Sidebar $isOpen={SideisOpen} >
         <S.SidebarContent>
           <S.SidebarTitle>채팅방</S.SidebarTitle>
           <S.UserList>
-            {uniqueUsers.map((user, index) => (
-              <S.UserItem key={index}>
-                <S.Avatar show={true} isSidebar={true}>{user?.avatar}</S.Avatar>
-                <S.UserName>{user?.user}</S.UserName>
+          {chatUsers && (
+        <>
+          <S.TeamName $isour={false}>{chatUsers[0].teamName} 팀</S.TeamName>
+            {chatUsers[0].userProfiles.map((profile) => (
+            <S.UserItem key={profile.userId}>
+            <S.Avatar>
+              <img src={getImageByEmoji(profile.emoji)} alt={profile.emoji} />
+            </S.Avatar> 
+            <S.UserName onClick={() => handleUserDetailClick(profile.name)}>{profile.name}</S.UserName> 
               </S.UserItem>
-            ))}
+          ))}
+          <S.TeamName $isour={true}>{chatUsers[1].teamName} 팀</S.TeamName>
+            {chatUsers[1].userProfiles.map((profile) => (
+            <S.UserItem key={profile.userId}>
+            <S.Avatar>
+              <img src={getImageByEmoji(profile.emoji)} alt={profile.emoji} />
+            </S.Avatar>  
+            <S.UserName onClick={() => handleUserDetailClick(profile.name.replace('(나)', ''))}>{profile.name}</S.UserName>
+              </S.UserItem>
+          ))}
+        </>
+          )}
           </S.UserList>
+            <S.ChatRoomoutContainer onClick={handleExitClick}>
+            <S.Chatout />
+            <S.Chatroom>채팅방나가기</S.Chatroom>
+            </S.ChatRoomoutContainer>
         </S.SidebarContent>
       </S.Sidebar>
     </>

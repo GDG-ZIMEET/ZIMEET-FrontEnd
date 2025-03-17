@@ -1,60 +1,165 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import ChatHeader from '../../../components/Chatting/Chat/Header/ChatHeader';
 import ChattingBox from '../../../components/Chatting/Chat/ChattingBox/ChattingBox';
 import ChatInputBox from '../../../components/Chatting/Chat/Input/ChatInputBox';
 import ChatSidebar from '../../../components/Chatting/Chat/Sidebar/ChatSidebar';
+import { getMessages } from '../../../api/Chatting/GetMessage';
+import { getMessageResponseType } from '../../../recoil/type/Chatting/MessageType';
+import { connectWebSocket,sendMessage, disconnectWebSocket } from '../../../api/Chatting/WebSocketchat';
+import { v4 as uuidv4 } from 'uuid';
+import { authState } from 'recoil/state/authState';
+import { deleteuser } from 'api/Chatting/DeleteUser';
+import ExitModal  from 'components/Chatting/ExitModal/ExitModal';
 
 const Chatting = () => {
-  const [messages, setMessages] = useState([
-    { id: 1, user: '학점 4.5', text: '안녕하세요!', avatar: '🏅' },
-    { id: 2, user: '불멍', text: '반갑습니다!', avatar: '🔥' },
-    { id: 3, user: '불멍', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: '🔥' },
-    { id: 4, user: 'User3', text: '오늘 날씨 좋네요.', avatar: '🌞' },
-    { id: 5, user: 'User3', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: '🌞' },
-    { id: 6, user: 'User3', text: '여러 개 입력한 메시지 중 두 번째입니다.', avatar: '🌞' },
-    { id: 7, user: 'User1', text: '여러 개 입력한 메시지 중 첫 번째입니다.', avatar: '🏅' },
-    { id: 8, user: 'User1', text: '여러 개 입력한 메시지 중 두 번째입니다.', avatar: '🏅' },
-    { id: 9, user: 'User1', text: '여러 개 입력한 메시지 중 세 번째입니다.', avatar: '🏅' },
-    { id: 10, user: 'User1', text: '여러 개 입력한 메시지 중 네 번째입니다.', avatar: '🏅' },
-  ]);
+  const location = useLocation();
+  const chatRoom = location.state || null;
+  const { userId } = useRecoilValue(authState);
+  const [messages, setMessages] = useState<getMessageResponseType[]>([]);
   const [input, setInput] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isExitModalOpen, setIsExitModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleSend = () => {
-    if (input.trim()) {
-      setMessages([...messages, { id: messages.length + 1, user: 'Me', text: input, avatar: '🙂' }]);
-      setInput('');
+  //채팅방 없으면 홈으로
+  useEffect(() => {
+    if (!chatRoom || !chatRoom.chatRoomId) {
+      navigate('/chattingInventory');
     }
+  }, [chatRoom, navigate]);
+
+  //기존 메시지 조회
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await getMessages(Number(chatRoom.chatRoomId), 0, 15);
+        if (response) {
+          const sortedMessages = response.sort((a, b) => new Date(a.sendAt).getTime() - new Date(b.sendAt).getTime());
+          setMessages(sortedMessages);
+        }
+      } catch (error) {
+        console.error('메시지 불러오기 실패:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (chatRoom.chatRoomId) {
+      fetchMessages();
+    }
+  }, [chatRoom.chatRoomId]);
+
+  //소켓연결
+  useEffect(() => {
+    if (!chatRoom || !chatRoom.chatRoomId) return;
+
+    connectWebSocket(chatRoom.chatRoomId.toString(), (message) => {
+      setMessages((prev) => [...prev, message]);
+    });
+
+    return () => {
+      disconnectWebSocket();
+    };
+  }, [chatRoom]);
+
+  //메세지 전송
+  const handleSendMessage = () => {
+    if (!input.trim()) return;
+    if (!chatRoom || !chatRoom.chatRoomId) return;
+
+    const newMessage = {
+      id: uuidv4(),
+      type: "TALK",
+      roomId: chatRoom.chatRoomId.toString(),
+      senderId: userId,
+      senderName: "",
+      content: input,
+      sendAt: new Date().toISOString(),
+      emoji: "",
+    };
+
+    sendMessage(chatRoom.chatRoomId.toString(), newMessage);
+
+  setInput("");
+};
+
+const handleUserExit = async () => {
+  if (!chatRoom || !chatRoom.chatRoomId) return;
+
+  const exitMessage = {
+    id: uuidv4(),
+    type: "EXIT",
+    roomId: chatRoom.chatRoomId.toString(),
+    senderId: userId,
+    senderName: "",
+    content: `${userId}님이 채팅방을 나갔습니다.`,
+    sendAt: new Date().toISOString(),
+    emoji: "",
   };
+
+  sendMessage(chatRoom.chatRoomId.toString(), exitMessage);
+
+  try {
+    await deleteuser(chatRoom.chatRoomId);
+  } catch (error) {
+    console.error('유저 삭제 실패:', error);
+  }
+
+  navigate('/chattingInventory');
+};
 
   const handleBackClick = () => {
-    navigate(-1); 
-  };
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    navigate(-1);
   };
 
-  const uniqueUsers = Array.from(new Set(messages.filter(message => message.user !== 'Me').map(message => message.user)))
-    .map(user => messages.find(message => message.user === user))
-    .filter((user): user is { id: number; user: string; text: string; avatar: string } => user !== undefined);
+  const SidebarOpen = () => {
+    setIsSidebarOpen(true);
+  }
+
+  const SidebarClose = () => {
+    setIsSidebarOpen(false);
+  }
+
+  const handleExitClick = () => {
+    setIsSidebarOpen(false);
+    setIsExitModalOpen(true);
+  }
+
+  const handleExitConfirm = () => {
+    setIsExitModalOpen(false);
+    handleUserExit();
+  }
+
+  const handleExitclose = () => {
+    setIsExitModalOpen(false);
+  }
 
   return (
     <S.ChattingContainer>
-      <ChatHeader onBackClick={handleBackClick} onHamburgerClick={toggleSidebar} />
-      <ChattingBox messages={messages} />
-      <ChatInputBox 
-        input={input} 
-        setInput={setInput} 
-        handleSend={handleSend} 
-      />
-      <ChatSidebar 
-        isOpen={isSidebarOpen} 
-        toggleSidebar={toggleSidebar} 
-        uniqueUsers={uniqueUsers} 
-      />
+      <ChatHeader onBackClick={handleBackClick} chatRoomName = {chatRoom.chatRoomName} onHamburgerClick={SidebarOpen} />
+      {isLoading ? (
+        <S.LoadingContainer />
+      ) : (
+        <>
+          <ChattingBox messages={messages}/>
+          <ChatInputBox
+            input={input} 
+            setInput={setInput} 
+            handleSend={handleSendMessage} 
+          />
+          <ChatSidebar 
+            SideisOpen={isSidebarOpen} 
+            SideisClose={SidebarClose} 
+            roomId={chatRoom.chatRoomId}
+            handleExitClick={handleExitClick}
+          />
+          {isExitModalOpen && <ExitModal isout={handleExitConfirm} isclose={handleExitclose} />}
+        </>
+      )}
     </S.ChattingContainer>
   );
 };

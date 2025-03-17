@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as I from '../../../assets/Icons';
+import zimeetLoading from '../../../assets/icon/zimeetLoading.svg';
 
 export const MyPageContainer = styled.div`
   width: 100%; 
@@ -18,6 +19,17 @@ export const MyPageBox = styled.div`
   height: 88%;
   display: flex;
   flex-direction: column;
+`;
+
+export const LoadingContainer = styled.img.attrs({
+  src: zimeetLoading
+})`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  margin: 10% auto;
 `;
 
 //logo
@@ -51,10 +63,11 @@ export const WhiteArea = styled.div`
   position: relative;  
   z-index: 0;
   border-radius: 2rem 2rem 0 0;
-  margin-top: ${(props) => (props.isLoggedIn ? '-50%' : '-33%')};
-  padding-top: ${(props) => (props.isLoggedIn ? '45%' : '30%')};
+  margin-top: ${({ $isLoggedIn }) => ($isLoggedIn ? '-50%' : '-33%')};
+  padding-top: ${({ $isLoggedIn }) => ($isLoggedIn ? '45%' : '30%')};
   padding-bottom: 7%;
 `;
+
 
 //MyInfo
 export const InfoContainer = styled.div` 
@@ -215,7 +228,7 @@ export const ComponentContainer = styled.div`
   gap: 3%;
   padding-top: 6%;
   flex: 1;
-  padding-bottom: ${(props) => (props.isLoggedIn ? '70%' : '50%')};
+  padding-bottom: ${({ $isLoggedIn }) => ($isLoggedIn ? '70%' : '50%')};
 `;
 
 export const OutContainer = styled.div`
@@ -228,4 +241,9 @@ export const OutContainer = styled.div`
 export const OutText = styled.a`
   font-size: 14px;
   padding: 3%;
+
+  &.modal{
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;

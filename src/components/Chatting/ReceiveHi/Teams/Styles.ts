@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import * as I from '../../../../assets/Icons';
-import zimeetLoading from '../../../../assets/icon/zimeetLoding.svg';
+import zimeetLoading from '../../../../assets/icon/zimeetLoading.svg';
 
 export const TeamComponent = styled.div`
   width: 102%;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const ProfileDetailContainer = styled.div`
-  width: 25%;
+export const ProfileDetailContainer = styled.div<{ $ischat?: boolean }>`
+  width: ${({ $ischat }) => ($ischat ? '30%' : '25%')};
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -35,8 +35,9 @@ export const Styles = styled.div<{ $isblue: boolean }>`
 
 `;
 
-export const InfoTitle = styled.div`
+export const InfoTitle = styled.div<{ $ischat?: boolean }>`
   color: #000000;
   font-size: 12px;
   margin-right: 1%;
+  margin-bottom: ${({ $ischat }) => ($ischat ? '10%' : '0')};
 `;

@@ -5,12 +5,12 @@ const baseURL = process.env.REACT_APP_BASE_URL;
 // Axios 인스턴스 생성
 const publicAxios = axios.create({
   baseURL,
-  headers: { 'Content-Type': 'application/json' },
+  headers: { 'accept': '*/*' },
 });
-
 const privateAxios = axios.create({
   baseURL,
   headers: { 'Content-Type': 'application/json' },
+  withCredentials: true
 });
 
 // 요청 인터셉터 - accessToken 추가

@@ -7,7 +7,7 @@ import Join3 from './Authentication/Join/Join3/Join3';
 import Login from './Authentication/Login/Login';
 import MyPage from './MyPage/MyPage/MyPage';
 import ModifyProfile from './MyPage/ModifyProfile/ModifyProfile';
-import ModifyEmoji from './MyPage/ModifyEmoji.jsx/ModifyEmoji';
+import ModifyEmoji from './MyPage/ModifyEmoji/ModifyEmoji';
 import Booth from './Booth/Booth';
 import BoothDetail from './Booth/BoothDetail/BoothDetail';
 import Chatting from './Chatting/Chatting/Chatting';
@@ -21,8 +21,8 @@ import ReceiveHi from './Chatting/ReceiveHi/ReceiveHi';
 import SentHi from './Chatting/SentHi/SentHi';
 import TeamIntro from './TeamIntro/TeamIntro';
 import OurTeamIntro from './OurTeamIntro/OurTeamIntro';
-import ReceivedHiTeam from './Chatting/ReceivedHiTeam/ReceivedHiTeam';
 import Notion from './Notion/NotionMain';
+import UserDetail from './Chatting/UserDetail/ChatUserdetail';
 
 const Routers: React.FC = () => {
   return (
@@ -40,10 +40,10 @@ const Routers: React.FC = () => {
       <Route path="/boothDetail/:clubId" element={<BoothDetail />} />
       <Route path="/zimeetIntroduct" element={<ZimeetIntroduct />} />
       <Route path="/gdgocIntroduct" element={<GdgocIntroduct />} />
-      <Route path="/chatting" element={<Chatting />} />
+      <Route path="/chatting/:chatRoomId" element={<Chatting />} />
+      <Route path="/chatuserdetail" element={<UserDetail />} />
       <Route path="/chattingInventory" element={<ChattingInventory />} />
       <Route path="/receiveHi" element={<ReceiveHi />} />
-      <Route path="/receiveHi/team" element={<ReceivedHiTeam />} />
       <Route path="/sentHi" element={<SentHi />} />
       <Route path="/meeting22" element={<Meeting22 />} />
       <Route path="/teamMaking" element={<TeamMaking />} />

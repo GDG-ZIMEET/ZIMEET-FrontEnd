@@ -12,7 +12,7 @@ const NotionMain: React.FC = () => {
         case '/notion/randomMeetingHelp':
             headerTitle = "랜덤미팅 도움말"
             component = (
-                <iframe src="" 
+                <iframe src="https://efficacious-ease-5ad.notion.site/ebd/1a54f19e53cc80cdb5f5d25888cd8dd0" 
                         width="100%" 
                         height="900" />
             );
@@ -28,7 +28,7 @@ const NotionMain: React.FC = () => {
         case '/notion/termsOfService':
             headerTitle = "이용약관";
             component = (
-                <iframe src="https://efficacious-ease-5ad.notion.site/ebd/315866577ee74dea8d6021230e7fea8b" 
+                <iframe src="https://efficacious-ease-5ad.notion.site/ebd/1a54f19e53cc808ba060d7d16a306fef" 
                         width="100%" 
                         height="900" />
             );
@@ -36,7 +36,7 @@ const NotionMain: React.FC = () => {
         case '/notion/faq':
             headerTitle = "자주 묻는 질문";
             component = (
-                <iframe src="" 
+                <iframe src="https://efficacious-ease-5ad.notion.site/ebd/1974f19e53cc80bea925d6a5879ccd81" 
                         width="100%" 
                         height="900" />
             );
@@ -44,7 +44,7 @@ const NotionMain: React.FC = () => {
         case '/notion/notificationSetting':
             headerTitle = "알림 설정하는 법";
             component = (
-                <iframe src="" 
+                <iframe src="https://efficacious-ease-5ad.notion.site/ebd/1a54f19e53cc808fa6c1d7039d83d047" 
                         width="100%" 
                         height="900" />
             );
@@ -52,7 +52,7 @@ const NotionMain: React.FC = () => {
         case '/notion/meetingGuide':
             headerTitle = "미팅 잘하는 법";
             component = (
-                <iframe src="" 
+                <iframe src="https://efficacious-ease-5ad.notion.site/ebd/cda2ace51cca4000b25ad29f3be094a6" 
                         width="100%" 
                         height="900" />
             );
@@ -60,7 +60,7 @@ const NotionMain: React.FC = () => {
         case '/notion/randomMeetingGuide':
             headerTitle = "랜덤미팅 참여 방법";
             component = (
-                <iframe src="" 
+                <iframe src="https://efficacious-ease-5ad.notion.site/ebd/1a54f19e53cc80cdb5f5d25888cd8dd0" 
                         width="100%" 
                         height="900" />
             );
@@ -68,7 +68,7 @@ const NotionMain: React.FC = () => {
         case '/notion/developmentTeam':
             headerTitle = "ZI밋 개발팀 소개";
             component = (
-                <iframe src="" 
+                <iframe src="https://efficacious-ease-5ad.notion.site/ebd/1a54f19e53cc80369c03d332008d5768" 
                         width="100%" 
                         height="900" />
             );

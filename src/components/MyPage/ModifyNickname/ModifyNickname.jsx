@@ -1,31 +1,21 @@
 import { useState } from 'react';
-import * as S from './Styles'; 
-import { updateNickname } from 'api/Mypage/UpdateNickname';
+import * as S from './Styles';
 
-const ModifyNickname = ({ isOpen, onClose }) => {
+const ModifyNickname = ({ isOpen, onClose, onUpdateNickname }) => {
   const [nickname, setNickname] = useState('');
   const [isNicknameValid, setIsNicknameValid] = useState(true);
   const isFormComplete = nickname && isNicknameValid;
-  
+
   const handleUpdateNickname = (e) => {
     const value = e.target.value;
     setNickname(value);
     setIsNicknameValid(value.length >= 2 && value.length <= 7);
   };
-  
 
-  const handleSave = async () => {
-    try {
-      const response = await updateNickname({ nickname });
-      if (response) {
-        alert('닉네임이 성공적으로 업데이트되었습니다.');
-        onClose();
-        window.location.reload();
-      } else {
-        alert('닉네임 업데이트에 실패했습니다. 다시 시도해주세요.');
-      }
-    } catch (error) {
-      alert('서버 오류가 발생했습니다.');
+  const handleSave = () => {
+    if (isFormComplete) {
+      onUpdateNickname(nickname);
+      onClose();
     }
   };
 
@@ -47,7 +37,6 @@ const ModifyNickname = ({ isOpen, onClose }) => {
           <S.CancelBtn onClick={onClose}>취소</S.CancelBtn>
           <S.SaveBtn disabled={!isFormComplete} onClick={handleSave}>저장하기</S.SaveBtn>          
         </S.BtnContainer>
-
       </S.ModalContainer>
     </S.ModalOverlay>
   );

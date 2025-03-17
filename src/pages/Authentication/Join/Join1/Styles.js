@@ -74,7 +74,7 @@ export const JoinSelect = styled.select`
   width: 63%; 
   height: 100%;
   border: 1px solid #aaaaaa;
-  border: 1px solid ${({ isSelected }) => (isSelected ? '#022047' : '#aaaaaa')};
+  border: 1px solid ${({ $isSelected }) => ($isSelected ? '#022047' : '#aaaaaa')};
   color: #022047;
   border-radius: 0.6rem;
   margin: 0;

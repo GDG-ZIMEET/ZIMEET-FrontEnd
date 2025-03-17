@@ -1,54 +1,53 @@
-import React from 'react';
-import { useRecoilState } from 'recoil';
+import React, { useEffect } from 'react';
 import * as S from './Styles';
-import { selectedButtonState, selectedSquareRLState } from '../../../recoil/state/boothState';
 
-const TypeButton: React.FC = () => {
-  const [selectedButton, setSelectedButton] = useRecoilState(selectedButtonState);
-  const [selectedSquareRL, setSelectedSquareRL] = useRecoilState(selectedSquareRLState);
+interface TypeButtonProps {
+  selectedSpace: string;
+  setSelectedSpace: (selectedButton: string) => void;
+}
 
-  //성심광장 누르면 좌우 선택 버튼
+const TypeButton: React.FC<TypeButtonProps> = ({ selectedSpace, setSelectedSpace }) => {
+  
   const handleClick = (buttonType: string) => {
-    setSelectedButton(buttonType);
-    if (buttonType === 'SSQUARE') {
-      setSelectedSquareRL('S_LEFT'); 
-    } else {
-      setSelectedSquareRL('');
-    }
+    setSelectedSpace(buttonType);
   };
+
+  useEffect(() => {
+    setSelectedSpace(selectedSpace);
+  }, [selectedSpace, setSelectedSpace]);
 
   return (
     <S.TypeLayout>
       <S.TypeComponent>
         <S.FrontN
-          onClick={() => handleClick('N')}
-          selected={selectedButton === 'N'}
+          onClick={() => handleClick('S_LEFT')}
+          selected={selectedSpace === 'S_LEFT'}
         >
-          N관 앞
+          광장 L
         </S.FrontN>
       </S.TypeComponent>
       <S.TypeComponent>
         <S.FrontK
-          onClick={() => handleClick('K')}
-          selected={selectedButton === 'K'}
+          onClick={() => handleClick('S_RIGHT')}
+          selected={selectedSpace === 'S_RIGHT'}
         >
-          K관 앞
+          광장 R
         </S.FrontK>
       </S.TypeComponent>
       <S.TypeComponent>
         <S.SSquare
-          onClick={() => handleClick('SSQUARE')}
-          selected={selectedButton === 'SSQUARE'}
+          onClick={() => handleClick('A')}
+          selected={selectedSpace === 'A'}
         >
-          성심광장
+          안드레아
         </S.SSquare>
       </S.TypeComponent>
       <S.TypeComponent>
         <S.Andrea
-          onClick={() => handleClick('A')}
-          selected={selectedButton === 'A'}
+          onClick={() => handleClick('F')}
+          selected={selectedSpace === 'F'}
         >
-          안드레아
+          푸드트럭
         </S.Andrea>
       </S.TypeComponent>
     </S.TypeLayout>

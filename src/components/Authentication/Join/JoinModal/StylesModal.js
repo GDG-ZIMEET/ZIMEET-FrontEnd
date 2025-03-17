@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {ReactComponent as welcome} from '../../../../assets/icon/welcome.svg';
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -15,14 +16,13 @@ export const ModalOverlay = styled.div`
 export const ModalContainer = styled.div`
   background-color: white;
   padding: 5%;
-  border-radius: 10px;
+  border-radius: 20px;
   text-align: center;
   width: 90%;
 `;
 
-export const Emoji = styled.p`
-  font-size: 40px;
-  padding: 3%;
+export const Emoji = styled(welcome)`
+  padding: 1%;
 `;
 
 export const Title = styled.h2`

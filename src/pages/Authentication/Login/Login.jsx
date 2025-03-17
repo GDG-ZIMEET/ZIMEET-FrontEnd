@@ -57,7 +57,7 @@ const Login = () => {
         >
           로그인
         </S.LoginBtn>
-        {errorMessage && <S.ErrorMsg>입력하신 정보가 잘못되었습니다.</S.ErrorMsg>}
+        {errorMessage && <S.ErrorMsg>{errorMessage}</S.ErrorMsg>}
       </S.LoginForm>
       <S.JoinContainer>
         <S.JoinText>ZI밋, 처음인가요?</S.JoinText>

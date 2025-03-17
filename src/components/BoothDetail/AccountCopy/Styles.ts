@@ -11,9 +11,19 @@ export const AccountCopyLayout = styled.div`
   margin: 3% 0 2%;
 `;
 
-export const LogoComponent = styled.svg`
+export const LogoWrapper = styled.div`
   width: 9%;
   height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+`;
+
+export const LogoImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 `;
 
 export const Title = styled.h2`

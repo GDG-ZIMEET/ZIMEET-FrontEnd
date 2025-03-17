@@ -10,7 +10,7 @@ const useLogin = () => {
     setErrorMessage('');
 
     try {
-      const response = await publicAxios.post(`/user/login`, {
+      const response = await publicAxios.post('/user/login', {
         studentNumber,
         password,
       }, { withCredentials: true });

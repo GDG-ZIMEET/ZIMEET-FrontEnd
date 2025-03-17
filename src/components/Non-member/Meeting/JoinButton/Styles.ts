@@ -1,16 +1,27 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
+
+export const ButtonLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  height: 8%;
+  width: 80%;
+  margin-top: 4%;
+`;
 
 export const Button = styled.button`
-  background-color: #000000;
   color: white;
   font-weight: bold;
   border: none;
   font-size: 17px;
-  border-radius: 10px; 
   cursor: pointer;
-  margin: 4% 0;
-  height: 7%;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px; 
+  background-color: #000000;
 
   &:hover {
     background-color: darken(0.1, '#000000'); 

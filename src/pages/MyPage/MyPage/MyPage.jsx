@@ -1,5 +1,5 @@
 import * as S from './Styles';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import Event from 'components/MyPage/Event/Event';
 import ItemShop from 'components/MyPage/ItemShop/Main/ItemShop';
 import QnA from 'components/MyPage/QnA/QnA';
@@ -9,16 +9,39 @@ import { getmyProfile } from 'api/Mypage/GetmyProfile';
 import { useNavigate } from 'react-router-dom';
 import {getImageByEmoji} from 'utils/IconMapper';
 import { authState } from '../../../recoil/state/authState';
+import ModalWithdraw from 'components/MyPage/ModalWithdraw/ModalWithdraw';
+import ModalLogout from 'components/MyPage/ModalLogout/ModalLogout';
+import useLoginCheck from 'api/Authentication/useLoginCheck';
 
 const MyPage = () => {
+  useLoginCheck(); 
+
+  const { userId, isAuthenticated: isLoggedIn } = useRecoilValue(authState);
   const [myProfileData, setMyProfileData] = useState(null);
-  const [auth,] = useRecoilState(authState);
-  const isLoggedIn = !!auth?.accessToken;
   const [isLoading, setIsLoading] = useState(true);
+  const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const navigate = useNavigate();
+  
+  const handleWithdrawClick =()=> {
+    setIsWithdrawModalOpen(true);
+  }
+
+  const handleLogoutClick =()=> {
+    setIsLogoutModalOpen(true);
+  }
 
   useEffect(() => {
+    sessionStorage.removeItem('previousPage');
+    sessionStorage.removeItem('selectedEmoji');
+    
     const fetchMyProfile = async () => {
+      if (!isLoggedIn) {
+        setMyProfileData(null);
+        setIsLoading(false);
+        return;
+      }
+
       setIsLoading(true);
       try {
         if (isLoggedIn) {
@@ -47,15 +70,9 @@ const MyPage = () => {
 
         <S.BlackContainer>
           <S.InfoContainer>
-            {isLoading ? (
-              <>
-                <S.MyInfoContainer>
-                    <S.MyInfo>                   
-                    <S.MyNameText>로딩중입니다</S.MyNameText>
-                    </S.MyInfo>
-                </S.MyInfoContainer>
-              </>
-            ) : isLoggedIn ? (
+          {isLoading ? (
+              <S.LoadingContainer />
+          ) : isLoggedIn && myProfileData ? (
               <>
                 <S.MyInfoContainer>
                   <S.EmojiContainer>
@@ -67,7 +84,7 @@ const MyPage = () => {
                   </S.EmojiContainer>
                   <S.MyInfo>                   
                     <S.MyNameText>{myProfileData.data.name} | {myProfileData.data.nickname}</S.MyNameText>
-                    <S.MyInfoText>{myProfileData.data.major} ∙ {myProfileData.data.studentNumber} ∙ {myProfileData.data.age}세</S.MyInfoText>
+                    <S.MyInfoText>{myProfileData.data.major} ∙ {myProfileData.data.studentNumber.slice(2, 4)}학번 ∙ {myProfileData.data.age}세</S.MyInfoText>
                     <S.MyInfoText>{myProfileData.data.level === 'LIGHT' ? 'ZI밋 라이트 등급' : myProfileData.data.level === 'PLUS' ? 'ZI밋 플러스 등급' : ''}</S.MyInfoText>
                   </S.MyInfo>
                   <S.MyInfoModifyWrapper>
@@ -127,21 +144,24 @@ const MyPage = () => {
             )}
           </S.InfoContainer>
         </S.BlackContainer>
-        <S.WhiteArea isLoggedIn={isLoggedIn} />
+        <S.WhiteArea $isLoggedIn={isLoggedIn} />
 
-        <S.ComponentContainer isLoggedIn={isLoggedIn}>
+        <S.ComponentContainer $isLoggedIn={isLoggedIn}>
           <Event />
           <ItemShop myProfileData={myProfileData} />
           <QnA myProfileData={myProfileData}/>
 
           <S.OutContainer>
-            <S.OutText href='/'>개인정보처리방침</S.OutText>
-            <S.OutText href='/'>이용약관</S.OutText>
-            <S.OutText href='/'>회원탈퇴</S.OutText>
-            <S.OutText href='/'>로그아웃</S.OutText>
+            <S.OutText href='/notion/personalInfoPolicy'>개인정보처리방침</S.OutText>
+            <S.OutText href='/notion/termsOfService'>이용약관</S.OutText>
+            <S.OutText className='modal' onClick={handleWithdrawClick} >회원탈퇴</S.OutText>
+            <S.OutText className='modal' onClick={handleLogoutClick}>로그아웃</S.OutText>
           </S.OutContainer>
         </S.ComponentContainer>
       </S.MyPageBox>
+
+      <ModalWithdraw isOpen={isWithdrawModalOpen} onClose={() => setIsWithdrawModalOpen(false)} />
+      <ModalLogout isOpen={isLogoutModalOpen} onClose={() => setIsLogoutModalOpen(false)} />
       <NavigationBar />
     </S.MyPageContainer>
   );
