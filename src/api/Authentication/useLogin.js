@@ -1,6 +1,7 @@
 import { useSetRecoilState } from 'recoil';
 import { authState } from 'recoil/state/authState';
 import { publicAxios } from 'api/axiosConfig';
+// import amplitudeTool from "../../utils/Analytics/Amplitude";
 
 const useLogin = () => {
   const setAuthState = useSetRecoilState(authState);
@@ -14,9 +15,11 @@ const useLogin = () => {
         password,
       }, { withCredentials: true });
 
-      const { accessToken, userId } = response.data.data;
-      setAuthState({ userId , isAuthenticated: true });
+      const { accessToken, refreshToken, userId } = response.data.data;
+      setAuthState({ accessToken, refreshToken });
       localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      // amplitudeTool.setUser(userId);
       navigate('/meeting22');
 
     } catch (error) {
