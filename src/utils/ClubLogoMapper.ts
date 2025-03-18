@@ -33,39 +33,52 @@ import thegame_logo from '../assets/icon/boothDetail/logo/thegame_logo.png';
 import tumblers_logo from '../assets/icon/boothDetail/logo/tumblers_logo.png';
 import yudo_logo from '../assets/icon/boothDetail/logo/yudo_logo.jpg';
 
-// 부스 clubId에 해당하는 로고 매핑
 const logoMap: { [key: number]: string } = {
-  0: GDGlogo,
-  1: ala_logo,
-  2: bandsilhum_logo,
-  3: bastards_logo,
-  4: catfactory_logo,
-  5: catholic_logo,
-  6: cbo_logo,
-  7: ccc_logo,
-  8: cdz_logo,
-  9: coma_logo,
-  10: coz_logo,
-  11: etude_logo,
-  12: evc_logo,
-  13: fom_logo,
-  14: gahyun_logo,
+  0: GDGlogo, // 기본 로고
+  1: coz_logo,
+  2: sunset_logo,
+  3: thebusking_logo,
+  4: gahyun_logo,
+  5: kusa_logo,
+  6: GDGlogo,
+  7: catfactory_logo,
+  8: hwarang_logo,
+  9: fom_logo,
+  10: ssgy_logo,
+  11: GDGlogo, // 총동연 (x)
+  12: GDGlogo, // 루이너스 (x)
+  13: cbo_logo,
+  14: cdz_logo,
   15: gigahits_logo,
-  16: hwarang_logo,
-  17: kickoff_logo,
-  18: kusa_logo,
-  19: nonglak_logo,
-  20: rotaract_logo,
-  21: shield_logo,
-  22: sophibara_logo,
-  23: ssgy_logo,
-  24: sunset_logo,
-  25: taekwondo_logo,
+  16: sacred_logo,
+  17: evc_logo,
+  18: tumblers_logo,
+  19: coma_logo,
+  20: ccc_logo,
+  21: rotaract_logo,
+  22: GDGlogo, // 협찬예정 (x)
+  23: bandsilhum_logo,
+  24: yudo_logo,
+  25: bastards_logo,
   26: tennis_logo,
-  27: thebusking_logo,
-  28: thegame_logo,
-  29: tumblers_logo,
-  30: yudo_logo
+  27: GDGlogo,
+  28: taekwondo_logo,
+  29: thegame_logo,
+  30: ala_logo,
+  31: etude_logo,
+  32: sophibara_logo,
+  33: kickoff_logo,
+  34: shield_logo,
+  35: catholic_logo,
+  36: nonglak_logo,
+  37: anicat_logo,
+  38: GDGlogo, // 스플렌디드 (x)
+  39: GDGlogo, // 푸드1 (서우푸드)
+  40: GDGlogo, // 푸드4 (써니푸드)
+  41: GDGlogo, // 푸드2 (나드리)
+  42: GDGlogo, // 푸드5 (요기푸드)
+  43: GDGlogo, // 푸드3 (윤셰프)
+  44: GDGlogo, // 푸드6 (김군네초밥)
 };
 
 const getLogoComponent = (clubId: number) => {
