@@ -157,16 +157,23 @@ const Join3 = () => {
               </>
             )}
           </S.SelectContainer>
-        
+
         <S.BtnContainer>
-          <S.JoinBtn 
-            type="submit"
-            disabled={!isFormComplete}
-            onClick={() => {
-              if (!isFormComplete) {
-                amplitude.track('[클릭]회원가입_세번째_다음버튼(비활성)');
-              }
-            }}
+          <S.AgreementText>
+            아래 버튼을 눌러 ZI밋의
+            <S.OutText href='/notion/termsOfService' target="_blank" rel="noopener noreferrer"> 이용약관</S.OutText>과
+            <S.OutText href='/notion/personalInfoPolicy' target="_blank" rel="noopener noreferrer">  개인정보처리방침</S.OutText>
+            에 동의합니다.
+          </S.AgreementText>
+
+          <S.JoinBtn
+              type="submit"
+              disabled={!isFormComplete}
+              onClick={() => {
+                if (!isFormComplete) {
+                  amplitude.track('[클릭]회원가입_세번째_다음버튼(비활성)');
+                }
+              }}
           >
             {isFormComplete ? '회원가입 완료하기' : '모든 정보를 입력해주세요.'}
           </S.JoinBtn>
