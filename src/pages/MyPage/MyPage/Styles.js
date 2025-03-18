@@ -4,21 +4,9 @@ import zimeetLoading from '../../../assets/icon/zimeetLoading.svg';
 
 export const MyPageContainer = styled.div`
   width: 100%; 
-  height: 100%;
+  height: 89%;
   background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative; 
   overflow: auto;
-  min-height: 100vh;
-`;
-
-export const MyPageBox = styled.div`
-  width: 100%;
-  height: 88%;
-  display: flex;
-  flex-direction: column;
 `;
 
 export const LoadingContainer = styled.img.attrs({
@@ -34,91 +22,178 @@ export const LoadingContainer = styled.img.attrs({
 
 //logo
 export const LogoContainer = styled.div`
+  width: 100%; 
+  height: 10%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  padding: 14% 0 0 0;
-  width: 100%; height: 7%;
-  position: absolute;
-  z-index: 2;
+  justify-content: center;
+  padding: 2%;
+  background-color: black;
 `;
 
 export const ZimeetLogo = styled(I.ZimeetLogo) `
-  margin-top:-13%;
   width: 12%;
+  height: 100%;
 `;
 
+//MyInfo
 export const BlackContainer = styled.div`
   width: 100%;
-  background-color: black;
+  height: 35%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding: 0; margin: 0;
+  align-items: center;
+  background-color: black;
+  position: relative;
+  z-index: 0;
+  border: none;
 `;
 
 export const WhiteArea = styled.div`
   width: 100%;
+  height: 80%;
+  position: absolute;
+  z-index: 1;
   background-color: white;
-  position: relative;  
-  z-index: 0;
-  border-radius: 2rem 2rem 0 0;
-  margin-top: ${({ $isLoggedIn }) => ($isLoggedIn ? '-50%' : '-33%')};
-  padding-top: ${({ $isLoggedIn }) => ($isLoggedIn ? '45%' : '30%')};
-  padding-bottom: 7%;
+  margin-top: 15%;
+  border-radius: 50px 50px 0 0;
 `;
 
-
-//MyInfo
 export const InfoContainer = styled.div` 
   width: 90%;
-  position: relative; // WhiteArea와 상호작용 설정
-  z-index: 1; // WhiteArea 위로 
-  background: transparent; 
-  margin-top: 15%;
+  height: 100%;
+  position : absolute;
+  z-index: 2;  
+`;
+
+export const InfoGetContainer = styled.div` 
+  width: 90%;
+  height: 100%;
+  position : absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;  
 `;
 
 export const MyInfoContainer = styled.div`
   background-color: white;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  padding: 3%;
-  border-top-left-radius: 1rem; border-top-right-radius: 1rem;
+  justify-content: center;
+  border-top-left-radius: 20px; 
+  border-top-right-radius: 20px;
 `;
-export const EmojiContainer = styled.div`
-  width: 15%;
-  align-self: flex-start;
-  padding-top: 2%;
+
+export const MyInfo = styled.div`
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-top-left-radius: 20px; 
+  border-top-right-radius: 20px;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 12px;
+  line-height: 1.3;
+  b { 
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: -3%;
+  }
 `;
-export const CircleWrap = styled.div`
-  width: 100%; height: auto;
+export const MyDetailInfoText = styled.div`
+  display: flex;
+  width: 69%;
+  flex-direction: column;
+  background-color: white;
+  text-align: left;
+  font-family: Pretendard;
+  font-size: 12px;
+  line-height: 1.3;
+  b { 
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: -3%;
+  }
 `;
+
+export const MyDetailInfo = styled.div`
+  height: 38%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 6% 0 5%;
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 12px;
+  line-height: 1.3;
+`;
+
+export const MyMeetingContainer = styled.div`
+  height: 62%;
+  background-color: #f6f5fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 20px; 
+  border-bottom-right-radius: 20px;
+`;
+
+export const MyMeetingDetailContainer = styled.div`
+  height: 60%;
+  background-color: #f6f5fa;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 20px; 
+  border-bottom-right-radius: 20px;
+`;
+
+export const LoginBtn = styled.button`
+  font-weight: 700;
+  width: 80%; 
+  height: 60%;
+  font-family: Pretendard, sans-serif;
+  background-color: #EA4335;
+  border-radius: 10px;
+  margin-bottom: 2%;
+  color: white;
+`;
+export const LoginText = styled.p`
+  font-family: Pretendard;
+  font-size: 12px;
+  b {
+    font-weight: 700;
+  }
+`;
+
 export const EmojiWrap = styled.div`
-  width: 100%; 
-  aspect-ratio: 1; //원 비율 유지 
+  width: 18%; 
+  aspect-ratio: 1;
   background-color: rgba(234, 67, 53, 0.08);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
   border-radius: 50%; 
+  margin-right: 1%;
+  margin-bottom: 8%;
 `;
 export const MyEmoji = styled.img`
   width: 70%;
   height: 70%;
 `;
-export const MyInfo = styled.div`
-  &.loggedOut {
-    text-align: center;
-  }
-`;
-export const MyNameText = styled.p`
-  font-family: Pretendard;
-  font-weight: 700;
-  font-size: 14px;
-  padding: 5% 0;
-`;
+
 export const MyInfoText = styled.p`
   font-family: Pretendard;
   font-size: 12px;
@@ -139,79 +214,49 @@ export const MyInfoModifyWrapper = styled.div`
 `;
 
 export const EditMyInfo = styled(I.EditMyInfo) `
+  margin-bottom: 17%;
 `;
 
-//MyMeeting
-export const MyMeetingContainer = styled.div`
-  background-color: #f6f5fa;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 3%;
-  border-bottom-left-radius: 1rem; 
-  border-bottom-right-radius: 1rem;
-
-  &.loggedOut {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    height: 60%;
-    padding: 7% 5%;
-  }
-`;
-
-export const LoginBtn = styled.button`
-  font-weight: 700;
-  width: 100%; height: 80%;
-  background-color: #EA4335;
-  border-radius: 0.6rem;
-  margin-bottom: 2%;
-  color: white;
-`;
-export const LoginText = styled.p`
-  font-family: Pretendard;
-  font-size: 12px;
-
-  &.bold {
-    font-weight: 700;
-  }
-`;
 export const BoldText = styled.span`
   font-weight: bold;
 `;
 
 export const MyMeeting = styled.div`
   width: 30%;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
+  padding-top: 1%;
 `;
 export const MyMeetingTitle = styled.p`
   font-family: Pretendard;
   font-weight: 700;
   font-size: 12px;
-  padding: 5% 0 3% 0;
+  margin-bottom: 1%;
 `;
 export const MyMeetingText = styled.p`
   font-family: Pretendard;
   font-size: 12px;
-  padding: 3% 0;
-`;
-export const MeetingCircleWrap = styled.div`
-  width: 100%; height: auto;
-  padding: 13%;
 `;
 export const MeetingEmojiWrap = styled.div`
-  width: 100%; 
-  aspect-ratio: 1; //원 비율 유지 
+  width: 70%; 
+  aspect-ratio: 1;  
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
   border-radius: 50%; 
+  margin: 10% 0 10% 0;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 `;
 
+export const Hiblack = styled(I.HiIconblack) `
+  width: 70%;
+  height: 60%;
+`;
 export const Ticket = styled(I.Ticket) `
 `;
 
@@ -228,15 +273,13 @@ export const ComponentContainer = styled.div`
   gap: 3%;
   padding-top: 6%;
   flex: 1;
-  padding-bottom: ${({ $isLoggedIn }) => ($isLoggedIn ? '70%' : '50%')};
 `;
 
 export const OutContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: left;
-  text-align: left;
-  width: 100%;
+  margin: 0 auto 3% auto;
+  width: 95%;
 `;
 export const OutText = styled.a`
   font-size: 14px;
@@ -246,4 +289,16 @@ export const OutText = styled.a`
     text-decoration: underline;
     cursor: pointer;
   }
+`;
+
+export const Text = styled.p`
+    width: 90%;
+    font-family: Pretendard, sans-serif;
+    font-size: 12px;
+    line-height: 1.3;
+    margin: 3% auto 0 auto;
+    b {
+      font-size: 15px;
+      font-weight: 700;
+    }
 `;

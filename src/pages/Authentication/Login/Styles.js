@@ -51,6 +51,11 @@ export const LoginInput = styled.input`
   border-radius: 0.6rem;
   margin-bottom: 2%;
   font-size: 14px;
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    font-size: 16px;
+  }
 `;
 
 export const LoginBtn = styled.button`
