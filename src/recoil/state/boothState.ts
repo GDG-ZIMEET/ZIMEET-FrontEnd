@@ -6,21 +6,14 @@ export const boothState = atom<Club[]>({
     default: [],
 });
 
-export const boothsResponseState = atom<BoothsResponse | null>({
-    key: 'boothsResponseState',
-    default: null,
-});
-
-//부스타입버튼 상태
-export const selectedButtonState = atom<string>({
-    key: 'selectedButtonState',
-    default: 'N',
-});
-
-//성심광장 우측 좌측 상태
-export const selectedSquareRLState = atom<string>({
-    key: 'selectedSquareRLState',
+export const selectedSpaceState = atom<string>({
+    key: 'selectedSpaceState',
     default: 'S_LEFT',
+});
+
+export const selectedFBState = atom<string>({
+    key: 'selectedFBState',
+    default: 'front',
 });
 
 //부스 상세정보
