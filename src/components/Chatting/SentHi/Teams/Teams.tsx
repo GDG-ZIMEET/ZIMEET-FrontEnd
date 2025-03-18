@@ -6,6 +6,7 @@ import { getsendHi } from 'api/Hi/GetsendHi';
 import { HiType } from 'recoil/type/Hi/HiType';
 import { useRecoilValue } from 'recoil';
 import { ourteamIds } from 'recoil/state/ourTeamIds';
+import { track } from '@amplitude/analytics-browser';
 
 const Teams: React.FC = () => {
     const navigate = useNavigate();
@@ -34,9 +35,12 @@ const Teams: React.FC = () => {
       
     const handleTeamClick = (teamId: number) => {
     const selectedTeam = sendHiList?.find(team => team.teamId === teamId);
-    if (selectedTeam) {
-       navigate(`/teamintro/${teamId}`, { state: { from: "sendHi" } });
-    }
+        if (selectedTeam) {
+           navigate(`/teamintro/${teamId}`, { state: { from: "sendHi" } });
+            track('[클릭]채팅_보낸하이_팀', {
+                teamId: teamId
+            });
+        }
     };
 
     return (

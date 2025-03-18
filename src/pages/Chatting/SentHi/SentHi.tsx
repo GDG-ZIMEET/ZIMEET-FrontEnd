@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import * as S from './Styles';
 import ChattingInventoryTypeButton from '../../../components/Chatting/ChattingInventory/ChattingInventoryTypeButton/ChattingInventoryTypeButton';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import Teams from 'components/Chatting/SentHi/Teams/Teams';
+import { track } from '@amplitude/analytics-browser';
 
 const SentHi: React.FC = () => {
+    useEffect(() => {
+        track('[접속]채팅_보낸하이');
+    }, []);
+
     return (
         <S.SentHiLayout>
             <S.SentHiTitle>팀 갤러리</S.SentHiTitle>
