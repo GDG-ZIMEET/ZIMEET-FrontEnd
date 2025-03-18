@@ -5,7 +5,6 @@ import { boothDetailState } from '../../../recoil/state/boothState';
 
 const Explanation: React.FC = () => {
    const boothDetail = useRecoilValue(boothDetailState);
- 
     return (
         <S.ExplanationLayout>
             <S.ExplanationTitle>동아리 소개</S.ExplanationTitle>

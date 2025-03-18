@@ -10,8 +10,8 @@ const ItemInventory: React.FC = () => {
         <S.ItemInventoryLayout>
             <S.ItemInventoryTitle>늘품제 아이템</S.ItemInventoryTitle>
             <S.ItemContainer>
-                {boothDetail?.data.item.map((item) => (
-                    <S.ItemComponent key={item.id}>
+                {boothDetail?.data.itemList.map((item) => (
+                    <S.ItemComponent key={item.itemId}>
                         <S.ItemTitle>• {item.name}</S.ItemTitle>
                         <S.ItemElement>{item.content}</S.ItemElement>
                     </S.ItemComponent>

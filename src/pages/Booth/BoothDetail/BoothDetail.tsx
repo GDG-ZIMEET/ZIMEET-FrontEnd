@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as S from './Styles';
 import BackHeader from '../../../components/BoothDetail/BackHeader/BackHeader';
@@ -9,19 +9,21 @@ import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 import { GetboothDetail } from '../../../api/booth/GetboothDetail';
 import { getPosterComponent } from '../../../utils/ClubPosterMapper';
-import { BoothDetailResponseType } from 'recoil/type/booth';
 import { track } from '@amplitude/analytics-browser';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { boothDetailState } from 'recoil/state/boothState';
 
 const BoothDetail: React.FC = () => {
   const { clubId } = useParams<{ clubId: string }>();
-  const [boothDetail, setBoothDetail] = useState<BoothDetailResponseType | undefined>(undefined);
-  
+  const setRecoilBoothDetail = useSetRecoilState(boothDetailState);
+  const boothDetail = useRecoilValue(boothDetailState);
+
   useEffect(() => {
     const fetchBoothDetail = async () => {
       if (clubId) {
         const response = await GetboothDetail(Number(clubId));
         if (response) {
-          setBoothDetail(response);
+          setRecoilBoothDetail(response);
         }
       }
     };

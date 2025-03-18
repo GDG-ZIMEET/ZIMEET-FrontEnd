@@ -10,9 +10,9 @@ export interface Club {
 export interface ClubDetailType {
   clubId: number;
   name: string;
-  item: [
+  itemList: [
     {
-      id: number;
+      itemId: number;
       name: string;
       content: string;
     }
