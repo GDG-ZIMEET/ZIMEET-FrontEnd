@@ -1,44 +1,54 @@
 import styled from 'styled-components';
+import { ReactComponent as NextWhite } from '../../../assets/icon/MyPage/GoButtonWhite.svg';
 
 export const EventContainer = styled.div`
   width: 90%; 
+  height: 9%;
+  margin: 3% auto 0 auto;
   background-color: black;
   border-radius: 0.8rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  padding: 1%;
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+      height: 9.8%;
+      margin: 9% auto 0 auto;
+    }
+  }
 `;
 export const EventLogo = styled.div`
   width: 15%;
-  text-align: center;
+  margin-right: 3.5%;
   svg {
     width: 100%;
     height: 100%;
   }
-  padding: 3% 0;
-`;
-export const EventCommentWrapper = styled.div``;
-export const EventTitle = styled.p`
-  color: white;
-  font-family: Pretendard;
-  font-weight: 700;
-  font-size: 14px;
-  padding: 1.5% 0;
 `;
 export const EventText = styled.p`
   color: white;
   font-family: Pretendard;
   font-size: 12px;
   padding: 1.5% 0;
+  white-space: nowrap;
+  margin-right: 8%;
+
+  b{
+    font-weight: 700;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+      margin-right: 19%;
+    }
+  }
 `;
-export const EventTextBold = styled.span`
-  font-weight: 700;
-  font-size: 12px;
-  white-space: nowrap; //줄바꿈 방지
-`;
-export const MoveBtn = styled.button`
-  color: white;
-  align-self: flex-start;
-  padding: 3% 0 0 0;
+export const MoveBtn = styled(NextWhite)`
+  margin-bottom: 7%;
 `;

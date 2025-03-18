@@ -62,7 +62,7 @@ export { ReactComponent as Ticket } from './icon/MyPage/Ticket.svg';
 export { ReactComponent as Ticket1 } from './icon/MyPage/Ticket1.svg';
 export { ReactComponent as Ticket3 } from './icon/MyPage/Ticket3.svg';
 export { ReactComponent as Ticket8 } from './icon/MyPage/Ticket8.svg';
-
+export { ReactComponent as HiIconblack } from './icon/MyPage/Hi10.svg';
 //부스 포스터 사진
 export { ReactComponent as Houh } from './icon/boothDetail/Ho.svg';
 export { ReactComponent as SSine } from './icon/boothDetail/ssine.svg';

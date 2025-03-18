@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const QnAContainer = styled.div`
     font-family: Pretendard;
     width: 90%;
-    padding: ${({ $isLoggedIn }) => ($isLoggedIn ? '35% 0 10% 0' : '5% 0 10% 0')}; 
+    margin: 5% auto 0 auto;
 `;
 
 export const Title = styled.p`
@@ -14,9 +14,10 @@ export const Title = styled.p`
 `;
 
 export const QnAs = styled.div`
-    width: 100%; height:16%;
+    width: 100%; 
+    height:18%;
     background-color: #f6f5fa;
-    padding: 4%;
+    padding: 5%;
     border-radius: 0.8rem;
     margin: 3% 0;
     display: flex;
