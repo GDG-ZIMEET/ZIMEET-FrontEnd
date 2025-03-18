@@ -53,7 +53,7 @@ const Join3 = () => {
         <S.JoinText>MBTI</S.JoinText>
         <S.JoinInput
           type="text"
-          placeholder="MBTI를 대문자로 입력해주세요"
+          placeholder="MBTI를 입력해주세요"
           value={joinData.mbti}
           onChange={(e) => setJoinData({ ...joinData, mbti: e.target.value.toUpperCase() })}
         />
