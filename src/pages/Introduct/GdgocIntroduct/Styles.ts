@@ -60,14 +60,45 @@ span {
   margin-right: 9.5%;}
 
 a {
-  margin-right: 17.5%;}
+  margin-right: 18.7%;
+
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    margin-right: 17.5%;
+  }}
+}
 
 p{
-  margin-left: 40.5%;}
+  margin-left: 44%;
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+    margin-right: 30%;
+  }}
+
+  }
+`;
+
+export const gdgExplanationto3 = styled.div`
+font-size: 13px;
+  color: #000000;
+  margin-right: 10%;
+  line-height: 1.5;
+
+  b {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: -13px;
+    display: block;
+  }
 `;
 
 export const gdgExplanation3 = styled(gdgExplanation1)`
   
+`;
+
+export const Componentto3 = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 

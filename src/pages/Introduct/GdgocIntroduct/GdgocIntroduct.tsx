@@ -32,12 +32,21 @@ const GdgocIntroduct: React.FC = () => {
         </S.gdgExplanation1>
         <S.gdgExplanation2>
         <b>GDGoC CUK가 3기에 했던 활동</b><br />
-        [Networking] <u/> [Events] <br />
-        - print "Hello Buddy" <span /> - Tech Talk Live <br />
-        - Cloud of Idea <a /> - GGUM 연합해커톤 <br/>
-        <p>- Grand Finale</p>  <br/>
+        <S.Componentto3>
+          <S.gdgExplanationto3>
+          [Networking] <br />
+          - print "Hello Buddy" <br />
+          - Cloud of Idea
+          </S.gdgExplanationto3>
+          <S.gdgExplanationto3>
+          [Events] <br />
+          - Tech Talk Live <br />
+          - GGUM 연합해커톤<br />
+          - Grand Finale
+          </S.gdgExplanationto3>
+        </S.Componentto3>
         [Study] <br/>
-        - AI돞 모아보기 -AWS로 인프라 공부하기 -CS 스터디<br />
+        - AI톺 모아보기 -AWS로 인프라 공부하기 -CS 스터디<br />
         -HTML+CSS+자바스크립트 : 프론트 입문부터 심화까지<br />
         -Figma와 Blender를 활용한 UX/UI 디자인<br />
         -도커 & 쿠버네티스 스터디 - 스프링부트 입문 스터디<br />
