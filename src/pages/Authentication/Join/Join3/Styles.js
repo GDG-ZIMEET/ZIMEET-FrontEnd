@@ -17,7 +17,7 @@ export const JoinInput = styled.input`
   background-color: #f9fafb;
   border: 1px solid rgba(2, 32, 71, 0.05);
   border-radius: 0.6rem;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
   font-size: 14px;
 
   &:focus {
@@ -37,7 +37,7 @@ export const JoinInput = styled.input`
 `;
 
 export const SelectContainer = styled.div`
-  height: 70%;
+  height: 69%;
   overflow-y: auto;
   overflow-x: hidden;
   margin-bottom: 8%;
@@ -125,4 +125,21 @@ export const JoinBtn = styled.button`
   border-radius: 0.6rem;
   color: ${({ disabled }) => (disabled ? '#7c7c7c' : 'white')};
   font-size: 16px;
+`;
+
+export const OutText = styled.a`
+  color: #222222;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    color: #000000;
+  }
+`;
+
+export const AgreementText = styled.p`
+  font-size: 12px;
+  color: #707070;
+  text-align: center;
+  margin-bottom: 5px;
 `;

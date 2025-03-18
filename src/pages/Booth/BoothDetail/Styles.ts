@@ -5,8 +5,9 @@ import PosterExample from '../../../assets/icon/Examplebooth2.png';
 
 export const BoothDetailLayout = styled.div`
   width: 100%;
-  height: 100%; 
-  overflow-y: auto;
+  height: 100%;
+  padding-bottom: 30%;
+  overflow-y: scroll;
   overflow-x: hidden;
   background-color: #ffffff;
   font-family: Pretendard, sans-serif;

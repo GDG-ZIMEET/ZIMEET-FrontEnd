@@ -3,7 +3,7 @@ import * as I from '../../../assets/Icons';
 
 export const ItemInventoryLayout = styled.div`
   width: 100%;
-  height: 27%;
+  height: auto;
   background-color: #ffffff;
   margin-top: 4%;
   padding-bottom: 4%;
@@ -45,6 +45,14 @@ export const ItemElement = styled.p`
   margin-left: auto;
 `;
 
+export const AccountWrapper = styled.div`
+    width: 93%;
+    height: auto;
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    margin: 2% 4%;
+    padding: 4%;
+`;
 
 export const Account = styled.p`
   font-size: 12px;
