@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import * as S from './Styles';
+import * as amplitude from '@amplitude/analytics-browser';
 
 interface TypeButtonProps {
   selectedSpace: string;
@@ -10,6 +11,20 @@ const TypeButton: React.FC<TypeButtonProps> = ({ selectedSpace, setSelectedSpace
   
   const handleClick = (buttonType: string) => {
     setSelectedSpace(buttonType);
+    switch(buttonType) {
+      case 'S_LEFT':
+        amplitude.track('[클릭]부스_광장L');
+        break;
+      case 'S_RIGHT':
+        amplitude.track('[클릭]부스_광장R');
+        break;
+      case 'A':
+        amplitude.track('[클릭]부스_안드레아');
+        break;
+      case 'F':
+        amplitude.track('[클릭]부스_푸드트럭');
+        break;
+    }
   };
 
   useEffect(() => {

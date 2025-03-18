@@ -1,5 +1,5 @@
 import * as S from './Styles';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { joinState } from '../../../../recoil/state/joinState';
@@ -7,6 +7,7 @@ import { getImageByEmoji } from 'utils/IconMapper';
 import { majorMap } from '../../../../data/SignUpData';
 import { LogoContainer } from 'components/Authentication/Join/LogoContainer/LogoContainer';
 import { checkDuplicateNickname } from 'api/Authentication/checkDuplicateNickname';
+import { track } from '@amplitude/analytics-browser';
 
 const Join2 = () => {
   const [joinData, setJoinData] = useRecoilState(joinState);
@@ -21,17 +22,13 @@ const Join2 = () => {
     joinData.emoji&&
     isNicknameValid;
 
-  const handleNext = async (e) => {
-    e.preventDefault(); 
-    
-    if (isFormComplete) {
-      setIsChecking(true);
-      const isUnique = await checkDuplicateNickname(joinData.nickname, setNicknameError);
-      setIsChecking(false);
-      if (isUnique) {
-        navigate('/join3');
-      }
-    }
+  useEffect(() => {
+    track('[접속]회원가입_두번째');
+  }, []);
+
+  const handleMajorSelect = (e) => {
+    setJoinData({ ...joinData, major: e.target.value });
+    track('[클릭]회원가입_두번째_학과선택');
   };
 
   const handleNicknameChange = (e) => {
@@ -39,7 +36,35 @@ const Join2 = () => {
     setJoinData({ ...joinData, nickname: value });
     setIsNicknameValid(value.length >= 2 && value.length <= 7);
     setNicknameError("");
-    // console.log(isNicknameValid)
+    
+    if (value.length >= 2 && value.length <= 7) {
+      track('[입력]회원가입_두번째_닉네임', {
+        nickname: value
+      });
+    }
+  };
+
+  const handleEmojiClick = () => {
+    track('[클릭]회원가입_두번째_이모지');
+    navigate('/selectemoji');
+  };
+
+  const handleNext = async (e) => {
+    e.preventDefault();
+    
+    if (!isFormComplete) {
+      track('[클릭]회원가입_두번째_다음버튼(비활성)');
+      return;
+    }
+
+    track('[클릭]회원가입_두번째_다음버튼(활성)');
+    
+    setIsChecking(true);
+    const isUnique = await checkDuplicateNickname(joinData.nickname, setNicknameError);
+    setIsChecking(false);
+    if (isUnique) {
+      navigate('/join3');
+    }
   };
   
   return (
@@ -50,7 +75,7 @@ const Join2 = () => {
         <S.SelectContainer>
           <S.JoinSelect
             value={joinData.major}
-            onChange={(e) => setJoinData({ ...joinData, major: e.target.value })}
+            onChange={handleMajorSelect}
           >
             <option value="">학과를 선택해주세요.</option>
             {Object.keys(majorMap).map((key, index) => (
@@ -74,7 +99,7 @@ const Join2 = () => {
           <S.EmojiText>이모지는 프로필 사진 대신 쓰여요. <br />
           아래 동그라미를 터치해서 이모지를 변경할 수 있어요.</S.EmojiText>
           <S.CircleWrap>
-            <S.EmojiWrap onClick={() => navigate('/selectemoji')}>
+            <S.EmojiWrap onClick={handleEmojiClick}>
               <S.TossEmoji>
                 <img src={getImageByEmoji(joinData.emoji)} alt={joinData.emoji} />
               </S.TossEmoji>

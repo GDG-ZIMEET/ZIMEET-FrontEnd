@@ -1,7 +1,7 @@
 import { useSetRecoilState } from 'recoil';
 import { authState } from 'recoil/state/authState';
 import { publicAxios } from 'api/axiosConfig';
-// import amplitudeTool from "../../utils/Analytics/Amplitude";
+import * as amplitude from '@amplitude/analytics-browser';
 
 const useLogin = () => {
   const setAuthState = useSetRecoilState(authState);
@@ -15,11 +15,14 @@ const useLogin = () => {
         password,
       }, { withCredentials: true });
 
-      const { accessToken, refreshToken, userId } = response.data.data;
-      setAuthState({ accessToken, refreshToken });
+      const { accessToken, userId } = response.data.data;
+      setAuthState({ userId , isAuthenticated: true });
       localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
-      // amplitudeTool.setUser(userId);
+      
+      const amplitudeUserId = `zimeet_${userId.toString()}`;
+      console.log('Setting Amplitude userId:', amplitudeUserId);
+      amplitude.setUserId(amplitudeUserId);
+      
       navigate('/meeting22');
 
     } catch (error) {

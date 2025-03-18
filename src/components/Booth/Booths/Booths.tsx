@@ -3,6 +3,7 @@ import * as S from './Styles';
 import Booth from './Booth';
 import { Getbooths } from '../../../api/booth/Getbooths';
 import { Club } from '../../../recoil/type/booth';
+import * as amplitude from '@amplitude/analytics-browser';
 
 interface BoothsProps {
   selectedSpace: string;
@@ -14,6 +15,13 @@ const Booths: React.FC<BoothsProps> = ({ selectedSpace }) => {
 
   const handleClick = (buttonType: string) => {
     setSelectedFB(buttonType);
+    if (selectedSpace === 'S_LEFT') {
+      amplitude.track(`[클릭]부스_광장L_${buttonType === 'front' ? '앞' : '뒤'}`);
+    } else if (selectedSpace === 'S_RIGHT') {
+      amplitude.track(`[클릭]부스_광장R_${buttonType === 'front' ? '앞' : '뒤'}`);
+    } else if (selectedSpace === 'A') {
+      amplitude.track(`[클릭]부스_안드레아_${buttonType === 'front' ? '앞' : '뒤'}`);
+    }
   };
 
   useEffect(() => {
@@ -53,7 +61,7 @@ const Booths: React.FC<BoothsProps> = ({ selectedSpace }) => {
     <S.BoothLayout>
       <S.NBuilding>{aroundSpace}</S.NBuilding>
       <S.BoothsContainer>
-        <S.BoothTime>부스 운영 시간 : 10 : 00 ~ 16 : 00</S.BoothTime>
+        <S.BoothTime>부스 운영 시간 : 11 : 00 ~ 17 : 00</S.BoothTime>
         <S.Booths>
           {displayedBooths.map((booth) => (
           <Booth key={booth.clubId} booth={booth} />

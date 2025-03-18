@@ -10,7 +10,7 @@ import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 import { GetboothDetail } from '../../../api/booth/GetboothDetail';
 import { getPosterComponent } from '../../../utils/ClubPosterMapper';
 import { BoothDetailResponseType } from 'recoil/type/booth';
-
+import { track } from '@amplitude/analytics-browser';
 
 const BoothDetail: React.FC = () => {
   const { clubId } = useParams<{ clubId: string }>();
@@ -27,6 +27,7 @@ const BoothDetail: React.FC = () => {
     };
 
     fetchBoothDetail();
+    track('[접속]부스_상세화면', { clubId: Number(clubId) });
   }, [clubId]);
   
   const PosterComponent = getPosterComponent(Number(clubId));

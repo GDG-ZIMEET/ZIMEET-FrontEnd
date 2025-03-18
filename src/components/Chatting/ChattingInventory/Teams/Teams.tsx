@@ -7,6 +7,7 @@ import { ChattingRoomType } from 'recoil/type/Chatting/ChattingRoomListType';
 import { connectWebSocket, disconnectWebSocket } from 'api/Chatting/WebSocketchat';
 import { ourteamIds } from 'recoil/state/ourTeamIds';
 import { useRecoilValue } from 'recoil';
+import { track } from '@amplitude/analytics-browser';
 
 const Teams: React.FC = () => {
   const navigate = useNavigate();
@@ -70,6 +71,9 @@ const Teams: React.FC = () => {
   //팀 클릭시 채팅방으로 이동
   const handleTeamClick = (team: ChattingRoomType) => {
     navigate(`/chatting/${team.chatRoomId}`, { state: team });
+    track('[클릭]채팅_채팅목록_팀', {
+      chatRoomId: team.chatRoomId
+    });
   };
 
   //시간계산

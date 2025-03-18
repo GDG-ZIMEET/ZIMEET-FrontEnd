@@ -4,6 +4,7 @@ import ViewMore from '../ViewMore/ViewMore';
 import { useNavigate } from 'react-router-dom';
 import { OurTeamType } from 'recoil/type/Meeting/ourTeamType';
 import { getImageByEmoji } from 'utils/IconMapper';
+import { track } from '@amplitude/analytics-browser';
 
 interface MakeTeamProps {
   ourTeamData: OurTeamType | null; 
@@ -15,9 +16,19 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ ourTeamData, teamType }) => {
 
   const handleCreateTeam = () => {
     navigate('/teamMaking', { state: { teamType } });
+    if (teamType === 'TWO_TO_TWO') {
+      track('[클릭]미팅_팀만들기버튼_2대2');
+    } else if (teamType === 'THREE_TO_THREE') {
+      track('[클릭]미팅_팀만들기버튼_3대3');
+    }
   };
 
   const handleDetailPage= () => {
+    if (teamType === 'TWO_TO_TWO') {
+      track('[클릭]미팅_내팀보기버튼_2대2');
+    } else if (teamType === 'THREE_TO_THREE') {
+      track('[클릭]미팅_내팀보기버튼_3대3');
+    }
     navigate('/ourteamintro', { state: { teamType } });
   };
 

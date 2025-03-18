@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './Styles';
+import { track } from '@amplitude/analytics-browser';
 
 interface ModalProps {
   isclose: () => void;
@@ -7,6 +8,15 @@ interface ModalProps {
 }
 
 const ExitModal: React.FC<ModalProps> = ({ isclose, isout }) => {
+  useEffect(() => {
+    track('[접속]채팅_실시간채팅_나가기모달');
+  }, []);
+
+  const handleExitClick = () => {
+    track('[클릭]채팅_실시간채팅_나가기모달_나가기');
+    isout();
+  };
+
   return (
     <S.ModalLayout>
       <S.ModalContent>
@@ -19,7 +29,7 @@ const ExitModal: React.FC<ModalProps> = ({ isclose, isout }) => {
         </S.ModalText>
         <S.ButtonBox>
           <S.CancelButton onClick={isclose}>취소</S.CancelButton>
-          <S.ConfirmButton onClick={isout}>나가기</S.ConfirmButton>
+          <S.ConfirmButton onClick={handleExitClick}>나가기</S.ConfirmButton>
         </S.ButtonBox>
       </S.ModalContent>
     </S.ModalLayout>

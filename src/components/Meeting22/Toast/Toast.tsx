@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import * as S from './Styles';
+import { track } from '@amplitude/analytics-browser';
 
 interface ToastProps {
     isOpen: boolean;
@@ -10,6 +11,7 @@ const Toast: React.FC<ToastProps> = ({ isOpen, onClose }) => {
 
     useEffect(() => {
         if (isOpen) {
+            track('[접속]미팅_팀없을때_토스트');
           const timer = setTimeout(() => {
             onClose();
           }, 1000); 

@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import * as amplitude from '@amplitude/analytics-browser';
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -14,9 +15,13 @@ const getStoredAuthState = (): AuthState => {
 // `localStorage`에 로그인 상태를 저장
 const setStoredAuthState = (authState: AuthState) => {
   if (!authState.isAuthenticated) {
-    localStorage.removeItem("authState"); // 로그아웃 상태일 경우 저장 안함
+    localStorage.removeItem("authState");
+    amplitude.setUserId('unknown_logout'); // 로그아웃 시 Amplitude userId 제거
   } else {
     localStorage.setItem("authState", JSON.stringify(authState));
+    // 로그인 상태일 때 Amplitude userId 설정
+    const amplitudeUserId = `zimeet_${authState.userId.toString()}`;
+    amplitude.setUserId(amplitudeUserId);
   }
 };
 

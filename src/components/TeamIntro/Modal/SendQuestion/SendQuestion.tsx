@@ -4,6 +4,7 @@ import { getOurHi } from '../../../../api/Meeting/Getouthi';
 import { postsendHi } from '../../../../api/Hi/PostsendHi';
 import { useRecoilValue } from 'recoil';
 import { ourteamIds } from 'recoil/state/ourTeamIds';
+import { track } from '@amplitude/analytics-browser';
 
 interface SendQuestionProps {
   onClose: () => void;
@@ -32,6 +33,7 @@ const SendQuestion: React.FC<SendQuestionProps> = ({ onClose, onConfirm, teamNam
       }
     };
     fetchHiCount();
+    track('[접속]미팅_팀_하이보내기')
   }, [teamType]);
 
   const sendHi = async () => {
@@ -48,11 +50,23 @@ const SendQuestion: React.FC<SendQuestionProps> = ({ onClose, onConfirm, teamNam
   };
 
   const handleConfirm = async () => {
+    track('[클릭]미팅_팀_하이보내기_하이보내기버튼', {
+      team_name: teamName,
+      team_id: teamId,
+      team_type: teamType,
+      remaining_hi: hiCount
+    });
     await sendHi(); 
     onConfirm();  
   };
 
   const handleClose = () => {
+    track('[클릭]미팅_팀_하이보내기_하이보내기취소', {
+      team_name: teamName,
+      team_id: teamId,
+      team_type: teamType,
+      remaining_hi: hiCount
+    });
     onClose();  
   };
 
