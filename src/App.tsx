@@ -12,19 +12,19 @@ const App: React.FC = () => {
         amplitude.init(process.env.REACT_APP_AMPLITUDE_PRODUCTION_KEY || '', {"autocapture":true});
         amplitude.track('[접속]ZIMEET_실행');
 
-      vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-}, []);
+        vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }, []);
 
-  return (
-    <RecoilRoot>
-      <Router>
-        <MainScreen>
-            <Routers />
-        </MainScreen>
-      </Router>
-    </RecoilRoot>
-  );
+    return (
+        <RecoilRoot>
+            <Router>
+                <MainScreen>
+                    <Routers />
+                </MainScreen>
+            </Router>
+        </RecoilRoot>
+    );
 };
 
 export default App;
