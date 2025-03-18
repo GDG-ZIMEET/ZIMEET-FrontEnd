@@ -7,6 +7,13 @@ export const MyPageContainer = styled.div`
   height: 89%;
   background-color: white;
   overflow: auto;
+  font-family: Pretendard, sans-serif;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 export const LoadingContainer = styled.img.attrs({
@@ -47,6 +54,11 @@ export const BlackContainer = styled.div`
   position: relative;
   z-index: 0;
   border: none;
+  @media (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) {
+      height: 40%;
+    }
+  }
 `;
 
 export const WhiteArea = styled.div`
@@ -61,7 +73,6 @@ export const WhiteArea = styled.div`
 
 export const InfoContainer = styled.div` 
   width: 90%;
-  height: 100%;
   position : absolute;
   z-index: 2;  
 `;
@@ -86,6 +97,7 @@ export const MyInfoContainer = styled.div`
 
 export const MyInfo = styled.div`
   height: 50%;
+  padding: 7% 0 7% 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -122,12 +134,11 @@ export const MyDetailInfoText = styled.div`
 `;
 
 export const MyDetailInfo = styled.div`
-  height: 38%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 6% 0 5%;
+  padding: 5% 6% 3% 5%;
   background-color: white;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -138,7 +149,7 @@ export const MyDetailInfo = styled.div`
 `;
 
 export const MyMeetingContainer = styled.div`
-  height: 62%;
+  padding: 9% 0 9% 0;
   background-color: #f6f5fa;
   display: flex;
   flex-direction: column;
@@ -149,12 +160,12 @@ export const MyMeetingContainer = styled.div`
 `;
 
 export const MyMeetingDetailContainer = styled.div`
-  height: 60%;
   background-color: #f6f5fa;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 3% 0 3% 0;
   border-bottom-left-radius: 20px; 
   border-bottom-right-radius: 20px;
 `;
@@ -162,7 +173,7 @@ export const MyMeetingDetailContainer = styled.div`
 export const LoginBtn = styled.button`
   font-weight: 700;
   width: 80%; 
-  height: 60%;
+  padding: 5%;
   font-family: Pretendard, sans-serif;
   background-color: #EA4335;
   border-radius: 10px;
@@ -284,7 +295,7 @@ export const OutContainer = styled.div`
 export const OutText = styled.a`
   font-size: 14px;
   padding: 3%;
-
+  font-family: Pretendard, sans-serif;
   &.modal{
     text-decoration: underline;
     cursor: pointer;

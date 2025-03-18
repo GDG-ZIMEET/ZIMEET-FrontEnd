@@ -6,6 +6,7 @@ export const ChattingInventoryLayout = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+    font-family: Pretendard, sans-serif;
 `;
 
 export const ChattingInventoryTitle = styled.h1`

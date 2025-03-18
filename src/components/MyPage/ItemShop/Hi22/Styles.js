@@ -14,6 +14,7 @@ export const Title = styled.p`
   font-weight: 700;
   font-size: 12px;
   margin-bottom: 2%;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const HiContainer = styled.div`
@@ -45,6 +46,7 @@ export const HiQuantityText = styled.p`
   font-size: 12px;
   font-weight: 700;
   margin-bottom: 2%;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const HiPrice = styled.div`
@@ -61,11 +63,13 @@ export const HiPrice = styled.div`
 export const OriginPrice = styled.p`
   text-decoration: line-through;
   padding: 2%;
+  font-family: Pretendard, sans-serif;
 `;
 export const DiscountPrice = styled.p`
   font-weight: 700;
   color: #eb4335;
   padding: 2%;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const Hi1 = styled(I.Hi1)`

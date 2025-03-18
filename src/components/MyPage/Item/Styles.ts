@@ -35,6 +35,8 @@ export const BannerTitle = styled.p`
   color: white;
   font-size: 12px;
   line-height: 1.5;
+  margin-right: -5%;
+  font-family: Pretendard, sans-serif;
   b{
     font-weight: 700;
     font-size: 14px;
@@ -47,6 +49,7 @@ export const BannerTitle = styled.p`
 `;
 
 export const BannerPriceWrapper = styled.div`
+  margin-left: 10%;
 `;
 
 export const OriginPrice = styled.p`
@@ -56,9 +59,11 @@ export const OriginPrice = styled.p`
   text-decoration: line-through;
   margin-left: 30%;
   margin-bottom: 0.3rem;
+  font-family: Pretendard, sans-serif;
 `;
 export const DiscountPrice = styled.p`
   font-size: 14px;
   color: white;
   font-weight: 700;
+  font-family: Pretendard, sans-serif;
 `;

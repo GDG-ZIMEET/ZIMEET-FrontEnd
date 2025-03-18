@@ -5,6 +5,7 @@ export const JoinContainer = styled.div`
   height: 100%;
   background-color: white;
   padding: 5%;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const TopBarContainer = styled.div`

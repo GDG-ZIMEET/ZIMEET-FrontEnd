@@ -7,6 +7,7 @@ export const BoothLayout = styled.div`
   height: 70%;
   margin: 5% 3% 0 3%;
   justify-content: space-between;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const NBuilding = styled.div`

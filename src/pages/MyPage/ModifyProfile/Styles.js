@@ -6,7 +6,7 @@ export const JoinContainer = styled.div`
   width: 100%;
   height: 100%;
   background-color: white;
-  font-family: Pretendard;
+  font-family: Pretendard, sans-serif;
   overflow-y: auto;
 `;
 

@@ -9,6 +9,7 @@ export const AccountCopyLayout = styled.div`
   align-items: center;
   padding: 3%;
   margin: 3% 0 2%;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const LogoWrapper = styled.div`

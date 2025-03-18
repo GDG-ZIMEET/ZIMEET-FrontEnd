@@ -8,6 +8,7 @@ export const HelpLayout = styled.div`
   margin-top: 1%;
   height: 10%;
   width: 100%;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const HelpContainer = styled.div<{ show: boolean }>`

@@ -9,6 +9,7 @@ export const BoothDetailLayout = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #ffffff;
+  font-family: Pretendard, sans-serif;
 `;
 
 

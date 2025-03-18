@@ -28,11 +28,13 @@ export const BoldText = styled.p`
   font-weight: 700;
   font-size: 14px;
   padding: 2% 0 4% 0;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const Text = styled.p`
   font-size: 12px;
   padding: 1% 0 2% 0;
+  font-family: Pretendard, sans-serif;
 `;
 
 
@@ -51,6 +53,7 @@ export const CancelBtn = styled.button`
   font-size: 16px;
   border-radius: 0.8rem;
   padding: 3.7%;
+  font-family: Pretendard, sans-serif;
 `;
 export const SaveBtn = styled.button`
   width: 42%;
@@ -60,5 +63,6 @@ export const SaveBtn = styled.button`
   border-radius: 0.8rem;
   background-color: #ea4335;
   color: white;
+  font-family: Pretendard, sans-serif;
 `;
 

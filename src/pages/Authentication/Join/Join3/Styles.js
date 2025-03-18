@@ -8,7 +8,7 @@ export const JoinContainer = styled.form`
   overflow: hidden;
   font-family: Pretendard;
   padding: 8% 0 2% 0;
-  
+  font-family: Pretendard, sans-serif;
 `;
 
 export const JoinInput = styled.input`

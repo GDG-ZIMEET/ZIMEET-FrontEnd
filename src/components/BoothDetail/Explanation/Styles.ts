@@ -5,6 +5,7 @@ export const ExplanationLayout = styled.div`
   flex-direction: column;
   background-color: #fff;
   margin: 6% 0 0 0;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const ExplanationTitle = styled.h2`

@@ -7,6 +7,7 @@ export const JoinLayout = styled.div`
   background-color: white;
   padding: 5%;
   overflow:hidden;
+  font-family: Pretendard, sans-serif;
 `;
 
 

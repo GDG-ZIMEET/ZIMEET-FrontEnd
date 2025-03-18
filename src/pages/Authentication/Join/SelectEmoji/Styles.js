@@ -5,6 +5,7 @@ export const JoinLayout = styled.div`
   height: 100%;
   background-color: white;
   overflow:hidden;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const EmojiContainer = styled.div`

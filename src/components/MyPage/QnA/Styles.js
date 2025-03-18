@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const QnAContainer = styled.div`
-    font-family: Pretendard;
+    font-family: Pretendard, sans-serif;
     width: 90%;
     margin: 5% auto 0 auto;
 `;
 
 export const Title = styled.p`
-    font-family: Pretendard;
+    font-family: Pretendard, sans-serif;
     font-size: 15px;
     font-weight: 700;
     padding: 1% 0;

@@ -6,6 +6,7 @@ export const TeamIntroLayout = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+    font-family: Pretendard, sans-serif;
 `;
 
 export const TeamIntroContainer = styled.div<{ $isPremium: boolean }>`

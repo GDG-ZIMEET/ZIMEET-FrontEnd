@@ -6,6 +6,7 @@ export const ChattingContainer = styled.div`
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const LoadingContainer = styled.img.attrs({

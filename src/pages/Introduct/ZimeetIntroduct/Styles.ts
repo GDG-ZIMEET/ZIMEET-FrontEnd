@@ -9,6 +9,7 @@ export const ZimeetIntroductLayout = styled.div`
   height: 100%; 
   background-color: #ffffff;
   padding-bottom: 10%;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const ZimeetContainer = styled.div`

@@ -28,7 +28,7 @@ export const EventLogo = styled.div`
 `;
 export const EventText = styled.p`
   color: white;
-  font-family: Pretendard;
+  font-family: Pretendard, sans-serif;
   font-size: 12px;
   padding: 1.5% 0;
   white-space: nowrap;

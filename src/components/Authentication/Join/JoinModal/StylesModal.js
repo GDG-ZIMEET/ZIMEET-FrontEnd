@@ -11,6 +11,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const ModalContainer = styled.div`

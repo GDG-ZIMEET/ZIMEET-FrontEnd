@@ -4,6 +4,7 @@ export const TypeLayout = styled.div`
   display: flex;
   height: 5.5%;
   margin: 2% 0 0 3%; 
+  font-family: Pretendard, sans-serif;
 `;
 
 export const TypeComponent = styled.div`

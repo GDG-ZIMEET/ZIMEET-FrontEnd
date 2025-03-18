@@ -6,11 +6,5 @@ export const ItemShopLayout = styled.div`
   display: flex;
   flex-direction: column;
   font-family: Pretendard, sans-serif;
-
-  @media (max-width: 768px) {
-  @supports (-webkit-touch-callout: none) {
-      height: 17%;
-    }
-  }
 `;
 

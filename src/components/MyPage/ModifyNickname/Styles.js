@@ -23,12 +23,14 @@ export const ModalContainer = styled.div`
   width: 90%;
   align-items: center;
   text-align: center;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const BoldText = styled.p`
   font-weight: 700;
   font-size: 14px;
   padding: 2% 0 0 0;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const Text = styled.p`

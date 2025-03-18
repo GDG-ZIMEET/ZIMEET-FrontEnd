@@ -7,6 +7,7 @@ export const ReceiveHiLayout = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+    font-family: Pretendard, sans-serif;
 `;
 
 export const ReceiveHiTitle = styled.h1`

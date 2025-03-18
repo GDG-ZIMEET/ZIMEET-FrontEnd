@@ -8,6 +8,7 @@ export const UserdetailLayout = styled.div`
    height: 100%;
    width: 100%;
    overflow: hidden;
+   font-family: Pretendard, sans-serif;
 `;
 
 export const LoadingContainer = styled.img.attrs({

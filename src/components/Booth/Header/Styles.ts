@@ -8,6 +8,7 @@ export const HeaderLayout = styled.div`
   background-color: #ffffff;
   box-sizing: border-box;
   align-items: flex-end;
+  font-family: Pretendard, sans-serif;
   svg {
     cursor: pointer;
   }

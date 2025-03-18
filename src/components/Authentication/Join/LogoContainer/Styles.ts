@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import * as I from '../../../../assets/Icons';
 
 export const LogoContainer = styled.div`
+font-family: Pretendard, sans-serif;
 `;
 
 export const ZimeetLogo = styled(I.ZimeetLogo)`

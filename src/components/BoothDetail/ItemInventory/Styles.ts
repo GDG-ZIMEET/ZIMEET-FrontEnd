@@ -8,6 +8,7 @@ export const ItemInventoryLayout = styled.div`
   margin-top: 4%;
   padding-bottom: 4%;
   border-bottom: 4px solid #DEDEDE; 
+  font-family: Pretendard, sans-serif;
 `;
 
 export const ItemInventoryTitle = styled.h2`

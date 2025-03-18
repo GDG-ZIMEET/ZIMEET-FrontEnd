@@ -1,6 +1,5 @@
 
 import * as S from './Styles'; 
-import * as I from '../../../assets/Icons';
 
 const Item = () => {
   return (

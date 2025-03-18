@@ -12,6 +12,7 @@ export const JoinSelect = styled.select`
   border-radius: 0.6rem;
   margin: 0;
   display: flex;
+  font-family: Pretendard, sans-serif;
 `; 
 
 export const EmojiContainer = styled.div`

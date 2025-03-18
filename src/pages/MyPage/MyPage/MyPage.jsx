@@ -61,7 +61,7 @@ const MyPage = () => {
 
     fetchMyProfile();
   }, [isLoggedIn]);
-
+  
   return (
     <S.MyPageContainer>
         <S.LogoContainer>

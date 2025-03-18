@@ -7,6 +7,7 @@ export const OurTeamIntroLayout = styled.div`
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    font-family: Pretendard, sans-serif;
 `;
 
 export const OurTeamIntroContainer = styled.div`

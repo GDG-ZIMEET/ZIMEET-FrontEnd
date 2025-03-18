@@ -8,6 +8,7 @@ export const Meeting22Layout = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const LoadingContainer = styled.img.attrs({

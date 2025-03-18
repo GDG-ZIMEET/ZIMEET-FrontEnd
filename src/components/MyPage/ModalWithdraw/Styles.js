@@ -29,14 +29,17 @@ export const BoldText = styled.p`
   font-weight: 700;
   font-size: 14px;
   padding: 2% 0 3% 0;
+  font-family: Pretendard, sans-serif;
 `;
 export const Text = styled.p`
   font-size: 12px;
   padding: 2% 0 0 0;
+  font-family: Pretendard, sans-serif;
 `;
 export const BoldUnderlineText = styled.span`
   font-weight: bold;
   text-decoration: underline;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const MNInput = styled.input`
@@ -75,6 +78,7 @@ export const CancelBtn = styled.button`
   font-size: 16px;
   border-radius: 0.8rem;
   padding: 3.7%;
+  font-family: Pretendard, sans-serif;
 `;
 export const SaveBtn = styled.button`
   width: 70%;
@@ -82,6 +86,7 @@ export const SaveBtn = styled.button`
   font-size: 16px;
   padding: 3.5%;
   border-radius: 0.8rem;
+  font-family: Pretendard, sans-serif;
   background-color: ${({ disabled }) => (disabled ? '#868686' : '#ea4335')};
   color: white;
 `;

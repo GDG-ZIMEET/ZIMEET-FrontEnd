@@ -8,6 +8,7 @@ export const LoginContainer = styled.div`
   align-items: center;
   overflow: hidden;
   padding: 5%;
+  font-family: Pretendard, sans-serif;
 `;
 
 export const LogoContainer = styled.h1`
