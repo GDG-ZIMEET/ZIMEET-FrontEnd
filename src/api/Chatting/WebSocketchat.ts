@@ -1,5 +1,6 @@
 import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
+import { track } from '@amplitude/analytics-browser';
 
 const baseURL = process.env.REACT_APP_SOCKET_URL;
 const token = localStorage.getItem('accessToken');
@@ -20,15 +21,19 @@ export const connectWebSocket = ( roomId: string, onMessageReceived: (message: a
             Authorization: `Bearer ${token}`
         },
         onConnect: () => {
+            track("[접속]웹소켓_채팅", { roomId: roomId });
             stompClient?.subscribe(`/topic/${roomId}`, (message) => {
                 onMessageReceived(JSON.parse(message.body));
+                track("[수신]웹소켓_채팅", { roomId: roomId });
             });
         },
         onWebSocketError: (error) => {
             console.error("WebSocket 오류 발생:", error);
+            track("[오류]웹소켓_채팅", { error: error.message });
         },
         onStompError: (frame) => {
             console.error("STOMP 프로토콜 오류:", frame);
+            track("[오류]웹소켓_채팅", { error: frame.body });
         }
     });
 
@@ -55,6 +60,7 @@ export const sendMessage = (roomId: string, message: object )  => {
         },
         body: JSON.stringify(newMessage),
     });
+    track("[전송]웹소켓_채팅", { roomId: roomId, message: message });
 };
 
 export const disconnectWebSocket = () => {

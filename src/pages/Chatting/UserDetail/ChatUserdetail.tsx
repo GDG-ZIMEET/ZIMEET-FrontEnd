@@ -7,6 +7,7 @@ import { UserType } from 'recoil/type/TeamMaking/UserType';
 import { useLocation } from 'react-router-dom';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { isPremiumState } from '../../../recoil/state/authStore';
+import { track } from '@amplitude/analytics-browser';
 import ProfileDetail from 'components/Common/Profile/ProfileDetail/ProfileDetail';
 import {
   mappingMusic,
@@ -24,6 +25,7 @@ const ChatUserdetail = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    track('[접속]채팅_실시간_프로필');
     const fetchUserProfile = async () => {
       try {
         const response = await getuserProfile(nickname);

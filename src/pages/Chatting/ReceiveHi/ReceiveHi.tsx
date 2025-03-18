@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './Styles';
 import ChattingInventoryTypeButton from '../../../components/Chatting/ChattingInventory/ChattingInventoryTypeButton/ChattingInventoryTypeButton';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import Teams from 'components/Chatting/ReceiveHi/Teams/Teams';
+import { track } from '@amplitude/analytics-browser';
 
 const ReceiveHi: React.FC = () => {
-  return (
+    useEffect(() => {
+        track('[접속]채팅_받은하이');
+    }, []);
+
+    return (
     <S.ReceiveHiLayout>
       <S.ReceiveHiTitle>팀 갤러리</S.ReceiveHiTitle>
       <ChattingInventoryTypeButton />
@@ -16,7 +21,7 @@ const ReceiveHi: React.FC = () => {
       <Teams />
       <NavigationBar />
     </S.ReceiveHiLayout>
-  );
+    );
 };
 
 export default ReceiveHi;

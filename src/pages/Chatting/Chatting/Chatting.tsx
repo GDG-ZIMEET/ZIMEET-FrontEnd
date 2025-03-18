@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { authState } from 'recoil/state/authState';
 import { deleteuser } from 'api/Chatting/DeleteUser';
 import ExitModal  from 'components/Chatting/ExitModal/ExitModal';
+import { track } from '@amplitude/analytics-browser';
 
 const Chatting = () => {
   const location = useLocation();
@@ -56,6 +57,7 @@ const Chatting = () => {
   //소켓연결
   useEffect(() => {
     if (!chatRoom || !chatRoom.chatRoomId) return;
+    track("[접속]채팅_실시간채팅", { roomId: chatRoom.chatRoomId, userId });
 
     connectWebSocket(chatRoom.chatRoomId.toString(), (message) => {
       setMessages((prev) => [...prev, message]);
@@ -63,6 +65,7 @@ const Chatting = () => {
 
     return () => {
       disconnectWebSocket();
+      track("[퇴장]채팅_실시간채팅", { roomId: chatRoom.chatRoomId, userId });
     };
   }, [chatRoom]);
 
@@ -83,8 +86,9 @@ const Chatting = () => {
     };
 
     sendMessage(chatRoom.chatRoomId.toString(), newMessage);
+    track("[전송]채팅_실시간채팅_채팅메시지", { roomId: chatRoom.chatRoomId, userId, content: input });
 
-  setInput("");
+    setInput("");
 };
 
 const handleUserExit = async () => {

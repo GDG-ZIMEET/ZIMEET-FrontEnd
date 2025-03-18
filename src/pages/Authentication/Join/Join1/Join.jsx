@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
@@ -6,6 +6,7 @@ import { joinState } from '../../../../recoil/state/joinState';
 import { gradeOptions, gradeDisplayOptions } from 'data/SignUpData';
 import { LogoContainer } from 'components/Authentication/Join/LogoContainer/LogoContainer';
 import { checkDuplicateNumber } from 'api/Authentication/checkDuplicateNumber';
+import * as amplitude from '@amplitude/analytics-browser';
 
 const Join = () => {
   const [joinData, setJoinData] = useRecoilState(joinState);
@@ -21,6 +22,9 @@ const Join = () => {
   const [studentNumberError, setStudentNumberError] = useState('');
   const [phoneNumberError, setPhoneNumberError] = useState('');
 
+  useEffect(() => {
+    amplitude.track('[접속]회원가입_첫번째');
+  }, []);
 
   const ageOptions = Array.from({ length: 9 }, (_, index) => (
     <option key={index} value={index + 20}>
@@ -51,6 +55,9 @@ const Join = () => {
     e.preventDefault();
   
     if (!isPasswordMatch) return;
+
+    amplitude.track('[클릭]회원가입_첫번째_다음버튼(활성)');
+
     if (isFormComplete) {
       setIsChecking(true);
       
@@ -69,13 +76,14 @@ const Join = () => {
     }
   };
   
-
   const handleNameChange = (e) => {
     const regex = /^[ㄱ-ㅎ|가-힣\s]+$/;
     const value = e.target.value;
     setJoinData({ ...joinData, name: value });
     setIsNameValid(value === '' || regex.test(value));
-    // console.log(isNameValid)
+    if(value) {
+      amplitude.track('[입력]회원가입_첫번째_이름', { name: value });
+    }
   };
 
   const handleStudentNumberChange = (e) => {
@@ -84,7 +92,9 @@ const Join = () => {
     setJoinData({ ...joinData, studentNumber: value });
     setIsStudentNumberValid(regex.test(value));
     setStudentNumberError("");
-    // console.log(isStudentNumberValid)
+    if(value.length === 9) {
+      amplitude.track('[입력]회원가입_첫번째_학번', { studentNumber: value });
+    }
   };
 
   const handlePasswordChange = (e) => {
@@ -92,7 +102,9 @@ const Join = () => {
     const value = e.target.value;
     setJoinData({ ...joinData, password: value });
     setIsPasswordValid(regex.test(value));
-    // console.log(isPasswordValid)
+    if(regex.test(value)) {
+      amplitude.track('[입력]회원가입_첫번째_비밀번호');
+    }
   };
 
   const handlePhoneNumberChange = (e) => {
@@ -101,13 +113,16 @@ const Join = () => {
     setJoinData({ ...joinData, phoneNumber: value });
     setIsPhoneNumberValid(regex.test(value));
     setPhoneNumberError("");
-    // console.log(isPhoneNumberValid)
+    if(regex.test(value)) {
+      amplitude.track('[입력]회원가입_첫번째_전화번호', { phoneNumber: value });
+    }
   };
 
   const handleGradeChange = (e) => {
     const selectedValue = e.target.value;
     if (selectedValue !== "") {
       setIsSelected(true);
+      amplitude.track('[클릭]회원가입_첫번째_학년');
     } else {
       setIsSelected(false);
     }
@@ -116,9 +131,21 @@ const Join = () => {
 
   const handleAgeChange = (e) => {
     const selectedValue = e.target.value;
+    if(selectedValue) {
+      amplitude.track('[클릭]회원가입_첫번째_나이');
+    }
     setJoinData({ ...joinData, age: selectedValue });
   };
 
+  const handleGenderClick = (gender) => {
+    amplitude.track('[클릭]회원가입_첫번째_성별');
+    if (gender === 'MALE') {
+      amplitude.track('[클릭]회원가입_첫번째_성별_남자');
+    } else if (gender === 'FEMALE') {
+      amplitude.track('[클릭]회원가입_첫번째_성별_여자');
+    }
+    setJoinData({ ...joinData, gender });
+  };
 
   return (
     <S.JoinLayout>
@@ -155,7 +182,12 @@ const Join = () => {
           type="password"
           placeholder="비밀번호는 암호화돼요."
           value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onChange={(e) => {
+            setConfirmPassword(e.target.value);
+            if(e.target.value === joinData.password) {
+              amplitude.track('[입력]회원가입_첫번째_비밀번호확인');
+            }
+          }}
         />
         {confirmPassword && !isPasswordMatch && <S.ErrorMessage>비밀번호가 일치하지 않습니다.</S.ErrorMessage>}
         <S.JoinText>전화번호</S.JoinText>
@@ -203,14 +235,14 @@ const Join = () => {
           <S.GenderButton
             type="button"
             selected={joinData.gender === 'MALE'}
-            onClick={() => setJoinData({ ...joinData, gender: 'MALE' })}
+            onClick={() => handleGenderClick('MALE')}
           >
             남성
           </S.GenderButton>
           <S.GenderButton
             type="button"
             selected={joinData.gender === 'FEMALE'}
-            onClick={() => setJoinData({ ...joinData, gender: 'FEMALE' })}
+            onClick={() => handleGenderClick('FEMALE')}
           >
             여성
           </S.GenderButton>
@@ -220,7 +252,12 @@ const Join = () => {
           <S.JoinBtn 
             type="button"
             disabled={isButtonDisabled}
-            onClick={handleNext}
+            onClick={(e) => {
+              if(isButtonDisabled) {
+                amplitude.track('[클릭]회원가입_첫번째_다음버튼(비활성)');
+              }
+              handleNext(e);
+            }}
           >
             {isButtonDisabled ? '모든 정보를 입력해주세요.' : isChecking ? '중복 확인 중...' : '다음으로'}
           </S.JoinBtn>
