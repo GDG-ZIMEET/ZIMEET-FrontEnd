@@ -19,11 +19,11 @@ const BackHeader: React.FC<BackHeaderProps> = ({ boothtype }) => {
       case 'GOODS':
         return '🟩 물품판매';
       case 'FOOD':
-        return '🟨 먹거리';
+        return '🟦 먹거리';
       case 'DATE':
         return '🟥 연애 / 팅';
       case 'EVENT':
-        return '🟦 이벤트 / 게임';
+        return '🟨 이벤트 / 게임';
       default:
         return '부스';
     }

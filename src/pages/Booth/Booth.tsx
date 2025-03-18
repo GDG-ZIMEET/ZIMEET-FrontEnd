@@ -13,7 +13,7 @@ const Booth: React.FC = () => {
       <Header />
       <S.BoothContainer>
       <TypeButton selectedSpace={selectedSpace} setSelectedSpace={setSelectedSpace}/>
-      <S.ColorType>🟥 연애 / 팅 🟨 먹거리 🟩 물품판매 🟦 이벤트 / 게임</S.ColorType>
+      <S.ColorType>🟥 연애 / 팅 🟨 이벤트 / 게임 🟩 물품판매 🟦 먹거리</S.ColorType>
       <S.Explanation>동아리를 <b>길게 눌러</b> 계좌번호를 쉽게 복사해보세요!</S.Explanation>
       <Booths selectedSpace={selectedSpace} />
       </S.BoothContainer>
