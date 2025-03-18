@@ -7,9 +7,10 @@ import { mappinggrade } from 'data/SignUpData';
 interface TeamMemberModalProps {
   onClose: () => void;
   onAddFriend: (friend:  SearchTeamMemberType) => void;
+  teamType: string;
 }
 
-const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend }) => {
+const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend,  teamType }) => {
   const [searchType, setSearchType] = useState('nickname');
   const [selectUser, setSelectUser] = useState<SearchTeamMemberType | null>(null);
   const [nickname, setNickname] = useState('');
@@ -20,7 +21,7 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({ onClose, onAddFriend 
   const handleSearch = async () => {
     try {
       setSearchUsers([]);
-      const response = await getSearchTeamMember(nickname, phoneNumber);
+      const response = await getSearchTeamMember( teamType, nickname, phoneNumber);
       if (response && Array.isArray(response.data.searchList)) {
         setSearchUsers(response.data.searchList);
       } else {

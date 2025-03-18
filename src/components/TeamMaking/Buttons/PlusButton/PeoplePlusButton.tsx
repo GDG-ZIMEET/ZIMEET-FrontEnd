@@ -39,7 +39,7 @@ const PeoplePlusButton: React.FC<PeoplePlusButtonProps> = ({ teamMembers, setTea
       )}
         <S.PlusTeamBox onClick={handleButtonClick}>팀원 추가하기</S.PlusTeamBox>
       </S.PeoplePlusButtonLayout>
-      {isModalOpen && <TeamMemberModal onClose={handleCloseModal} onAddFriend={handleAddFriend} />}
+      {isModalOpen && <TeamMemberModal onClose={handleCloseModal} onAddFriend={handleAddFriend}  teamType={ teamType}/>}
     </>
   );
 };
