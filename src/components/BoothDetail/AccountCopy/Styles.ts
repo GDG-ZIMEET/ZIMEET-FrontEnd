@@ -3,7 +3,7 @@ import * as I from '../../../assets/Icons';
 
 export const AccountCopyLayout = styled.div`
   width: 100%;
-  height: 9%;
+  height: 12%;
   display: flex;
   justify-content: flex-start;
   align-items: center;

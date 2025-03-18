@@ -17,8 +17,10 @@ const ItemInventory: React.FC = () => {
                     </S.ItemComponent>
                 ))}
             </S.ItemContainer>
-            <S.Account>{boothDetail?.data.account}</S.Account>
-            <S.Time> ( {boothDetail?.data.time} )</S.Time>
+            <S.AccountWrapper>
+                <S.Account>{boothDetail?.data.account}</S.Account>
+                <S.Time> ( {boothDetail?.data.time} )</S.Time>
+            </S.AccountWrapper>
         </S.ItemInventoryLayout>
     );
 }
