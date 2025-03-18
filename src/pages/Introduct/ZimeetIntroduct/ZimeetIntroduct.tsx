@@ -13,7 +13,7 @@ const ZimeetIntroduct: React.FC = () => {
       <S.ZimeetContainer>
         <S.Zimeet />
         <S.Explanation1>
-          지금,만나요!<br />
+          지금, 만나요!<br />
           Z들의 미팅, 지밋에서 :)<br />
         </S.Explanation1>
         <S.Explanation2>

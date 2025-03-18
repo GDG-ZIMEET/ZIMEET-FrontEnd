@@ -46,7 +46,7 @@ const GdgocIntroduct: React.FC = () => {
           </S.gdgExplanationto3>
         </S.Componentto3>
         [Study] <br/>
-        - AI톺 모아보기 -AWS로 인프라 공부하기 -CS 스터디<br />
+        - AI 톺아보기 -AWS로 인프라 공부하기 -CS 스터디<br />
         -HTML+CSS+자바스크립트 : 프론트 입문부터 심화까지<br />
         -Figma와 Blender를 활용한 UX/UI 디자인<br />
         -도커 & 쿠버네티스 스터디 - 스프링부트 입문 스터디<br />
@@ -58,7 +58,7 @@ const GdgocIntroduct: React.FC = () => {
           <b>GDGoC CUK가 학우분들께 OPEN 했던 행사</b><br />
           동아리가 인플루언서, 네이버, SKT 현직 분들을 모셨다고?!<br />
           <br />
-          현직 개발자 혹은 직장에 다니고 있는 GDSC Alumni(졸업생)들을<br />
+          현직 개발자 혹은 직장에 다니고 있는 GDGoC Alumni(졸업생)들을<br />
           초청하여 '학생 개발자들을 위해 해주고 싶은 말'을 주제로 20분 <br />
           동안의 강연과 10분 동안의 Q&A 시간을 가졌어요!
         </S.gdgExplanation3>

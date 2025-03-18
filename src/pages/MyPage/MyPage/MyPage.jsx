@@ -74,7 +74,7 @@ const MyPage = () => {
           <S.InfoContainer>
             <S.MyInfo >
               <b>로그인이 필요해요!</b><br />
-              GDG가 만든 '지금 우리 만나요, ZI밋'은 <br />
+              GDG가 만든 "지금 우리 만나요, ZI밋"은 <br />
               로그인 후 이용할 수 있어요.
             </S.MyInfo>
             <S.MyMeetingContainer>
