@@ -1,44 +1,27 @@
-import React ,{ use, useEffect,useState} from 'react';
+import React ,{ useEffect } from 'react';
 import * as S from './Styles';
 import { getImageByEmoji, getRandomEmoji } from 'utils/IconMapper';
-import { RandomNowResponseType } from 'recoil/type/Meeting/RandomNowType';
+import { RandomTeamType } from 'recoil/type/Meeting/RandomNowType';
 import Nopeople  from 'assets/icon/emoji/Nopeople.svg';
-import { postrandomChatRoom } from 'api/Chatting/PostRandomChatRoom';
+import { useNavigate } from "react-router-dom";
 
 interface MakeTeamBoxProps {
   isRandomLoading: boolean;
-  randomNowData: RandomNowResponseType | null; 
+  randomNowData: RandomTeamType | null; 
 }
 
 const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ isRandomLoading, randomNowData }) => {
-  const [ randomchatRoomId, setRandomchatRoomId ] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!randomNowData) return;
-
-    const femaleUsers = randomNowData.data.userList.filter(user => user.gender === 'FEMALE');
-    const maleUsers = randomNowData.data.userList.filter(user => user.gender === 'MALE');
-
-    // 6명(여자 3명, 남자 3명)이 다 찼는지 확인
-    if (femaleUsers.length === 3 && maleUsers.length === 3) {
-      const userIds = [...femaleUsers, ...maleUsers].map(user => user.userId);
-      console.log("6명 채워짐, API 호출 시작. 유저 ID:", userIds);
-
-      // 서버에 요청
-      postrandomChatRoom({ ids: userIds })
-        .then(response => {
-          console.log("채팅방 생성 성공:", response);
-          setRandomchatRoomId(response.data.randomChatRoomId);
-        })
-        .catch(error => {
-          console.error("채팅방 생성 실패:", error);
-        });
+    if (randomNowData?.matchingStatus === 'COMPLETE') {
+      navigate("/chattingInventory");
     }
-  }, [randomNowData]);
+  }, [randomNowData, navigate]);
 
 
-  const femaleUsers = randomNowData?.data.userList.filter(user => user.gender === 'FEMALE');
-  const maleUsers = randomNowData?.data.userList.filter(user => user.gender === 'MALE');
+  const femaleUsers = randomNowData?.userList.filter(user => user.gender === 'FEMALE');
+  const maleUsers = randomNowData?.userList.filter(user => user.gender === 'MALE');
 
   const femaleTeam = [...(femaleUsers || []), ...Array(3 - (femaleUsers?.length || 0)).fill(null)].slice(0, 3);
   const maleTeam = [...(maleUsers || []), ...Array(3 - (maleUsers?.length || 0)).fill(null)].slice(0, 3);
