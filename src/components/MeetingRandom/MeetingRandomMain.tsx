@@ -6,16 +6,14 @@ import Modal from './Modal/Modal';
 import { TicketCount } from './Styles';
 import { useNavigate } from 'react-router-dom';
 import { getRandomTicket } from 'api/Meeting/GetRandomTicket';
-import { connectWebSocketRandom,  cancelMatching } from "api/Meeting/WebRandom";
-import { getRandomNow } from 'api/Meeting/GetRandomnow';
-import { RandomNowResponseType } from 'recoil/type/Meeting/RandomNowType';
+import { startMatchingProcess,  cancelMatching } from "api/Meeting/WebRandom";
+import { RandomTeamType } from 'recoil/type/Meeting/RandomNowType';
 
 const MeetingRandomMain: React.FC = () => {
   const [isRandomLoading, setIsRandomLoading] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [ticket, setTicket] = useState<number | null>(null);
-  const [randomNowData, setRandomNowData] = useState<RandomNowResponseType | null>(null);
-  const [matchingStatus, setMatchingStatus] = useState<string>('');
+  const [randomNowData, setRandomNowData] = useState<RandomTeamType | null>(null);
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -27,17 +25,8 @@ const MeetingRandomMain: React.FC = () => {
       };
       fetchData();
     }, []);
-  useEffect(() => {
-    if (isRandomLoading) {
-      const fetchRandomNowData = async () => {
-        const response = await getRandomNow();
-        if (response) {
-          setRandomNowData(response);
-        }
-      };
-      fetchRandomNowData();
-    }
-  }, [isRandomLoading]);
+
+    
     
   const handleHelpClick = () => {
     navigate('/notion/termsOfService');
@@ -54,20 +43,11 @@ const MeetingRandomMain: React.FC = () => {
     setIsModalOpen(false);
     setIsRandomLoading(true);
     //실시간 상태 구독
-    connectWebSocketRandom(handleMatchingStatus,randomNowData?.data.matchingId);
-    
+    startMatchingProcess(setRandomNowData);
+    console.log('startMatchingProcess 실행', randomNowData);
     if (ticket !== null && ticket <= 0) {
       alert('티켓 수가 부족합니다');
       navigate('/mypage');
-    }
-  };
-
-  // 매칭 상태를 업데이트하는 콜백 함수
-  const handleMatchingStatus = (data: any) => {
-    if (data.status === 'COMPLETE') {
-      setMatchingStatus('매칭 완료');
-    } else {
-      setMatchingStatus(`대기중: ${data.users.length}/6명`);
     }
   };
 
