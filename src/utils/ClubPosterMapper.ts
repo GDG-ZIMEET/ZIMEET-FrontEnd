@@ -29,7 +29,7 @@ import sunset_poster from '../assets/icon/boothDetail/poster/sunset_poster.jpeg'
 import taekwondo_poster from '../assets/icon/boothDetail/poster/taekwondo_poster.jpg';
 import tennis_poster from '../assets/icon/boothDetail/poster/tennis_poster.png';
 import thebusking_poster from '../assets/icon/boothDetail/poster/thebusking_poster.jpeg';
-import thegame_poster from '../assets/icon/boothDetail/poster/thegame_poster.jpg';
+import thegame_poster from '../assets/icon/boothDetail/poster/thegame_poster.png';
 import tumblers_poster from '../assets/icon/boothDetail/poster/tumblers_poster.jpeg';
 import yudo_poster from '../assets/icon/boothDetail/poster/yudo_poster.jpg';
 
