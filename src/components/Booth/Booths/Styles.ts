@@ -118,7 +118,6 @@ export const Andrea = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  letter-spacing: 2px;
   text-align: center;
   font-size: 13px;
   font-weight: bold;

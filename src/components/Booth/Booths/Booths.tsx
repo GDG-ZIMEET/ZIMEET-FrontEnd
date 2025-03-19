@@ -47,7 +47,7 @@ const Booths: React.FC = () => {
               ? selectedFB === 'front'
                   ? 'N관'
                   : 'M관'
-              : '푸드트럭';
+              : '차도';
 
   return (
       <S.BoothLayout>
@@ -70,7 +70,7 @@ const Booths: React.FC = () => {
               </S.SquareRight>
             </S.SquareRL>
         ) : (
-            <S.Andrea>푸드트럭</S.Andrea>
+            <S.Andrea>M관</S.Andrea>
         )}
       </S.BoothLayout>
   );
