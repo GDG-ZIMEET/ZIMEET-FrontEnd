@@ -10,10 +10,15 @@ import { startMatchingProcess,  cancelMatching } from "api/Meeting/WebRandom";
 import { RandomTeamType } from 'recoil/type/Meeting/RandomNowType';
 
 const MeetingRandomMain: React.FC = () => {
-  const [isRandomLoading, setIsRandomLoading] = useState<boolean>(false);
+  const [isRandomLoading, setIsRandomLoading] = useState<boolean>(() => {
+    return localStorage.getItem("isRandomLoading") === "true";
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [ticket, setTicket] = useState<number | null>(null);
-  const [randomNowData, setRandomNowData] = useState<RandomTeamType | null>(null);
+  const [randomNowData, setRandomNowData] = useState<RandomTeamType | null>(() => {
+    const savedData = localStorage.getItem("randomNowData");
+    return savedData ? JSON.parse(savedData) : null;
+  });
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -26,7 +31,11 @@ const MeetingRandomMain: React.FC = () => {
       fetchData();
     }, []);
 
-    
+    useEffect(() => {
+      if (randomNowData) {
+        localStorage.setItem("randomNowData", JSON.stringify(randomNowData));
+      }
+    }, [randomNowData]);
     
   const handleHelpClick = () => {
     navigate('/notion/termsOfService');
@@ -42,9 +51,9 @@ const MeetingRandomMain: React.FC = () => {
   const handleConfirm = () => {
     setIsModalOpen(false);
     setIsRandomLoading(true);
+    localStorage.setItem("isRandomLoading", "true");
     //실시간 상태 구독
     startMatchingProcess(setRandomNowData);
-    console.log('startMatchingProcess 실행', randomNowData);
     if (ticket !== null && ticket <= 0) {
       alert('티켓 수가 부족합니다');
       navigate('/mypage');
@@ -55,11 +64,13 @@ const MeetingRandomMain: React.FC = () => {
     cancelMatching(); // 서버에 취소 요청
     setIsRandomLoading(false); // 로딩 상태 해제
     setRandomNowData(null);
+    localStorage.removeItem("isRandomLoading");
+    localStorage.removeItem("randomNowData");
   };
 
   return (
     <>
-      <MakeTeamBox isRandomLoading={isRandomLoading} randomNowData={randomNowData}/>
+      <MakeTeamBox isRandomLoading={isRandomLoading} setIsRandomLoading={setIsRandomLoading} randomNowData={randomNowData} setRandomNowData={setRandomNowData}/>
       <Help isRandomLoading={!isRandomLoading} onClick={handleHelpClick} />
       <TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : {ticket}개</TicketCount>
       <JoinRandomMeetingButton isRandomLoading={isRandomLoading} onClick={isRandomLoading ? handleCancel : handleJoinClick}/>

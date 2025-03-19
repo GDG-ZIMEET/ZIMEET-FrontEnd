@@ -7,19 +7,44 @@ import { useNavigate } from "react-router-dom";
 
 interface MakeTeamBoxProps {
   isRandomLoading: boolean;
+  setIsRandomLoading : React.Dispatch<React.SetStateAction<boolean>>;
   randomNowData: RandomTeamType | null; 
+  setRandomNowData: React.Dispatch<React.SetStateAction<RandomTeamType | null>>;
 }
 
-const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ isRandomLoading, randomNowData }) => {
+const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ isRandomLoading, setIsRandomLoading ,randomNowData, setRandomNowData }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (randomNowData?.matchingStatus === 'COMPLETE') {
+    const savedRandomNowData = localStorage.getItem("randomNowData");
+    if (savedRandomNowData) {
+      setRandomNowData(JSON.parse(savedRandomNowData));
+    }
+
+    const savedLoadingState = localStorage.getItem("isRandomLoading");
+    if (savedLoadingState === "true") {
+      setIsRandomLoading(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("랜덤데이터", randomNowData);
+
+    if (randomNowData) {
+      localStorage.setItem("randomNowData", JSON.stringify(randomNowData)); 
+    }
+
+    if (randomNowData?.matchingStatus === "WAITING") {
+      setIsRandomLoading(true);
+      localStorage.setItem("isRandomLoading", "true"); 
+    } else if (randomNowData?.matchingStatus === "COMPLETE") {
+      localStorage.removeItem("isRandomLoading");
+      localStorage.removeItem("randomNowData"); 
       navigate("/chattingInventory");
     }
   }, [randomNowData, navigate]);
 
-
+  console.log(isRandomLoading);
   const femaleUsers = randomNowData?.userList.filter(user => user.gender === 'FEMALE');
   const maleUsers = randomNowData?.userList.filter(user => user.gender === 'MALE');
 

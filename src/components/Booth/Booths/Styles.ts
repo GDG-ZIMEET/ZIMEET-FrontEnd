@@ -54,7 +54,7 @@ export const SquareRL = styled.div`
 export const SquareRLButton = css<{ selected: boolean }>`
   width: 100%;
   height: 50%;
-  background-color: ${({ selected }) => (selected ? 'grey' : '#F2F2F2')};
+  background-color: ${({ selected }) => (selected ? '#EA4335' : '#F2F2F2')};
   border-radius: 5px;
   color: ${({ selected }) => (selected ? 'white' : 'black')};
   font-size: 13px;
