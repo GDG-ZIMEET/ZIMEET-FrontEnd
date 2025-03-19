@@ -60,7 +60,7 @@ export const majorMap: { [key: string]: string } = {
   "바이오메디컬소프트웨어학과": "바메솦",
   "자유전공학부": "자전",
   "자연공학계열": "자연공학",
-  "인문사회과학계열": "인문사회"
+  "인문사회계열": "인문사회"
 };
 
   export const mappingMajor = (major: string): string => {
