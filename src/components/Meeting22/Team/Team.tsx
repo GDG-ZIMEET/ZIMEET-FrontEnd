@@ -4,6 +4,7 @@ import { TeamType } from '../../../recoil/type/Meeting/teamGallery';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { useNavigate } from 'react-router-dom';
 import Toast from '../../../components/Meeting22/Toast/Toast';
+import { mappingMusic } from '../../../data/SignUpData';
 
 interface TeamProps {
   team: TeamType;
@@ -51,22 +52,22 @@ const Team: React.FC<TeamProps> = ({ team, ourTeamData, teamType }) => {
       <S.MemberInfo>
         {team.music.length === 1 && (
           <S.MemberItem2 width="65%">
-            {team.music[0]}
+            {mappingMusic(team.music[0])}
           </S.MemberItem2>
         )}
         {team.music.length === 2 && (
           <>
             <S.MemberItem2 width="35%">
-              {team.music[0]}
+              {mappingMusic(team.music[0])}
             </S.MemberItem2>
             <S.MemberItem2 width="35%">
-              {team.music[1]}
+              {mappingMusic(team.music[1])}
             </S.MemberItem2>
           </>
         )}
         {team.music.length === 3 && (
           <S.MemberItem2 width="65%">
-            {team.music[0]}, {team.music[1]} 외
+            {mappingMusic(team.music[0])}, {mappingMusic(team.music[1])} 외
           </S.MemberItem2>
         )}
       </S.MemberInfo>
