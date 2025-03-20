@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import * as S from './Styles';
 import { TeamType } from '../../../recoil/type/Meeting/teamGallery';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { useNavigate } from 'react-router-dom';
 import Toast from '../../../components/Meeting22/Toast/Toast';
 import { mappingMusic } from '../../../data/SignUpData';
+import { track } from '@amplitude/analytics-browser';
 
 interface TeamProps {
   team: TeamType;
@@ -28,6 +29,7 @@ const Team: React.FC<TeamProps> = ({ team, ourTeamData, teamType }) => {
       setIsToastOpen(true);
       return;
     }
+    track('[클릭]미팅_이성팀');
     navigate(`/teamintro/${team.teamId}`, { state: { teamType , from: "meeting"} });
   };
 

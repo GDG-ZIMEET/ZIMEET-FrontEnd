@@ -14,6 +14,7 @@ import { OurTeamType } from '../../recoil/type/Meeting/ourTeamType';
 import MeetingRandomMain from '../../components/MeetingRandom/MeetingRandomMain';
 import { ourteamIds } from '../../recoil/state/ourTeamIds';
 import NonLogInMeeting from '../../pages/NonMember/Meeting/Meeting';
+import { track } from '@amplitude/analytics-browser';
 
 const Meeting22 = () => {
   const navigate = useNavigate();
@@ -92,18 +93,18 @@ const Meeting22 = () => {
       <S.Meeting22Title>팀 갤러리</S.Meeting22Title>
       <TypeButton setSelectedTeamType={setTeamType} />
       <S.Meeting22Container>
-        {teamType !== 'Random' ? (
-        <>
-          <MakeTeam teamType={teamType} ourTeamData={ourTeamData} />
-          {isLoading ? (
-          <S.LoadingContainer />
+          {teamType !== 'Random' ? (
+          <>
+            <MakeTeam teamType={teamType} ourTeamData={ourTeamData} />
+            {isLoading ? (
+            <S.LoadingContainer />
+            ) : (
+            <TeamBox teamData={teamGalleryData || []} ourTeamData={ourTeamData} teamType={teamType} />
+            )}
+          </>
           ) : (
-          <TeamBox teamData={teamGalleryData || []} ourTeamData={ourTeamData} teamType={teamType} />
+          isLoggedIn ? <MeetingRandomMain /> : <NonLogInMeeting />
           )}
-        </>
-        ) : (
-        isLoggedIn ? <MeetingRandomMain /> : <NonLogInMeeting />
-        )}
       </S.Meeting22Container>
       </S.Meeting22Layout>  
     </>

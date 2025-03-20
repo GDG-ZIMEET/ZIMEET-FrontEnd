@@ -8,6 +8,7 @@ import TeamName from 'components/TeamMaking/TeamName/TeamName';
 import MakingButton from 'components/TeamMaking/Buttons/MakingButton/MakingButton';
 import { TeamMemberWithProfileType } from 'recoil/type/TeamMaking/TeamMemberWithProfileType';
 import { postTeamMake } from 'api/TeamMaking/PostTeamMaking';
+import { track } from '@amplitude/analytics-browser';
 
 const TeamMaking: React.FC = () => {
   const location = useLocation();
@@ -29,12 +30,28 @@ const TeamMaking: React.FC = () => {
     const response = await postTeamMake(teamType, teamName, teamMemberIds);
     if (response) {
       navigate('/meeting22');
+      if (teamType === 'THREE_TO_THREE') {
+        track('[클릭]미팅_3대3_팀만들기_버튼');
+      } else {
+        track('[클릭]미팅_2대2_팀만들기_버튼');
+      }
     } else {
       alert('팀 생성에 실패했습니다.');
+      if (teamType === 'THREE_TO_THREE') {
+        track('[통신]미팅_3대3_팀만들기_실패');
+      } else {
+        track('[통신]미팅_2대2_팀만들기_실패');
+      }
     }
   };
 
   useEffect(() => {
+    if (teamType === 'THREE_TO_THREE') {
+      track('[접속]미팅_3대3_팀만들기');
+    } else {
+      track('[접속]미팅_2대2_팀만들기');
+    }
+
     if (teamType === 'THREE_TO_THREE') {
       if (teamMembers.length === 0 && !teamName) {
         setSituation(1);

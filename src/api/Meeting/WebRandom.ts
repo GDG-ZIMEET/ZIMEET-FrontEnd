@@ -1,6 +1,7 @@
 import { Client, StompSubscription } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import { getRandomNow } from "./GetRandomnow";
+import { track } from '@amplitude/analytics-browser';
 
 const baseURL = process.env.REACT_APP_SOCKET_URL;
 const token = localStorage.getItem("accessToken");
@@ -115,7 +116,7 @@ export const cancelMatching = () => {
 // 매칭 프로세스 시작 함수
 export const startMatchingProcess = async ( setRandomNowData : (data: any) => void) => {
   await connectWebSocketRandom();
-
+  track('[접속]미팅_랜덤_실시간소켓');
   // 매칭 참가 요청 후 matchingId 가져오기
   const matchingdata = await sendMatchingRequest();
   if (matchingdata) {
