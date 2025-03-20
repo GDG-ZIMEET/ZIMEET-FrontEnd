@@ -9,6 +9,7 @@ import { updateEmoji } from 'api/Mypage/UpdateEmoji';
 import { updateNickname } from 'api/Mypage/UpdateNickname';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { mappingStyle, mappingAge, mappingFace, mappinggrade } from 'data/SignUpData';
+import { track } from '@amplitude/analytics-browser';
 
 const ModifyProfile = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const ModifyProfile = () => {
   const [isModified, setIsModified] = useState(false);
 
   useEffect(() => {
+    track('[접속]마이_내정보수정');
     const fetchMyProfile = async () => {
       try {
         const response = await getmyProfile();
@@ -67,11 +69,13 @@ const ModifyProfile = () => {
 
   const handleNicknameClick = () => {
     setModalOpen(true);
+    track('[클릭]마이_내정보수정_닉네임');
   };
 
   const handleEmojiClick = () => {
     sessionStorage.setItem('previousPage', 'modifyemoji');
     navigate('/modifyemoji');
+    track('[클릭]마이_내정보수정_이모지');
   };
 
   const handleSaveChanges = async () => {
@@ -88,6 +92,7 @@ const ModifyProfile = () => {
         setIsModified(false);
         sessionStorage.removeItem('previousPage');
         navigate('/mypage');
+        track('[클릭]마이_내정보수정_저장버튼');
       }
     } catch (error) {
       alert('업데이트에 실패했습니다. 다시 시도해주세요.');

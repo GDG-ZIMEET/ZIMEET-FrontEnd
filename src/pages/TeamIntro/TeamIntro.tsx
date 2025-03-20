@@ -20,6 +20,7 @@ import RefusedHiModal from "components/Chatting/ReceiveHi/Modal/RefusedHiModal/R
 import patchrefuseHi from 'api/Hi/PatchrefuseHi';
 import { ourteamIds } from 'recoil/state/ourTeamIds';
 import { getacceptHi } from 'api/Chatting/GetacceptHi';
+import { track } from '@amplitude/analytics-browser';
 
 const TeamIntro = () => {
   const [isHiSent, setIsHiSent] = useState(false); 
@@ -40,6 +41,7 @@ const TeamIntro = () => {
 
   //팀 상세데이터 가져오기
   useEffect(() => {
+    track('[접속]미팅_이성팀상세보기');
     const fetchDataAndCheckPremium = async () => {
       setIsLoading(true);
 
@@ -68,19 +70,23 @@ const TeamIntro = () => {
 
   //미팅모달 
   const openModal = () => {
+    track('[버튼]미팅_이성팀상세보기_하이보내기');
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
+    track('[버튼]미팅_이성팀상세보기_하이보내기_취소');
     setIsModalOpen(false); 
   };
 
   const confirmModal = () => {
+    track('[버튼]미팅_이성팀상세보기_하이보내기_확정');
     setShowSend(true); 
     setIsModalOpen(false);  
   };
 
   const closeSendModal = () => {
+    track('[버튼]미팅_이성팀상세보기_하이보내기_확정안내닫기');
     setShowSend(false);
     navigate('/Meeting22');  
   };

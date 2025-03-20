@@ -1,6 +1,7 @@
 import { useState } from "react";
 import * as S from "./Styles";
 import useWithdraw from "api/Authentication/useWithdraw";
+import { track } from '@amplitude/analytics-browser';
 
 const ModalWithdraw = ({ isOpen, onClose }) => {
   const [withdrawText, setWithdrawText] = useState("");
