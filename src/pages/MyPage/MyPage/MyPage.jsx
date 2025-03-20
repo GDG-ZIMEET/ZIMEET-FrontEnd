@@ -13,6 +13,7 @@ import { authState } from '../../../recoil/state/authState';
 import ModalWithdraw from 'components/MyPage/ModalWithdraw/ModalWithdraw';
 import ModalLogout from 'components/MyPage/ModalLogout/ModalLogout';
 import useLoginCheck from 'api/Authentication/useLoginCheck';
+import { track } from '@amplitude/analytics-browser';
 
 const MyPage = () => {
   useLoginCheck(); 
@@ -25,10 +26,12 @@ const MyPage = () => {
   const navigate = useNavigate();
   
   const handleWithdrawClick =()=> {
+    track('[클릭]마이_회원탈퇴');
     setIsWithdrawModalOpen(true);
   }
 
   const handleLogoutClick =()=> {
+    track('[클릭]마이_로그아웃');
     setIsLogoutModalOpen(true);
   }
 
