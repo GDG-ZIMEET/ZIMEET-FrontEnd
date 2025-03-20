@@ -47,7 +47,6 @@ const MeetingRandomMain: React.FC = () => {
   const handleConfirm = () => {
     setIsModalOpen(false);
     setIsRandomLoading(true);
-    localStorage.setItem("isRandomLoading", "true");
     track('[클릭]미팅_랜덤_참여모달_참여');
     //실시간 상태 구독
     startMatchingProcess(setRandomNowData);
@@ -62,8 +61,6 @@ const MeetingRandomMain: React.FC = () => {
     cancelMatching(); // 서버에 취소 요청
     setIsRandomLoading(false); // 로딩 상태 해제
     setRandomNowData(null);
-    localStorage.removeItem("isRandomLoading");
-    localStorage.removeItem("randomNowData");
     track('[클릭]미팅_랜덤_취소');
   };
 
