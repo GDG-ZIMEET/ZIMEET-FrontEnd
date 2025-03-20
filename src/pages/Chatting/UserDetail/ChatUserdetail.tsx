@@ -24,6 +24,7 @@ const ChatUserdetail = () => {
   const [userProfile, setUserProfile] = useState<UserType | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  console.log("ChatUserdetail", nickname);
   useEffect(() => {
     track('[접속]채팅_실시간_프로필');
     const fetchUserProfile = async () => {

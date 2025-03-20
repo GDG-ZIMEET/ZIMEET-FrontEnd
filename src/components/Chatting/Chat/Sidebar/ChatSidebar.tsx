@@ -38,7 +38,8 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({ SideisOpen, SideisClose, room
   }, [roomId]);
 
   const handleUserDetailClick = (nickname: string) => {
-    navigate(`/chatuserdetail`, { state: { nickname: nickname } });
+    const cleanedNickname = nickname.replace('(나)', '');
+    navigate(`/chatuserdetail`, { state: { nickname: cleanedNickname } });
   }
 
   return (
