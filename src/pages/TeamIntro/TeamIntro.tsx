@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { isPremiumState } from '../../recoil/state/authStore'; 
 import * as S from './Styles'; 
 import Header from 'components/TeamIntro/Header/Header';
 import MyProfile from 'components/Common/Profile/MyProfile';
@@ -22,8 +21,7 @@ import { ourteamIds } from 'recoil/state/ourTeamIds';
 import { getacceptHi } from 'api/Chatting/GetacceptHi';
 import { track } from '@amplitude/analytics-browser';
 
-const TeamIntro = () => {
-  const [isHiSent, setIsHiSent] = useState(false); 
+const TeamIntro = () => { 
   const { teamId } = useParams<{ teamId: string }>();
   const location = useLocation();
   const { teamType, from } = location.state || {};
@@ -169,7 +167,7 @@ return (
       />
       ))}
       </S.TeamIntroContainer>
-      {isHiSent
+      {teamDetailData?.hi === true
         ? <SentHiButton/>
         : (from === "meeting" ? (
           <Heart onClick={openModal} /> 

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
 import * as S from './Styles';
 import Header from 'components/Common/Header/Header/Header';
 import { getuserProfile } from 'api/TeamMaking/GetUserProfile';
 import { UserType } from 'recoil/type/TeamMaking/UserType';
 import { useLocation } from 'react-router-dom';
 import { getImageByEmoji } from 'utils/IconMapper';
-import { isPremiumState } from '../../../recoil/state/authStore';
 import { track } from '@amplitude/analytics-browser';
 import ProfileDetail from 'components/Common/Profile/ProfileDetail/ProfileDetail';
 import {
@@ -43,7 +41,7 @@ const ChatUserdetail = () => {
     };
     fetchUserProfile();
   }, [nickname]);
-  
+
   return (
     <S.UserdetailLayout>
       <Header title='돌아가기'/>
