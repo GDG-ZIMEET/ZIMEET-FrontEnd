@@ -10,6 +10,7 @@ export interface UserType {
     idealType: string;
     idealAge: string;
     music: string;
+    level: string;
 }
 
 export interface UserResponseType {

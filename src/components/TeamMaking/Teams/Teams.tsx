@@ -86,7 +86,7 @@ const Teams: React.FC<TeamsProps> = ({
 
   //3대3일경우 팀원 추가
   const maxTeamMembers = teamType === 'THREE_TO_THREE' ? 2 : 1;
-
+  const isPremium = MyProfileData?.level === 'PLUS'? true : false;
   return (
     <S.TeamLayout>
       <S.TeamContainer>
@@ -108,9 +108,10 @@ const Teams: React.FC<TeamsProps> = ({
           <MyProfile
             key={member.userId}
             profileData={member}
-            studentNum={member.studentNumber.slice(2,4)}
+            studentNum = {member.studentNumber.slice(2,4)}
             gender={member.gender}
             isTeamMaking={true}
+            isPremium={true}
           />
         ))}
         {teamMembers.length < maxTeamMembers && (

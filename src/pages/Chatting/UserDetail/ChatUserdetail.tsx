@@ -20,7 +20,6 @@ import {
 const ChatUserdetail = () => {
   const location = useLocation();
   const { nickname } = location.state || "";
-  const [isPremium, setIsPremium] = useRecoilState(isPremiumState);
   const [userProfile, setUserProfile] = useState<UserType | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -35,7 +34,6 @@ const ChatUserdetail = () => {
         } else {
           setUserProfile(null);
         }
-        setIsPremium(false);
       } catch (error) {
         console.error('Error fetching profile data:', error);
         setUserProfile(null);
@@ -44,8 +42,8 @@ const ChatUserdetail = () => {
       }
     };
     fetchUserProfile();
-  }, [nickname, setIsPremium]);
-
+  }, [nickname]);
+  
   return (
     <S.UserdetailLayout>
       <Header title='돌아가기'/>
@@ -61,7 +59,7 @@ const ChatUserdetail = () => {
           <S.UserInfo $isMusic={true}>{mappingMusic(userProfile.music)}</S.UserInfo>
 
           <S.Title>추가 정보를 알려드려요!</S.Title>
-            {!isPremium? (
+            {userProfile.level === 'LIGHT'? (
               <S.PremiumOverlay>
                 <S.PremiumText>
                   <b>지밋+등급</b>이 되면 볼 수 있어요.<br/>
@@ -75,7 +73,7 @@ const ChatUserdetail = () => {
               </S.UserContainer>
             )}
             <S.Title>{userProfile.nickname}의 이상형은?</S.Title>
-            {!isPremium? (
+            {userProfile.level === 'LIGHT'? (
               <S.PremiumOverlay>
                 <S.PremiumText>
                   <b>지밋+등급</b>이 되면 볼 수 있어요.<br/>

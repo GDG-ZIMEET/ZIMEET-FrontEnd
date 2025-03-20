@@ -10,7 +10,7 @@ const useWithdraw = () => {
   const handleWithdraw = async () => {
     try {
       
-      await privateAxios.delete("/user/withdraw");
+      await privateAxios.patch("/user/withdraw");
 
       resetAuthState();
       setAuthState({ userId: null, isAuthorized: false });

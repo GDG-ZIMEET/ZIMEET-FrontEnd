@@ -13,16 +13,18 @@ export interface User {
 }
   
 export interface TeamData {
-teamId: number;
-name: string;
-verification: number;
-gender: string;
-userList: User[];
+    teamId: number;
+    name: string;
+    verification: number;
+    gender: string;
+    userList: User[];
+    hi: true;
+    level: string;
 }
   
 export interface TeamDetailResponseType {
-status: string;
-code: string;
-message: string;
-data: TeamData;
+    status: string;
+    code: string;
+    message: string;
+    data: TeamData;
 }

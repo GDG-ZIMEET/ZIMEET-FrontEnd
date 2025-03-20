@@ -29,7 +29,6 @@ const TeamIntro = () => {
   const { teamType, from } = location.state || {};
   const [teamDetailData, setTeamDetailData] = useState<TeamData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isPremium, setIsPremium] = useRecoilState(isPremiumState); 
   const ourTeamIdsValue = useRecoilValue(ourteamIds);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showSend, setShowSend] = useState(false);
@@ -54,9 +53,6 @@ const TeamIntro = () => {
             setTeamDetailData(null);
           }
         }
-
-        // 프리미엄 상태 확인
-        setIsPremium(false);
       } catch (error) {
         console.error('Error fetching team data:', error);
         setTeamDetailData(null);
@@ -66,7 +62,7 @@ const TeamIntro = () => {
     };
       
     fetchDataAndCheckPremium();
-  }, [teamId, setIsPremium]);
+  }, [teamId]);
 
   //미팅모달 
   const openModal = () => {
@@ -158,7 +154,9 @@ const closeRefusedModal = () => {
     navigate('/receiveHi');
 };
 
-  return (
+const isPremium = teamDetailData?.level === 'PLUS'? true : false;
+
+return (
     <S.TeamIntroLayout>
       <Header verification={teamDetailData?.verification ?? 0} name={teamDetailData?.name || ''}/>
       <S.TeamIntroContainer $isPremium={isPremium}>
