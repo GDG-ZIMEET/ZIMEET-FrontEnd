@@ -97,6 +97,7 @@ const Teams: React.FC<TeamsProps> = ({
         {MyProfileData ? (
           <MyProfile
             profileData={MyProfileData}
+            studentNum={MyProfileData.studentNumber.slice(2,4)}
             gender={MyProfileData.gender}
             isTeamMaking={true}
             isPremium={true}
@@ -107,6 +108,7 @@ const Teams: React.FC<TeamsProps> = ({
           <MyProfile
             key={member.userId}
             profileData={member}
+            studentNum={member.studentNumber.slice(2,4)}
             gender={member.gender}
             isTeamMaking={true}
           />

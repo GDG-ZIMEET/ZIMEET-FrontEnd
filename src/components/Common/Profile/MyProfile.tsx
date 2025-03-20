@@ -20,12 +20,14 @@ interface UserDetailProps {
   gender: string;
   isPremium?: boolean;
   isTeamMaking?: boolean;
+  studentNum?: string;
 }
 
 interface MyProfileProps {
   profileData: MyProfileType;
   gender: string;
   isPremium?: boolean;
+  studentNum?: string;
   isTeamMaking?: boolean;
 }
 
@@ -34,11 +36,12 @@ interface MemberProfileProps {
   gender: string;
   isPremium?: boolean;
   isTeamMaking?: boolean;
+  studentNum?: string;
 }
 
 const MyProfile: React.FC<
   UserDetailProps | MyProfileProps | MemberProfileProps
-> = ({ profileData, gender, isPremium = false, isTeamMaking = false }) => {
+> = ({ profileData, gender, isPremium = false, isTeamMaking = false, studentNum }) => {
   const [showModal, setShowModal] = useState(false);
   
   useEffect(() => {
@@ -54,8 +57,8 @@ const MyProfile: React.FC<
           <S.ProfileIMG>
             <S.Avatar>
               <img
-                src={getImageByEmoji(profileData.emoji)}
-                alt={profileData.emoji}
+          src={getImageByEmoji(profileData.emoji)}
+          alt={profileData.emoji}
               />
             </S.Avatar>
           </S.ProfileIMG>
@@ -63,7 +66,7 @@ const MyProfile: React.FC<
             nickname={profileData.nickname}
             age={profileData.age}
             Major={profileData.major}
-            classNum={profileData.studentNumber.slice(0, 2)}
+            classNum={studentNum ? studentNum : profileData.studentNumber}
             musicStyle={mappingMusic(profileData.music)}
           />
         </S.MyProfileBox1>
