@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
+import {ReactComponent as View} from '../../../../assets/icon/Meeting22/View.svg';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { getchattingRoomList } from 'api/Chatting/GetChattingRoomList';
 import { ChattingRoomType } from 'recoil/type/Chatting/ChattingRoomListType';
@@ -107,6 +108,7 @@ const Teams: React.FC = () => {
         <S.TeamHeader>
           <S.TeamName>{team.chatRoomName} 팀</S.TeamName>
           <S.WriteTime>{formatWriteTime(team.lastestTime)}</S.WriteTime>
+          <View/>
         </S.TeamHeader>
         <S.JoinMembersAndIntroduction>
           <S.JoinMembers>

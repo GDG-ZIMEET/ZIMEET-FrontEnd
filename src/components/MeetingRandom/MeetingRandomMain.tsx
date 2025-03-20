@@ -11,15 +11,10 @@ import { RandomTeamType } from 'recoil/type/Meeting/RandomNowType';
 import { track } from '@amplitude/analytics-browser';
 
 const MeetingRandomMain: React.FC = () => {
-  const [isRandomLoading, setIsRandomLoading] = useState<boolean>(() => {
-    return localStorage.getItem("isRandomLoading") === "true";
-  });
+  const [isRandomLoading, setIsRandomLoading] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [ticket, setTicket] = useState<number | null>(null);
-  const [randomNowData, setRandomNowData] = useState<RandomTeamType | null>(() => {
-    const savedData = localStorage.getItem("randomNowData");
-    return savedData ? JSON.parse(savedData) : null;
-  });
+  const [randomNowData, setRandomNowData] = useState<RandomTeamType | null>(null);
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -33,11 +28,7 @@ const MeetingRandomMain: React.FC = () => {
       fetchData();
     }, []);
 
-    useEffect(() => {
-      if (randomNowData) {
-        localStorage.setItem("randomNowData", JSON.stringify(randomNowData));
-      }
-    }, [randomNowData]);
+    
     
   const handleHelpClick = () => {
     navigate('/notion/termsOfService');
@@ -60,6 +51,7 @@ const MeetingRandomMain: React.FC = () => {
     track('[클릭]미팅_랜덤_참여모달_참여');
     //실시간 상태 구독
     startMatchingProcess(setRandomNowData);
+    console.log('startMatchingProcess 실행', randomNowData);
     if (ticket !== null && ticket <= 0) {
       alert('티켓 수가 부족합니다');
       navigate('/mypage');
@@ -77,7 +69,7 @@ const MeetingRandomMain: React.FC = () => {
 
   return (
     <>
-      <MakeTeamBox isRandomLoading={isRandomLoading} setIsRandomLoading={setIsRandomLoading} randomNowData={randomNowData} setRandomNowData={setRandomNowData}/>
+      <MakeTeamBox isRandomLoading={isRandomLoading} randomNowData={randomNowData}/>
       <Help isRandomLoading={!isRandomLoading} onClick={handleHelpClick} />
       <TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : 무제한!</TicketCount>
       {/*<TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : {ticket}개</TicketCount>*/}

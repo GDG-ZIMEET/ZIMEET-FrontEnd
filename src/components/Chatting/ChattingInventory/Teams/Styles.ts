@@ -59,23 +59,19 @@ export const TeamHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2% 0 1% 1%;
+  margin: 2% 1% 1% 1%;
 `;
 
 export const TeamName = styled.div`
   font-size: 12px;
   font-weight: bold;
+  flex: 1;
 `;
 
 export const WriteTime = styled.div`
   font-size: 10px;
   color: #FA2D4C;
-
-  &::after {
-    font-size: 14px;
-    content: ' >';
-    color: #000000; 
-  }
+  margin-right: 10px;
 `;
 
 export const JoinMembers = styled.div`

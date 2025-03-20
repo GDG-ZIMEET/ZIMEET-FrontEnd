@@ -73,7 +73,7 @@ const sendMatchingRequest = async (): Promise<{ matchingId: number; userList: an
 }};
 
 // 매칭 상태 업데이트 및 구독 함수
-const subscribeToMatching = (matchingId: number) => {
+const subscribeToMatching = (matchingId: number, setRandomNowData: (data: any) => void) => {
   if (!stompClient || !stompClient.connected) {
     //console.error("WebSocket이 연결되지 않음.");
     return;
@@ -86,6 +86,7 @@ const subscribeToMatching = (matchingId: number) => {
   // 새 구독 설정
   subscription = stompClient.subscribe(`/topic/matching/${matchingId}`, (message) => {
     const data = JSON.parse(message.body);
+    setRandomNowData(data);
   });
 };
 
@@ -123,6 +124,6 @@ export const startMatchingProcess = async ( setRandomNowData : (data: any) => vo
     // matchingId를 알게 되면 구독 시작
     setRandomNowData(matchingdata);
     await new Promise((resolve) => setTimeout(resolve, 1500));
-    subscribeToMatching(matchingdata.matchingId);
+    subscribeToMatching(matchingdata.matchingId , setRandomNowData);
   }
 };

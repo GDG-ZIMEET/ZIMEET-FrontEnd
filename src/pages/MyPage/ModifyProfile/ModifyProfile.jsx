@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import * as S from './Styles';
 import ModifyNickname from 'components/MyPage/ModifyNickname/ModifyNickname';
 import Header from 'components/Common/Header/Header/Header';
-
 import { getmyProfile } from 'api/Mypage/GetmyProfile';
 import { updateEmoji } from 'api/Mypage/UpdateEmoji';
 import { updateNickname } from 'api/Mypage/UpdateNickname';
@@ -38,7 +37,6 @@ const ModifyProfile = () => {
             setSelectedEmoji(response.data.emoji);
             sessionStorage.removeItem('selectedEmoji'); 
           }
-          
           sessionStorage.setItem('previousPage', 'modifyprofile');
           setIsModified(false);
         }
@@ -63,9 +61,6 @@ const ModifyProfile = () => {
     }
   }, [selectedEmoji, updatedNickname, myProfileData]);
 
-  const handleBack = () => {
-    navigate(-1);
-  };
 
   const handleNicknameClick = () => {
     setModalOpen(true);
@@ -87,15 +82,15 @@ const ModifyProfile = () => {
         }
         if (updatedNickname !== myProfileData.data.nickname) {
           await updateNickname({ nickname: updatedNickname });
-        }
-        alert('프로필이 성공적으로 업데이트되었습니다.');
+        }        
         setIsModified(false);
         sessionStorage.removeItem('previousPage');
         navigate('/mypage');
         track('[클릭]마이_내정보수정_저장버튼');
       }
-    } catch (error) {
-      alert('업데이트에 실패했습니다. 다시 시도해주세요.');
+    } catch (error) {  
+      alert("업데이트에 실패했습니다. 다시 시도해주세요.");
+      return;
     }
   };
 

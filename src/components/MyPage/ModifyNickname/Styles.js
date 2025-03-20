@@ -56,6 +56,12 @@ export const MNInput = styled.input`
     background-color: white;
     border: 1px solid #022047;
   }
+
+  @media (max-width: 768px) {
+    @supports (-webkit-touch-callout: none) {
+      font-size: 16px;
+    }
+  }
 `;
 
 
