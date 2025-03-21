@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as I from '../../assets/Icons';
 
 export const BoothLayout = styled.div`
     background-color: #FFFFFF;
@@ -102,4 +103,56 @@ export const SetTeam = styled.div`
   font-size: 16px;
   color: #000000;
   font-family: 'Pretendard;', sans-serif;
+`;
+
+
+//지밋 다음기회에 
+export const NextSeasonLayout = styled.div`
+  height: 85%;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3% 0 3%;
+  border: 1px solid #EA4435;
+  background-color:  rgba(234, 68, 53, 0.1);
+`;
+
+export const NextSeasonTitle = styled.div`
+  width: 90%;
+  font-size: 16px;
+  color: #000000;
+  line-height: 1.5;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 5%;
+  b {
+    font-size: 17px;
+    font-weight: bold;
+  }
+`;
+
+export const ZimeetLogo = styled(I.ZimeetLogo)`
+  width: 40%;
+  height: 30%;
+   `;  
+
+export const Zimeettime = styled.div`
+  width: 100%;
+  font-size: 16px;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10%;
+  margin-top: 3%;
+  p {
+    font-size: 25px;
+    font-weight: bold;
+    color: #EA4435;
+  }
 `;
