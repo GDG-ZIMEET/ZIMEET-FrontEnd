@@ -11,7 +11,7 @@ import { selectedSpaceState } from 'recoil/state/boothState';
 const Booth: React.FC = () => {
     const [selectedSpace, setSelectedSpace] = useRecoilState(selectedSpaceState);
     const [currentTime, setCurrentTime] = useState(new Date());
-    const targetTime = new Date('2025-04-13T16:00:00');
+    const targetTime = new Date('2025-04-13T15:00:00Z');
 
     // 1초마다 현재 시간 업데이트
     useEffect(() => {
