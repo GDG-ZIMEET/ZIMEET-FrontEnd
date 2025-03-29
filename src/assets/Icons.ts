@@ -63,19 +63,6 @@ export { ReactComponent as Ticket1 } from './icon/MyPage/Ticket1.svg';
 export { ReactComponent as Ticket3 } from './icon/MyPage/Ticket3.svg';
 export { ReactComponent as Ticket8 } from './icon/MyPage/Ticket8.svg';
 export { ReactComponent as HiIconblack } from './icon/MyPage/Hi10.svg';
-//부스 포스터 사진
-export { ReactComponent as Houh } from './icon/boothDetail/Ho.svg';
-export { ReactComponent as SSine } from './icon/boothDetail/ssine.svg';
-export { ReactComponent as Coma } from './icon/boothDetail/coma.svg';
-export { ReactComponent as Shield } from './icon/boothDetail/shield.svg';
-export { ReactComponent as Ala } from './icon/boothDetail/ala.svg';
-export { ReactComponent as Gdgoc } from './icon/boothDetail/gdgoc.svg';
-export { ReactComponent as Anicat } from './icon/boothDetail/anicat.svg';
-export { ReactComponent as Youdo } from './icon/boothDetail/youdo.svg';
-export { ReactComponent as Cotrang } from './icon/boothDetail/cotrang.svg';
-export { ReactComponent as KickOff } from './icon/boothDetail/kickoff.svg';
-export { ReactComponent as PhotoZone } from './icon/boothDetail/photozone.svg';
-export { ReactComponent as Piano } from './icon/boothDetail/piano.svg';
 
 //부스 로고
 export { ReactComponent as NonLogo } from './icon/boothDetail/logo/GDGlogo.svg';
