@@ -29,4 +29,7 @@ export default defineConfig({
       data: path.resolve(__dirname, 'src/data'),
     },
   },
+  define: {
+    global: 'window', // ✅ 요거 추가
+  },
 });
