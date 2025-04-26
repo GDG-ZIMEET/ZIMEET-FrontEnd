@@ -17,6 +17,8 @@ import MeetingHeart from './icon/navigationbar/meetingHeart.svg?react';
 import MyInformation from './icon/navigationbar/myinformation.svg?react';
 import SmyInformation from './icon/navigationbar/Smyinformation.svg?react';
 import Schatting from './icon/navigationbar/Schatting.svg?react';
+import TimeLine from './icon/navigationbar/timeline.svg?react';
+import TimeLineWhite from './icon/navigationbar/timelineWhite.svg?react';
 
 // 부스 아이콘
 import G from './icon/booth/G.svg?react';
@@ -112,4 +114,6 @@ export {
   Ticket8,
   HiIconblack,
   NonLogo,
+  TimeLine,
+  TimeLineWhite,
 };
