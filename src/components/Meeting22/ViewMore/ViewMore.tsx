@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './Styles';
-import {ReactComponent as View} from '../../../assets/icon/Meeting22/View.svg'
+import View from '../../../assets/icon/Meeting22/View.svg?react';
 
 interface ViewMoreProps {
   onClick?: () => void;

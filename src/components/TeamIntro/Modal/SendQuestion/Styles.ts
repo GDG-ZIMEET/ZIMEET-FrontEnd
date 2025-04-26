@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as hiIcon } from '../../../../assets/icon/TeamInfo/HiIcon.svg';
+import hiIcon from '../../../../assets/icon/TeamInfo/HiIcon.svg?react';
 
 
 export const Modallayout = styled.div`

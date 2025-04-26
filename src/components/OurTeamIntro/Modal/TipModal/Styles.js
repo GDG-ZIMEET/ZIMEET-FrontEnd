@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import {ReactComponent as WhiteGo} from '../../../../assets/icon/TeamInfo/whiteGo.svg';
+import WhiteGo from '../../../../assets/icon/TeamInfo/whiteGo.svg?react';
 
 export const TipLayOut = styled.div`
   display: flex;

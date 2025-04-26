@@ -1,68 +1,115 @@
-//부스배치
-export { ReactComponent as BigLogo } from './icon/booth/BigLogo.svg';
-export { ReactComponent as CircleLogo } from './icon/booth/CircleLogo.svg';
-export { ReactComponent as HeaderLogo } from './icon/booth/headerLogo.svg';
+// 부스배치
+import BigLogo from './icon/booth/BigLogo.svg?react';
+import CircleLogo from './icon/booth/CircleLogo.svg?react';
+import HeaderLogo from './icon/booth/headerLogo.svg?react';
 
-//랜덤미팅
-export { ReactComponent as SpeechBubble } from './icon/MeetingRandom/speechBubble.svg';
-export { ReactComponent as RandomAfter } from './icon/MeetingRandom/RandomAfter.svg';
-export { ReactComponent as RandomBefore } from './icon/MeetingRandom/RandomBefore.svg';
+// 랜덤미팅
+import SpeechBubble from './icon/MeetingRandom/speechBubble.svg?react';
+import RandomAfter from './icon/MeetingRandom/RandomAfter.svg?react';
+import RandomBefore from './icon/MeetingRandom/RandomBefore.svg?react';
 
-//네비게이션바
-export { ReactComponent as Chatting } from './icon/navigationbar/chatting.svg';
-export { ReactComponent as Home } from './icon/navigationbar/home.svg';
-export { ReactComponent as HomeWhite } from './icon/navigationbar/homeWhite.svg';
-export { ReactComponent as Meeting } from './icon/navigationbar/HeartN.svg';
-export { ReactComponent as MeetingHeart } from './icon/navigationbar/meetingHeart.svg';
-export { ReactComponent as MyInformation } from './icon/navigationbar/myinformation.svg';
-export { ReactComponent as SmyInformation } from './icon/navigationbar/Smyinformation.svg';
-export { ReactComponent as Schatting } from './icon/navigationbar/Schatting.svg';
-
+// 네비게이션바
+import Chatting from './icon/navigationbar/chatting.svg?react';
+import Home from './icon/navigationbar/home.svg?react';
+import HomeWhite from './icon/navigationbar/homeWhite.svg?react';
+import Meeting from './icon/navigationbar/HeartN.svg?react';
+import MeetingHeart from './icon/navigationbar/meetingHeart.svg?react';
+import MyInformation from './icon/navigationbar/myinformation.svg?react';
+import SmyInformation from './icon/navigationbar/Smyinformation.svg?react';
+import Schatting from './icon/navigationbar/Schatting.svg?react';
 
 // 부스 아이콘
-export { ReactComponent as G } from './icon/booth/G.svg';
-export { ReactComponent as GGrey } from './icon/booth/G grey.svg';
-export { ReactComponent as GB } from './icon/booth/GB.svg';
-export { ReactComponent as DGoCCUK } from './icon/booth/DGoCCUK.svg';
-export { ReactComponent as D } from './icon/booth/D.svg';
-export { ReactComponent as DGrey } from './icon/booth/D grey.svg';
-export { ReactComponent as Ating } from './icon/booth/ating.svg';
-export { ReactComponent as ateway } from './icon/booth/ateway.svg';
-export { ReactComponent as Check } from './icon/booth/check.svg';
+import G from './icon/booth/G.svg?react';
+import GGrey from './icon/booth/G grey.svg?react';
+import GB from './icon/booth/GB.svg?react';
+import DGoCCUK from './icon/booth/DGoCCUK.svg?react';
+import D from './icon/booth/D.svg?react';
+import DGrey from './icon/booth/D grey.svg?react';
+import Ating from './icon/booth/ating.svg?react';
+import ateway from './icon/booth/ateway.svg?react';
+import Check from './icon/booth/check.svg?react';
 
-//back
-export { ReactComponent as Back } from './icon/Vector.svg';
+// back
+import Back from './icon/Vector.svg?react';
 
+// login
+import ZimeetLogo from './icon/login/zimeetLogo.svg?react';
+import GdgBottomLogo from './icon/login/gdgbottomLogo.svg?react';
 
+// chatting
+import PinkCircle from './icon/PinkCircle.svg?react';
+import ChattingButton from './icon/ChattingButton.svg?react';
+import Hamburger from './icon/Hamburger.svg?react';
+import Music from './icon/Chatting/music.svg?react';
 
-//login
-export { ReactComponent as ZimeetLogo } from './icon/login/zimeetLogo.svg';
-export { ReactComponent as GdgBottomLogo } from './icon/login/gdgbottomLogo.svg';
+// ziMeetIntroduct
+import Zimeet from './icon/ZIMEET.svg?react';
+import AboutGdgocCuk from './icon/About GDGoC CUK.svg?react';
 
-//chatting
-export { ReactComponent as PinkCircle } from './icon/PinkCircle.svg';
-export { ReactComponent as ChattingButton } from './icon/ChattingButton.svg';
-export { ReactComponent as Hamburger } from './icon/Hamburger.svg';
-export { ReactComponent as Music } from './icon/Chatting/music.svg';
+// myPage
+import PinkCircle2 from './icon/PinkCircle.svg?react';
+import BlueCircle from './icon/BlueCircle.svg?react';
+import ProfileCircle from './icon/ProfileCircle.svg?react';
+import EditMyInfo from './icon/MyPage/EditMyInfo.svg?react';
+import Hi from './icon/MyPage/Hi.svg?react';
+import Hi1 from './icon/MyPage/Hi1.svg?react';
+import Hi3 from './icon/MyPage/Hi3.svg?react';
+import Hi10 from './icon/MyPage/Hi10.svg?react';
+import Ticket from './icon/MyPage/Ticket.svg?react';
+import Ticket1 from './icon/MyPage/Ticket1.svg?react';
+import Ticket3 from './icon/MyPage/Ticket3.svg?react';
+import Ticket8 from './icon/MyPage/Ticket8.svg?react';
+import HiIconblack from './icon/MyPage/Hi10.svg?react';
 
-//ziMeetIntroduct
-export { ReactComponent as Zimeet } from './icon/ZIMEET.svg';
-export { ReactComponent as AboutGdgocCuk } from './icon/About GDGoC CUK.svg';
+// 부스 로고
+import NonLogo from './icon/boothDetail/logo/GDGlogo.svg?react';
 
-//myPage
-export { ReactComponent as PinkCircle2 } from './icon/PinkCircle.svg';
-export { ReactComponent as BlueCircle } from './icon/BlueCircle.svg';
-export { ReactComponent as ProfileCircle } from './icon/ProfileCircle.svg';
-export { ReactComponent as EditMyInfo } from './icon/MyPage/EditMyInfo.svg';
-export { ReactComponent as Hi } from './icon/MyPage/Hi.svg';
-export { ReactComponent as Hi1 } from './icon/MyPage/Hi1.svg';
-export { ReactComponent as Hi3 } from './icon/MyPage/Hi3.svg';
-export { ReactComponent as Hi10 } from './icon/MyPage/Hi10.svg';
-export { ReactComponent as Ticket } from './icon/MyPage/Ticket.svg';
-export { ReactComponent as Ticket1 } from './icon/MyPage/Ticket1.svg';
-export { ReactComponent as Ticket3 } from './icon/MyPage/Ticket3.svg';
-export { ReactComponent as Ticket8 } from './icon/MyPage/Ticket8.svg';
-export { ReactComponent as HiIconblack } from './icon/MyPage/Hi10.svg';
-
-//부스 로고
-export { ReactComponent as NonLogo } from './icon/boothDetail/logo/GDGlogo.svg';
+// 👇 이렇게 한번에 export
+export {
+  BigLogo,
+  CircleLogo,
+  HeaderLogo,
+  SpeechBubble,
+  RandomAfter,
+  RandomBefore,
+  Chatting,
+  Home,
+  HomeWhite,
+  Meeting,
+  MeetingHeart,
+  MyInformation,
+  SmyInformation,
+  Schatting,
+  G,
+  GGrey,
+  GB,
+  DGoCCUK,
+  D,
+  DGrey,
+  Ating,
+  ateway,
+  Check,
+  Back,
+  ZimeetLogo,
+  GdgBottomLogo,
+  PinkCircle,
+  ChattingButton,
+  Hamburger,
+  Music,
+  Zimeet,
+  AboutGdgocCuk,
+  PinkCircle2,
+  BlueCircle,
+  ProfileCircle,
+  EditMyInfo,
+  Hi,
+  Hi1,
+  Hi3,
+  Hi10,
+  Ticket,
+  Ticket1,
+  Ticket3,
+  Ticket8,
+  HiIconblack,
+  NonLogo,
+};

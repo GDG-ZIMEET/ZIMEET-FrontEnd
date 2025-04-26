@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {ReactComponent as Certification} from '../../../assets/icon/Meeting22/certification.svg';
+import Certification from '../../../assets/icon/Meeting22/certification.svg?react';
 
 export const TeamLayOut = styled.div`
   display: flex;

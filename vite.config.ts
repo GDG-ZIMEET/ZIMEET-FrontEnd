@@ -1,9 +1,17 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path'; 
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    svgr({
+      svgrOptions: {
+        icon: true,
+      },
+    }),
+  ],
   server: {
     port: 3000,
   },
@@ -13,7 +21,7 @@ export default defineConfig({
       assets: path.resolve(__dirname, 'src/assets'),
       utils: path.resolve(__dirname, 'src/utils'),
       api: path.resolve(__dirname, 'src/api'),
-      recoiStores: path.resolve(__dirname, 'src/recoilStores'),
+      recoilStores: path.resolve(__dirname, 'src/recoilStores'),
       styles: path.resolve(__dirname, 'src/styles'),
       types: path.resolve(__dirname, 'src/types'),
       pages: path.resolve(__dirname, 'src/pages'),
