@@ -3,7 +3,7 @@ import SockJS from "sockjs-client";
 import { getRandomNow } from "./GetRandomnow";
 import { track } from '@amplitude/analytics-browser';
 
-const baseURL = process.env.REACT_APP_SOCKET_URL;
+const baseURL = import.meta.env.REACT_APP_SOCKET_URL;
 const token = localStorage.getItem("accessToken");
 let stompClient: Client | null = null;
 let subscription: StompSubscription | null = null; // 구독 추적 변수
