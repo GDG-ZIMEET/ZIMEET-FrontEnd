@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import HeaderLogo from 'assets/icon/SetList/SetListHeader.svg?react';
-import colors from './colors';
+import { colors } from './SetListData';
 
 export const SetListLayout = styled.div`
   background-color: #FFFFFF;
@@ -39,6 +39,7 @@ export const HeaderInfoContainer = styled.div`
 export const HeaderComponent = styled.div`
   width: 50%;
   height: 100%;
+  padding-left: 3%;
   display: flex;
   flex-direction: column;
   z-index: 1;
@@ -47,7 +48,6 @@ export const HeaderComponent = styled.div`
 export const DayText = styled.div`
   width: 100%;
   height: 50%;
-  padding-left: 3%;
   padding-bottom: 3%;
   display: flex;
   justify-content: flex-start; 
@@ -61,7 +61,6 @@ export const DayText = styled.div`
 export const StageTitle = styled.div`
   width: 100%;
   height: 50%;
-  padding-left: 3%;
   display: flex;
   justify-content: flex-start; 
   align-items: flex-start;
@@ -93,16 +92,53 @@ export const ChangeDay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid green;
 `;
+
+export const DayButton = styled.button<{ isActive: boolean, isLast: boolean }>`
+  width: 50%;
+  height: 70%;
+  border: none;
+  color: ${({ isActive }) => (isActive ? '#000' : '#F2F2F2')};
+  font-weight: 500;
+  font-size: 14px;
+  border-right: ${({ isLast }: { isLast?: boolean }) => (isLast ? 'none' : '2px solid #F2F2F2')};
+  background: none;
+  cursor: pointer;
+`;
+
 
 export const StageType = styled.div`
   width: 100%;  
-  height: 3%;
+  height: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid green;
+  gap : 2.5%;
+  border-top: 1px solid #D9D9D9;
+`;
+
+export const StageTypeContainer = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+
+export const SquareIcon = styled.div<{ color: string }>`
+  width: 16px;
+  height: 14px;
+  background-color: ${({ color }) => color};
+  border-radius: 4px;
+  margin-right: 5%;
+`;
+
+export const StageTypeText = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: Medium;
+  color: #000000;
+  white-space: nowrap;
 `;
 
 export const StageListContainer = styled.div`
