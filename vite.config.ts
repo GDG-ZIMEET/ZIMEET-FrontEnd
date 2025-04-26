@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import path from 'path'; 
+import path from 'path';
 import svgr from 'vite-plugin-svgr';
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   plugins: [
@@ -9,6 +10,30 @@ export default defineConfig({
     svgr({
       svgrOptions: {
         icon: true,
+      },
+    }),
+    VitePWA({ 
+      registerType: 'autoUpdate',
+      manifest: {
+        name: 'ZI밋 - 지금 우리 만나요!',
+        short_name: 'ZI밋',
+        description: 'GDG 행사 미팅 플랫폼',
+        theme_color: '#ffffff',
+        background_color: '#ffffff',
+        display: 'standalone',
+        start_url: '/',
+        icons: [
+          {
+            src: '/zimeet_icon.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/zimeet_icon.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
       },
     }),
   ],
@@ -30,6 +55,6 @@ export default defineConfig({
     },
   },
   define: {
-    global: 'window', // ✅ 요거 추가
+    global: 'window',
   },
 });
