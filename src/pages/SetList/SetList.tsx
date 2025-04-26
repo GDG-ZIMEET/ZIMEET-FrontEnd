@@ -6,7 +6,16 @@ const SetList = () => {
     <>
     <NavigationBar />
     <S.SetListLayout>
-      <S.SetListHeader />
+      <S.SetListHeader>
+        <S.HeaderLogoIcon />
+        <S.HeaderInfoContainer>
+          <S.HeaderComponent>
+            <S.DayText>DAY 1</S.DayText>
+            <S.StageTitle>Unofficial Club</S.StageTitle>
+          </S.HeaderComponent>
+          <S.TimeText>00:00 ~ 00:00</S.TimeText>
+        </S.HeaderInfoContainer>
+      </S.SetListHeader>
       <S.ChangeDay />
       <S.StageType />
       <S.StageListContainer>

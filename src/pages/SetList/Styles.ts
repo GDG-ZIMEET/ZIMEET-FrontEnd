@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import * as I from '../../assets/Icons';
+import HeaderLogo from 'assets/icon/SetList/SetListHeader.svg?react';
+import colors from './colors';
 
 export const SetListLayout = styled.div`
   background-color: #FFFFFF;
@@ -8,14 +9,82 @@ export const SetListLayout = styled.div`
   display: flex;
   flex-direction: column;
   font-family: Pretendard, sans-serif;
-  border: 1px solid red;
 `;
 
 export const SetListHeader = styled.div`
   width: 100%;
   height: 20%;
-  padding: 6% 0% 0% 3%;
-  border: 1px solid blue;
+  background-color: ${colors.other};
+  position: relative;
+`;
+
+export const HeaderLogoIcon = styled(HeaderLogo)`
+  margin: 7% 0 0 0;
+  width: 65%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  z-index: 0;
+`;
+
+export const HeaderInfoContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1;
+`;
+
+export const HeaderComponent = styled.div`
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+`;
+
+export const DayText = styled.div`
+  width: 100%;
+  height: 50%;
+  padding-left: 3%;
+  padding-bottom: 3%;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: flex-end;
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: #ffffff;
+  z-index: 1;
+`;
+
+export const StageTitle = styled.div`
+  width: 100%;
+  height: 50%;
+  padding-left: 3%;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: flex-start;
+  font-size: 33px;
+  font-weight: bold;
+  color: #ffffff;
+  z-index: 1;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+`;
+
+export const TimeText = styled.div`
+  width: 50%;
+  height: 30%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  z-index: 1;
+  margin-bottom: 5%;
 `;
 
 export const ChangeDay = styled.div`
