@@ -1,35 +1,41 @@
-import * as I from '../../../assets/Icons'; 
 import * as S from './Styles';
+import { JSX } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { authState } from '../../../recoilStores/state/authState.ts';
+import { authState } from '../../../recoilStores/state/authState';
 import { track } from '@amplitude/analytics-browser';
+
 
 const NavigationBar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const isLoggedIn = useRecoilValue(authState);
     
-    const iconMapping = {
+    type Path = '/' | '/meeting22' | '/chattingInventory' | '/mypage' | '/setlist';
+    const iconMapping: Record<Path, { selected: JSX.Element; default: JSX.Element }> = {
         '/': {
-            selected: <I.Home />,
-            default: <I.HomeWhite />,
+            selected: <S.Home />,
+            default: <S.HomeWhite />,
         },
         '/meeting22': {
-            selected: <I.MeetingHeart />,
-            default: <I.Meeting />,
+            selected: <S.MeetingHeart />,
+            default: <S.Meeting />,
         },
         '/chattingInventory': {
-            selected: <I.Schatting />,
-            default: <I.Chatting />,
+            selected: <S.Schatting />,
+            default: <S.Chatting />,
         },
         '/mypage': {
-            selected: <I.SmyInformation />,
-            default: <I.MyInformation />,
+            selected: <S.SmyInformation />,
+            default: <S.MyInformation />,
+        },
+        '/setlist': {
+            selected: <S.TimeLine />,
+            default: <S.TimeLineWhite />,
         },
     };
 
-    const getIcon = (path) => {
+    const getIcon = (path: Path) => {
         if (path === '/') {
             return location.pathname === '/booth' || location.pathname === '/'
                 ? iconMapping[path].selected
@@ -52,10 +58,19 @@ const NavigationBar = () => {
                 홈
             </S.NavItem>
             <S.NavItem onClick={() => {
+                track('[클릭]무대셋리스트');
+                navigate('/setlist');
+            }}>
+                <S.IconWrapper>
+                    {getIcon('/setlist')}
+                </S.IconWrapper>
+                공연
+            </S.NavItem>
+            <S.NavItem onClick={() => {
                 track('[클릭]미팅');
                 navigate('/meeting22');
             }}>
-                <S.RedDotIconWrapper style={{ margin: location.pathname === '/meeting22' ? '5px' : '6px' }}>
+                <S.RedDotIconWrapper>
                     {!isLoggedIn && <S.RedDot />} 
                     {getIcon('/meeting22')}
                 </S.RedDotIconWrapper>
@@ -65,7 +80,7 @@ const NavigationBar = () => {
                 track('[클릭]채팅');
                 navigate('/chattingInventory');
             }}>
-                <S.IconWrapper style={{ margin: '1px' }}>
+                <S.IconWrapper>
                     {getIcon('/chattingInventory')}
                 </S.IconWrapper>
                 채팅
@@ -74,7 +89,7 @@ const NavigationBar = () => {
                 track('[클릭]내정보');
                 navigate('/mypage');
             }}>
-                <S.IconWrapper style={{ margin: '5px' }}>
+                <S.IconWrapper>
                     {getIcon('/mypage')}
                 </S.IconWrapper>
                 내정보
