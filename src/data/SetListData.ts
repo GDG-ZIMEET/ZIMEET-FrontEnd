@@ -3,6 +3,7 @@ export const colors = {
     club: "#89B4F4",
     other: "#FCDF92",
     event: "#81C899",
+    end: "#D9D9D9",
 };
 
 export const stageTypes = [
