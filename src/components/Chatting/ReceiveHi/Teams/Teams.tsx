@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { getreceiveHi } from 'api/Hi/GetreceiveHi';
-import { HiType } from 'recoil/type/Hi/HiType';
+import { HiType } from 'recoilStores/type/Hi/HiType';
 import { useRecoilValue } from 'recoil';
-import { ourteamIds } from 'recoil/state/ourTeamIds';
+import { ourteamIds } from 'recoilStores/state/ourTeamIds';
 import { track } from '@amplitude/analytics-browser';
 
 const Teams: React.FC = () => {

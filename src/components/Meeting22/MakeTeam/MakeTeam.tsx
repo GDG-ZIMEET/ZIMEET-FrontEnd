@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as S from './Styles';
 import ViewMore from '../ViewMore/ViewMore';
 import { useNavigate } from 'react-router-dom';
-import { OurTeamType } from 'recoil/type/Meeting/ourTeamType';
+import { OurTeamType } from 'recoilStores/type/Meeting/ourTeamType';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { track } from '@amplitude/analytics-browser';
 

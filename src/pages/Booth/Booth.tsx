@@ -6,7 +6,7 @@ import Header from '../../components/Booth/Header/Header';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 import { useRecoilState } from 'recoil';
-import { selectedSpaceState } from 'recoil/state/boothState';
+import { selectedSpaceState } from 'recoilStores/state/boothState';
 
 const Booth: React.FC = () => {
     const [selectedSpace, setSelectedSpace] = useRecoilState(selectedSpaceState);

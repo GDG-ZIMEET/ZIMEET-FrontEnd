@@ -6,7 +6,7 @@ import Teams from 'components/TeamMaking/Teams/Teams';
 import Header from 'components/Common/Header/Header/Header';
 import TeamName from 'components/TeamMaking/TeamName/TeamName';
 import MakingButton from 'components/TeamMaking/Buttons/MakingButton/MakingButton';
-import { TeamMemberWithProfileType } from 'recoil/type/TeamMaking/TeamMemberWithProfileType';
+import { TeamMemberWithProfileType } from 'recoilStores/type/TeamMaking/TeamMemberWithProfileType';
 import { postTeamMake } from 'api/TeamMaking/PostTeamMaking';
 import { track } from '@amplitude/analytics-browser';
 

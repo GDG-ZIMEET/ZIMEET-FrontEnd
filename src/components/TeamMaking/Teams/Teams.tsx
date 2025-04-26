@@ -3,9 +3,9 @@ import * as S from './Styles';
 import PeoplePlusButton from '../Buttons/PlusButton/PeoplePlusButton';
 import MyProfile from '../../Common/Profile/MyProfile';
 import { getmyProfile } from 'api/Mypage/GetmyProfile';
-import { MyProfileType } from 'recoil/type/MyPage/MyProfileType';
-import { TeamMemberWithProfileType } from 'recoil/type/TeamMaking/TeamMemberWithProfileType';
-import { SearchTeamMemberType } from 'recoil/type/TeamMaking/SearchTeamMember';
+import { MyProfileType } from 'recoilStores/type/MyPage/MyProfileType';
+import { TeamMemberWithProfileType } from 'recoilStores/type/TeamMaking/TeamMemberWithProfileType';
+import { SearchTeamMemberType } from 'recoilStores/type/TeamMaking/SearchTeamMember';
 import { getuserProfile } from 'api/TeamMaking/GetUserProfile';
 
 interface TeamsProps {

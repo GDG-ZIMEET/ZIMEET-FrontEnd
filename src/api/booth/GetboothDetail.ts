@@ -1,5 +1,5 @@
 import { publicAxios } from '../axiosConfig';
-import { BoothDetailResponseType } from '../../recoil/type/booth';
+import { BoothDetailResponseType } from '../../recoilStores/type/booth';
 
 
 export const GetboothDetail = async (clubId: number): Promise<BoothDetailResponseType | null> => {

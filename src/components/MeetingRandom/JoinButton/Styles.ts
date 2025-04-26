@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
-import { ReactComponent as RandomJoin } from '../../../assets/icon/MeetingRandom/RandomJoin.svg';
+import RandomJoin from '../../../assets/icon/MeetingRandom/RandomJoin.svg?react';
 
 export const ButtonLayout = styled.div`
   display: flex;

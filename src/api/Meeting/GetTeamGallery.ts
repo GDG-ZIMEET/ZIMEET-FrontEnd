@@ -1,5 +1,5 @@
 import { privateAxios } from '../axiosConfig';
-import { TeamGalleryResponseType } from '../../recoil/type/Meeting/teamGallery'; 
+import { TeamGalleryResponseType } from '../../recoilStores/type/Meeting/teamGallery'; 
 
 export const getTeamGallery = async (
   teamType: string,

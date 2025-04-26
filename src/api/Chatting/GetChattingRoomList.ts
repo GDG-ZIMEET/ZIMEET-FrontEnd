@@ -1,5 +1,5 @@
 import { privateAxios } from '../axiosConfig';
-import { TeamDetailResponseType } from '../../recoil/type/Chatting/ChattingRoomListType';
+import { TeamDetailResponseType } from '../../recoilStores/type/Chatting/ChattingRoomListType';
 
 export const getchattingRoomList = async (): Promise<TeamDetailResponseType | null> => {
   try {

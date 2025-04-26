@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import * as I from '../../../assets/Icons';
-import { ReactComponent as Heart3D } from '../../../assets/icon/booth/Heart3D.svg';
-import { ReactComponent as Hi3D } from '../../../assets/icon/booth/Hi3D.svg';
-import { ReactComponent as Chat3D } from '../../../assets/icon/booth/Chat3D.svg';
+import Heart3D from '../../../assets/icon/booth/Heart3D.svg?react';
+import Hi3D from '../../../assets/icon/booth/Hi3D.svg?react';
+import Chat3D from '../../../assets/icon/booth/Chat3D.svg?react';
 
 export const ZimeetIntroductLayout = styled.div`
   width: 100%;

@@ -1,4 +1,4 @@
-import { RandomNowResponseType } from 'recoil/type/Meeting/RandomNowType';
+import { RandomNowResponseType } from 'recoilStores/type/Meeting/RandomNowType';
 import { privateAxios } from '../axiosConfig';
    
 export const getRandomNow = async (): Promise<RandomNowResponseType | null> => {

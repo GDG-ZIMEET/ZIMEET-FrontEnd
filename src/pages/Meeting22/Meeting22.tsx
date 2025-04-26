@@ -10,9 +10,9 @@ import LoginPopUp from '../../components/Meeting22/LoginPopUp/LoginPopUp';
 import { getTeamGallery } from 'api/Meeting/GetTeamGallery';
 import { getOurTeam } from '../../api/Meeting/GetourTeam';
 import { NonLoginDataTwoToTwo, NonLoginDataThreeToThree } from '../../data/NonLoginData';
-import { OurTeamType } from '../../recoil/type/Meeting/ourTeamType';
+import { OurTeamType } from '../../recoilStores/type/Meeting/ourTeamType';
 import MeetingRandomMain from '../../components/MeetingRandom/MeetingRandomMain';
-import { ourteamIds } from '../../recoil/state/ourTeamIds';
+import { ourteamIds } from '../../recoilStores/state/ourTeamIds';
 import NonLogInMeeting from '../../pages/NonMember/Meeting/Meeting';
 import { track } from '@amplitude/analytics-browser';
 

@@ -1,5 +1,5 @@
 import { privateAxios } from '../axiosConfig';
-import { TeamDetailResponseType } from '../../recoil/type/Chatting/ChatRoomUsers';
+import { TeamDetailResponseType } from '../../recoilStores/type/Chatting/ChatRoomUsers';
 
 export const getchatUsers = async (
     roomId: number

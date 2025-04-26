@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import Modal from 'components/Authentication/Join/JoinModal/Modal';
-import { joinState } from '../../../../recoil/state/joinState';
+import { joinState } from '../../../../recoilStores/state/joinState';
 import { postJoin } from '../../../../api/Authentication/PostJoin';
 import {  mbtiOptions, musicMap, styleMap, ageMap, faceMap } from '../../../../data/SignUpData';
 import { LogoContainer } from 'components/Authentication/Join/LogoContainer/LogoContainer';

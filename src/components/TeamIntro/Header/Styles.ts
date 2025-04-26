@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import * as I from "../../../assets/Icons";
-import {ReactComponent as Certification} from '../../../assets/icon/Meeting22/certification.svg';
+import Certification from '../../../assets/icon/Meeting22/certification.svg?react';
 
 export const HeaderLayout = styled.div`
   width: 100%;

@@ -7,7 +7,7 @@ import { TicketCount } from './Styles';
 import { useNavigate } from 'react-router-dom';
 import { getRandomTicket } from 'api/Meeting/GetRandomTicket';
 import { startMatchingProcess,  cancelMatching } from "api/Meeting/WebRandom";
-import { RandomTeamType } from 'recoil/type/Meeting/RandomNowType';
+import { RandomTeamType } from 'recoilStores/type/Meeting/RandomNowType';
 import { track } from '@amplitude/analytics-browser';
 
 const MeetingRandomMain: React.FC = () => {

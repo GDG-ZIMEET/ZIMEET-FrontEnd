@@ -1,5 +1,5 @@
 import * as S from './Styles';
-import { ReactComponent as View } from '../../../assets/icon/Meeting22/View.svg';
+import View from '../../../assets/icon/Meeting22/View.svg?react';
 import { useNavigate } from 'react-router-dom';
 import { track } from '@amplitude/analytics-browser';
 

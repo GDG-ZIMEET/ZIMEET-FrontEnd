@@ -1,7 +1,7 @@
 import React from 'react';
 import Team from '../Team/Team'; 
 import * as S from './Styles'; 
-import { TeamType } from '../../../recoil/type/Meeting/teamGallery';
+import { TeamType } from '../../../recoilStores/type/Meeting/teamGallery';
 
 interface TeamBoxProps {
   teamData: TeamType[]; 

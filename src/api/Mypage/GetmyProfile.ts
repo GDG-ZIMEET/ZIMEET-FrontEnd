@@ -1,5 +1,5 @@
 import { privateAxios } from '../axiosConfig';
-import { MyProfileResponseType } from '../../recoil/type/MyPage/MyProfileType';
+import { MyProfileResponseType } from '../../recoilStores/type/MyPage/MyProfileType';
 
 export const getmyProfile = async (): Promise<MyProfileResponseType | null> => {
   try {

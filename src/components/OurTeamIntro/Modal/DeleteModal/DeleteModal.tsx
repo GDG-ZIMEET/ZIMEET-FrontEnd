@@ -4,7 +4,7 @@ import * as S from './Styles';
 import { getTeamdeleteCount } from '../../../../api/TeamMaking/GetTeamdeleteCount';
 import { deleteTeam } from '../../../../api/Meeting/DeleteTeam';
 import { useResetRecoilState } from 'recoil';
-import { ourteamIds } from 'recoil/state/ourTeamIds';
+import { ourteamIds } from 'recoilStores/state/ourTeamIds';
 
 interface DeleteModalProps {
   teamType: string;

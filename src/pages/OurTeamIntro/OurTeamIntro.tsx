@@ -6,7 +6,7 @@ import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import TipModal from 'components/OurTeamIntro/Modal/TipModal/TipModal';
 import { getOurTeamDetail } from '../../api/Meeting/GetourTeamDetail';
 import { useLocation } from 'react-router-dom';
-import { TeamData, User } from '../../recoil/type/Meeting/TeamDetail';
+import { TeamData, User } from '../../recoilStores/type/Meeting/TeamDetail';
 import Certification from 'components/OurTeamIntro/Modal/Certification/Certification';
 
 const OurTeamIntro = () => {

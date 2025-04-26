@@ -1,5 +1,5 @@
 import { privateAxios } from '../axiosConfig';
-import { TeamDetailResponseType } from '../../recoil/type/Meeting/TeamDetail';
+import { TeamDetailResponseType } from '../../recoilStores/type/Meeting/TeamDetail';
 
 export const getTeamDetail = async (
   teamId: number

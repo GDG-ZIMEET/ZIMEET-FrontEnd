@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as NextWhite } from '../../../assets/icon/MyPage/GoButtonWhite.svg';
+import NextWhite from '../../../assets/icon/MyPage/GoButtonWhite.svg';
 
 export const EventContainer = styled.div`
   width: 90%; 

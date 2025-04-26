@@ -3,7 +3,7 @@ import * as S from './Styles';
 import { getOurHi } from '../../../../api/Meeting/Getouthi';
 import { postsendHi } from '../../../../api/Hi/PostsendHi';
 import { useRecoilValue } from 'recoil';
-import { ourteamIds } from 'recoil/state/ourTeamIds';
+import { ourteamIds } from 'recoilStores/state/ourTeamIds';
 import { track } from '@amplitude/analytics-browser';
 
 interface SendQuestionProps {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { authState } from 'recoil/state/authState';
+import { authState } from 'recoilStores/state/authState';
 import { privateAxios } from 'api/axiosConfig';
 
 const useLoginCheck = () => {

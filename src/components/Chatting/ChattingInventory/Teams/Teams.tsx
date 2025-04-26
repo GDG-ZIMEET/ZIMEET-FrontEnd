@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
-import {ReactComponent as View} from '../../../../assets/icon/Meeting22/View.svg';
+import View from '../../../../assets/icon/Meeting22/View.svg';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { getchattingRoomList } from 'api/Chatting/GetChattingRoomList';
-import { ChattingRoomType } from 'recoil/type/Chatting/ChattingRoomListType';
+import { ChattingRoomType } from 'recoilStores/type/Chatting/ChattingRoomListType';
 import { connectWebSocket, disconnectWebSocket } from 'api/Chatting/WebSocketchat';
-import { ourteamIds } from 'recoil/state/ourTeamIds';
+import { ourteamIds } from 'recoilStores/state/ourTeamIds';
 import { useRecoilValue } from 'recoil';
 import { track } from '@amplitude/analytics-browser';
 

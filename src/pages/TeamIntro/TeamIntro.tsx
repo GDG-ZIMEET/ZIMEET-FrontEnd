@@ -10,14 +10,14 @@ import Heart from 'components/TeamIntro/Button/Heart/Heart';
 import SendQuestion from 'components/TeamIntro/Modal/SendQuestion/SendQuestion';
 import Send from 'components/TeamIntro/Modal/Send/Send'
 import SentHiButton from 'components/TeamIntro/Button/SentHiButton/SentHiButton';
-import { TeamData, User } from 'recoil/type/Meeting/TeamDetail';
+import { TeamData, User } from 'recoilStores/type/Meeting/TeamDetail';
 import { getTeamDetail } from 'api/Meeting/GetTeamDetail';
 import AcceptHiModal from "components/Chatting/ReceiveHi/Modal/AcceptHiModal/AcceptHiModal";
 import AcceptedHiModal from "components/Chatting/ReceiveHi/Modal/AcceptedHiModal/AcceptedHiModal";
 import RefuseHiModal from "components/Chatting/ReceiveHi/Modal/RefuseHiModal/RefuseHiModal";
 import RefusedHiModal from "components/Chatting/ReceiveHi/Modal/RefusedHiModal/RefusedHiModal";
 import patchrefuseHi from 'api/Hi/PatchrefuseHi';
-import { ourteamIds } from 'recoil/state/ourTeamIds';
+import { ourteamIds } from 'recoilStores/state/ourTeamIds';
 import { getacceptHi } from 'api/Chatting/GetacceptHi';
 import { track } from '@amplitude/analytics-browser';
 

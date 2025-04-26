@@ -1,5 +1,5 @@
 import { publicAxios } from '../axiosConfig';
-import { BoothsResponse } from '../../recoil/type/booth';
+import { BoothsResponse } from '../../recoilStores/type/booth';
 
 export const Getbooths = async (place: string): Promise<BoothsResponse | null> => {
   try {

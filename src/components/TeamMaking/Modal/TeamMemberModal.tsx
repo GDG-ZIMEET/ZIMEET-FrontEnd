@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './Styles';
 import { getSearchTeamMember } from 'api/TeamMaking/GetSearchTeamMembers';
-import { SearchTeamMemberType } from 'recoil/type/TeamMaking/SearchTeamMember';
+import { SearchTeamMemberType } from 'recoilStores/type/TeamMaking/SearchTeamMember';
 import { mappinggrade } from 'data/SignUpData';
 
 interface TeamMemberModalProps {

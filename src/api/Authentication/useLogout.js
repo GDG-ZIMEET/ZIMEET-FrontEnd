@@ -1,5 +1,5 @@
 import { useResetRecoilState, useSetRecoilState } from "recoil";
-import { authState } from "recoil/state/authState";
+import { authState } from "recoilStores/state/authState";
 import { privateAxios } from "api/axiosConfig"; 
 import { disconnectWebSocket } from "api/Chatting/WebSocketchat";
 

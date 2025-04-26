@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Styles';
 import { getchatUsers } from 'api/Chatting/GetChatUsers';
-import { ChatRoomType } from 'recoil/type/Chatting/ChatRoomUsers';
+import { ChatRoomType } from 'recoilStores/type/Chatting/ChatRoomUsers';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { useNavigate } from 'react-router-dom';
 

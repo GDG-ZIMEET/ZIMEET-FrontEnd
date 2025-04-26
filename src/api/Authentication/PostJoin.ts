@@ -1,5 +1,5 @@
 import { publicAxios } from '../axiosConfig';
-import { SignUpRequestType } from '../../recoil/type/Authentication/JoinType';
+import { SignUpRequestType } from '../../recoilStores/type/Authentication/JoinType';
 
 export interface SignUpResponse {
     status: string;
