@@ -1,5 +1,5 @@
 import { privateAxios } from '../axiosConfig';
-import { SearchTeamMemberResponseType } from '../../recoil/type/TeamMaking/SearchTeamMember';
+import { SearchTeamMemberResponseType } from '../../recoilStores/type/TeamMaking/SearchTeamMember';
 
 
 export const getSearchTeamMember = async (

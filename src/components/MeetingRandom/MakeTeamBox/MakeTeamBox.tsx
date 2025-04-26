@@ -1,7 +1,7 @@
 import React ,{ useEffect } from 'react';
 import * as S from './Styles';
 import { getImageByEmoji, getRandomEmoji } from 'utils/IconMapper';
-import { RandomTeamType } from 'recoil/type/Meeting/RandomNowType';
+import { RandomTeamType } from 'recoilStores/type/Meeting/RandomNowType';
 import Nopeople  from 'assets/icon/emoji/Nopeople.svg';
 import { useNavigate } from "react-router-dom";
 

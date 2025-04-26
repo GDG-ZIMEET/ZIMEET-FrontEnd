@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import * as S from './Styles';
-import { getMessageResponseType } from '../../../../recoil/type/Chatting/MessageType';
-import { authState } from 'recoil/state/authState';
+import { getMessageResponseType } from '../../../../recoilStores/type/Chatting/MessageType';
+import { authState } from 'recoilStores/state/authState';
 import { useRecoilValue } from 'recoil';
 import { getImageByEmoji } from 'utils/IconMapper';
 

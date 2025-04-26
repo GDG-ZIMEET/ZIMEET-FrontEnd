@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { selectedFBState, selectedSpaceState, boothState } from '../../../recoil/state/boothState';
+import { selectedFBState, selectedSpaceState, boothState } from '../../../recoilStores/state/boothState';
 import * as S from './Styles';
 import Booth from './Booth';
 import { Getbooths } from '../../../api/booth/Getbooths';

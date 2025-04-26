@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import Header from 'components/Common/Header/Header/Header';
 import { getuserProfile } from 'api/TeamMaking/GetUserProfile';
-import { UserType } from 'recoil/type/TeamMaking/UserType';
+import { UserType } from 'recoilStores/type/TeamMaking/UserType';
 import { useLocation } from 'react-router-dom';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { track } from '@amplitude/analytics-browser';

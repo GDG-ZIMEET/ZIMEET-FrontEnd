@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import AgeBox from './AgeBox/AgeBox';
 import ProfileDetail from './ProfileDetail/ProfileDetail';
-import { User } from '../../../recoil/type/Meeting/TeamDetail';
+import { User } from '../../../recoilStores/type/Meeting/TeamDetail';
 import { getImageByEmoji } from 'utils/IconMapper';
-import { MyProfileType } from '../../../recoil/type/MyPage/MyProfileType';
-import { TeamMemberWithProfileType } from '../../../recoil/type/TeamMaking/TeamMemberWithProfileType';
+import { MyProfileType } from '../../../recoilStores/type/MyPage/MyProfileType';
+import { TeamMemberWithProfileType } from '../../../recoilStores/type/TeamMaking/TeamMemberWithProfileType';
 import PremiumModal from 'components/TeamIntro/Modal/PremiumModal/PremiumModal';
 import Detail from 'components/TeamIntro/Modal/Detail/Detail';
 import {

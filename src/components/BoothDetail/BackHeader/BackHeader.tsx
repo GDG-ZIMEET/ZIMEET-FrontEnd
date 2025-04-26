@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import * as S from './Styles';
-import { boothDetailState } from '../../../recoil/state/boothState';
+import { boothDetailState } from '../../../recoilStores/state/boothState';
 
 interface BackHeaderProps {
   boothtype?: string;

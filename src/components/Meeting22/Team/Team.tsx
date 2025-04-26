@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import * as S from './Styles';
-import { TeamType } from '../../../recoil/type/Meeting/teamGallery';
+import { TeamType } from '../../../recoilStores/type/Meeting/teamGallery';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { useNavigate } from 'react-router-dom';
 import Toast from '../../../components/Meeting22/Toast/Toast';

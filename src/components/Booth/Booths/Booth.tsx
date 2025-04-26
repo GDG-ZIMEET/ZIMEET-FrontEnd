@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import { getBoothColor, getTextColor } from './boothsData';
-import { Club } from '../../../recoil/type/booth';
+import { Club } from '../../../recoilStores/type/booth';
 
 interface BoothProps {
   booth: Club;

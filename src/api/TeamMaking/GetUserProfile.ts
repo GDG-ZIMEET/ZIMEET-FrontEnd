@@ -1,5 +1,5 @@
 import { privateAxios } from '../axiosConfig';
-import { UserResponseType } from '../../recoil/type/TeamMaking/UserType';
+import { UserResponseType } from '../../recoilStores/type/TeamMaking/UserType';
 
 
 export const getuserProfile = async (

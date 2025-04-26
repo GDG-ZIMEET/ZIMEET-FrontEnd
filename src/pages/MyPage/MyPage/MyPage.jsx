@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { getmyProfile } from 'api/Mypage/GetmyProfile';
 import { useNavigate } from 'react-router-dom';
 import {getImageByEmoji} from 'utils/IconMapper';
-import { authState } from '../../../recoil/state/authState';
+import { authState } from '../../../recoilStores/state/authState';
 import ModalWithdraw from 'components/MyPage/ModalWithdraw/ModalWithdraw';
 import ModalLogout from 'components/MyPage/ModalLogout/ModalLogout';
 import useLoginCheck from 'api/Authentication/useLoginCheck';

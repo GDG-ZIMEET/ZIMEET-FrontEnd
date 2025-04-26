@@ -1,5 +1,5 @@
 import { privateAxios } from '../axiosConfig';
-import { getMessageResponseType } from '../../recoil/type/Chatting/MessageType';
+import { getMessageResponseType } from '../../recoilStores/type/Chatting/MessageType';
 
 export const getMessages = async (
     roomId: number,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './Styles';
 import TeamMemberModal from '../../Modal/TeamMemberModal';
-import { SearchTeamMemberType } from 'recoil/type/TeamMaking/SearchTeamMember';
+import { SearchTeamMemberType } from 'recoilStores/type/TeamMaking/SearchTeamMember';
 
 //친구추가
 interface PeoplePlusButtonProps {

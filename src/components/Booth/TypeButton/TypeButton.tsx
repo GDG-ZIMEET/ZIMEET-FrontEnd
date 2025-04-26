@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { selectedSpaceState } from '../../../recoil/state/boothState';
+import { selectedSpaceState } from '../../../recoilStores/state/boothState';
 import * as S from './Styles';
 import * as amplitude from '@amplitude/analytics-browser';
 

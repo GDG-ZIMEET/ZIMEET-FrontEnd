@@ -2,7 +2,7 @@ import * as S from './Styles';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { joinState } from '../../../../recoil/state/joinState';
+import { joinState } from '../../../../recoilStores/state/joinState';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { majorMap } from '../../../../data/SignUpData';
 import { LogoContainer } from 'components/Authentication/Join/LogoContainer/LogoContainer';

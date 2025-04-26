@@ -1,5 +1,5 @@
 import { privateAxios } from '../axiosConfig';
-import { HiResponseType } from '../../recoil/type/Hi/HiType';
+import { HiResponseType } from '../../recoilStores/type/Hi/HiType';
 
 export const getreceiveHi = async (): Promise<HiResponseType | null> => {
   try {

@@ -11,7 +11,7 @@ import { GetboothDetail } from '../../../api/booth/GetboothDetail';
 import { getPosterComponent } from '../../../utils/ClubPosterMapper';
 import { track } from '@amplitude/analytics-browser';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { boothDetailState } from 'recoil/state/boothState';
+import { boothDetailState } from 'recoilStores/state/boothState';
 
 const BoothDetail: React.FC = () => {
   const { clubId } = useParams<{ clubId: string }>();

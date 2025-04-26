@@ -1,5 +1,5 @@
 import { privateAxios } from '../axiosConfig';
-import { OurTeamResponseType } from 'recoil/type/Meeting/ourTeamType'; 
+import { OurTeamResponseType } from 'recoilStores/type/Meeting/ourTeamType'; 
 
 export const getOurTeam = async (
   teamType: string

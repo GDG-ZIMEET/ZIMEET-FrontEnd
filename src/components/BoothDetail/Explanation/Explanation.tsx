@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import * as S from './Styles';
-import { boothDetailState } from '../../../recoil/state/boothState';
+import { boothDetailState } from '../../../recoilStores/state/boothState';
 
 const Explanation: React.FC = () => {
    const boothDetail = useRecoilValue(boothDetailState);

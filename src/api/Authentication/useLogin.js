@@ -1,5 +1,5 @@
 import { useSetRecoilState } from 'recoil';
-import { authState } from 'recoil/state/authState';
+import { authState } from 'recoilStores/state/authState';
 import { publicAxios } from 'api/axiosConfig';
 import * as amplitude from '@amplitude/analytics-browser';
 

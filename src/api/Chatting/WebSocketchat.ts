@@ -2,7 +2,7 @@ import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import { track } from '@amplitude/analytics-browser';
 
-const baseURL = import.meta.env.REACT_APP_SOCKET_URL;
+const baseURL = import.meta.env.VITE_APP_SOCKET_URL;
 const token = localStorage.getItem('accessToken');
 let stompClient: Client | null = null;
 

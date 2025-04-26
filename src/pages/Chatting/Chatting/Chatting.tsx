@@ -7,10 +7,10 @@ import ChattingBox from '../../../components/Chatting/Chat/ChattingBox/ChattingB
 import ChatInputBox from '../../../components/Chatting/Chat/Input/ChatInputBox';
 import ChatSidebar from '../../../components/Chatting/Chat/Sidebar/ChatSidebar';
 import { getMessages } from '../../../api/Chatting/GetMessage';
-import { getMessageResponseType } from '../../../recoil/type/Chatting/MessageType';
+import { getMessageResponseType } from '../../../recoilStores/type/Chatting/MessageType';
 import { connectWebSocket,sendMessage, disconnectWebSocket } from '../../../api/Chatting/WebSocketchat';
 import { v4 as uuidv4 } from 'uuid';
-import { authState } from 'recoil/state/authState';
+import { authState } from 'recoilStores/state/authState';
 import { deleteuser } from 'api/Chatting/DeleteUser';
 import ExitModal  from 'components/Chatting/ExitModal/ExitModal';
 import { track } from '@amplitude/analytics-browser';

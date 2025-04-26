@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
-import { joinState } from '../../../../recoil/state/joinState';
+import { joinState } from '../../../../recoilStores/state/joinState';
 import { gradeOptions, gradeDisplayOptions } from 'data/SignUpData';
 import { LogoContainer } from 'components/Authentication/Join/LogoContainer/LogoContainer';
 import { checkDuplicateNumber } from 'api/Authentication/checkDuplicateNumber';

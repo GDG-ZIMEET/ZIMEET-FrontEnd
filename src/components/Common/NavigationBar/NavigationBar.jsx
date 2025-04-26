@@ -2,7 +2,7 @@ import * as I from '../../../assets/Icons';
 import * as S from './Styles';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { authState } from '../../../recoil/state/authState.ts';
+import { authState } from '../../../recoilStores/state/authState.ts';
 import { track } from '@amplitude/analytics-browser';
 
 const NavigationBar = () => {
