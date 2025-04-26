@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import HeaderLogo from 'assets/icon/SetList/SetListHeader.svg?react';
-import { colors } from './SetListData';
+import { colors } from '../../data/SetListData';
 
 export const SetListLayout = styled.div`
   background-color: #FFFFFF;
@@ -94,14 +94,14 @@ export const ChangeDay = styled.div`
   align-items: center;
 `;
 
-export const DayButton = styled.button<{ isActive: boolean, isLast: boolean }>`
+export const DayButton = styled.button<{ $isActive: boolean, $isLast: boolean }>`
   width: 50%;
   height: 70%;
   border: none;
-  color: ${({ isActive }) => (isActive ? '#000' : '#F2F2F2')};
+  color: ${({ $isActive }) => ($isActive ? '#000' : '#F2F2F2')};
   font-weight: 500;
   font-size: 14px;
-  border-right: ${({ isLast }: { isLast?: boolean }) => (isLast ? 'none' : '2px solid #F2F2F2')};
+  border-right: ${({ $isLast }) => ($isLast ? 'none' : '2px solid #F2F2F2')};
   background: none;
   cursor: pointer;
 `;
@@ -143,29 +143,124 @@ export const StageTypeText = styled.div`
 
 export const StageListContainer = styled.div`
   width: 100%;  
-  height: 59%;
+  height: 57%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  align-items: flex-start;
+  overflow-y: auto;
+  padding: 2% 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 export const TimeLine = styled.div`
   width: 15%;  
-  height: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const TimeLineText = styled.div`
+  width: 100%;
+  padding: 8% 0;
+  font-size: 12px;
+  font-weight: Regular;
+  color: #D9D9D9;
+  margin-bottom: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
 `;
+
+export const TimeLineIcon = styled.div`
+  width: 40%;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  background-color: #D9D9D9;
+  border-radius: 50%;
+`;
+  
+
+export const Line = styled.div<{ height?: string }>`
+  width: 1px; 
+  height: ${({ height }) => height};
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #D9D9D9 0px,
+    #D9D9D9 8px,
+    transparent 8px,
+    transparent 16px
+  );
+`;
+
+export const TimeWhiteCircle = styled.div`
+  width: 25%;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  border: 3px solid #D9D9D9;
+`;
+
 
 export const StageList = styled.div`
   width: 85%;  
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-top: 7.5%;
+`;
+
+export const StageItem = styled.div<{ $isActive: boolean }>`
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  border-radius: 14px;
+  box-shadow: ${({ $isActive }) => $isActive? '0px 0px 6px #FF6868' : '0px 0px 6px #D9D9D9'};
+`;
+
+export const StageColor = styled.div<{ $stageType: string }>`
+  width: 4%;
   height: 100%;
+  background-color: ${({ $stageType }) => $stageType};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-radius: 14px 0 0 14px;
+`;
+
+export const StageTime = styled.div`
+  width: 40%;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  font-size: 14px;
+  font-weight: Regular;
+  color: #000000;
 `;
+
+export const StageName = styled.div`
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: Regular;
+  color: #000000;
+`;
+
 
 
