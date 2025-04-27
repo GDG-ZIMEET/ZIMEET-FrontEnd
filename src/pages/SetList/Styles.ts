@@ -11,15 +11,15 @@ export const SetListLayout = styled.div`
   font-family: Pretendard, sans-serif;
 `;
 
-export const SetListHeader = styled.div`
+export const SetListHeader = styled.div<{ $stageType: string }>`
   width: 100%;
   height: 20%;
-  background-color: ${colors.other};
+  background-color:  ${({ $stageType }) => $stageType};
   position: relative;
 `;
 
 export const HeaderLogoIcon = styled(HeaderLogo)`
-  margin: 7% 0 0 0;
+  margin: 8.5% 0 0 0;
   width: 65%;
   height: 100%;
   position: absolute;
@@ -37,7 +37,7 @@ export const HeaderInfoContainer = styled.div`
 `;
 
 export const HeaderComponent = styled.div`
-  width: 50%;
+  width: 62%;
   height: 100%;
   padding-left: 3%;
   display: flex;
@@ -47,7 +47,7 @@ export const HeaderComponent = styled.div`
 
 export const DayText = styled.div`
   width: 100%;
-  height: 50%;
+  height: 49%;
   padding-bottom: 3%;
   display: flex;
   justify-content: flex-start; 
@@ -58,19 +58,19 @@ export const DayText = styled.div`
   z-index: 1;
 `;
 
-export const StageTitle = styled.div`
+export const StageTitle = styled.div<{ $fontSize? : string}>`
   width: 100%;
   height: 50%;
   display: flex;
   justify-content: flex-start; 
   align-items: flex-start;
-  font-size: 33px;
+  font-size: ${({ $fontSize }) => ($fontSize ? $fontSize : '53px')};
   font-weight: bold;
   color: #ffffff;
   z-index: 1;
   overflow-wrap: break-word;
   word-break: break-word;
-  white-space: normal;
+  white-space: pre-wrap;
 `;
 
 export const TimeText = styled.div`
@@ -83,7 +83,7 @@ export const TimeText = styled.div`
   font-weight: bold;
   color: #ffffff;
   z-index: 1;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 `;
 
 export const ChangeDay = styled.div`
@@ -135,7 +135,7 @@ export const StageTypeText = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: Medium;
   color: #000000;
   white-space: nowrap;
@@ -221,7 +221,8 @@ export const StageList = styled.div`
 `;
 
 export const StageItem = styled.div<{ $isActive: boolean }>`
-  width: 100%;
+  width: 95%;
+  margin-right: 5%;
   height: 4rem;
   display: flex;
   align-items: center;
@@ -257,9 +258,10 @@ export const StageName = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
-  font-weight: Regular;
+  font-size: 20px;
+  font-weight: SemiBold;
   color: #000000;
+  white-space: nowrap;
 `;
 
 

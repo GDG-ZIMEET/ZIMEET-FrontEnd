@@ -33,18 +33,27 @@ const SetList = () => {
     return currentTime >= start && currentTime <= end;
   };
 
+
+  // 현재 activeDay의 공연중인 stage
+  const currentDayStages = StageList.filter((stage) => stage.Day === activeDay);
+  const currentPerformance = currentDayStages.find((stage) => isCurrentPerformance(stage.time, stage.Day));
+
+  // 만약 현재 진행중인 공연 없으면 첫 번째 공연 기준
+  const headerStage = currentPerformance || currentDayStages[0];
+
+
   return (
     <>
     <NavigationBar />
     <S.SetListLayout>
-      <S.SetListHeader>
+      <S.SetListHeader $stageType={colors[headerStage.stageType as "artist" | "club" | "other" | "event"]}>
         <S.HeaderLogoIcon />
         <S.HeaderInfoContainer>
           <S.HeaderComponent>
-            <S.DayText>DAY 1</S.DayText>
-            <S.StageTitle>Unofficial Club</S.StageTitle>
+            <S.DayText>DAY {activeDay}</S.DayText>
+            <S.StageTitle $fontSize={headerStage?.font}>{headerStage?.name || ''}</S.StageTitle>
           </S.HeaderComponent>
-          <S.TimeText>00:00 ~ 00:00</S.TimeText>
+          <S.TimeText>{headerStage?.time || ''}</S.TimeText>
         </S.HeaderInfoContainer>
       </S.SetListHeader>
       <S.ChangeDay>
