@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as S from './Styles';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
-import { colors,stageTypes  } from '../../data/SetListData';
+import { colors,stageTypes, timelines} from '../../data/SetListData';
 import { StageList } from '../../utils/SetListUtils';
 
 const SetList = () => {
@@ -78,23 +78,18 @@ const SetList = () => {
       </S.StageType>
       <S.StageListContainer>
         <S.TimeLine>
-          <S.TimeLineText>18:00</S.TimeLineText>
-          <S.TimeLineIcon />
-          <S.Line height={'153px'} />
-          <S.TimeWhiteCircle />
-          <S.Line height={'179px'}/>
-          <S.TimeLineText>19:00</S.TimeLineText>
-          <S.TimeLineIcon />
-          <S.Line height={'153px'}/>
-          <S.TimeWhiteCircle />
-          <S.Line height={'100px'}/>
-          <S.TimeLineText>20:00</S.TimeLineText>
-          <S.TimeLineIcon />
-          <S.Line height={'113px'}/>
-          <S.TimeWhiteCircle />
-          <S.Line height={'63px'}/>
-          <S.TimeLineText>21:00</S.TimeLineText>
-          <S.TimeLineIcon />
+          {timelines[activeDay as 1 | 2].map((item, idx) => {
+            if (item.time) {
+              return <S.TimeLineText key={idx}>{item.time}</S.TimeLineText>;
+            } else if (item.icon) {
+              return <S.TimeLineIcon key={idx} />;
+            } else if (item.whiteCircle) {
+              return <S.TimeWhiteCircle key={idx} />;
+            } else if (item.lineHeight) {
+              return <S.Line key={idx} height={item.lineHeight} />;
+            }
+            return null;
+          })}
         </S.TimeLine>
         <S.StageList>
             {StageList.filter((stage) => stage.Day === activeDay).map((stage) => {
