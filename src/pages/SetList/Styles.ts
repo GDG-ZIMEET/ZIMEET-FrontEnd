@@ -20,7 +20,7 @@ export const SetListHeader = styled.div<{ $stageType: string }>`
 
 export const HeaderLogoIcon = styled(HeaderLogo)`
   margin: 8.5% 0 0 0;
-  width: 65%;
+  width: 58%;
   height: 100%;
   position: absolute;
   right: 0;
