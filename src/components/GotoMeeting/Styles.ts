@@ -15,5 +15,8 @@ export const GotoMeetingLayout = styled.div`
 `;
 
 export const ZimeetLogo = styled(I.ZimeetLogo)`
-  width: 45px; `;  
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+`;  
   
