@@ -58,14 +58,11 @@ const SetList = () => {
       </S.SetListHeader>
       <S.ChangeDay>
         {days.map((day, index) => (
-            <S.DayButton
-              key={day}
-              $isActive={activeDay === day}
-              $isLast={index === days.length - 1}
-              onClick={() => setActiveDay(day)}
-            >
+          <S.DayButtonContainer key={day} $isLast={index === days.length - 1}onClick={() => setActiveDay(day)}>
+            <S.DayButton $isActive={activeDay === day}>
               DAY {day}
             </S.DayButton>
+          </S.DayButtonContainer>
           ))}
       </S.ChangeDay>
       <S.StageType>
@@ -79,25 +76,33 @@ const SetList = () => {
       <S.StageListContainer>
         <S.TimeLine>
           {timelines[activeDay as 1 | 2].map((item, idx) => {
-            if (item.time) {
-              return <S.TimeLineText key={idx}>{item.time}</S.TimeLineText>;
-            } else if (item.icon) {
-              return <S.TimeLineIcon key={idx} />;
-            } else if (item.whiteCircle) {
-              return <S.TimeWhiteCircle key={idx} />;
-            } else if (item.lineHeight) {
-              return <S.Line key={idx} height={item.lineHeight} />;
-            }
-            return null;
-          })}
+          if (item.time) {
+            return <S.TimeLineText key={idx}>{item.time}</S.TimeLineText>;
+          } else if (item.icon) {
+            return <S.TimeLineIcon key={idx} />;
+          } else if (item.whiteCircle) {
+            return <S.TimeWhiteCircle key={idx} />;
+          } else if (item.lineHeight) {
+            return <S.Line key={idx} height={item.lineHeight} />;
+          }
+          return null;
+        })}
         </S.TimeLine>
         <S.StageList>
             {StageList.filter((stage) => stage.Day === activeDay).map((stage) => {
               const isActive = isCurrentPerformance(stage.time, stage.Day);
               
+              // 끝난 공연이면 'end' 색으로
+              const isEnded = !isActive && currentTime > new Date(2025, 4, stage.Day === 1 ? 21 : 22, 
+                Number(stage.time.split(' ~ ')[1].split(':')[0]), 
+                Number(stage.time.split(' ~ ')[1].split(':')[1])
+              );
+
+              const colorType = isEnded ? 'end' : stage.stageType;
+
               return (
                 <S.StageItem key={stage.id} $isActive={isActive} >
-                  <S.StageColor $stageType={colors[stage.stageType as "artist" | "club" | "other" | "event"]} />
+                  <S.StageColor $stageType={colors[colorType as "artist" | "club" | "other" | "event"]} />
                   <S.StageTime>{stage.time}</S.StageTime>
                   <S.StageName>{stage.name}</S.StageName>
                 </S.StageItem>

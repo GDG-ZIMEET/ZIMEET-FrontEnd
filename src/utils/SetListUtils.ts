@@ -1,7 +1,9 @@
+//무대 셋리스트 임시 시간표
+
 export const StageList = [
     // Day 1
     { id: 1, Day: 1, time: "18:10 ~ 18:20", name: "Zenprix", stageType: "other", font: "53px" },
-    { id: 2, Day: 1, time: "8:21 ~ 18:25", name: "더블\n에이치", stageType: "other", font: "33px" },
+    { id: 2, Day: 1, time: "18:21 ~ 18:25", name: "더블\n에이치", stageType: "other", font: "33px" },
     { id: 3, Day: 1, time: "18:26 ~ 18:35", name: "Allure", stageType: "other" },
     { id: 4, Day: 1, time: "18:37 ~ 18:45", name: "Unofficial\n club", stageType: "other" , font: "33px"},
     { id: 5, Day: 1, time: "18:46 ~ 18:57", name: "시즌즈", stageType: "other" },
