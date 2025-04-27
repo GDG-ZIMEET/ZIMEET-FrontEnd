@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import HeaderLogo from 'assets/icon/SetList/SetListHeader.svg?react';
-import { colors } from '../../data/SetListData';
 
 export const SetListLayout = styled.div`
   background-color: #FFFFFF;
   top: 0;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -94,16 +94,20 @@ export const ChangeDay = styled.div`
   align-items: center;
 `;
 
-export const DayButton = styled.button<{ $isActive: boolean, $isLast: boolean }>`
+export const DayButtonContainer = styled.button< {$isLast: boolean }>`
   width: 50%;
-  height: 70%;
-  border: none;
-  color: ${({ $isActive }) => ($isActive ? '#000' : '#F2F2F2')};
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-right: ${({ $isLast }) => ($isLast ? 'none' : '2px solid #F2F2F2')};
+`;
+
+export const DayButton = styled.div<{ $isActive: boolean }>`
+  color: ${({ $isActive }) => ($isActive ? '#000' : '#9E9E9E')};
   font-weight: 500;
   font-size: 14px;
-  border-right: ${({ $isLast }) => ($isLast ? 'none' : '2px solid #F2F2F2')};
-  background: none;
-  cursor: pointer;
 `;
 
 
