@@ -61,7 +61,7 @@ const ChatUserdetail = () => {
               <S.PremiumOverlay>
                 <S.PremiumText>
                   <b>지밋+등급</b>이 되면 볼 수 있어요.<br/>
-                  '마이' 탭에서 오직 <b>늘품제에만 1,900원</b>으로!
+                  '마이' 탭에서 오직 <b>아우름제에만 1,900원</b>으로!
                 </S.PremiumText>
               </S.PremiumOverlay>
             ) : (
@@ -75,7 +75,7 @@ const ChatUserdetail = () => {
               <S.PremiumOverlay>
                 <S.PremiumText>
                   <b>지밋+등급</b>이 되면 볼 수 있어요.<br/>
-                  '마이' 탭에서 오직 <b>늘품제에만 1,900원</b>으로!
+                  '마이' 탭에서 오직 <b>아우름제에만 1,900원</b>으로!
                 </S.PremiumText>
               </S.PremiumOverlay>
 

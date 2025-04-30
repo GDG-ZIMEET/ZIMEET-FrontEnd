@@ -94,20 +94,22 @@ export const ChangeDay = styled.div`
   align-items: center;
 `;
 
-export const DayButtonContainer = styled.button< {$isLast: boolean }>`
+export const DayButtonContainer = styled.button`
   width: 50%;
-  height: 100%;
+  height: 200%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border-right: ${({ $isLast }) => ($isLast ? 'none' : '2px solid #F2F2F2')};
 `;
 
-export const DayButton = styled.div<{ $isActive: boolean }>`
+export const DayButton = styled.div<{ $isActive: boolean, $isLast: boolean }>`
   color: ${({ $isActive }) => ($isActive ? '#000' : '#9E9E9E')};
   font-weight: 500;
   font-size: 14px;
+  height: 25%;
+  width: 100%;
+  border-right: ${({ $isLast }) => ($isLast ? 'none' : '2px solid #F2F2F2')};
 `;
 
 

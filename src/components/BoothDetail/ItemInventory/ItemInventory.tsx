@@ -8,7 +8,7 @@ const ItemInventory: React.FC = () => {
 
     return (
         <S.ItemInventoryLayout>
-            <S.ItemInventoryTitle>늘품제 아이템</S.ItemInventoryTitle>
+            <S.ItemInventoryTitle>아우름제 아이템</S.ItemInventoryTitle>
             <S.ItemContainer>
                 {boothDetail?.data.itemList.map((item) => (
                     <S.ItemComponent key={item.itemId}>

@@ -58,8 +58,8 @@ const SetList = () => {
       </S.SetListHeader>
       <S.ChangeDay>
         {days.map((day, index) => (
-          <S.DayButtonContainer key={day} $isLast={index === days.length - 1}onClick={() => setActiveDay(day)}>
-            <S.DayButton $isActive={activeDay === day}>
+          <S.DayButtonContainer key={day} onClick={() => setActiveDay(day)}>
+            <S.DayButton $isActive={activeDay === day} $isLast={index === days.length - 1}>
               DAY {day}
             </S.DayButton>
           </S.DayButtonContainer>

@@ -34,7 +34,8 @@ export const NoTeamsMessageContainer = styled.div`
 `;
 
 export const ZimeetLogo = styled(I.ZimeetLogo)`
-  width: 30%;
+  width: 40%;
+  height: 16%;
   margin-bottom: 5%;
  `;  
  
