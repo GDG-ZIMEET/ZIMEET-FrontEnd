@@ -21,6 +21,7 @@ export const ZimeetContainer = styled.div`
 
 export const Zimeet = styled(I.Zimeet)`
     height: 3%;
+    width: 25%;
     margin: 5% 0 0 5%;
 `;
 
