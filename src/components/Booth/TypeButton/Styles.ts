@@ -42,5 +42,7 @@ export const FrontK = styled(FrontN)``;
 
 export const SSquare = styled(FrontN)``;
 
+export const PlayGroud = styled(FrontN)``;
+
 export const Andrea = styled(FrontN)``;
 

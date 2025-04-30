@@ -12,6 +12,7 @@ import { track } from '@amplitude/analytics-browser';
 
 const Teams: React.FC = () => {
   const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
   const [chattingRoomList, setchattingRoomList] = useState<ChattingRoomType[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const isourteam = useRecoilValue(ourteamIds);
@@ -93,7 +94,7 @@ const Teams: React.FC = () => {
   };
   return (
     <S.TeamComponent>
-      {chattingRoomList === null ? (
+      {!isLoggedIn || chattingRoomList === null ? (
       <S.NoTeamsMessageContainer>
         <S.ZimeetLogo />
         <S.NoTeamsMessage>매력적인 팀을 만들어서 하이를 보내거나, <br /> 받은 하이를 수락하면 채팅방이 열려요!</S.NoTeamsMessage>
