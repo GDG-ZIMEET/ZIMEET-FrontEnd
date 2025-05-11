@@ -74,12 +74,16 @@ export const useFCM = () => {
 
     const removeFCMToken = async () => {
         if (fcmToken) {
-        try {
-            await publicAxios.delete(`/api/user/logout?fcmToken=${fcmToken}`);
-            setFcmToken(null);
-        } catch (error) {
-            console.error('FCM 토큰 제거 실패:', error);
-        }
+            try {
+                await publicAxios.delete('/api/user/logout', {
+                    headers: {
+                        'X-FCM-TOKEN': fcmToken
+                    }
+                });
+                setFcmToken(null);
+            } catch (error) {
+                console.error('FCM 토큰 제거 실패:', error);
+            }
         }
     };
 
