@@ -8,12 +8,20 @@ const FCMTest = () => {
     requestAndSaveToken, 
     removeFCMToken,
     mockRequestAndSaveToken,
-    mockRemoveFCMToken 
+    mockRemoveFCMToken,
+    requestNotificationPermission,
+    checkNotificationPermission
   } = useFCM();
   
   const [notificationTitle, setNotificationTitle] = useState('');
   const [notificationBody, setNotificationBody] = useState('');
   const [isMockMode, setIsMockMode] = useState(false);
+
+  const handleNotificationPermission = async () => {
+    if (checkNotificationPermission()) {
+      await requestNotificationPermission();
+    }
+  };
 
   const sendTestNotification = async () => {
     if (!notificationTitle || !notificationBody) {
@@ -65,7 +73,7 @@ const FCMTest = () => {
 
       <ButtonGroup>
         <Button 
-          onClick={isMockMode ? mockRequestAndSaveToken : requestAndSaveToken}
+          onClick={isMockMode ? mockRequestAndSaveToken : handleNotificationPermission}
           primary>
           푸시 알림 권한 요청
         </Button>

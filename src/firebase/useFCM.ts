@@ -51,24 +51,28 @@ export const useFCM = () => {
 
     const requestAndSaveToken = async () => {
         try {
-        const permission = await Notification.requestPermission();
-        if (permission === 'granted') {
-            const token = await getToken(messaging, {
-                vapidKey: 'BF8vXsYNnmHWvoWgxNhtuDyoqyA8lrFDM7Ld27Sw8MNGYcQ3trdkKapx4-P3XAKKbYj6Kv6q73xxKSASKEAnfBU'
-            });
+            const permission = await Notification.requestPermission();
             
-            setFcmToken(token);
-        
-            await publicAxios.post('/api/fcm/push-agree', {
-                agree: true
-            });
+            if (permission === 'granted') {
+                const token = await getToken(messaging, {
+                    vapidKey: 'BF8vXsYNnmHWvoWgxNhtuDyoqyA8lrFDM7Ld27Sw8MNGYcQ3trdkKapx4-P3XAKKbYj6Kv6q73xxKSASKEAnfBU'
+                });
+                
+                setFcmToken(token);
+            
+                await publicAxios.post('/api/fcm/push-agree', {
+                    agree: true
+                });
 
-            await publicAxios.post('/api/fcm/token', {token});
+                await publicAxios.post('/api/fcm/token', {token});
 
-            return token;
-        }
+                return token;
+            } else if (permission === 'denied') {
+                // 권한이 거부된 경우, 사용자에게 브라우저 설정을 통해 권한을 허용하도록 안내
+                alert('푸시 알림을 받으시려면 브라우저 설정에서 알림 권한을 허용해주세요.');
+            }
         } catch (error) {
-        console.error('FCM 토큰 요청 실패:', error);
+            console.error('FCM 토큰 요청 실패:', error);
         }
     };
 
@@ -101,11 +105,35 @@ export const useFCM = () => {
         }
     }, [isAuthenticated]);
 
+    const checkNotificationPermission = () => {
+        if (Notification.permission === 'denied') {
+            alert('푸시 알림을 받으시려면 브라우저 설정에서 알림 권한을 허용해주세요.');
+            return false;
+        }
+        return true;
+    };
+
+    const requestNotificationPermission = async () => {
+        if (Notification.permission === 'denied') {
+            alert('푸시 알림을 받으시려면 브라우저 설정에서 알림 권한을 허용해주세요.');
+            return false;
+        }
+        if (Notification.permission !== 'granted') {
+            const permission = await Notification.requestPermission();
+            if (permission === 'granted') {
+                return await requestAndSaveToken();
+            }
+        }
+        return false;
+    };
+
     return {
         fcmToken,
         requestAndSaveToken,
         removeFCMToken,
         mockRemoveFCMToken,
-        mockRequestAndSaveToken
+        mockRequestAndSaveToken,
+        checkNotificationPermission,
+        requestNotificationPermission
     };
 };
