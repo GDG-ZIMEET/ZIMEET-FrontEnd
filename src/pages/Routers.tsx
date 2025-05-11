@@ -23,6 +23,7 @@ import TeamIntro from './TeamIntro/TeamIntro';
 import OurTeamIntro from './OurTeamIntro/OurTeamIntro';
 import Notion from './Notion/NotionMain';
 import UserDetail from './Chatting/UserDetail/ChatUserdetail';
+import SetList from './SetList/SetList';
 
 const Routers: React.FC = () => {
   return (
@@ -50,6 +51,7 @@ const Routers: React.FC = () => {
       <Route path="/nonmember-Meeting" element={<Meeting />} />
       <Route path="/teamintro/:teamId" element={<TeamIntro />} />
       <Route path="/ourteamintro" element={<OurTeamIntro />} />
+      <Route path="/setlist" element={<SetList />} />
       {/* Notion */}
       <Route path="/notion/randomMeetingHelp" element={<Notion />} />
       <Route path="/notion/personalInfoPolicy" element={<Notion />} />

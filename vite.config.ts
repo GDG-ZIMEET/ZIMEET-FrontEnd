@@ -5,6 +5,7 @@ import svgr from 'vite-plugin-svgr';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  base: './',
   plugins: [
     react(),
     svgr({
@@ -24,12 +25,12 @@ export default defineConfig({
         start_url: '/',
         icons: [
           {
-            src: '/zimeet_icon.png',
+            src: 'zimeet_icon.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/zimeet_icon.png',
+            src: 'zimeet_icon.png',
             sizes: '512x512',
             type: 'image/png',
           },

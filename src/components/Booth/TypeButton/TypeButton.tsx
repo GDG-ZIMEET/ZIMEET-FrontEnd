@@ -19,6 +19,9 @@ const TypeButton: React.FC = () => {
       case 'A':
         amplitude.track('[클릭]부스_안드레아');
         break;
+      case 'PG':
+        amplitude.track('[클릭]부스_운동장');
+        break;
       case 'F':
         amplitude.track('[클릭]부스_푸드트럭');
         break;
@@ -41,6 +44,11 @@ const TypeButton: React.FC = () => {
           <S.SSquare onClick={() => handleClick('A')} selected={selectedSpace === 'A'}>
             안드레아
           </S.SSquare>
+        </S.TypeComponent>
+        <S.TypeComponent>
+          <S.PlayGroud onClick={() => handleClick('PG')} selected={selectedSpace === 'PG'}>
+            운동장
+          </S.PlayGroud>
         </S.TypeComponent>
         <S.TypeComponent>
           <S.Andrea onClick={() => handleClick('F')} selected={selectedSpace === 'F'}>

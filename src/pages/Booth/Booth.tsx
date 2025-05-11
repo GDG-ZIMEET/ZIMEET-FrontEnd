@@ -38,23 +38,10 @@ const Booth: React.FC = () => {
         <S.BoothLayout>
             <Header />
             <S.BoothContainer> 
-              <S.NextSeasonLayout>
-                <S.NextSeasonTitle>
-                <b>🥳ZI밋 서비스 종료 및 새로운 시작안내🥳</b><br /><br />
-                <S.Zimeettime>
-                    서비스 종료까지 남은시간 <br />
-                    <p>{calculateRemainingTime()}</p>
-                </S.Zimeettime>
-                안녕하세요<br /> ZI밋을 이용해주신 모든 분들께 감사드립니다.<br />
-                3월 31일부로 ZI밋 서비스가 종료됩니다.<br />
-                하지만, 여러분의 많은 관심과 성원 덕분에<br />
-                5월 21일, 아우름제에서<br />
-                더 나은 기능과 서비스로 돌아올 예정입니다!<br />
-                앞으로도 많은 기대와 사랑 부탁드립니다.<br />
-                 감사합니다. 💙
-                </S.NextSeasonTitle>
-                <S.ZimeetLogo />
-              </S.NextSeasonLayout>
+                <TypeButton />
+                <S.ColorType>🟥 연애 / 팅 🟨 이벤트 / 게임 🟩 물품판매 🟦 먹거리</S.ColorType>
+                <S.Explanation>동아리를 <b>길게 눌러</b> 계좌번호를 쉽게 복사해보세요!</S.Explanation>
+                <Booths />
             </S.BoothContainer> 
             <NavigationBar />
             <GotoMeeting />
