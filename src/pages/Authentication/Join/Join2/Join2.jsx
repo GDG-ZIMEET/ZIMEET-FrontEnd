@@ -88,7 +88,7 @@ const Join2 = () => {
         <S.JoinText>닉네임</S.JoinText>
         <S.JoinInput
           type="text"
-          placeholder="나를 표현할 닉네임을 입력해주세요"
+          placeholder="닉네임은 이성에게 보여지니 이름으로 하지 마세요!"
           value={joinData.nickname}
           onChange={handleNicknameChange}
         />

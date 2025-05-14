@@ -270,6 +270,8 @@ export const Hiblack = styled(I.HiIconblack) `
   height: 60%;
 `;
 export const Ticket = styled(I.Ticket) `
+  width: 60%;
+  height: 60%;
 `;
 
 export const MeetingIcons = styled.p`
