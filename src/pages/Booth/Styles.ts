@@ -19,7 +19,7 @@ export const ColorType = styled.div`
   color: #949494;
   font-weight: bold;
   margin: 4% 0 0 3%;
-  height: 2%;
+  height: 1%;
   font-family: 'Pretendard', sans-serif;
 `;
 
