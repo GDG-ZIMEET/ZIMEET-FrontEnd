@@ -33,7 +33,7 @@ const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ isRandomLoading, randomNowDat
          <S.Line2 $isRandomLoading={!isRandomLoading}>랜덤 미팅은 1인 신청으로 빠르게 참여!</S.Line2>
       </S.explainComponent>
       <S.GirlComponent>{isRandomLoading && '여자'}</S.GirlComponent>
-      <S.TeamRow>
+      <S.TeamRow $isRandomLoading={!isRandomLoading}>
         {femaleTeam.map((user, index) => (
           <S.FirstPerson key={`female-${index}`}>
             {isRandomLoading? 
@@ -44,7 +44,7 @@ const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ isRandomLoading, randomNowDat
       </S.TeamRow>
       {isRandomLoading ? <S.LoadingAfter /> :<S.LoadingBefore /> }
       <S.BoyComponent>{isRandomLoading && '남자'}</S.BoyComponent>
-      <S.TeamRow>
+      <S.TeamRow $isRandomLoading={!isRandomLoading}>
         {maleTeam.map((user, index) => (
             <S.FourthPerson key={`male-${index}`}>
               {isRandomLoading? 

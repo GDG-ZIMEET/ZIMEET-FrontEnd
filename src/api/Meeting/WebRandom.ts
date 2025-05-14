@@ -37,7 +37,9 @@ export const connectWebSocketRandom = async () => {
   };
 
 // 참가 요청을 보내는 함수
-const sendMatchingRequest = async (): Promise<{ matchingId: number; userList: any[]; matchingStatus: string } | null> => {
+const sendMatchingRequest = async (
+  wasCanceledRef: React.MutableRefObject<boolean>
+): Promise<{ matchingId: number; userList: any[]; matchingStatus: string } | null> => {
   if (!stompClient) {
     console.error("WebSocket 연결이 없습니다.");
     return null;
@@ -54,14 +56,22 @@ const sendMatchingRequest = async (): Promise<{ matchingId: number; userList: an
 
   let response = await getRandomNow();
   let retryCount = 0;
+  let delay = 1000;
+
     while (!response?.data.matchingId && retryCount < 3) {
-      //console.log(" 매칭 ID를 찾을 수 없음, 재시도 중...");
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      if (wasCanceledRef.current) {
+        //매칭 시도취소 
+        return null;
+      }
+
+      //데이터 가져오기 실패 시 재시도
+      await new Promise((resolve) => setTimeout(resolve, delay));
       response = await getRandomNow();
       retryCount++;
+      delay *= 2;
     }
   if (!response) {
-    //console.error("매칭 데이터를 불러오지 못했습니다.");
+    //매칭요청 실패 
     return null;
   }
   return response.data;
@@ -73,7 +83,7 @@ const sendMatchingRequest = async (): Promise<{ matchingId: number; userList: an
 // 매칭 상태 업데이트 및 구독 함수
 const subscribeToMatching = (matchingId: number, setRandomNowData: (data: any) => void) => {
   if (!stompClient || !stompClient.connected) {
-    //console.error("WebSocket이 연결되지 않음.");
+    //WebSocket이 연결되지 않음
     return;
   }
   // 기존 구독 해제
@@ -91,7 +101,7 @@ const subscribeToMatching = (matchingId: number, setRandomNowData: (data: any) =
 // 매칭 취소 함수 (기존 구독도 해제)
 export const cancelMatching = () => {
   if (!stompClient) {
-    //console.warn("WebSocket이 연결되지 않았습니다.");
+    //WebSocket이 연결되지 않았습니다.
     return;
   }
   
@@ -113,15 +123,21 @@ export const cancelMatching = () => {
 };
 
 // 매칭 프로세스 시작 함수
-export const startMatchingProcess = async ( setRandomNowData : (data: any) => void) => {
+export const startMatchingProcess = async ( 
+  setRandomNowData : (data: any) => void,
+  wasCanceledRef: React.MutableRefObject<boolean>
+) => {
   await connectWebSocketRandom();
   track('[접속]미팅_랜덤_실시간소켓');
   
   // 매칭 참가 요청 후 matchingId 가져오기
-  const matchingdata = await sendMatchingRequest();
-  if (!matchingdata) throw new Error("매칭 ID 없음");
+  const matchingdata = await sendMatchingRequest(wasCanceledRef);
+  if (!matchingdata || wasCanceledRef.current) throw new Error("매칭 실패 또는 취소됨");
 
   setRandomNowData(matchingdata);
   await new Promise((resolve) => setTimeout(resolve, 1500));
-  subscribeToMatching(matchingdata.matchingId, setRandomNowData);
+
+  if (!wasCanceledRef.current) {
+    subscribeToMatching(matchingdata.matchingId, setRandomNowData);
+  }
 };

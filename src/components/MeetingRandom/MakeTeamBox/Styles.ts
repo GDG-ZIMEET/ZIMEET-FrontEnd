@@ -44,11 +44,12 @@ export const GirlComponent = styled.div`
   margin-left: 13%;
   font-weight: bold;
   align-self: flex-start;
+
 `;
 
-export const TeamRow = styled.div`
+export const TeamRow = styled.div<{ $isRandomLoading: boolean }>`
   display: flex;
-  height: 55%;
+  height: ${({ $isRandomLoading }) => ($isRandomLoading ? '45%' : '100%')}; 
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -96,12 +97,12 @@ export const LoadingBefore = styled(I.RandomBefore)`
   margin-top: 2.5%;
   padding: 2% 0 2% 0;
   width: 25%;
-  height: 25%;
+  height: 20%;
 `;
 
 export const LoadingAfter = styled(I.RandomAfter)`
   margin-top: 2.5%;
   padding: 2% 0 2% 0;
   width: 25%;
-  height: 25%;
+  height: 20%;
 `;
