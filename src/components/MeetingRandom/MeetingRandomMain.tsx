@@ -68,8 +68,7 @@ const MeetingRandomMain: React.FC = () => {
     <>
       <MakeTeamBox isRandomLoading={isRandomLoading} randomNowData={randomNowData}/>
       <Help isRandomLoading={!isRandomLoading} onClick={handleHelpClick} />
-      <TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : 무제한!</TicketCount>
-      {/*<TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : {ticket}개</TicketCount>*/}
+      <TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : {ticket}개</TicketCount>
       <JoinRandomMeetingButton isRandomLoading={isRandomLoading} onClick={isRandomLoading ? handleCancel : handleJoinClick}/>
       {isModalOpen && <Modal onClose={handleCloseModal} onConfirm={handleConfirm} ticket={ticket}/>}
     </>

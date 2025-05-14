@@ -23,8 +23,8 @@ const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ isRandomLoading, randomNowDat
   const femaleUsers = randomNowData?.userList.filter(user => user.gender === 'FEMALE');
   const maleUsers = randomNowData?.userList.filter(user => user.gender === 'MALE');
 
-  const femaleTeam = [...(femaleUsers || []), ...Array(3 - (femaleUsers?.length || 0)).fill(null)].slice(0, 3);
-  const maleTeam = [...(maleUsers || []), ...Array(3 - (maleUsers?.length || 0)).fill(null)].slice(0, 3);
+  const femaleTeam = [...(femaleUsers || []), ...Array(3 - (femaleUsers?.length || 0)).fill(null)].slice(0, 2);
+  const maleTeam = [...(maleUsers || []), ...Array(3 - (maleUsers?.length || 0)).fill(null)].slice(0, 2);
 
   return (
     <S.MakeTeamLayout>

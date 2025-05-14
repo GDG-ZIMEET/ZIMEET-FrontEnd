@@ -13,13 +13,11 @@ const MakeTeamBox: React.FC = () => {
       <S.TeamRow>
         <S.FirstPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.FirstPerson>
         <S.SecondPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.SecondPerson>
-        <S.ThirdPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.ThirdPerson>
       </S.TeamRow>
       <S.LoadingBefore />
       <S.TeamRow>
         <S.FourthPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.FourthPerson>
         <S.FifthPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.FifthPerson>
-        <S.SixthPerson><img src={getImageByEmoji(getRandomEmoji())}/></S.SixthPerson>
       </S.TeamRow>
     </S.MakeTeamLayout>
   );
