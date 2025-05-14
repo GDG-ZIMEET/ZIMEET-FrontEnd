@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import MakeTeamBox from './MakeTeamBox/MakeTeamBox';
 import Help from './Help/Help';
 import JoinRandomMeetingButton from './JoinButton/JoinRandomMeetingButton';
@@ -16,6 +16,7 @@ const MeetingRandomMain: React.FC = () => {
   const [ticket, setTicket] = useState<number | null>(null);
   const [randomNowData, setRandomNowData] = useState<RandomTeamType | null>(null);
   const navigate = useNavigate();
+  const wasCanceledRef = useRef(false);
   
   useEffect(() => {
     track('[접속]미팅_랜덤(회원)');
@@ -44,20 +45,28 @@ const MeetingRandomMain: React.FC = () => {
     track('[클릭]미팅_랜덤_참여모달_취소');
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     setIsModalOpen(false);
+    wasCanceledRef.current = false;
     setIsRandomLoading(true);
     track('[클릭]미팅_랜덤_참여모달_참여');
     //실시간 상태 구독
-    startMatchingProcess(setRandomNowData);
-    console.log('startMatchingProcess 실행', randomNowData);
     if (ticket !== null && ticket <= 0) {
       alert('티켓 수가 부족합니다');
       navigate('/mypage');
     }
-  };
+    try {
+      await startMatchingProcess(setRandomNowData, wasCanceledRef);
+    } catch (error) {
+      if (!wasCanceledRef.current) {
+        alert('매칭에 실패했어요 ㅜㅜ. 다시 시도해주세요.');
+      }
+      setIsRandomLoading(false);
+      setRandomNowData(null);
+    }}
 
   const handleCancel = () => {
+    wasCanceledRef.current = true;
     cancelMatching(); // 서버에 취소 요청
     setIsRandomLoading(false); // 로딩 상태 해제
     setRandomNowData(null);
@@ -68,8 +77,7 @@ const MeetingRandomMain: React.FC = () => {
     <>
       <MakeTeamBox isRandomLoading={isRandomLoading} randomNowData={randomNowData}/>
       <Help isRandomLoading={!isRandomLoading} onClick={handleHelpClick} />
-      <TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : 무제한!</TicketCount>
-      {/*<TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : {ticket}개</TicketCount>*/}
+      <TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : {ticket}개</TicketCount>
       <JoinRandomMeetingButton isRandomLoading={isRandomLoading} onClick={isRandomLoading ? handleCancel : handleJoinClick}/>
       {isModalOpen && <Modal onClose={handleCloseModal} onConfirm={handleConfirm} ticket={ticket}/>}
     </>
