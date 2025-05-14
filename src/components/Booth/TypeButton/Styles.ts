@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const TypeLayout = styled.div`
   display: flex;
-  height: 5.5%;
+  height: 5%;
   margin: 2% 0 0 3%; 
   font-family: Pretendard, sans-serif;
 `;
