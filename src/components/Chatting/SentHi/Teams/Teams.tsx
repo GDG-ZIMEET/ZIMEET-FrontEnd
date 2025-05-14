@@ -43,9 +43,10 @@ const Teams: React.FC = () => {
         }
     };
 
+    console.log('sendHiList:', sendHiList);
     return (
         <S.TeamComponent>
-            { sendHiList?.length === 0 ? ( 
+            { sendHiList?.length === 0 || sendHiList === null ? ( 
                 <S.NoTeamsMessageContainer>
                     <S.ZimeetLogo />
                     <S.NoTeamsMessage>아직 보낸 하이가 없네요!<br /> 팀을 만들고 적극적으로 하이를 보내보세요!</S.NoTeamsMessage>

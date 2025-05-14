@@ -53,8 +53,8 @@ export const timelines = {
       { icon: true },
       { lineHeight: '50px' },
       { whiteCircle: true },
-      { time: "22:00" },
       { lineHeight: '40px' },
+      { time: "22:00" },
       { icon: true },
     ],
   };
