@@ -6,7 +6,6 @@ export const IteamLayout = styled.div`
   margin: 3% auto 0 auto;
   border-radius: 0.8rem;
   display: flex;
-  justify-content: center;
   align-items: center;
   background: linear-gradient(to right, #4285F4, #00AA47);
 
@@ -22,8 +21,7 @@ export const IteamLayout = styled.div`
 //아이템 
 
 export const BannerContainer = styled.div`
-  width: 90%;
-  flex: 1; 
+  width: 90%; 
   border-radius: 0.8rem;
   display: flex;
   justify-content: space-around;
@@ -35,7 +33,7 @@ export const BannerTitle = styled.p`
   color: white;
   font-size: 12px;
   line-height: 1.5;
-  margin-right: -5%;
+  margin-left: 3.5%;
   font-family: Pretendard, sans-serif;
   b{
     font-weight: 700;
@@ -49,7 +47,8 @@ export const BannerTitle = styled.p`
 `;
 
 export const BannerPriceWrapper = styled.div`
-  margin-left: 10%;
+  margin-left: auto;
+  margin-right: 4.5%;
 `;
 
 export const OriginPrice = styled.p`
