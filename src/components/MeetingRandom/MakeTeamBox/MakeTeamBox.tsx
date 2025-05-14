@@ -23,8 +23,8 @@ const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ isRandomLoading, randomNowDat
   const femaleUsers = randomNowData?.userList.filter(user => user.gender === 'FEMALE');
   const maleUsers = randomNowData?.userList.filter(user => user.gender === 'MALE');
 
-  const femaleTeam = [...(femaleUsers || []), ...Array(3 - (femaleUsers?.length || 0)).fill(null)].slice(0, 3);
-  const maleTeam = [...(maleUsers || []), ...Array(3 - (maleUsers?.length || 0)).fill(null)].slice(0, 3);
+  const femaleTeam = [...(femaleUsers || []), ...Array(3 - (femaleUsers?.length || 0)).fill(null)].slice(0, 2);
+  const maleTeam = [...(maleUsers || []), ...Array(3 - (maleUsers?.length || 0)).fill(null)].slice(0, 2);
 
   return (
     <S.MakeTeamLayout>
@@ -33,7 +33,7 @@ const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ isRandomLoading, randomNowDat
          <S.Line2 $isRandomLoading={!isRandomLoading}>랜덤 미팅은 1인 신청으로 빠르게 참여!</S.Line2>
       </S.explainComponent>
       <S.GirlComponent>{isRandomLoading && '여자'}</S.GirlComponent>
-      <S.TeamRow>
+      <S.TeamRow $isRandomLoading={!isRandomLoading}>
         {femaleTeam.map((user, index) => (
           <S.FirstPerson key={`female-${index}`}>
             {isRandomLoading? 
@@ -44,7 +44,7 @@ const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({ isRandomLoading, randomNowDat
       </S.TeamRow>
       {isRandomLoading ? <S.LoadingAfter /> :<S.LoadingBefore /> }
       <S.BoyComponent>{isRandomLoading && '남자'}</S.BoyComponent>
-      <S.TeamRow>
+      <S.TeamRow $isRandomLoading={!isRandomLoading}>
         {maleTeam.map((user, index) => (
             <S.FourthPerson key={`male-${index}`}>
               {isRandomLoading? 
