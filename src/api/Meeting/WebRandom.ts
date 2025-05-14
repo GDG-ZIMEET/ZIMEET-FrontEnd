@@ -44,7 +44,6 @@ const sendMatchingRequest = async (): Promise<{ matchingId: number; userList: an
   }
 
   try {
-    console.log("🛠 매칭 참가 요청 실행 중...");
     stompClient.publish({
       destination: "/app/matching/join",
       headers: { Authorization: `Bearer ${token}` },
@@ -54,7 +53,6 @@ const sendMatchingRequest = async (): Promise<{ matchingId: number; userList: an
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   let response = await getRandomNow();
-  console.log("response", response);
   let retryCount = 0;
     while (!response?.data.matchingId && retryCount < 3) {
       //console.log(" 매칭 ID를 찾을 수 없음, 재시도 중...");
@@ -118,12 +116,12 @@ export const cancelMatching = () => {
 export const startMatchingProcess = async ( setRandomNowData : (data: any) => void) => {
   await connectWebSocketRandom();
   track('[접속]미팅_랜덤_실시간소켓');
+  
   // 매칭 참가 요청 후 matchingId 가져오기
   const matchingdata = await sendMatchingRequest();
-  if (matchingdata) {
-    // matchingId를 알게 되면 구독 시작
-    setRandomNowData(matchingdata);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    subscribeToMatching(matchingdata.matchingId , setRandomNowData);
-  }
+  if (!matchingdata) throw new Error("매칭 ID 없음");
+
+  setRandomNowData(matchingdata);
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+  subscribeToMatching(matchingdata.matchingId, setRandomNowData);
 };

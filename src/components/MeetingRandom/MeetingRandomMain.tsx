@@ -44,16 +44,21 @@ const MeetingRandomMain: React.FC = () => {
     track('[클릭]미팅_랜덤_참여모달_취소');
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     setIsModalOpen(false);
     setIsRandomLoading(true);
     track('[클릭]미팅_랜덤_참여모달_참여');
     //실시간 상태 구독
-    startMatchingProcess(setRandomNowData);
-    console.log('startMatchingProcess 실행', randomNowData);
     if (ticket !== null && ticket <= 0) {
       alert('티켓 수가 부족합니다');
       navigate('/mypage');
+    }
+    try {
+      await startMatchingProcess(setRandomNowData);
+    } catch (error) {
+      alert('매칭에 실패했어요 ㅜㅜ. 다시 시도해주세요.');
+      setIsRandomLoading(false);
+      setRandomNowData(null);
     }
   };
 
