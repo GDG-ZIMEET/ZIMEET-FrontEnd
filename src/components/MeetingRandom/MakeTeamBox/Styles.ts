@@ -91,10 +91,14 @@ export const SixthPerson = styled(FirstPerson)`
 
 export const LoadingBefore = styled(I.RandomBefore)`
   margin-top: 2.5%;
-  height: 30%;
+  padding: 2% 0 2% 0;
+  width: 25%;
+  height: 25%;
 `;
 
 export const LoadingAfter = styled(I.RandomAfter)`
   margin-top: 2.5%;
-  height: 30%;
+  padding: 2% 0 2% 0;
+  width: 25%;
+  height: 25%;
 `;
