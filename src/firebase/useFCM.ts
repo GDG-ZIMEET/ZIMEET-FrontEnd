@@ -76,10 +76,6 @@ export const useFCM = () => {
         if (isAuthenticated) {
         const unsubscribe = onMessage(messaging, (payload) => {
             console.log('메시지 수신:', payload);
-            new Notification(payload.notification?.title || '새로운 알림', {
-                body: payload.notification?.body,
-                icon: payload.notification?.icon
-            });
         });
 
         return () => unsubscribe();

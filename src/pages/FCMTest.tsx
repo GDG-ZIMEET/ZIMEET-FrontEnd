@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useFCM } from '../firebase/useFCM';
 import styled from 'styled-components';
 
 const FCMTest = () => {
   const { 
-    fcmToken, 
-    requestAndSaveToken, 
+    fcmToken,
     removeFCMToken,
-    mockRequestAndSaveToken,
-    mockRemoveFCMToken,
     requestNotificationPermission,
-    checkNotificationPermission
+    checkNotificationPermission,
+    getFirebaseTokenOnly,
+    setFcmToken,
   } = useFCM();
   
   const [notificationTitle, setNotificationTitle] = useState('');
   const [notificationBody, setNotificationBody] = useState('');
-  const [isMockMode, setIsMockMode] = useState(false);
 
   const handleNotificationPermission = async () => {
     if (checkNotificationPermission()) {
@@ -38,59 +36,53 @@ const FCMTest = () => {
         }
       };
 
-      if (isMockMode) {
-        console.log('목업 모드: 메시지 전송됨', message);
-        new Notification(message.notification.title, {
-          body: message.notification.body,
-          icon: message.notification.icon
-        });
-      } else {
-        console.log('실제 FCM 메시지 전송 시도:', message);
-        new Notification(message.notification.title, {
-          body: message.notification.body,
-          icon: message.notification.icon
-        });
-      }
+      console.log('FCM 메시지 전송 시도:', message);
+      new Notification(message.notification.title, {
+        body: message.notification.body,
+        icon: message.notification.icon
+      });
     } catch (error) {
       console.error('알림 전송 실패:', error);
       alert('알림 전송에 실패했습니다.');
     }
   };
 
+  // [임시] Firebase 토큰만 받아오는 핸들러
+  const handleGetFirebaseToken = async () => {
+    const token = await getFirebaseTokenOnly();
+    if (token) {
+        setFcmToken(token);  // UI에 표시하기 위해 토큰 저장
+    }
+  };
+
   return (
     <TestContainer>
       <h2>FCM 푸시 알림 테스트</h2>
-      
-      <ModeSwitch>
-        <label>
-          <input
-            type="checkbox"
-            checked={isMockMode}
-            onChange={(e) => setIsMockMode(e.target.checked)}/>
-          목업 모드
-        </label>
-      </ModeSwitch>
 
       <ButtonGroup>
         <Button 
-          onClick={isMockMode ? mockRequestAndSaveToken : handleNotificationPermission}
+          onClick={handleNotificationPermission}
           primary>
           푸시 알림 권한 요청
         </Button>
         
         <Button 
-          onClick={isMockMode ? mockRemoveFCMToken : removeFCMToken}
+          onClick={removeFCMToken}
           secondary>
           FCM 토큰 제거
         </Button>
       </ButtonGroup>
+
+      {/* [임시] Firebase 토큰만 받아오는 버튼 */}
+      <Button onClick={handleGetFirebaseToken} primary>
+        Firebase 토큰만 받기
+      </Button>
 
       {fcmToken && (
         <TokenContainer>
           <h3>FCM 토큰:</h3>
           <TokenBox>{fcmToken}</TokenBox>
           <TokenInfo>
-            {isMockMode ? '(목업 토큰)' : '(실제 FCM 토큰)'}
           </TokenInfo>
         </TokenContainer>
       )}
@@ -121,22 +113,6 @@ const TestContainer = styled.div`
   margin: 0 auto;
 `;
 
-const ModeSwitch = styled.div`
-  margin: 20px 0;
-  padding: 10px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  
-  label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-  }
-`;
-
 const ButtonGroup = styled.div`
   display: flex;
   gap: 10px;
@@ -159,10 +135,9 @@ const TokenBox = styled.pre`
   border: 1px solid #ddd;
 `;
 
-const TokenInfo = styled.div`
-  margin-top: 8px;
-  font-size: 12px;
-  color: #666;
+const TokenInfo = styled.p`
+  font-size: 0.8em;
+  color: #6c757d;
 `;
 
 const TestForm = styled.div`
