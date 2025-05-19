@@ -92,7 +92,7 @@ const Teams: React.FC = () => {
     const formattedTimeNotToday = `${hours}:${formattedMinutes}`;
     return isToday ? formattedTime : `${date.getMonth() + 1}/${date.getDate()} ${formattedTimeNotToday}`;
   };
-  
+
   return (
     <S.TeamComponent>
       {!isLoggedIn || chattingRoomList?.length === 0 ? (

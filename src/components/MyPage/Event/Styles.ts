@@ -9,6 +9,7 @@ export const EventContainer = styled.div`
   background-color: black;
   border-radius: 0.8rem;
   display: flex;
+  justify-content: center;
   align-items: center;
 
   @media (max-width: 768px) {
