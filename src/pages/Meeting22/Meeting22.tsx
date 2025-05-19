@@ -9,11 +9,12 @@ import TeamBox from '../../components/Meeting22/TeamBox/TeamBox';
 import LoginPopUp from '../../components/Meeting22/LoginPopUp/LoginPopUp'; 
 import { getTeamGallery } from 'api/Meeting/GetTeamGallery';
 import { getOurTeam } from '../../api/Meeting/GetourTeam';
-import { NonLoginDataTwoToTwo, NonLoginDataThreeToThree } from '../../data/NonLoginData';
+import { NonLoginDataTwoToTwo, NonLoginDataThreeToThree, NonLoginDataOneToOne } from '../../data/NonLoginData';
 import { OurTeamType } from '../../recoilStores/type/Meeting/ourTeamType';
 import MeetingRandomMain from '../../components/MeetingRandom/MeetingRandomMain';
 import { ourteamIds } from '../../recoilStores/state/ourTeamIds';
 import NonLogInMeeting from '../../pages/NonMember/Meeting/Meeting';
+import { getOnetoOneGallery } from 'api/Meeting/GetOneToOneGallery';
 import { track } from '@amplitude/analytics-browser';
 
 const Meeting22 = () => {
@@ -29,14 +30,21 @@ const Meeting22 = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        if (isLoggedIn && teamType !== 'Random') {
+        if (isLoggedIn && teamType === 'TWO_TO_TWO') {
           const data = await getTeamGallery(teamType, 0);
           setTeamGalleryData(data?.data.teamList || []);
-        } else {
+        } 
+        else if (isLoggedIn && teamType === 'ONE_TO_ONE') {
+          const data = await getOnetoOneGallery(0);
+          setTeamGalleryData(data?.data.userList || []);
+        }
+        else {
           if (teamType === 'TWO_TO_TWO') {
             setTeamGalleryData(NonLoginDataTwoToTwo);
           } else if (teamType === 'THREE_TO_THREE') {
             setTeamGalleryData(NonLoginDataThreeToThree);
+          } else if (teamType === 'ONE_TO_ONE') {
+            setTeamGalleryData(NonLoginDataOneToOne);  
           }
         }
       } catch (error) {
