@@ -1,11 +1,11 @@
 export interface UserType {
     userId: number;
-    emoji: string[];
+    emoji: string;
     name: string;
     verification: number;
-    major: string[];
+    major: string;
     age: number;
-    music: string[];
+    music: string;
   }
   
   export interface OnetoOneGalleryResponseType {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
@@ -12,19 +12,23 @@ import { getOurTeam } from '../../api/Meeting/GetourTeam';
 import { NonLoginDataTwoToTwo, NonLoginDataThreeToThree, NonLoginDataOneToOne } from '../../data/NonLoginData';
 import { OurTeamType } from '../../recoilStores/type/Meeting/ourTeamType';
 import MeetingRandomMain from '../../components/MeetingRandom/MeetingRandomMain';
-import { ourteamIds } from '../../recoilStores/state/ourTeamIds';
 import NonLogInMeeting from '../../pages/NonMember/Meeting/Meeting';
 import { getOnetoOneGallery } from 'api/Meeting/GetOneToOneGallery';
+import { getmyProfile } from 'api/Meeting/GetMyprofile';
+import { MyProfileType } from 'recoilStores/type/Meeting/MyProfile';
+import UserBox from '../../components/Meeting22/TeamBox/UserBox';
+import { MyProfileState } from '../../recoilStores/state/Meeting/MyProfileState';
 import { track } from '@amplitude/analytics-browser';
 
 const Meeting22 = () => {
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
   const [teamGalleryData, setTeamGalleryData] = useState<any | null>(null);
-  const [teamType, setTeamType] = useState<string>('TWO_TO_TWO');
+  const [UserGalleryData, setUserGalleryData] = useState<any | null>(null);
+  const [teamType, setTeamType] = useState<string>('ONE_TO_ONE');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ourTeamData, setOurTeamData] = useState<OurTeamType | null>(null);
-  const [teamIds, setTeamIds ] = useRecoilState(ourteamIds);
+  const [myProfileData, setMyProfileData] = useRecoilState<MyProfileType | null>(MyProfileState);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +40,7 @@ const Meeting22 = () => {
         } 
         else if (isLoggedIn && teamType === 'ONE_TO_ONE') {
           const data = await getOnetoOneGallery(0);
-          setTeamGalleryData(data?.data.userList || []);
+          setUserGalleryData(data?.data.userList || []);
         }
         else {
           if (teamType === 'TWO_TO_TWO') {
@@ -56,19 +60,13 @@ const Meeting22 = () => {
 
     const fetchOurTeamData = async () => {
       try {
-        if (isLoggedIn && teamType !== 'Random') {
+        if (isLoggedIn && teamType === 'ONE_TO_ONE'){
+          const data = await getmyProfile();
+          setMyProfileData(data?.data || null);
+        }
+        else if (isLoggedIn && teamType !== 'Random') {
           const response = await getOurTeam(teamType);
           setOurTeamData(response?.data || null);
-          setTeamIds((prev) => {
-            if (!response?.data) return prev;
-            const newTeamIds: number[] = prev ? [...prev] : [0, 0];
-            if (teamType === 'TWO_TO_TWO') {
-              newTeamIds[0] = response.data.teamId;
-            } else if (teamType === 'THREE_TO_THREE') {
-              newTeamIds[1] = response.data.teamId;
-            }
-            return newTeamIds;
-          });
         } else {
           if (teamType === 'TWO_TO_TWO') {
             setOurTeamData(null);
@@ -103,13 +101,14 @@ const Meeting22 = () => {
       <S.Meeting22Container>
           {teamType !== 'Random' ? (
           <>
-            <MakeTeam teamType={teamType} ourTeamData={ourTeamData} />
-            {isLoading ? (
-            <S.LoadingContainer />
-            ) : (
-            <TeamBox teamData={teamGalleryData || []} ourTeamData={ourTeamData} teamType={teamType} />
-            )}
-          </>
+          <MakeTeam teamType={teamType} ourTeamData={ourTeamData} myProfileData={myProfileData} />
+          {isLoading
+            ? <S.LoadingContainer />
+            : teamType === 'ONE_TO_ONE'
+              ? <UserBox userData={UserGalleryData} teamType={teamType} />
+              : <TeamBox teamData={teamGalleryData} ourTeamData={ourTeamData} teamType={teamType} />
+          }
+        </>
           ) : (
           isLoggedIn ? <MeetingRandomMain /> : <NonLogInMeeting />
           )}

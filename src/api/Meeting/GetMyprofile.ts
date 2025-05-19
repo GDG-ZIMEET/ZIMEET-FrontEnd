@@ -1,18 +1,12 @@
 import { privateAxios } from '../axiosConfig';
-import { OurTeamResponseType } from 'recoilStores/type/Meeting/ourTeamType'; 
+import { MyProfileResponseType } from 'recoilStores/type/Meeting/MyProfile';
 
-export const getmyProfile = async (
-  teamType: string
-): Promise<OurTeamResponseType | null> => {
+export const getmyProfile = async (): Promise<MyProfileResponseType | null> => {
   try {
-    const { data } = await privateAxios.get<OurTeamResponseType>('/meeting/myTeam', {
-      params: {
-        teamType  
-      },
-    });
+    const { data } = await privateAxios.get<MyProfileResponseType>('/meeting/myProfile');
     return data; 
   } catch (error) {
-    console.error('Error fetching team gallery data:', error);
+    console.error('Error fetching my profile data', error);
     return null; 
   }
 };
