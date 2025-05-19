@@ -7,7 +7,7 @@ import { getImageByEmoji } from 'utils/IconMapper';
 import { MyProfileType } from 'recoilStores/type/Meeting/MyProfile';
 import { track } from '@amplitude/analytics-browser';
 import patchJoin1to1 from 'api/Meeting/PatchJoin1to1';
-import { a } from 'framer-motion/dist/types.d-B50aGbjN';
+import { getmyProfile } from 'api/Meeting/GetMyprofile';
 import { useRecoilState } from 'recoil';
 import { MyProfileState } from 'recoilStores/state/Meeting/MyProfileState';
 
@@ -39,11 +39,17 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ ourTeamData, teamType }) => {
 
   //1대1 참여
   const handleJoin1to1 = async () => {
-    const response = await patchJoin1to1({ status: 'ACTIVE' });
-    if (response?.data) {
-      setMyProfileData(response.data);
-      track('[클릭]미팅_1대1참여');
-    } else {
+    try {
+      const response = await patchJoin1to1({ status: 'ACTIVE' });
+      if (response.code !== 'COMMON200') {
+        alert('1대1 참여를 못했어요 ㅜ 다시 시도해주세요.');
+        return;
+      }
+
+      const profileRes = await getmyProfile();
+      setMyProfileData(profileRes?.data ?? null);
+      track('[클릭]미팅_1대1참여하기');
+    } catch (error) {
       alert('1대1 참여를 못했어요 ㅜ.ㅜ 다시 시도해주세요');
     }
   };
