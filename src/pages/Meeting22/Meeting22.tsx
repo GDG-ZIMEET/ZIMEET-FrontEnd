@@ -4,12 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import TypeButton from '../../components/Meeting22/TypeButton/TypeButton';
-import MakeTeam from '../../components/Meeting22/MakeTeam/MakeTeam'; 
+import MakeTeam from '../../components/Meeting22/MakeTeam/MakeTeam';
 import TeamBox from '../../components/Meeting22/TeamBox/TeamBox';
-import LoginPopUp from '../../components/Meeting22/LoginPopUp/LoginPopUp'; 
+import LoginPopUp from '../../components/Meeting22/LoginPopUp/LoginPopUp';
 import { getTeamGallery } from 'api/Meeting/GetTeamGallery';
 import { getOurTeam } from '../../api/Meeting/GetourTeam';
-import { NonLoginDataTwoToTwo, NonLoginDataThreeToThree, NonLoginDataOneToOne } from '../../data/NonLoginData';
+import {
+  NonLoginDataTwoToTwo,
+  NonLoginDataThreeToThree,
+  NonLoginDataOneToOne,
+} from '../../data/NonLoginData';
 import { OurTeamType } from '../../recoilStores/type/Meeting/ourTeamType';
 import MeetingRandomMain from '../../components/MeetingRandom/MeetingRandomMain';
 import NonLogInMeeting from '../../pages/NonMember/Meeting/Meeting';
@@ -28,8 +32,9 @@ const Meeting22 = () => {
   const [teamType, setTeamType] = useState<string>('ONE_TO_ONE');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ourTeamData, setOurTeamData] = useState<OurTeamType | null>(null);
-  const [myProfileData, setMyProfileData] = useRecoilState<MyProfileType | null>(MyProfileState);
-  
+  const [myProfileData, setMyProfileData] =
+    useRecoilState<MyProfileType | null>(MyProfileState);
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -37,18 +42,16 @@ const Meeting22 = () => {
         if (isLoggedIn && teamType === 'TWO_TO_TWO') {
           const data = await getTeamGallery(teamType, 0);
           setTeamGalleryData(data?.data.teamList || []);
-        } 
-        else if (isLoggedIn && teamType === 'ONE_TO_ONE') {
+        } else if (isLoggedIn && teamType === 'ONE_TO_ONE') {
           const data = await getOnetoOneGallery(0);
           setUserGalleryData(data?.data.userList || []);
-        }
-        else {
+        } else {
           if (teamType === 'TWO_TO_TWO') {
             setTeamGalleryData(NonLoginDataTwoToTwo);
           } else if (teamType === 'THREE_TO_THREE') {
             setTeamGalleryData(NonLoginDataThreeToThree);
           } else if (teamType === 'ONE_TO_ONE') {
-            setTeamGalleryData(NonLoginDataOneToOne);  
+            setTeamGalleryData(NonLoginDataOneToOne);
           }
         }
       } catch (error) {
@@ -60,11 +63,10 @@ const Meeting22 = () => {
 
     const fetchOurTeamData = async () => {
       try {
-        if (isLoggedIn && teamType === 'ONE_TO_ONE'){
+        if (isLoggedIn && teamType === 'ONE_TO_ONE') {
           const data = await getmyProfile();
           setMyProfileData(data?.data || null);
-        }
-        else if (isLoggedIn && teamType !== 'Random') {
+        } else if (isLoggedIn && teamType !== 'Random') {
           const response = await getOurTeam(teamType);
           setOurTeamData(response?.data || null);
         } else {
@@ -75,45 +77,51 @@ const Meeting22 = () => {
           }
         }
       } catch (error: any) {
-          console.error("❌ 우리팀 데이터 가져오기 실패:", error);
-          setOurTeamData(null);}
-        
+        console.error('❌ 우리팀 데이터 가져오기 실패:', error);
+        setOurTeamData(null);
+      }
     };
 
     fetchData();
     fetchOurTeamData();
   }, [teamType, isLoggedIn]);
 
-  
   const handleLogin = () => {
     navigate('/login');
   };
 
   return (
-    <>  
+    <>
       <NavigationBar />
       {!isLoggedIn && teamType !== 'Random' && (
-      <LoginPopUp onClose={handleLogin} />
+        <LoginPopUp onClose={handleLogin} />
       )}
       <S.Meeting22Layout>
-      <S.Meeting22Title>팀 갤러리</S.Meeting22Title>
-      <TypeButton setSelectedTeamType={setTeamType} />
-      <S.Meeting22Container>
+        <S.Meeting22Title>팀 갤러리</S.Meeting22Title>
+        <TypeButton setSelectedTeamType={setTeamType} />
+        <S.Meeting22Container>
           {teamType !== 'Random' ? (
-          <>
-          <MakeTeam teamType={teamType} ourTeamData={ourTeamData} myProfileData={myProfileData} />
-          {isLoading
-            ? <S.LoadingContainer />
-            : teamType === 'ONE_TO_ONE'
-              ? <UserBox userData={UserGalleryData} teamType={teamType} />
-              : <TeamBox teamData={teamGalleryData} ourTeamData={ourTeamData} teamType={teamType} />
-          }
-        </>
+            <>
+              <MakeTeam teamType={teamType} ourTeamData={ourTeamData} />
+              {isLoading ? (
+                <S.LoadingContainer />
+              ) : teamType === 'ONE_TO_ONE' ? (
+                <UserBox userData={UserGalleryData} teamType={teamType} />
+              ) : (
+                <TeamBox
+                  teamData={teamGalleryData}
+                  ourTeamData={ourTeamData}
+                  teamType={teamType}
+                />
+              )}
+            </>
+          ) : isLoggedIn ? (
+            <MeetingRandomMain />
           ) : (
-          isLoggedIn ? <MeetingRandomMain /> : <NonLogInMeeting />
+            <NonLogInMeeting />
           )}
-      </S.Meeting22Container>
-      </S.Meeting22Layout>  
+        </S.Meeting22Container>
+      </S.Meeting22Layout>
     </>
   );
 };

@@ -25,7 +25,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ userData, teamType }) => {
   
   const isVerified = userData.verification === 1;
 
-  console.log('userData', myProfileState);
   const handleUserClick = () => {
     if (myProfileState === null) {
       setIsToastOpen(true);
