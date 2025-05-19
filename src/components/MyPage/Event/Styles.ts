@@ -22,15 +22,12 @@ export const EventContainer = styled.div`
 
 export const EventLogo = styled.div`
   width: 15%;
+  margin-left: 3.5%;
   margin-right: 3.5%;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 export const ZimeetLogo = styled(I.ZimeetLogo) `
-  width: 12%;
+  width: 100%;
   height: 100%;
 `;
 
@@ -59,4 +56,6 @@ export const EventText = styled.div`
 `;
 export const MoveBtn = styled(NextWhite)`
   margin-bottom: 7%;
+  margin-left: auto;
+  margin-right: 4%;
 `;

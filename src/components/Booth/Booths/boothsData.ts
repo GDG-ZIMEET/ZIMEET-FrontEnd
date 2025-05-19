@@ -5,7 +5,7 @@ export const getBoothColor = (category: string) => {
     'GOODS': 'rgba(0, 128, 0, 0.1)',
     'EVENT': 'rgba(249, 171, 0, 0.2)',
   };
-  return categoryColors[category] || 'gray';
+  return categoryColors[category] || '#fff';
 };
 
 export const getTextColor = (category: string) => {
@@ -15,5 +15,5 @@ export const getTextColor = (category: string) => {
     'GOODS': 'green',
     'EVENT': '#f9ab00',
   };
-  return textColors[category] || 'black';
+  return textColors[category] || '#fff';
 };

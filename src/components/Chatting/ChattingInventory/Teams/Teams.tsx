@@ -92,9 +92,10 @@ const Teams: React.FC = () => {
     const formattedTimeNotToday = `${hours}:${formattedMinutes}`;
     return isToday ? formattedTime : `${date.getMonth() + 1}/${date.getDate()} ${formattedTimeNotToday}`;
   };
+
   return (
     <S.TeamComponent>
-      {!isLoggedIn || chattingRoomList === null ? (
+      {!isLoggedIn || chattingRoomList?.length === 0 ? (
       <S.NoTeamsMessageContainer>
         <S.ZimeetLogo />
         <S.NoTeamsMessage>매력적인 팀을 만들어서 하이를 보내거나, <br /> 받은 하이를 수락하면 채팅방이 열려요!</S.NoTeamsMessage>

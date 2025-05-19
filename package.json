@@ -27,6 +27,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "preinstall": "npx only-allow pnpm", 
     "preview": "vite preview"
   },
   "eslintConfig": {

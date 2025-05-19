@@ -8,12 +8,7 @@ export const boothState = atom<Club[]>({
 
 export const selectedSpaceState = atom<string>({
     key: 'selectedSpaceState',
-    default: 'S_LEFT',
-});
-
-export const selectedFBState = atom<string>({
-    key: 'selectedFBState',
-    default: 'front',
+    default: 'A', // 기본값을 'A'로 설정
 });
 
 //부스 상세정보

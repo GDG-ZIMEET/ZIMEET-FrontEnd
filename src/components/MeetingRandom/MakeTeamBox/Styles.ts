@@ -41,21 +41,25 @@ export const GirlComponent = styled.div`
   font-size: 15px;
   color: #000000;
   margin-bottom: 2%;
+  margin-left: 13%;
   font-weight: bold;
   align-self: flex-start;
+
 `;
 
-export const TeamRow = styled.div`
+export const TeamRow = styled.div<{ $isRandomLoading: boolean }>`
   display: flex;
-  height: 55%;
+  height: ${({ $isRandomLoading }) => ($isRandomLoading ? '45%' : '100%')}; 
   width: 100%;
-  justify-content: space-between; 
+  align-items: center;
+  justify-content: center;
 `;
 
 export const BoyComponent = styled.div`
   font-size: 15px;
   color: #000000;
   margin-bottom: 2%;
+  margin-left: 13%;
   font-weight: bold;
   align-self: flex-start;
 `;
@@ -63,8 +67,8 @@ export const BoyComponent = styled.div`
 export const FirstPerson = styled.div`
   font-size: 40px;
   background-color: #F2F2F2;
-  height: 100%; 
-  flex: 1; 
+  width: 35%;
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,10 +95,14 @@ export const SixthPerson = styled(FirstPerson)`
 
 export const LoadingBefore = styled(I.RandomBefore)`
   margin-top: 2.5%;
-  height: 30%;
+  padding: 2% 0 2% 0;
+  width: 25%;
+  height: 20%;
 `;
 
 export const LoadingAfter = styled(I.RandomAfter)`
   margin-top: 2.5%;
-  height: 30%;
+  padding: 2% 0 2% 0;
+  width: 25%;
+  height: 20%;
 `;
