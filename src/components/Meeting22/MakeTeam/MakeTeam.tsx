@@ -47,8 +47,8 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ ourTeamData, teamType }) => {
       }
 
       const profileRes = await getmyProfile();
-      console.log('profileRes', profileRes);
       setMyProfileData(profileRes?.data ?? null);
+
       track('[클릭]미팅_1대1참여하기');
     } catch (error) {
       alert('1대1 참여를 못했어요 ㅜ.ㅜ 다시 시도해주세요');
@@ -65,21 +65,6 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ ourTeamData, teamType }) => {
     }
     navigate('/ourteamintro', { state: { teamType } });
   };
-
-  useEffect(() => {
-    if (teamType !== 'ONE_TO_ONE') return;
-
-    const fetchMyProfile = async () => {
-      try {
-        const profileRes = await getmyProfile();
-        setMyProfileData(profileRes?.data ?? null);
-      } catch (error) {
-        console.error('Error fetching my profile:', error);
-      }
-    };
-
-    fetchMyProfile();
-  }, [teamType, setMyProfileData]);
 
   return (
     <S.CreateTeamLayOut>

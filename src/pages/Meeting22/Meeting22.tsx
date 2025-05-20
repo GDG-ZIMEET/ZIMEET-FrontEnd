@@ -65,7 +65,7 @@ const Meeting22 = () => {
       try {
         if (isLoggedIn && teamType === 'ONE_TO_ONE') {
           const data = await getmyProfile();
-          setMyProfileData(data ?? null);
+          setMyProfileData(data?.data ?? null);
         } else if (isLoggedIn && teamType !== 'Random') {
           const response = await getOurTeam(teamType);
           setOurTeamData(response?.data || null);
@@ -99,7 +99,7 @@ const Meeting22 = () => {
         <LoginPopUp onClose={handleLogin} />
       )}
       <S.Meeting22Layout>
-        <S.Meeting22Title>팀 갤러리</S.Meeting22Title>
+        <S.Meeting22Title>미팅</S.Meeting22Title>
         <TypeButton setSelectedTeamType={setTeamType} />
         <S.Meeting22Container>
           {teamType !== 'Random' ? (

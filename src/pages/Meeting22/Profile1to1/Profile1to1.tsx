@@ -93,8 +93,7 @@ const Profile1to1 = () => {
       }
 
       const requestData = {
-        toId: 1,
-        // toId: userProfile?.userId,
+        toId: userProfile?.userId,
         fromId: MyProfile?.userId,
       };
 
@@ -130,8 +129,7 @@ const Profile1to1 = () => {
       }
       const requestData = {
         toId: MyProfile?.userId,
-        fromId: 1,
-        // fromId: userProfile?.userId
+        fromId: userProfile?.userId,
         type: 'USER',
       };
 
@@ -146,7 +144,6 @@ const Profile1to1 = () => {
     setIsRefusedModalOpen(false);
     navigate('/receiveHi');
   };
-  console.log('userProfile', userProfile);
   //유저 프로필
   useEffect(() => {
     track('[접속]미팅_1대1참여');
@@ -191,7 +188,7 @@ const Profile1to1 = () => {
           </S.Avatar>
           <S.UserInfo $isMusic={false}>
             <b>{displayedProfile.nickname}</b> | {displayedProfile.age}세 (
-            {displayedProfile.studentNumber}학번)
+            {displayedProfile.studentNumber?.slice(2, 4)}학번)
           </S.UserInfo>
           <S.UserInfo $isMusic={false}>{displayedProfile.major}</S.UserInfo>
           <S.MusicContainer>
@@ -285,7 +282,7 @@ const Profile1to1 = () => {
         <SendQuestion
           onClose={closeModal} //하이보내겠습니까? 모달 닫기
           onConfirm={confirmModal} //하이보내기 완료모달열기
-          usernickName={userProfile?.nickname || ''}
+          user={userProfile || ''}
         />
       )}
 

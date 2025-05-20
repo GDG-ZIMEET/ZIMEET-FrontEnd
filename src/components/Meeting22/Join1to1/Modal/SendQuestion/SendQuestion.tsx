@@ -5,17 +5,18 @@ import { postsendHi } from '../../../../../api/Hi/PostsendHi';
 import { useRecoilValue } from 'recoil';
 import { track } from '@amplitude/analytics-browser';
 import { MyProfileState } from '../../../../../recoilStores/state/Meeting/MyProfileState';
+import { UserData } from 'recoilStores/type/Meeting/UserDetail';
 
 interface SendQuestionProps {
   onClose: () => void;
   onConfirm: () => void;
-  usernickName: string;
+  user: UserData;
 }
 
 const SendQuestion: React.FC<SendQuestionProps> = ({
   onClose,
   onConfirm,
-  usernickName,
+  user,
 }) => {
   const [hiCount, setHiCount] = useState(0);
   const myProfile = useRecoilValue(MyProfileState);
@@ -37,14 +38,12 @@ const SendQuestion: React.FC<SendQuestionProps> = ({
     fetchHiCount();
     track('[접속]미팅_유저_하이보내기');
   });
-
   const sendHi = async () => {
     try {
       if (myProfile) {
-        const fromId = 2;
-        const sendHiresponse = await postsendHi({
-          toId: myProfile?.userId ?? 0,
-          fromId: fromId,
+        await postsendHi({
+          toId: user.userId,
+          fromId: myProfile?.userId ?? 0,
           type: 'USER',
         });
       } else {
@@ -57,7 +56,7 @@ const SendQuestion: React.FC<SendQuestionProps> = ({
 
   const handleConfirm = async () => {
     track('[클릭]미팅_유저_하이보내기_하이보내기버튼', {
-      user_nickname: usernickName,
+      user_nickname: user.nickname,
       remaining_hi: hiCount,
     });
     await sendHi();
@@ -66,7 +65,7 @@ const SendQuestion: React.FC<SendQuestionProps> = ({
 
   const handleClose = () => {
     track('[클릭]미팅_유저_하이보내기_하이보내기취소', {
-      user_nickname: usernickName,
+      user_nickname: user.nickname,
       remaining_hi: hiCount,
     });
     onClose();
@@ -75,7 +74,7 @@ const SendQuestion: React.FC<SendQuestionProps> = ({
   return (
     <S.Modallayout>
       <S.ModalContent>
-        <S.ModalTitle>{usernickName} 님에게 하이를 보낼까요?</S.ModalTitle>
+        <S.ModalTitle>{user.nickname} 님에게 하이를 보낼까요?</S.ModalTitle>
         <S.ModalText>
           내가 보낸 하이를 수락하면 채팅방이 열려요!
           <br />
