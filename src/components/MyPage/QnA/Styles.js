@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import notificationIcon from '../../../assets/icon/notification.svg';
 
 export const QnAContainer = styled.div`
     font-family: Pretendard, sans-serif;
@@ -36,4 +37,33 @@ export const MoveBtn = styled.button`
     padding-bottom: 2%;
     font-weight: 700;
     border: 1px solid red;
+`;
+
+export const AlarmButton = styled.button`
+    width: 100%;
+    height: 18%;
+    background-color: #EA4335;
+    padding: 3.5%;
+    border-radius: 0.8rem;
+    margin: 3% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+`;
+
+export const NotificationIcon = styled.img.attrs({
+    src: notificationIcon
+})`
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    display: block;
+`;
+
+export const AlarmText = styled.span`
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
 `;
