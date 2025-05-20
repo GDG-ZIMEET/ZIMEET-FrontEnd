@@ -40,20 +40,20 @@ export const BoothTime = styled.div`
 
 export const Booths = styled.div<{ $selectedSpace: string }>`
   display: flex;
+  gap:  ${props => (props.$selectedSpace === 'G') ? '5%' : '2%'};
   position: relative;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   overflow-y: ${props => (props.$selectedSpace === 'A' || props.$selectedSpace === 'K') ? 'hidden' : 'auto'};
   height: 92%;
   width: 100%;
   scrollbar-width: none;
+  align-items: center;
 `;
 
 export const EatPlace = styled.div`
   width: 60%;
   height: 50%;
-  margin-top: 33%;
-  margin-left: 20%;
   border-radius: 5px;
   background-color:rgb(248, 245, 245);
   position: absolute;
@@ -72,11 +72,10 @@ export const EatPlace = styled.div`
 export const GroundInfo1 = styled.div`
   width: 54%;
   height: 15%;
-  margin-top: 0%;
-  margin-left: 23%;
   border-radius: 5px;
   background-color: #F2F2F2;
   position: absolute;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,25 +88,25 @@ export const GroundInfo1 = styled.div`
 `;
 
 export const GroundInfo2 = styled(GroundInfo1)`
-  margin-top: 180%;
+  top: 155%;
 `;
 
 export const GroundInfo3 = styled(GroundInfo1)`
-  margin-top: 203%;
+  top: 175%;
 `;
 
 export const GroundInfo4 = styled(GroundInfo1)`
-  margin-top: 302%;
+  top: 260%;
 `;
 
 export const KPlace = styled.div`
   width: 100%;
   height: 12%;
-  margin-top: 3%;
   border-radius: 8px;
   background-color: #F0F0F0;
   opacity: 0.6;
   position: absolute;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -118,6 +117,8 @@ export const KPlace = styled.div`
   font : Pretendard;
   font-weight: bold;
   z-index: 1;
+  position: absolute;
+  top: 0;
 `;
 
 export const HPlace = styled(KPlace)`
@@ -127,12 +128,13 @@ export const HPlace = styled(KPlace)`
 export const Photobooth1 = styled.div`
   width: 23%;
   height: 12%;
-  margin-top: 107%;
-  margin-left: 52%;
   border-radius: 8px;
   background-color: #F0F0F0;
   opacity: 0.6;
   position: absolute;
+  bottom: 0;
+  margin-left: 25%;
+  margin-bottom: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -146,7 +148,7 @@ export const Photobooth1 = styled.div`
 `;
 
 export const Photobooth2 = styled(Photobooth1)`
-  margin-left: 77%;
+  margin-left: 75%;
 `;
 
 export const Divider = styled.div`
@@ -166,7 +168,6 @@ export const Booth = styled.div<{ $disabled: boolean; $selectedSpace: string }>`
   height: ${props => props.$selectedSpace === 'A' ? '18%' 
                     : props.$selectedSpace === 'K' ? '20%' 
                     : '15%'};
-  margin-bottom: 2%;
   margin-top: ${props => props.$selectedSpace === 'K' ? '25%' : '0%'};
   border-radius: 5px;
   background-color: ${props => props.color};
