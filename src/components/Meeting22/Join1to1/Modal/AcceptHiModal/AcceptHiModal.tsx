@@ -4,22 +4,22 @@ import * as S from './Styles';
 interface AcceptHiProps {
   onClose: () => void;
   onConfirm: () => void;
-  teamName: string;
+  userName: string;
 }
 
 const AcceptHiModal: React.FC<AcceptHiProps> = ({
-  teamName,
+  userName,
   onClose,
   onConfirm,
 }) => {
   return (
     <S.ModalLayout>
       <S.ModalContent>
-        <S.ModalTitle>{teamName} 팀의 하이를 수락할까요?</S.ModalTitle>
+        <S.ModalTitle>{userName} 님의 하이를 수락할까요?</S.ModalTitle>
         <S.ModalText>
-          {teamName} 팀이 보낸 하이를 수락하면
+          {userName} 님이 보낸 하이를 수락하면
           <br />
-          모든 팀원이 함께 있는 채팅방이 열려요!
+          채팅방이 열려요!
           <br />
           수락한 하이는 취소할 수 없어요.
         </S.ModalText>
