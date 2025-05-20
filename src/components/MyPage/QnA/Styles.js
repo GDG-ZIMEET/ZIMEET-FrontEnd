@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import NotificationIconRaw from '../../../assets/icon/notification.svg?react';
+import notificationIcon from '../../../assets/icon/notification.svg';
 
 export const QnAContainer = styled.div`
     font-family: Pretendard, sans-serif;
@@ -52,7 +52,9 @@ export const AlarmButton = styled.button`
     border: none;
 `;
 
-export const NotificationIcon = styled(NotificationIconRaw)`
+export const NotificationIcon = styled.img.attrs({
+    src: notificationIcon
+})`
     width: 36px;
     height: 36px;
     margin-right: 10px;
