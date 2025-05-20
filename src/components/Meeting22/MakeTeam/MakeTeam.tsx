@@ -31,7 +31,7 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ ourTeamData, teamType }) => {
   };
 
   const handleMyInfo = () => {
-    navigate('/profile1to1', {
+    navigate(`/profile1to1/${myProfileData?.nickname}`, {
       state: { from: 'profile1to1', nickname: myProfileData?.nickname },
     });
     track('[클릭]미팅_1대1참여');
@@ -65,7 +65,6 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ ourTeamData, teamType }) => {
     navigate('/ourteamintro', { state: { teamType } });
   };
 
-  console.log('MyProfileData', myProfileData);
   return (
     <S.CreateTeamLayOut>
       {teamType === 'ONE_TO_ONE' ? (

@@ -3,7 +3,7 @@ export const NonLoginDataOneToOne = [
   {
     "userId": 1,
     "emoji": "Bear",
-    "name": "s",
+    "name": "박보영",
     "verification": 1,
     "major": "인문계열",
     "age": 28,
@@ -12,7 +12,7 @@ export const NonLoginDataOneToOne = [
   {
     "userId": 5,
     "emoji": "DevWoman",
-    "name": "박민음",
+    "name": "변우석",
     "verification": 1,
     "major": "철학",
     "age": 27,
@@ -39,7 +39,7 @@ export const NonLoginDataOneToOne = [
   {
     "userId": 9,
     "emoji": "Wolf",
-    "name": "김남삼",
+    "name": "도경수",
     "verification": 1,
     "major": "정통",
     "age": 28,
@@ -48,7 +48,7 @@ export const NonLoginDataOneToOne = [
   {
     "userId": 10,
     "emoji": "Wolf",
-    "name": "김남사",
+    "name": "카리나",
     "verification": 1,
     "major": "정통",
     "age": 28,
@@ -101,7 +101,7 @@ export const NonLoginDataOneToOne = [
   },
   {
     "userId": 34,
-    "emoji": "string",
+    "emoji": "Bear",
     "name": "남십팔",
     "verification": 1,
     "major": "인문계열",

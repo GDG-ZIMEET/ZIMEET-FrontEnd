@@ -1,7 +1,7 @@
 export interface UserType {
     userId: number;
     emoji: string;
-    name: string;
+    nickname: string;
     verification: number;
     major: string;
     age: number;

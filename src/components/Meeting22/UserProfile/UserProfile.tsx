@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import * as S from './Styles';
 import { UserType } from 'recoilStores/type/Meeting/OnetoOneGalleryType';
@@ -20,9 +20,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ userData, teamType }) => {
   const [isToastOpen, setIsToastOpen] = useState(false);
 
   if (!userData) {
-    return <div>유저 정보가 없습니다.</div>; 
+    return <div>유저 정보가 없습니다.</div>;
   }
-  
+
   const isVerified = userData.verification === 1;
 
   const handleUserClick = () => {
@@ -31,32 +31,35 @@ const UserProfile: React.FC<UserProfileProps> = ({ userData, teamType }) => {
       return;
     }
     track('[클릭]미팅_이성유저프로필');
-    navigate(`/teamintro/${userData.userId}`, { state: { teamType , from: "meeting"} });
+    navigate(`/Profile1to1/${userData.userId}`, {
+      state: { from: 'meeting', nickname: userData?.nickname },
+    });
   };
 
   return (
     <>
-    <S.TeamLayOut onClick={handleUserClick}>
-      <S.EmojiContainer>
-        <S.MemberItem1>
-          <img src={getImageByEmoji(userData.emoji)} alt={userData.emoji} />
-        </S.MemberItem1>
-      </S.EmojiContainer>
-      <S.NameContainer>
-        <S.TeamNameBox>
-          {userData.name}
-        </S.TeamNameBox>
-        <S.MajorBox>
-        {isVerified && <S.CertificationIcon/>}<S.MajorDisplay>{userData.major} | {userData.age}세</S.MajorDisplay>
-        </S.MajorBox>
-      </S.NameContainer>
-      <S.MemberInfo>
+      <S.TeamLayOut onClick={handleUserClick}>
+        <S.EmojiContainer>
+          <S.MemberItem1>
+            <img src={getImageByEmoji(userData.emoji)} alt={userData.emoji} />
+          </S.MemberItem1>
+        </S.EmojiContainer>
+        <S.NameContainer>
+          <S.TeamNameBox>{userData.nickname}</S.TeamNameBox>
+          <S.MajorBox>
+            {isVerified && <S.CertificationIcon />}
+            <S.MajorDisplay>
+              {userData.major} | {userData.age}세
+            </S.MajorDisplay>
+          </S.MajorBox>
+        </S.NameContainer>
+        <S.MemberInfo>
           <S.MemberItem2 width="65%">
             {mappingMusic(userData.music)}
           </S.MemberItem2>
-      </S.MemberInfo>
-    </S.TeamLayOut>
-    <Toast isOpen={isToastOpen} onClose={() => setIsToastOpen(false)}/>
+        </S.MemberInfo>
+      </S.TeamLayOut>
+      <Toast isOpen={isToastOpen} onClose={() => setIsToastOpen(false)} />
     </>
   );
 };

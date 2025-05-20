@@ -46,12 +46,12 @@ const Meeting22 = () => {
           const data = await getOnetoOneGallery(0);
           setUserGalleryData(data?.data.userList || []);
         } else {
-          if (teamType === 'TWO_TO_TWO') {
+          if (!isLoggedIn && teamType === 'TWO_TO_TWO') {
             setTeamGalleryData(NonLoginDataTwoToTwo);
-          } else if (teamType === 'THREE_TO_THREE') {
+          } else if (!isLoggedIn && teamType === 'THREE_TO_THREE') {
             setTeamGalleryData(NonLoginDataThreeToThree);
-          } else if (teamType === 'ONE_TO_ONE') {
-            setTeamGalleryData(NonLoginDataOneToOne);
+          } else if (!isLoggedIn && teamType === 'ONE_TO_ONE') {
+            setUserGalleryData(NonLoginDataOneToOne);
           }
         }
       } catch (error) {
@@ -73,6 +73,8 @@ const Meeting22 = () => {
           if (teamType === 'TWO_TO_TWO') {
             setOurTeamData(null);
           } else if (teamType === 'THREE_TO_THREE') {
+            setOurTeamData(null);
+          } else if (teamType === 'ONE_TO_ONE') {
             setOurTeamData(null);
           }
         }

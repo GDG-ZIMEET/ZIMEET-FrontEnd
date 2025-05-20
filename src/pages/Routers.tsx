@@ -49,7 +49,7 @@ const Routers: React.FC = () => {
       <Route path="/sentHi" element={<SentHi />} />
       <Route path="/meeting22" element={<Meeting22 />} />
       <Route path="/teamMaking" element={<TeamMaking />} />
-      <Route path="/Profile1to1" element={<Profile1to1 />} />
+      <Route path="/Profile1to1/:userId" element={<Profile1to1 />} />
       <Route path="/nonmember-Meeting" element={<Meeting />} />
       <Route path="/teamintro/:teamId" element={<TeamIntro />} />
       <Route path="/ourteamintro" element={<OurTeamIntro />} />
