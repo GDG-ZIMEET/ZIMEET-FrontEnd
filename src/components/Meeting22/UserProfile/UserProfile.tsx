@@ -14,7 +14,7 @@ interface UserProfileProps {
   teamType: string;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ userData, teamType }) => {
+const UserProfile: React.FC<UserProfileProps> = ({ userData }) => {
   const navigate = useNavigate();
   const myProfileState = useRecoilValue(MyProfileState);
   const [isToastOpen, setIsToastOpen] = useState(false);
@@ -32,7 +32,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ userData, teamType }) => {
     }
     track('[클릭]미팅_이성유저프로필');
     navigate(`/Profile1to1/${userData.userId}`, {
-      state: { from: 'meeting', nickname: userData?.nickname },
+      state: { from: 'meeting' },
     });
   };
 

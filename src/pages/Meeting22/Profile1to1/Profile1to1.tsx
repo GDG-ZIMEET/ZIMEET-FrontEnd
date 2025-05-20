@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import Header from 'components/Common/Header/Header/Header';
 import MyProfileHeader from 'components/Meeting22/Join1to1/Header/MyProfileHeader';
-import { getuserProfile } from 'api/TeamMaking/GetUserProfile';
-import { UserType } from 'recoilStores/type/TeamMaking/UserType';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { UserData } from 'recoilStores/type/Meeting/UserDetail';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { track } from '@amplitude/analytics-browser';
 import ProfileDetail from 'components/Common/Profile/ProfileDetail/ProfileDetail';
@@ -27,14 +26,21 @@ import {
 } from 'data/SignUpData';
 import { MyProfileState } from 'recoilStores/state/Meeting/MyProfileState';
 import { useRecoilValue } from 'recoil';
+import { getOnetoOneDetail } from 'api/Meeting/GetOnetoOneDetail';
+import { getmyProfile } from 'api/Mypage/GetmyProfile';
+import { MyProfileType } from 'recoilStores/type/MyPage/MyProfileType';
 
 const Profile1to1 = () => {
-  const { from, nickname } = useLocation().state as {
+  const { from } = useLocation().state as {
     from?: string;
-    nickname: string;
   };
+  const [MyProfileDetail, setMyProfileDetail] = useState<MyProfileType | null>(
+    null,
+  );
+  const params = useParams();
+  const { userId } = params as { userId: string };
   const isMyProfile = from === 'profile1to1';
-  const [userProfile, setUserProfile] = useState<UserType | null>(null);
+  const [userProfile, setUserProfile] = useState<UserData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const MyProfile = useRecoilValue(MyProfileState);
@@ -140,57 +146,65 @@ const Profile1to1 = () => {
     setIsRefusedModalOpen(false);
     navigate('/receiveHi');
   };
-
+  console.log('userProfile', userProfile);
   //유저 프로필
   useEffect(() => {
     track('[접속]미팅_1대1참여');
-    const fetchUserProfile = async () => {
+    const fetchProfile = async () => {
+      setIsLoading(true);
       try {
-        const response = await getuserProfile(nickname);
-        if (response) {
-          setUserProfile(response.data);
+        if (isMyProfile) {
+          // 나의 프로필 가져오기
+          const res = await getmyProfile();
+          setMyProfileDetail(res?.data ?? null);
         } else {
-          setUserProfile(null);
+          // 다른 사람 프로필 가져오기
+          const res = await getOnetoOneDetail(Number(userId));
+          setUserProfile(res?.data ?? null);
         }
-      } catch (error) {
-        console.error('Error fetching profile data:', error);
+      } catch (err) {
+        console.error('Error fetching profile data:', err);
+        setMyProfileDetail(null);
         setUserProfile(null);
       } finally {
         setIsLoading(false);
       }
     };
-    fetchUserProfile();
-  }, [nickname]);
+
+    fetchProfile();
+  }, [isMyProfile, userId]);
+
+  const displayedProfile = isMyProfile ? MyProfileDetail : userProfile;
 
   return (
     <S.UserdetailLayout>
       {isMyProfile ? <MyProfileHeader /> : <Header title="프로필 보기" />}
       {isLoading ? (
         <S.LoadingContainer />
-      ) : userProfile ? (
+      ) : displayedProfile ? (
         <>
           <S.Avatar>
             <img
-              src={getImageByEmoji(userProfile.emoji)}
-              alt={userProfile.emoji}
+              src={getImageByEmoji(displayedProfile.emoji)}
+              alt={displayedProfile.emoji}
             />
           </S.Avatar>
           <S.UserInfo $isMusic={false}>
-            <b>{userProfile.nickname}</b> | {userProfile.age}세 (
-            {userProfile.studentNumber}학번)
+            <b>{displayedProfile.nickname}</b> | {displayedProfile.age}세 (
+            {displayedProfile.studentNumber}학번)
           </S.UserInfo>
-          <S.UserInfo $isMusic={false}>{userProfile.major}</S.UserInfo>
+          <S.UserInfo $isMusic={false}>{displayedProfile.major}</S.UserInfo>
           <S.MusicContainer>
             <p>좋아하는 음악장르</p>
             <S.UserInfo $isMusic={true}>
-              {mappingMusic(userProfile.music)}
+              {mappingMusic(displayedProfile.music)}
             </S.UserInfo>
           </S.MusicContainer>
 
           <S.Title>
             {isMyProfile ? '나에 대한 상세 정보' : '추가 정보를 알려드려요!'}
           </S.Title>
-          {!isMyProfile && userProfile.level === 'LIGHT' ? (
+          {!isMyProfile && displayedProfile.level === 'LIGHT' ? (
             <S.PremiumOverlay1>
               <S.PremiumText1>
                 터치해서 ZI밋+로 등급 올리고 확인하기!
@@ -204,14 +218,14 @@ const Profile1to1 = () => {
             <S.UserContainer>
               <ProfileDetail
                 label="MBTI"
-                value={userProfile.mbti}
-                gender={userProfile.gender}
+                value={displayedProfile.mbti}
+                gender={displayedProfile.gender}
                 ischat={true}
               />
               <ProfileDetail
                 label="스타일"
-                value={mappingStyle(userProfile.style)}
-                gender={userProfile.gender}
+                value={mappingStyle(displayedProfile.style)}
+                gender={displayedProfile.gender}
                 ischat={true}
               />
             </S.UserContainer>
@@ -219,9 +233,9 @@ const Profile1to1 = () => {
           <S.Title>
             {isMyProfile
               ? '내 이상형 정보'
-              : `${userProfile.nickname}의 이상형은?`}
+              : `${displayedProfile.nickname}의 이상형은?`}
           </S.Title>
-          {!isMyProfile && userProfile.level === 'LIGHT' ? (
+          {!isMyProfile && displayedProfile.level === 'LIGHT' ? (
             <S.PremiumOverlay2>
               <S.PremiumText2>
                 <b>지밋+등급</b>이 되면 볼 수 있어요.
@@ -233,14 +247,14 @@ const Profile1to1 = () => {
             <S.UserContainer>
               <ProfileDetail
                 label="이상형"
-                value={mappingFace(userProfile.idealType)}
-                gender={userProfile.gender}
+                value={mappingFace(displayedProfile.idealType)}
+                gender={displayedProfile.gender}
                 ischat={true}
               />
               <ProfileDetail
                 label="선호나이"
-                value={mappingAge(userProfile.idealAge)}
-                gender={userProfile.gender}
+                value={mappingAge(displayedProfile.idealAge)}
+                gender={displayedProfile.gender}
                 ischat={true}
               />
             </S.UserContainer>
@@ -250,18 +264,19 @@ const Profile1to1 = () => {
         <p>유저 프로필을 찾을수 없습니다 </p>
       )}
 
-      {userProfile ? (
-        <SentHiButton />
-      ) : from === 'meeting' ? (
-        <Heart onClick={openModal} />
-      ) : from === 'sendHi' ? (
-        <SentHiButton />
-      ) : (
-        <S.ButtonWrapper>
-          <S.RefuseButton onClick={openRefuseModal}>거절</S.RefuseButton>
-          <S.Button onClick={openAcceptModal}>하이 수락하기</S.Button>
-        </S.ButtonWrapper>
-      )}
+      {!isMyProfile &&
+        (userProfile?.hi === true ? (
+          <SentHiButton />
+        ) : from === 'meeting' ? (
+          <Heart onClick={openModal} />
+        ) : from === 'sendHi' ? (
+          <SentHiButton />
+        ) : (
+          <S.ButtonWrapper>
+            <S.RefuseButton onClick={openRefuseModal}>거절</S.RefuseButton>
+            <S.Button onClick={openAcceptModal}>하이 수락하기</S.Button>
+          </S.ButtonWrapper>
+        ))}
 
       <NavigationBar />
 

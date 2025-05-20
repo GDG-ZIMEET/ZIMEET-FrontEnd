@@ -65,7 +65,7 @@ const Meeting22 = () => {
       try {
         if (isLoggedIn && teamType === 'ONE_TO_ONE') {
           const data = await getmyProfile();
-          setMyProfileData(data?.data || null);
+          setMyProfileData(data ?? null);
         } else if (isLoggedIn && teamType !== 'Random') {
           const response = await getOurTeam(teamType);
           setOurTeamData(response?.data || null);

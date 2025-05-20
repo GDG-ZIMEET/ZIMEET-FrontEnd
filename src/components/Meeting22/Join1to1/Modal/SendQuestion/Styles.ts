@@ -97,6 +97,7 @@ export const ConfirmButton = styled.button`
 
 export const Hi = styled(hiIcon)`
   width: 13%;
+  height: 60%;
   margin: 0 1% 0.5% 0;
 `;
 

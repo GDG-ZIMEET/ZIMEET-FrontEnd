@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './Styles';
 import ViewMore from '../ViewMore/ViewMore';
 import { useNavigate } from 'react-router-dom';
@@ -31,8 +31,8 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ ourTeamData, teamType }) => {
   };
 
   const handleMyInfo = () => {
-    navigate(`/profile1to1/${myProfileData?.nickname}`, {
-      state: { from: 'profile1to1', nickname: myProfileData?.nickname },
+    navigate(`/profile1to1/${myProfileData?.userId}`, {
+      state: { from: 'profile1to1' },
     });
     track('[클릭]미팅_1대1참여');
   };
@@ -47,6 +47,7 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ ourTeamData, teamType }) => {
       }
 
       const profileRes = await getmyProfile();
+      console.log('profileRes', profileRes);
       setMyProfileData(profileRes?.data ?? null);
       track('[클릭]미팅_1대1참여하기');
     } catch (error) {
@@ -64,6 +65,21 @@ const MakeTeam: React.FC<MakeTeamProps> = ({ ourTeamData, teamType }) => {
     }
     navigate('/ourteamintro', { state: { teamType } });
   };
+
+  useEffect(() => {
+    if (teamType !== 'ONE_TO_ONE') return;
+
+    const fetchMyProfile = async () => {
+      try {
+        const profileRes = await getmyProfile();
+        setMyProfileData(profileRes?.data ?? null);
+      } catch (error) {
+        console.error('Error fetching my profile:', error);
+      }
+    };
+
+    fetchMyProfile();
+  }, [teamType, setMyProfileData]);
 
   return (
     <S.CreateTeamLayOut>
