@@ -15,6 +15,7 @@ import ModalLogout from 'components/MyPage/ModalLogout/ModalLogout';
 import useLoginCheck from 'api/Authentication/useLoginCheck';
 import { track } from '@amplitude/analytics-browser';
 import { MyProfileResponseType } from 'recoilStores/type/MyPage/MyProfileType';
+import StoreInfoButton from 'components/MyPage/StoreInfoButton/StoreInfoButton';
 
 const MyPage = () => {
   const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
@@ -137,6 +138,7 @@ const MyPage = () => {
           ZI밋 출시 기념! 오직 2025 아우름제에서만 이 가격으로!
         </S.Text>
         <Item />
+        <StoreInfoButton />
         {myProfileData && ( <ItemShop />)}
         <QnA myProfileData={myProfileData}/>
 
