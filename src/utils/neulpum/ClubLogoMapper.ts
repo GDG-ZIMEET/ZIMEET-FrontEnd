@@ -30,8 +30,8 @@ import taekwondo_logo from '../assets/icon/boothDetail/logo/taekwondo_logo.jpg';
 import tennis_logo from '../assets/icon/boothDetail/logo/tennis_logo.jpg';
 import thebusking_logo from '../assets/icon/boothDetail/logo/thebusking_logo.jpeg';
 import thegame_logo from '../assets/icon/boothDetail/logo/thegame_logo.png';
-import tumblers_logo from '../assets/icon/boothDetail/logo/tumblers_logo.png';
-import yudo_logo from '../assets/icon/boothDetail/logo/yudo_logo.jpg';
+import tumblers_logo from '../../assets/icon/boothDetail/neulpum/logo/tumblers_logo.png';
+import yudo_logo from '../../assets/icon/boothDetail/neulpum/logo/yudo_logo.jpg';
 
 const logoMap: { [key: number]: string } = {
   0: GDGlogo, // 기본 로고

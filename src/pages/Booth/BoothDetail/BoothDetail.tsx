@@ -8,7 +8,7 @@ import Explanation from 'components/BoothDetail/Explanation/Explanation';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 import { GetboothDetail } from '../../../api/booth/GetboothDetail';
-import { getPosterComponent } from '../../../utils/ClubPosterMapper';
+import { getPosterComponent } from '../../../utils/neulpum/ClubPosterMapper';
 import { track } from '@amplitude/analytics-browser';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { boothDetailState } from 'recoilStores/state/boothState';
