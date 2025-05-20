@@ -81,7 +81,7 @@ const logoMap: { [key: number]: string } = {
     34: gdgoc_logo, // 중앙운영본부 (로고 없음)
     35: chemical_logo,
     36: human_rights_logo,
-    37: gdgoc_logo, // 텀블러즈 (로고 없음 - 기존 매퍼의 tumblers_logo가 이 폴더에 없음)
+    37: gdgoc_logo, // 텀블러즈 (로고 없음)
     38: hoeg_logo,
     39: physical_logo,
     40: nonglak_logo,
