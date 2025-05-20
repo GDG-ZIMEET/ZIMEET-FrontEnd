@@ -2,7 +2,7 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import * as S from './Styles';
 import { boothDetailState } from '../../../recoilStores/state/boothState';
-import { getLogoComponent } from '../../../utils/ClubLogoMapper';
+import { getLogoComponent } from '../../../utils/neulpum/ClubLogoMapper';
 import { track } from '@amplitude/analytics-browser';
 
 interface AccountCopyProps {

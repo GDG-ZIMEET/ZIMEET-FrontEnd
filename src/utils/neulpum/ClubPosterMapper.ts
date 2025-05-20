@@ -30,8 +30,8 @@ import taekwondo_poster from '../assets/icon/boothDetail/poster/taekwondo_poster
 import tennis_poster from '../assets/icon/boothDetail/poster/tennis_poster.png';
 import thebusking_poster from '../assets/icon/boothDetail/poster/thebusking_poster.jpeg';
 import thegame_poster from '../assets/icon/boothDetail/poster/thegame_poster.png';
-import tumblers_poster from '../assets/icon/boothDetail/poster/tumblers_poster.jpeg';
-import yudo_poster from '../assets/icon/boothDetail/poster/yudo_poster.jpg';
+import tumblers_poster from '../../assets/icon/boothDetail/neulpum/poster/tumblers_poster.jpeg';
+import yudo_poster from '../../assets/icon/boothDetail/neulpum/poster/yudo_poster.jpg';
 
 const posterMap: { [key: number]: string } = {
   0: default_poster, // 기본 포스터
