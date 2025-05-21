@@ -6,9 +6,9 @@ export const UserdetailLayout = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
-   height: 100%;
+   height: 80%;
    width: 100%;
-   overflow-y: auto;
+   overflow: hidden;
    font-family: Pretendard, sans-serif;
    padding-bottom: 8vh;
 `;
@@ -80,7 +80,7 @@ export const Title = styled.div`
 
 export const UserContainer = styled.div`
   width: 70%;
-  height: 158vh;
+  height: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,7 +91,7 @@ export const UserContainer = styled.div`
 
 export const PremiumOverlay1 = styled.div`
   width: 70%;
-  height: 18vh;
+  height: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,10 +164,17 @@ export const Button = styled.button`
 `;
 
 export const NotificationLayout = styled.div`
-    width: 88%;
-    margin-top: 5vh;
-    margin-bottom: 50px;
-    left: 6%;
+    width: 85%;
+    height: 6.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    position: absolute;
+    bottom: 11%;
+    left: 7.5%;
 `;
 
 export const NotificationButton = styled.button`
