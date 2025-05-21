@@ -25,7 +25,7 @@ export const useFCM = () => {
                 console.log('푸시 POST 완료 | 서버 응답:', pushAgreeResponse.data);
                 
                 const tokenResponse = await privateAxios.post('/fcm/token', {
-                    fcmToken: fcmToken
+                    fcmToken: token
                 });
                 console.log(fcmToken);
                 console.log('FCM token POST 완료 | 서버 응답:', tokenResponse.data);
