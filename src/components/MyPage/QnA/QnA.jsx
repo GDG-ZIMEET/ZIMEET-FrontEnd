@@ -4,12 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { track } from '@amplitude/analytics-browser';
 import { useFCM } from '../../../firebase/useFCM';
 
-const QnA = () => {
-    const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
+const QnA = ({ myProfileData }) => {
+    const isLoggedIn = !!myProfileData?.data;
     const navigate = useNavigate();
-    const { requestNotificationPermission } = useFCM();
+    const { requestNotificationPermission, checkNotificationPermission } = useFCM();
 
     const isNotificationEnabled = Notification.permission === 'granted';
+
+    const handleNotificationPermission = async () => {
+        if (checkNotificationPermission()) {
+            await requestNotificationPermission();
+        }
+    };
 
     const handleNavigate = (path, eventName) => {
         track(`[클릭]${eventName}`);
@@ -25,7 +31,7 @@ const QnA = () => {
         <S.QnAContainer $isLoggedIn={isLoggedIn}>
             <S.Title>문의하기</S.Title>
             {/* {!isNotificationEnabled && (
-                <S.AlarmButton onClick={requestNotificationPermission}>
+                <S.AlarmButton onClick={handleNotificationPermission}>
                     <S.NotificationIcon />
                     <S.AlarmText>눌러서 하이 받을 때, 채팅 올 때 알림 받기</S.AlarmText>
                 </S.AlarmButton>
