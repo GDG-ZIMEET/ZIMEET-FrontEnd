@@ -43,7 +43,6 @@ const Teams: React.FC = () => {
     }
   };
 
-  console.log('sendHiList:', sendHiList);
   return (
     <S.TeamComponent>
       {!isLoggedIn || sendHiList?.length === 0 || sendHiList === null ? (

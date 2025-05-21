@@ -39,7 +39,7 @@ export const connectWebSocketRandom = async () => {
 // 참가 요청을 보내는 함수
 const sendMatchingRequest = async (
   wasCanceledRef: React.MutableRefObject<boolean>
-): Promise<{ matchingId: number; userList: any[]; matchingStatus: string } | null> => {
+): Promise<{ groupId: string; userList: any[]; matchingStatus: string } | null> => {
   if (!stompClient) {
     console.error("WebSocket 연결이 없습니다.");
     return null;
@@ -58,7 +58,7 @@ const sendMatchingRequest = async (
   let retryCount = 0;
   let delay = 1000;
 
-    while (!response?.data.matchingId && retryCount < 3) {
+    while (!response?.data.groupId && retryCount < 3) {
       if (wasCanceledRef.current) {
         //매칭 시도취소 
         return null;
@@ -81,7 +81,7 @@ const sendMatchingRequest = async (
 }};
 
 // 매칭 상태 업데이트 및 구독 함수
-const subscribeToMatching = (matchingId: number, setRandomNowData: (data: any) => void) => {
+const subscribeToMatching = (groupId: string, setRandomNowData: (data: any) => void) => {
   if (!stompClient || !stompClient.connected) {
     //WebSocket이 연결되지 않음
     return;
@@ -92,7 +92,7 @@ const subscribeToMatching = (matchingId: number, setRandomNowData: (data: any) =
   }
 
   // 새 구독 설정
-  subscription = stompClient.subscribe(`/topic/matching/${matchingId}`, (message) => {
+  subscription = stompClient.subscribe(`/topic/matching/${groupId}`, (message) => {
     const data = JSON.parse(message.body);
     setRandomNowData(data);
   });
@@ -130,7 +130,7 @@ export const startMatchingProcess = async (
   await connectWebSocketRandom();
   track('[접속]미팅_랜덤_실시간소켓');
   
-  // 매칭 참가 요청 후 matchingId 가져오기
+  // 매칭 참가 요청 후 groupId 가져오기
   const matchingdata = await sendMatchingRequest(wasCanceledRef);
   if (!matchingdata || wasCanceledRef.current) throw new Error("매칭 실패 또는 취소됨");
 
@@ -138,6 +138,6 @@ export const startMatchingProcess = async (
   await new Promise((resolve) => setTimeout(resolve, 1500));
 
   if (!wasCanceledRef.current) {
-    subscribeToMatching(matchingdata.matchingId, setRandomNowData);
+    subscribeToMatching(matchingdata.groupId, setRandomNowData);
   }
 };

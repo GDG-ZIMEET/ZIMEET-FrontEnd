@@ -139,7 +139,10 @@ const Teams: React.FC = () => {
               </S.JoinMembers>
               <S.ChatInfoContainer>
                 <S.TeamHeader>
-                  <S.TeamName>{team.chatRoomName} 팀</S.TeamName>
+                  <S.TeamName>
+                    {team.chatRoomName}{' '}
+                    {team.userProfiles.length === 1 ? '' : '팀'}
+                  </S.TeamName>
                   <S.WriteTime>{formatWriteTime(team.lastestTime)}</S.WriteTime>
                 </S.TeamHeader>
                 <S.Introduction>{team.latestMessage}</S.Introduction>
