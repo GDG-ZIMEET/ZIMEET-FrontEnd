@@ -122,7 +122,7 @@ export const KPlace = styled.div`
 `;
 
 export const HPlace = styled(KPlace)`
-  margin-top: 74%;
+  top: 44%;
 `;
 
 export const Photobooth1 = styled.div`
@@ -132,7 +132,7 @@ export const Photobooth1 = styled.div`
   background-color: #F0F0F0;
   opacity: 0.6;
   position: absolute;
-  bottom: 0;
+  top: 74%;
   margin-left: 25%;
   margin-bottom: 10%;
   display: flex;
@@ -144,7 +144,6 @@ export const Photobooth1 = styled.div`
   font-size: 13px;
   font : Pretendard;
   font-weight: bold;
-  z-index: 1;
 `;
 
 export const Photobooth2 = styled(Photobooth1)`
@@ -156,7 +155,7 @@ export const Divider = styled.div`
   height: 1px;
   background-color: #F0F0F0;
   position: absolute;
-  top: 45%;
+  top: 40%;
   left: 0;
 `;
 
@@ -168,7 +167,7 @@ export const Booth = styled.div<{ $disabled: boolean; $selectedSpace: string }>`
   height: ${props => props.$selectedSpace === 'A' ? '18%' 
                     : props.$selectedSpace === 'K' ? '20%' 
                     : '15%'};
-  margin-top: ${props => props.$selectedSpace === 'K' ? '25%' : '0%'};
+  margin-top: ${props => props.$selectedSpace === 'K' ? '2%' : '0%'};
   border-radius: 5px;
   background-color: ${props => props.color};
   display: flex;

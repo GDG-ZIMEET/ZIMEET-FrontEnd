@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { track } from '@amplitude/analytics-browser';
 import { useFCM } from '../../../firebase/useFCM';
 
-const QnA = ({ myProfileData }) => {
-    const isLoggedIn = !!myProfileData?.data;
+const QnA = () => {
+    const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
     const navigate = useNavigate();
     const { requestNotificationPermission } = useFCM();
 
@@ -24,12 +24,12 @@ const QnA = ({ myProfileData }) => {
     return (
         <S.QnAContainer $isLoggedIn={isLoggedIn}>
             <S.Title>문의하기</S.Title>
-            {!isNotificationEnabled && (
+            {/* {!isNotificationEnabled && (
                 <S.AlarmButton onClick={requestNotificationPermission}>
                     <S.NotificationIcon />
                     <S.AlarmText>눌러서 하이 받을 때, 채팅 올 때 알림 받기</S.AlarmText>
                 </S.AlarmButton>
-            )}
+            )} */}
             <S.QnAs onClick={() => handleNavigate('http://pf.kakao.com/_gHxmin', '마이_1대1문의하기')}>
                 <S.QnAContent>1대1 문의하기</S.QnAContent>
                 <View />
