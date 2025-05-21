@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import zimeetLoading from '../../../assets/icon/zimeetLoading.svg';
+import notificationIcon from '../../../assets/icon/notification.svg';
 
 export const UserdetailLayout = styled.div`
    display: flex;
@@ -10,6 +11,7 @@ export const UserdetailLayout = styled.div`
    overflow-x: hidden;
     overflow-y: auto;
    font-family: Pretendard, sans-serif;
+   padding-bottom: 8vh;
 `;
 
 export const LoadingContainer = styled.img.attrs({
@@ -153,9 +155,6 @@ export const PremiumText2 = styled(PremiumText1)`
   color: #000000;
 `;
 
-
-
-
 export const ButtonWrapper = styled.div`
     width: 85%;
     height: 6.5%;
@@ -191,5 +190,47 @@ export const Button = styled.button`
     color: #FFFFFF;
     border-radius: 10px;
     font-size: 16px;
+    font-weight: 700;
+`;
+
+export const NotificationLayout = styled.div`
+    width: 85%;
+    height: 6.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    position: absolute;
+    bottom: 11%;
+    left: 7.5%;
+`;
+
+export const NotificationButton = styled.button`
+    width: 100%;
+    height: 48px;
+    background-color: #EA4335;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 0 16px;
+`;
+
+export const NotificationIcon = styled.img.attrs({
+    src: notificationIcon
+})`
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    display: block;
+`;
+
+export const NotificationText = styled.span`
+    color: white;
+    font-size: 15px;
     font-weight: 700;
 `;

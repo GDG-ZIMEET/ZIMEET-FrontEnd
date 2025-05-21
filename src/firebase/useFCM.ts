@@ -25,7 +25,7 @@ export const useFCM = () => {
                 console.log('푸시 POST 완료 | 서버 응답:', pushAgreeResponse.data);
                 
                 const tokenResponse = await privateAxios.post('/fcm/token', {
-                    fcmToken: fcmToken
+                    fcmToken: token
                 });
                 console.log(fcmToken);
                 console.log('FCM token POST 완료 | 서버 응답:', tokenResponse.data);
@@ -42,11 +42,13 @@ export const useFCM = () => {
                 setFcmToken(token);
                 
                 const pushAgreeResponse = await privateAxios.post('/fcm/push-agree', {
-                    agree: true
+                    pushAgree: true
                 });
                 console.log('푸시 알림 동의 상태가 서버에 전송되었습니다.', pushAgreeResponse.data);
                 
-                const tokenResponse = await privateAxios.post('/fcm/token', {token});
+                const tokenResponse = await privateAxios.post('/fcm/token', {
+                    fcmToken: token
+                });
                 console.log('FCM 토큰이 서버에 저장되었습니다:', token, '서버 응답:', tokenResponse.data);
                 return token;
             } else if (permission === 'denied') {

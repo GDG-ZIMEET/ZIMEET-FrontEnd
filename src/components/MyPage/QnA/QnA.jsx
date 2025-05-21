@@ -6,14 +6,15 @@ import { useFCM } from '../../../firebase/useFCM';
 const QnA = () => {
     const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
     const navigate = useNavigate();
-    const { requestNotificationPermission, checkNotificationPermission } = useFCM();
+    const { requestNotificationPermission } = useFCM();
 
     const isNotificationEnabled = Notification.permission === 'granted';
 
     const handleNotificationPermission = async () => {
-        if (checkNotificationPermission()) {
-            await requestNotificationPermission();
+        if (isNotificationEnabled) {
+            alert('[ZI밋] 이미 푸시 알림 동의가 되어있습니다! 계속 알림이 오지 않는다면 문의하기로 연락해주세요.');
         }
+        await requestNotificationPermission();
     };
 
     const handleNavigate = (path, eventName) => {
@@ -29,12 +30,10 @@ const QnA = () => {
     return (
         <S.QnAContainer >
             <S.Title>문의하기</S.Title>
-            {/* {!isNotificationEnabled && (
-                <S.AlarmButton onClick={handleNotificationPermission}>
-                    <S.NotificationIcon />
-                    <S.AlarmText>눌러서 하이 받을 때, 채팅 올 때 알림 받기</S.AlarmText>
-                </S.AlarmButton>
-            )} */}
+            <S.AlarmButton onClick={handleNotificationPermission}>
+                <S.NotificationIcon />
+                <S.AlarmText>눌러서 하이 받을 때, 채팅 올 때 알림 받기</S.AlarmText>
+            </S.AlarmButton>
             <S.QnAs onClick={() => handleNavigate('http://pf.kakao.com/_gHxmin', '마이_1대1문의하기')}>
                 <S.QnAContent>1대1 문의하기</S.QnAContent>
                 <S.View />
