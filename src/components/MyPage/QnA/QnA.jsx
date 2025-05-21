@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { track } from '@amplitude/analytics-browser';
 import { useFCM } from '../../../firebase/useFCM';
 
-const QnA = ({ myProfileData }) => {
-    const isLoggedIn = !!myProfileData?.data;
+const QnA = () => {
+    const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
     const navigate = useNavigate();
     const { requestNotificationPermission, checkNotificationPermission } = useFCM();
 
@@ -28,7 +28,7 @@ const QnA = ({ myProfileData }) => {
     };
 
     return (
-        <S.QnAContainer $isLoggedIn={isLoggedIn}>
+        <S.QnAContainer >
             <S.Title>문의하기</S.Title>
             {/* {!isNotificationEnabled && (
                 <S.AlarmButton onClick={handleNotificationPermission}>

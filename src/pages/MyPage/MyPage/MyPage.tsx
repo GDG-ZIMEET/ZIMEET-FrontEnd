@@ -177,7 +177,7 @@ const MyPage = () => {
                   <S.Hiblack />
                 </S.MeetingEmojiWrap>
                 <S.MyMeetingText>
-                  {isTeam === false ? '팀없음' : `${OnetoOneHi}개`}-
+                  {isTeam === false ? '팀없음' : `${OnetoOneHi}개`}
                 </S.MyMeetingText>
               </S.MyMeeting>
               <S.MyMeeting>

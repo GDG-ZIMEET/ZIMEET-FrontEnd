@@ -5,7 +5,7 @@ const Item = () => {
     const accountNum = '100034291903';
     const bankName = '토스뱅크';
     const accountOwner = '장세연';
-    const amount = 1900;
+    const amount = 2500;
     try {
       const clipboardText = `계좌: ${bankName} ${accountNum} (${accountOwner})`;
       await navigator.clipboard.writeText(clipboardText);
@@ -25,7 +25,7 @@ const Item = () => {
       </S.BannerTitle>
       <S.BannerPriceWrapper>
         <S.OriginPrice>9,000원</S.OriginPrice>
-        <S.DiscountPrice>1,900원</S.DiscountPrice>
+        <S.DiscountPrice>2,500원</S.DiscountPrice>
       </S.BannerPriceWrapper>
     </S.IteamLayout>
   );
