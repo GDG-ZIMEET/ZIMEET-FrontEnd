@@ -7,10 +7,7 @@ import { useFCM } from '../../../firebase/useFCM';
 const QnA = () => {
     const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
     const navigate = useNavigate();
-    const {
-        requestNotificationPermission,
-        requestAndSaveToken
-    } = useFCM();
+    const { requestNotificationPermission } = useFCM();
 
     const isNotificationEnabled = Notification.permission === 'granted';
 
@@ -32,7 +29,7 @@ const QnA = () => {
     };
 
     return (
-        <S.QnAContainer $isLoggedIn={isLoggedIn}>
+        <S.QnAContainer >
             <S.Title>문의하기</S.Title>
             <S.AlarmButton onClick={handleNotificationPermission}>
                 <S.NotificationIcon />

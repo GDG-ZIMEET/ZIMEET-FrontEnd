@@ -1,0 +1,57 @@
+import * as S from '../Hi22/Styles';
+
+const Tickets = () => {
+  const handleClick = async (price: number) => {
+    const accountNum = '100034291903';
+    const bankName = '토스뱅크';
+    const accountOwner = '장세연';
+    const amount = price;
+    try {
+      const clipboardText = `계좌: ${bankName} ${accountNum} (${accountOwner})`;
+      await navigator.clipboard.writeText(clipboardText);
+      const link = `supertoss://send?recipientName=${encodeURIComponent('조은정')}&recipient=01012345678&amount=${amount}&message=${encodeURIComponent('ZI밋 시즌권')}`;
+      window.location.href = link;
+    } catch (err) {
+      alert('계좌번호 복사에 실패했습니다.');
+    }
+  };
+  return (
+    <S.TicketsContainer>
+      <S.Title>티켓</S.Title>
+      <S.HiContainer>
+        <S.HiWrpper onClick={() => handleClick(500)}>
+          <S.HiQuantity>
+            <S.HiQuantityText>1개</S.HiQuantityText>
+            <S.T1 />
+          </S.HiQuantity>
+          <S.HiPrice>
+            <S.OriginPrice>1,500원</S.OriginPrice>
+            <S.DiscountPrice>500원</S.DiscountPrice>
+          </S.HiPrice>
+        </S.HiWrpper>
+        <S.HiWrpper onClick={() => handleClick(1200)}>
+          <S.HiQuantity>
+            <S.HiQuantityText>3개</S.HiQuantityText>
+            <S.T3 />
+          </S.HiQuantity>
+          <S.HiPrice>
+            <S.OriginPrice>4,500원</S.OriginPrice>
+            <S.DiscountPrice>1,200원</S.DiscountPrice>
+          </S.HiPrice>
+        </S.HiWrpper>
+        <S.HiWrpper onClick={() => handleClick(3000)}>
+          <S.HiQuantity>
+            <S.HiQuantityText>8개</S.HiQuantityText>
+            <S.T8 />
+          </S.HiQuantity>
+          <S.HiPrice>
+            <S.OriginPrice>12,000원</S.OriginPrice>
+            <S.DiscountPrice>3,000원</S.DiscountPrice>
+          </S.HiPrice>
+        </S.HiWrpper>
+      </S.HiContainer>
+    </S.TicketsContainer>
+  );
+};
+
+export default Tickets;
