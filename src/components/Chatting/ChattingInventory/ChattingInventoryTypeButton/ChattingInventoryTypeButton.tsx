@@ -42,7 +42,7 @@ const ChattingInventoryTypeButton: React.FC = () => {
           onClick={() => handleClick('Chatting')}
           selected={selectedButton === 'Chatting'}
         >
-          채팅
+          채팅방
         </S.Chatting>
       </S.ChattingTypeComponent>
       <S.ChattingTypeComponent>

@@ -152,6 +152,7 @@ export const StageListContainer = styled.div`
   justify-content: center;
   align-items: center;
   align-items: flex-start;
+  overflow-x: hidden;
   overflow-y: auto;
   padding: 2% 0;
 
@@ -262,10 +263,9 @@ export const StageName = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: SemiBold;
   color: #000000;
-  white-space: nowrap;
 `;
 
 

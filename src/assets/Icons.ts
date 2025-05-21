@@ -33,6 +33,7 @@ import Check from './icon/booth/check.svg?react';
 
 // back
 import Back from './icon/Vector.svg?react';
+import View from './icon/Meeting22/View.svg?react';
 
 // login
 import ZimeetLogo from './icon/login/zimeetLogo.svg?react';
@@ -116,4 +117,5 @@ export {
   NonLogo,
   TimeLine,
   TimeLineWhite,
+  View,
 };

@@ -5,7 +5,7 @@ export interface User {
 }
 
 export interface RandomTeamType {
-    matchingId: number;
+    groupId: string;
     userList: User[];
     matchingStatus: string;
 }

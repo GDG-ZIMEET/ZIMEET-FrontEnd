@@ -82,19 +82,20 @@ const Profile1to1 = () => {
     setIsAcceptModalOpen(false);
   };
 
+  console.log('MyProfile', MyProfile);
   //하이수락완료모달
   const openAcceptedModal = async () => {
     if (!userProfile) return;
 
     try {
-      if (!isMyProfile) {
+      if (!MyProfile) {
         console.error('내 정보가 없습니다.');
         return;
       }
 
       const requestData = {
-        toId: userProfile?.userId,
-        fromId: MyProfile?.userId,
+        toId: MyProfile?.userId,
+        fromId: userProfile?.userId,
       };
 
       await postacceptUserHi(requestData);

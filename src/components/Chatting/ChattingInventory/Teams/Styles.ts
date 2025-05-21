@@ -48,7 +48,7 @@ export const NoTeamsMessage = styled.div`
 
 export const Team = styled.div`
   width: 97%;
-  height: 21%;
+  height: 17%;
   padding: 10px;
   margin: 3% auto;
   background-color: #FFFFFF;
@@ -58,6 +58,7 @@ export const Team = styled.div`
 
 export const TeamHeader = styled.div`
   display: flex;
+  width: 89%;
   justify-content: space-between;
   align-items: center;
   margin: 2% 1% 1% 1%;
@@ -72,18 +73,32 @@ export const TeamName = styled.div`
 export const WriteTime = styled.div`
   font-size: 10px;
   color: #FA2D4C;
-  margin-right: 10px;
+`;
+
+export const ViewIcon = styled(I.View)`
+  width: 3%;
+  height: 5%;
+  margin-left: 1%;
 `;
 
 export const JoinMembers = styled.div`
   width: 35%; 
-  height: 75%;
+  height: 100%;
   display: flex;
-  position: relative;
+  margin-top: 3%;
+`;
+
+export const ChatInfoContainer = styled.div`
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const JoinMemberBox = styled.div`
-  width: 37%;
+  width: 40%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -106,20 +121,19 @@ export const JoinMember = styled.div`
 `;
 
 export const Introduction = styled.div`
-  height: 75%; 
-  margin-left: 5%;
+  height: 45%; 
+  width: 100%;
   font-size: 10px;
   color: #000000;
-  flex: 1;
   display: flex;
   align-items: center;
 `;
 
 export const JoinMembersAndIntroduction = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 85%;
-  margin: 0 0 0 2%;
+  margin: auto 0 auto 0;
 `;

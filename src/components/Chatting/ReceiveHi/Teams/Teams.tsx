@@ -13,9 +13,9 @@ const Teams: React.FC = () => {
   const [receiveHiList, setreceiveHiList] = useState<HiType[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const isourteam = useRecoilValue(ourteamIds);
-  
+  const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
+
   useEffect(() => {
-    if (isourteam === null) return;
     setIsLoading(true);
     const fetchreceiveHiList = async () => {
       try {
@@ -36,55 +36,88 @@ const Teams: React.FC = () => {
   }, []);
 
   const handleTeamClick = (teamId: number) => {
-    const selectedTeam = receiveHiList?.find(team => team.teamId === teamId);
+    const selectedTeam = receiveHiList?.find((team) => team.teamId === teamId);
     if (selectedTeam) {
       navigate(`/teamintro/${teamId}`);
       track('[클릭]채팅_받은하이_팀', {
-        teamId: teamId
+        teamId: teamId,
       });
     }
   };
-  
+
+  const handleOnetoOneClick = (userId: number) => {
+    const selectedUser = receiveHiList?.find((user) => user.teamId === userId);
+    if (selectedUser) {
+      navigate(`/Profile1to1/${userId}`, { state: { from: 'receiveHi' } });
+      track('[클릭]채팅_받은하이_유저', {
+        teamId: userId,
+      });
+    }
+  };
+
   return (
     <S.TeamComponent>
-      {isourteam === null || (receiveHiList && receiveHiList.length === 0) ? (
+      {!isLoggedIn || receiveHiList?.length === 0 || receiveHiList === null ? (
         <S.NoTeamsMessageContainer>
           <S.ZimeetLogo />
-          <S.NoTeamsMessage>아직 받은 하이가 없네요!<br /> 팀을 만들어서 하이를 보내보세요!</S.NoTeamsMessage>
+          <S.NoTeamsMessage>
+            아직 받은 하이가 없네요!
+            <br /> 팀을 만들어서 하이를 보내보세요!
+          </S.NoTeamsMessage>
         </S.NoTeamsMessageContainer>
-      ) : (isLoading ? (
+      ) : isLoading ? (
         <S.LoadingContainer />
       ) : (
-        receiveHiList?.map(team => (
-          <S.Team key={team.teamId} onClick={() => handleTeamClick(team.teamId)} >
+        receiveHiList?.map((team) => (
+          <S.Team
+            key={team.teamId}
+            onClick={
+              team.userProfileDtos.length === 1
+                ? () => handleOnetoOneClick(team.teamId)
+                : () => handleTeamClick(team.teamId)
+            }
+          >
             <S.TeamHeader>
-              <S.TeamName>{team.teamName} 팀</S.TeamName>
+              <S.TeamName>
+                {team.teamName} {team.userProfileDtos.length === 1 ? '' : '팀'}
+              </S.TeamName>
               <S.WriteTime>{team.dateTime}</S.WriteTime>
+              <S.ViewIcon />
             </S.TeamHeader>
             <S.JoinMembersAndIntroduction>
-              <S.JoinMembers>
+              <S.JoinMembers $memberCount={team.userProfileDtos.length}>
                 {team.userProfileDtos.map((profile, index) => (
                   <S.JoinMemberBox key={index}>
                     <S.JoinMember>
-                      <img src={getImageByEmoji(profile.emoji)} alt={profile.emoji} />
+                      <img
+                        src={getImageByEmoji(profile.emoji)}
+                        alt={profile.emoji}
+                      />
                     </S.JoinMember>
                   </S.JoinMemberBox>
                 ))}
               </S.JoinMembers>
-              <S.Introduction>
-                <S.Major>
-                  {team.userProfileDtos.map((profile) => profile.major).join(' / ')} | {team.age}세
+              <S.Introduction $memberCount={team.userProfileDtos.length}>
+                <S.Major $memberCount={team.userProfileDtos.length}>
+                  {team.userProfileDtos
+                    .map((profile) => profile.major)
+                    .join(' / ')}{' '}
+                  | {team.age}세
                 </S.Major>
-                <S.MusicStylesContainer>
-                  <S.MusicEmoji/>
+                <S.MusicStylesContainer
+                  $memberCount={team.userProfileDtos.length}
+                >
+                  <S.MusicEmoji />
                   <S.MusicStyles>
-                    {team.userProfileDtos.map((profile) => profile.music).join(', ')}
+                    {team.userProfileDtos
+                      .map((profile) => profile.music)
+                      .join(', ')}
                   </S.MusicStyles>
                 </S.MusicStylesContainer>
               </S.Introduction>
             </S.JoinMembersAndIntroduction>
           </S.Team>
-        )))
+        ))
       )}
     </S.TeamComponent>
   );
