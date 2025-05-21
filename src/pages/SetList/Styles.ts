@@ -58,7 +58,7 @@ export const DayText = styled.div`
   z-index: 1;
 `;
 
-export const StageTitle = styled.div<{ $fontSize? : string}>`
+export const StageTitle = styled.div<{ $fontSize? : string[]}>`
   width: 100%;
   height: 50%;
   display: flex;
@@ -69,6 +69,10 @@ export const StageTitle = styled.div<{ $fontSize? : string}>`
   color: #ffffff;
   z-index: 1;
   white-space: pre-wrap;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: ${({ $fontSize }) => ($fontSize ? $fontSize[1] : '40px')};
+  }
 `;
 
 export const TimeText = styled.div`

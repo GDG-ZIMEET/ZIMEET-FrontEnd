@@ -15,4 +15,8 @@ export const StoreInfoButtonLayout = styled.div`
     font-weight: 700;
     text-align: center;
     cursor: pointer;
+
+    @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 12px; 
+    }
 `; 

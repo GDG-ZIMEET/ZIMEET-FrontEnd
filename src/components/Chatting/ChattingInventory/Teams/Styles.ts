@@ -68,11 +68,19 @@ export const TeamName = styled.div`
   font-size: 12px;
   font-weight: bold;
   flex: 1;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 10px;
+  }
 `;
 
 export const WriteTime = styled.div`
   font-size: 10px;
   color: #FA2D4C;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 9px;
+  }
 `;
 
 export const ViewIcon = styled(I.View)`
@@ -86,6 +94,9 @@ export const JoinMembers = styled.div`
   height: 100%;
   display: flex;
   margin-top: 3%;
+   @media (max-width: 350px) and (max-height: 600px) {
+    width: 25%;
+  }
 `;
 
 export const ChatInfoContainer = styled.div`
@@ -95,6 +106,10 @@ export const ChatInfoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 70%;
+  }
 `;
 
 export const JoinMemberBox = styled.div`

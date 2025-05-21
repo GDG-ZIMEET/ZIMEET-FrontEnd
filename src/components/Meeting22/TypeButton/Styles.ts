@@ -7,11 +7,19 @@ export const TypeLayout = styled.div`
   padding: 0.7% 1% 0  0%;
   margin: 3% 3% 1% 3%;
   height: 5.5%;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+  height: 7%;
+}
 `;
 
 export const TypeComponent = styled.div`
   padding: 0.5% 1% 0.5% 0;
   width: 16%;
+
+  @media (max-width: 350px) {
+  width: 19%;
+}
 `;
 
 const buttonStyles = css<{ selected: boolean }>`

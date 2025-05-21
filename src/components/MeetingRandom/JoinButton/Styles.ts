@@ -14,6 +14,10 @@ export const ButtonLayout = styled.div`
   @supports (-webkit-touch-callout: none) {
     height: 13%;
   }}
+
+   @media (max-width: 350px) and (max-height: 600px) {
+    height: 12%;
+  }
 `;
 
 export const Button = styled.button<{ $isRandomLoading: boolean }>`
@@ -55,4 +59,8 @@ export const RandomJoinIcon = styled(RandomJoin)`
 export const RandomJoinText = styled.div`
   font-size: 17px;
   font-weight: bold;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 12px;
+  }
 `;

@@ -17,6 +17,11 @@ export const BackContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 60%;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+  height: 90%;
+  align-items: center;
+}
 `;
 
 export const BackButton = styled(I.Back)`

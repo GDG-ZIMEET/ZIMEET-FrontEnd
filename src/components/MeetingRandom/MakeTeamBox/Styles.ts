@@ -19,21 +19,30 @@ export const explainComponent = styled.div`
 `;
 
 export const line1 = styled.div<{ $isRandomLoading: boolean }>`
-  font-size: 14px;
+  font-size: ${({ $isRandomLoading }) => ($isRandomLoading ? '12px' : '14px')};
   width: 100%;
   color: #000000;
-  font-weight: bold;
-  opacity: ${({ $isRandomLoading }) => ($isRandomLoading ? '1' : '0')};
+  font-weight: ${({ $isRandomLoading }) => ($isRandomLoading ? '' : 'bold')};
   transition: opacity 0.3s ease-in-out;
   margin-bottom: 2%;
+  white-space: pre-line;
+  line-height: 1.2;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: ${({ $isRandomLoading }) => ($isRandomLoading ? '12px' : '12px')};
+  }
 `;
 
 export const Line2 = styled.div<{ $isRandomLoading: boolean }>`
-  font-size: 14px;
+  font-size: ${({ $isRandomLoading }) => ($isRandomLoading ? '12px' : '14px')};
   width: 100%;
   color: #000000;
-  opacity: ${({ $isRandomLoading }) => ($isRandomLoading ? '1' : '0')};
   transition: opacity 0.3s ease-in-out;
+  margin-bottom: ${({ $isRandomLoading }) => ($isRandomLoading ? '5%' : '0')};
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: ${({ $isRandomLoading }) => ($isRandomLoading ? '12px' : '10px')};
+  }
 `;
 
 

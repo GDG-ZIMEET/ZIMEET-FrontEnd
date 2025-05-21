@@ -38,12 +38,20 @@ export const BannerTitle = styled.p`
   b{
     font-weight: 700;
     font-size: 14px;
+
+    @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 12px;
+  }
   }
   @media (max-width: 768px) {
   @supports (-webkit-touch-callout: none) {
       margin-right: 9%;
     }
   }
+  @media (max-width: 350px) and (max-height: 600px) {
+      font-size: 10px;
+    }
+  
 `;
 
 export const BannerPriceWrapper = styled.div`
@@ -59,10 +67,18 @@ export const OriginPrice = styled.p`
   margin-left: 30%;
   margin-bottom: 0.3rem;
   font-family: Pretendard, sans-serif;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 9px;
+  }
 `;
 export const DiscountPrice = styled.p`
   font-size: 14px;
   color: white;
   font-weight: 700;
   font-family: Pretendard, sans-serif;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 12px;
+  }
 `;

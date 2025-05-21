@@ -87,6 +87,10 @@ export const JoinMembers = styled.div<{ $memberCount: number }>`
   height: 75%;
   display: flex;
   position: relative;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 25%;
+  }
 `;
 
 export const JoinMemberBox = styled.div`
@@ -153,11 +157,19 @@ export const MusicStyles = styled.div`
   border-radius: 8px;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    height: 57%; 
+  }
 `;
 
 export const MusicEmoji = styled(I.Music)`
     width: 20%;
     height: 50%;
+
+    @media (max-width: 350px) and (max-height: 600px) {
+    width: 14%;
+  }
 `;
 
 export const JoinMembersAndIntroduction = styled.div`

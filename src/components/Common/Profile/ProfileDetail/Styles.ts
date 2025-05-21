@@ -33,6 +33,13 @@ export const Styles = styled.div<{ $isblue: boolean }>`
   color: ${({ $isblue }) => ($isblue ? '#4285F4' : '#EA4335')};
   background-color: ${({ $isblue }) => ($isblue? 'rgba(66, 133, 244, 0.08)' : 'rgba(234, 67, 53, 0.08)')};
 
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 100%;
+    height: 70%;
+    aspect-ratio: 0;
+    border-radius: 10px;
+    font-size: 12px;
+}
 `;
 
 export const InfoTitle = styled.div<{ $ischat?: boolean }>`

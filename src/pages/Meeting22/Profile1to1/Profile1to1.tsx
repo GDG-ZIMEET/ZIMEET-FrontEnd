@@ -82,7 +82,6 @@ const Profile1to1 = () => {
     setIsAcceptModalOpen(false);
   };
 
-  console.log('MyProfile', MyProfile);
   //하이수락완료모달
   const openAcceptedModal = async () => {
     if (!userProfile) return;
@@ -173,7 +172,9 @@ const Profile1to1 = () => {
   }, [isMyProfile, userId]);
 
   const displayedProfile = isMyProfile ? MyProfileDetail : userProfile;
-
+  const displayedStudentNumber = isMyProfile
+    ? MyProfileDetail?.studentNumber.slice(2, 4)
+    : userProfile?.studentNumber;
   return (
     <S.UserdetailLayout>
       {isMyProfile ? <MyProfileHeader /> : <Header title="프로필 보기" />}
@@ -189,7 +190,7 @@ const Profile1to1 = () => {
           </S.Avatar>
           <S.UserInfo $isMusic={false}>
             <b>{displayedProfile.nickname}</b> | {displayedProfile.age}세 (
-            {displayedProfile.studentNumber?.slice(2, 4)}학번)
+            {displayedStudentNumber}학번)
           </S.UserInfo>
           <S.UserInfo $isMusic={false}>{displayedProfile.major}</S.UserInfo>
           <S.MusicContainer>

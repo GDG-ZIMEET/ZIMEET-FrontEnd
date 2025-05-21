@@ -8,7 +8,7 @@ export const MakeTeamLayout = styled.div`
   align-items: center;
   height: 70%;
   width: 94%;
-  margin: 15% 0 0 3%;
+  margin: 5% 0 0 3%;
 `;
 
 export const explainComponent = styled.div`
@@ -37,17 +37,18 @@ export const Line2 = styled.div`
 
 export const TeamRow = styled.div`
   display: flex;
-  height: 55%;
+  height: 45%;
   width: 100%;
-  justify-content: space-between; 
+  align-items: center;
+  justify-content: center;
 `;
 
 
 export const FirstPerson = styled.div`
   font-size: 40px;
   background-color: #F2F2F2;
-  height: 100%; 
-  flex: 1; 
+  height: 90%; 
+  width: 35%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,5 +75,7 @@ export const SixthPerson = styled(FirstPerson)`
 
 export const LoadingBefore = styled(I.RandomBefore)`
   margin-top: 2.5%;
-  height: 30%;
+  padding: 2% 0 2% 0;
+  width: 25%;
+  height: 20%;
 `;

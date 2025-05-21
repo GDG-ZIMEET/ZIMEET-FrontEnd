@@ -9,6 +9,10 @@ export const BlurBackground = styled.div`
   bottom: 0;
   backdrop-filter: blur(2px);
   z-index: 99;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+  top: 15%;
+}
 `;
 
 export const PopupContainer = styled.div`
@@ -35,6 +39,10 @@ export const PopupContainer = styled.div`
   @supports (-webkit-touch-callout: none) {
     height: 30%;
   }}
+
+  @media (max-width: 350px) and (max-height: 600px) {
+  height: 30%;
+}
 `; 
 
 export const MessageContainer = styled.div`
@@ -44,6 +52,10 @@ export const MessageContainer = styled.div`
   font-size: 14px;
   font-weight: 700;
   font-family: 'Pretendard';
+
+  @media (max-width: 350px) and (max-height: 600px) {
+  font-size: 12px;
+}
 `;
 
 export const Button = styled.button`
@@ -56,4 +68,8 @@ export const Button = styled.button`
   font-size: 14px;
   font-weight: 700;
   font-family: 'Pretendard';
+
+  @media (max-width: 350px) and (max-height: 600px) {
+  font-size: 12px;
+}
 `;

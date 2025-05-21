@@ -7,7 +7,8 @@ export const UserdetailLayout = styled.div`
    align-items: center;
    height: 80%;
    width: 100%;
-   overflow: hidden;
+   overflow-x: hidden;
+    overflow-y: auto;
    font-family: Pretendard, sans-serif;
 `;
 
@@ -45,6 +46,10 @@ export const MusicContainer = styled.div`
 
   p { 
     font-size: 15px;
+
+    @media (max-width: 350px) {
+          font-size: 10px;
+  }
     }
 `;
 
@@ -64,7 +69,16 @@ export const UserInfo = styled.div<{ $isMusic: boolean }>`
         border-radius: 20px;
         font-weight: bold;
         margin: auto 0 auto 2%;
+
+        @media (max-width: 350px ) {
+          padding: 2%;
+          font-size: 10px;
+        }
     `}
+
+    @media (max-width: 350px) and (max-height: 600px) {
+          font-size: 10px;
+  }
 `;
 
 export const Title = styled.div`
@@ -74,6 +88,12 @@ export const Title = styled.div`
   font-weight: bold;
   margin-top: 10%;
   margin-bottom: 5%;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+          font-size: 12px;
+          margin-top: 5%;
+          margin-bottom: 3%;
+  }
 `;
 
 export const UserContainer = styled.div`
@@ -96,6 +116,11 @@ export const PremiumOverlay1 = styled.div`
   border-radius: 20px;
   background: #000000;
   gap: 5%;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+  border-radius: 15px;
+  padding: 1%;
+}
 `;
 
 export const PremiumOverlay2 = styled(PremiumOverlay1)`
@@ -117,6 +142,11 @@ export const PremiumText1 = styled.div`
     font-size: 16px;
     text-decoration: underline;
   }
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 10px;
+    line-height: 1.5;
+}
 `;
 
 export const PremiumText2 = styled(PremiumText1)`

@@ -85,6 +85,9 @@ export const InfoGetContainer = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 2;  
+  @media (max-width: 350px) and (max-height: 600px) {
+    margin-top: 2%;
+  }
 `;
 
 export const MyInfoContainer = styled.div`
@@ -116,6 +119,11 @@ export const MyInfo = styled.div`
     font-size: 14px;
     margin-bottom: -3%;
   }
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    height: 40%; 
+    padding: 3% 0 3% 0;
+  }
 `;
 export const MyDetailInfoText = styled.div`
   display: flex;
@@ -131,6 +139,10 @@ export const MyDetailInfoText = styled.div`
     font-weight: 700;
     font-size: 14px;
     margin-bottom: -3%;
+
+    @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 12px;
+    }
   }
 `;
 
@@ -147,6 +159,10 @@ export const MyDetailInfo = styled.div`
   font-family: Pretendard;
   font-size: 12px;
   line-height: 1.3;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    padding: 3% 6% 1% 5%;
+  }
 `;
 
 export const MyMeetingContainer = styled.div`
@@ -158,6 +174,10 @@ export const MyMeetingContainer = styled.div`
   align-items: center;
   border-bottom-left-radius: 20px; 
   border-bottom-right-radius: 20px;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    padding: 4% 0 4% 0;
+  }
 `;
 
 export const MyMeetingDetailContainer = styled.div`
@@ -169,6 +189,10 @@ export const MyMeetingDetailContainer = styled.div`
   padding: 3% 0 3% 0;
   border-bottom-left-radius: 20px; 
   border-bottom-right-radius: 20px;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    padding: 3% 0 1% 0;
+  }  
 `;
 
 export const LoginBtn = styled.button`
@@ -214,6 +238,10 @@ export const MyInfoText = styled.p`
   &.bold {
     font-weight: 700;
   }
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 11px;
+  }
 `;
 export const MyInfoModifyWrapper = styled.div`
   align-self: flex-start;
@@ -247,10 +275,18 @@ export const MyMeetingTitle = styled.p`
   font-weight: 700;
   font-size: 12px;
   margin-bottom: 1%;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 11px;
+  }
 `;
 export const MyMeetingText = styled.p`
   font-family: Pretendard;
   font-size: 12px;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 11px;
+  }  
 `;
 export const MeetingEmojiWrap = styled.div`
   width: 70%; 
@@ -263,6 +299,10 @@ export const MeetingEmojiWrap = styled.div`
   border-radius: 50%; 
   margin: 10% 0 10% 0;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 45%; 
+  }
 `;
 
 export const Hiblack = styled(I.HiIconblack) `
@@ -303,6 +343,10 @@ export const OutText = styled.a`
     text-decoration: underline;
     cursor: pointer;
   }
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 11px;
+  }
 `;
 
 export const Text = styled.div`
@@ -314,5 +358,13 @@ export const Text = styled.div`
     b {
       font-size: 15px;
       font-weight: 700;
+
+      @media (max-width: 350px) and (max-height: 600px) {
+        font-size: 12px;
+      }
     }
+
+    @media (max-width: 350px) and (max-height: 600px) {
+        font-size: 11px;
+      }
 `;

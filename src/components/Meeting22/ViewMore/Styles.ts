@@ -26,4 +26,9 @@ align-items: center;
     margin-right: 1%;
   }
 }
+
+@media (max-width: 350px) {
+  font-size: 12px;
+  line-height: 20px;
+}
 `;

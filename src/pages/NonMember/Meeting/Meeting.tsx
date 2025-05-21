@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import MakeTeamBox from '../../../components/Non-member/Meeting/MakeTeamBox/MakeTeamBox';
@@ -10,13 +10,13 @@ import { track } from '@amplitude/analytics-browser';
 const NonLogInMeeting: React.FC = () => {
   const navigate = useNavigate();
 
-  useEffect( () => {
-      track('[접속]미팅_랜덤(비회원)');
+  useEffect(() => {
+    track('[접속]미팅_랜덤(비회원)');
   });
 
   const handleHelpClick = () => {
     navigate('/help');
-    track('[클릭]미팅_랜덤_도움말(비회원)')
+    track('[클릭]미팅_랜덤_도움말(비회원)');
   };
 
   const handleJoinClick = () => {
@@ -27,9 +27,9 @@ const NonLogInMeeting: React.FC = () => {
   return (
     <>
       <MakeTeamBox />
-      <Help showContainer={true} onClick={handleHelpClick} />
+      <Help onClick={handleHelpClick} />
       <S.Explanation>친구도 얻고, 연인도 얻고!</S.Explanation>
-      <JoinRandomMeetingButton  onClick={handleJoinClick} />
+      <S.Button onClick={handleJoinClick}>랜덤미팅 참여하기 </S.Button>
       <NavigationBar />
     </>
   );

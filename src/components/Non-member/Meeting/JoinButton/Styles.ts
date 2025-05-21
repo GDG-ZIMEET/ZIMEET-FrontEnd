@@ -10,6 +10,10 @@ export const ButtonLayout = styled.div`
   height: 8%;
   width: 80%;
   margin-top: 4%;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    height: 12%;
+  }
 `;
 
 export const Button = styled.button`
@@ -25,5 +29,9 @@ export const Button = styled.button`
 
   &:hover {
     background-color: darken(0.1, '#000000'); 
+  }
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 12px;
   }
 `;

@@ -30,4 +30,8 @@ export const SentHiExplanation = styled.div`
     color: #FA2D4C;
     text-decoration: underline; // 밑줄 추가
   }
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 11px;
+  }
 `;

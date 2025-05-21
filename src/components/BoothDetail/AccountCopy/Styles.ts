@@ -49,4 +49,8 @@ export const CopyButton = styled.button`
   height: 60%;
   width: 25%;
   line-height: normal;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 10px;
+  }
 `;

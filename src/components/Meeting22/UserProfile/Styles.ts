@@ -63,6 +63,10 @@ export const TeamNameBox = styled.div`
   font-size: 13px;
   font-weight: 700;
   font-family: 'Pretendard';
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 11px;
+}
 `;
 
 export const CertificationIcon = styled(Certification)`
@@ -76,6 +80,10 @@ export const CertificationIcon = styled(Certification)`
     height:60%;
     margin-right: 1%;
   }}
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 7%;
+}
 `;
 
 export const MajorBox = styled.div`
@@ -99,6 +107,10 @@ export const MajorDisplay = styled.div`
   color: #0;
   line-height: 16px;
   font-family: 'Pretendard';
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 10px;
+}
 `;
 
 export const MemberInfo = styled.div`
