@@ -29,6 +29,7 @@ import { useRecoilValue } from 'recoil';
 import { getOnetoOneDetail } from 'api/Meeting/GetOnetoOneDetail';
 import { getmyProfile } from 'api/Mypage/GetmyProfile';
 import { MyProfileType } from 'recoilStores/type/MyPage/MyProfileType';
+import { useFCM } from '../../../firebase/useFCM';
 
 const Profile1to1 = () => {
   const { from } = useLocation().state as {
@@ -50,6 +51,8 @@ const Profile1to1 = () => {
   const [isAcceptedModalOpen, setIsAcceptedModalOpen] = useState(false);
   const [isRefusedModalOpen, setIsRefusedModalOpen] = useState(false);
   const navigate = useNavigate();
+  const { requestNotificationPermission } = useFCM();
+  const isNotificationEnabled = Notification.permission === 'granted';
 
   const openModal = () => {
     track('[버튼]미팅_이성유저상세보기_하이보내기');
@@ -145,6 +148,11 @@ const Profile1to1 = () => {
     setIsRefusedModalOpen(false);
     navigate('/receiveHi');
   };
+
+  const handleNotificationPermission = async () => {
+    await requestNotificationPermission();
+  };
+
   //유저 프로필
   useEffect(() => {
     track('[접속]미팅_1대1참여');
@@ -262,6 +270,15 @@ const Profile1to1 = () => {
         <p>유저 프로필을 찾을수 없습니다 </p>
       )}
 
+      {!isNotificationEnabled && isMyProfile && (
+        <S.NotificationLayout>
+          <S.NotificationButton onClick={handleNotificationPermission}>
+            <S.NotificationIcon />
+            <S.NotificationText>눌러서 하이 받을 때, 채팅 올 때 알림 받기</S.NotificationText>
+          </S.NotificationButton>
+        </S.NotificationLayout>
+      )}
+          
       {!isMyProfile &&
         (userProfile?.hi === true ? (
           <SentHiButton />
