@@ -11,7 +11,6 @@ export const UserdetailLayout = styled.div`
    overflow-x: hidden;
     overflow-y: auto;
    font-family: Pretendard, sans-serif;
-   padding-bottom: 8vh;
 `;
 
 export const LoadingContainer = styled.img.attrs({

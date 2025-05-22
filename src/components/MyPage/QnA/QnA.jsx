@@ -30,10 +30,10 @@ const QnA = () => {
     return (
         <S.QnAContainer >
             <S.Title>문의하기</S.Title>
-            <S.AlarmButton onClick={handleNotificationPermission}>
+            {/* <S.AlarmButton onClick={handleNotificationPermission}>
                 <S.NotificationIcon />
                 <S.AlarmText>눌러서 하이 받을 때, 채팅 올 때 알림 받기</S.AlarmText>
-            </S.AlarmButton>
+            </S.AlarmButton> */}
             <S.QnAs onClick={() => handleNavigate('http://pf.kakao.com/_gHxmin', '마이_1대1문의하기')}>
                 <S.QnAContent>1대1 문의하기</S.QnAContent>
                 <S.View />

@@ -69,11 +69,12 @@ const Chatting = () => {
     connectWebSocket(chatRoom.chatRoomId.toString(), (message) => {
       setMessages((prev) => [...prev, message]);
     });
+
     return () => {
       disconnectWebSocket();
       track('[퇴장]채팅_실시간채팅', { roomId: chatRoom.chatRoomId, userId });
     };
-  }, [chatRoom.chatRoomId]);
+  }, [chatRoom]);
 
   //메세지 전송
   const handleSendMessage = () => {
@@ -92,7 +93,6 @@ const Chatting = () => {
     };
 
     sendMessage(chatRoom.chatRoomId.toString(), newMessage);
-
     track('[전송]채팅_실시간채팅_채팅메시지', {
       roomId: chatRoom.chatRoomId,
       userId,

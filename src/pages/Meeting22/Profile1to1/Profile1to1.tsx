@@ -271,15 +271,15 @@ const Profile1to1 = () => {
         <p>유저 프로필을 찾을수 없습니다 </p>
       )}
 
-      {!isNotificationEnabled && isMyProfile && (
+      {/* {!isNotificationEnabled && isMyProfile && (
         <S.NotificationLayout>
           <S.NotificationButton onClick={handleNotificationPermission}>
             <S.NotificationIcon />
             <S.NotificationText>눌러서 하이 받을 때, 채팅 올 때 알림 받기</S.NotificationText>
           </S.NotificationButton>
         </S.NotificationLayout>
-      )}
-          
+      )} */}
+
       {!isMyProfile &&
         (userProfile?.hi === true ? (
           <SentHiButton />
