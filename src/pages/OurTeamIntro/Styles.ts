@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import zimeetLoading from '../../assets/icon/zimeetLoading.svg';
 
 export const OurTeamIntroLayout = styled.div`
     background-color: #FFFFFF;
@@ -17,3 +18,14 @@ export const OurTeamIntroContainer = styled.div`
         display: none;
     }
 `;
+
+export const LoadingContainer = styled.img.attrs({
+    src: zimeetLoading
+  })`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 32%;
+    margin: 0 auto;
+  `;

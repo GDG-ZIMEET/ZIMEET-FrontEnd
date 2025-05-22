@@ -8,11 +8,15 @@ import ChatInputBox from '../../../components/Chatting/Chat/Input/ChatInputBox';
 import ChatSidebar from '../../../components/Chatting/Chat/Sidebar/ChatSidebar';
 import { getMessages } from '../../../api/Chatting/GetMessage';
 import { getMessageResponseType } from '../../../recoilStores/type/Chatting/MessageType';
-import { connectWebSocket,sendMessage, disconnectWebSocket } from '../../../api/Chatting/WebSocketchat';
+import {
+  connectWebSocket,
+  sendMessage,
+  disconnectWebSocket,
+} from '../../../api/Chatting/WebSocketchat';
 import { v4 as uuidv4 } from 'uuid';
 import { authState } from 'recoilStores/state/authState';
 import { deleteuser } from 'api/Chatting/DeleteUser';
-import ExitModal  from 'components/Chatting/ExitModal/ExitModal';
+import ExitModal from 'components/Chatting/ExitModal/ExitModal';
 import { track } from '@amplitude/analytics-browser';
 
 const Chatting = () => {
@@ -39,7 +43,10 @@ const Chatting = () => {
       try {
         const response = await getMessages(Number(chatRoom.chatRoomId), 0, 15);
         if (response) {
-          const sortedMessages = response.sort((a, b) => new Date(a.sendAt).getTime() - new Date(b.sendAt).getTime());
+          const sortedMessages = response.sort(
+            (a, b) =>
+              new Date(a.sendAt).getTime() - new Date(b.sendAt).getTime(),
+          );
           setMessages(sortedMessages);
         }
       } catch (error) {
@@ -57,7 +64,7 @@ const Chatting = () => {
   //소켓연결
   useEffect(() => {
     if (!chatRoom || !chatRoom.chatRoomId) return;
-    track("[접속]채팅_실시간채팅", { roomId: chatRoom.chatRoomId, userId });
+    track('[접속]채팅_실시간채팅', { roomId: chatRoom.chatRoomId, userId });
 
     connectWebSocket(chatRoom.chatRoomId.toString(), (message) => {
       setMessages((prev) => [...prev, message]);
@@ -65,7 +72,7 @@ const Chatting = () => {
 
     return () => {
       disconnectWebSocket();
-      track("[퇴장]채팅_실시간채팅", { roomId: chatRoom.chatRoomId, userId });
+      track('[퇴장]채팅_실시간채팅', { roomId: chatRoom.chatRoomId, userId });
     };
   }, [chatRoom]);
 
@@ -76,45 +83,49 @@ const Chatting = () => {
 
     const newMessage = {
       id: uuidv4(),
-      type: "TALK",
+      type: 'TALK',
       roomId: chatRoom.chatRoomId.toString(),
       senderId: userId,
-      senderName: "",
+      senderName: '',
       content: input,
       sendAt: new Date().toISOString(),
-      emoji: "",
+      emoji: '',
     };
 
     sendMessage(chatRoom.chatRoomId.toString(), newMessage);
-    track("[전송]채팅_실시간채팅_채팅메시지", { roomId: chatRoom.chatRoomId, userId, content: input });
+    track('[전송]채팅_실시간채팅_채팅메시지', {
+      roomId: chatRoom.chatRoomId,
+      userId,
+      content: input,
+    });
 
-    setInput("");
-};
-
-const handleUserExit = async () => {
-  if (!chatRoom || !chatRoom.chatRoomId) return;
-
-  const exitMessage = {
-    id: uuidv4(),
-    type: "EXIT",
-    roomId: chatRoom.chatRoomId.toString(),
-    senderId: userId,
-    senderName: "",
-    content: `${userId}님이 채팅방을 나갔습니다.`,
-    sendAt: new Date().toISOString(),
-    emoji: "",
+    setInput('');
   };
 
-  sendMessage(chatRoom.chatRoomId.toString(), exitMessage);
+  const handleUserExit = async () => {
+    if (!chatRoom || !chatRoom.chatRoomId) return;
 
-  try {
-    await deleteuser(chatRoom.chatRoomId);
-  } catch (error) {
-    console.error('유저 삭제 실패:', error);
-  }
+    const exitMessage = {
+      id: uuidv4(),
+      type: 'EXIT',
+      roomId: chatRoom.chatRoomId.toString(),
+      senderId: userId,
+      senderName: '',
+      content: `${userId}님이 채팅방을 나갔습니다.`,
+      sendAt: new Date().toISOString(),
+      emoji: '',
+    };
 
-  navigate('/chattingInventory');
-};
+    sendMessage(chatRoom.chatRoomId.toString(), exitMessage);
+
+    try {
+      await deleteuser(chatRoom.chatRoomId);
+    } catch (error) {
+      console.error('유저 삭제 실패:', error);
+    }
+
+    navigate('/chattingInventory');
+  };
 
   const handleBackClick = () => {
     navigate(-1);
@@ -122,46 +133,52 @@ const handleUserExit = async () => {
 
   const SidebarOpen = () => {
     setIsSidebarOpen(true);
-  }
+  };
 
   const SidebarClose = () => {
     setIsSidebarOpen(false);
-  }
+  };
 
   const handleExitClick = () => {
     setIsSidebarOpen(false);
     setIsExitModalOpen(true);
-  }
+  };
 
   const handleExitConfirm = () => {
     setIsExitModalOpen(false);
     handleUserExit();
-  }
+  };
 
   const handleExitclose = () => {
     setIsExitModalOpen(false);
-  }
+  };
 
   return (
     <S.ChattingContainer>
-      <ChatHeader onBackClick={handleBackClick} chatRoomName = {chatRoom.chatRoomName} onHamburgerClick={SidebarOpen} />
+      <ChatHeader
+        onBackClick={handleBackClick}
+        chatRoomName={chatRoom.chatRoomName}
+        onHamburgerClick={SidebarOpen}
+      />
       {isLoading ? (
         <S.LoadingContainer />
       ) : (
         <>
-          <ChattingBox messages={messages}/>
+          <ChattingBox messages={messages} />
           <ChatInputBox
-            input={input} 
-            setInput={setInput} 
-            handleSend={handleSendMessage} 
+            input={input}
+            setInput={setInput}
+            handleSend={handleSendMessage}
           />
-          <ChatSidebar 
-            SideisOpen={isSidebarOpen} 
-            SideisClose={SidebarClose} 
+          <ChatSidebar
+            SideisOpen={isSidebarOpen}
+            SideisClose={SidebarClose}
             roomId={chatRoom.chatRoomId}
             handleExitClick={handleExitClick}
           />
-          {isExitModalOpen && <ExitModal isout={handleExitConfirm} isclose={handleExitclose} />}
+          {isExitModalOpen && (
+            <ExitModal isout={handleExitConfirm} isclose={handleExitclose} />
+          )}
         </>
       )}
     </S.ChattingContainer>
@@ -169,4 +186,3 @@ const handleUserExit = async () => {
 };
 
 export default Chatting;
-

@@ -58,7 +58,7 @@ export const DayText = styled.div`
   z-index: 1;
 `;
 
-export const StageTitle = styled.div<{ $fontSize? : string}>`
+export const StageTitle = styled.div<{ $fontSize? : string[]}>`
   width: 100%;
   height: 50%;
   display: flex;
@@ -68,9 +68,11 @@ export const StageTitle = styled.div<{ $fontSize? : string}>`
   font-weight: bold;
   color: #ffffff;
   z-index: 1;
-  overflow-wrap: break-word;
-  word-break: break-word;
   white-space: pre-wrap;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: ${({ $fontSize }) => ($fontSize ? $fontSize[1] : '40px')};
+  }
 `;
 
 export const TimeText = styled.div`
@@ -154,6 +156,7 @@ export const StageListContainer = styled.div`
   justify-content: center;
   align-items: center;
   align-items: flex-start;
+  overflow-x: hidden;
   overflow-y: auto;
   padding: 2% 0;
 
@@ -264,10 +267,9 @@ export const StageName = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: SemiBold;
   color: #000000;
-  white-space: nowrap;
 `;
 
 

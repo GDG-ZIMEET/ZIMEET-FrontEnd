@@ -57,6 +57,7 @@ export const Team = styled.div`
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 `;
 
+
 export const TeamHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -72,19 +73,24 @@ export const TeamName = styled.div`
 export const WriteTime = styled.div`
   font-size: 10px;
   color: #FA2D4C;
-
-  &::after {
-    font-size: 14px;
-    content: ' >';
-    color: #000000; 
-  }
+  margin-left: auto;
 `;
 
-export const JoinMembers = styled.div`
-  width: 35%; 
+export const ViewIcon = styled(I.View)`
+  width: 3%;
+  height: 5%;
+  margin-left: 1%;
+`;
+
+export const JoinMembers = styled.div<{ $memberCount: number }>`
+  width: ${props => props.$memberCount == 1 ? '25%' : '35%'}; 
   height: 75%;
   display: flex;
   position: relative;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 25%;
+  }
 `;
 
 export const JoinMemberBox = styled.div`
@@ -111,37 +117,39 @@ export const JoinMember = styled.div`
     width: 60%;}
 `;
 
-export const Introduction = styled.div`
+export const Introduction = styled.div<{ $memberCount: number }>`
   height: 75%; 
-  margin-left: 5%;
+  margin-left: ${props => props.$memberCount == 1 ? '0' : '5%'};
   margin-top: 3%;
   font-size: 10px;
   color: #000000;
   flex: 1;
   align-items: center;
+  display: ${props => props.$memberCount == 1 ? 'flex' : 'block'};
+  flex-direction: ${props => props.$memberCount == 1 ? 'row' : 'column'};
 `;
 
-export const Major = styled.div`
-  height: 40%; 
-  margin-left: 5%;
+export const Major = styled.div<{ $memberCount: number }>`
+  height: 53%; 
+  margin-left: ${props => props.$memberCount == 1 ? '0' : '5%'};
   font-size: 10px;
   color: #000000;
-  flex: 1;
   display: flex;
   align-items: center;
-  margin-bottom: 2%;
 `;
 
-export const MusicStylesContainer = styled.div`
+export const MusicStylesContainer = styled.div<{ $memberCount: number }>`
   display: flex;
   height: 53%;
-  width: 70%;
+  flex: 1;
+  display: flex;
+  align-items: ${props => props.$memberCount == 1 ? 'center' : 'flex-start'};
 `;
 
 export const MusicStyles = styled.div`
   height: 52%; 
-  width: 70%;
-  margin-left: 5%;
+  width: auto;
+  padding: 0 7% 0 7%;
   font-size: 10px;
   color: #000000;
   display: flex;
@@ -149,10 +157,19 @@ export const MusicStyles = styled.div`
   border-radius: 8px;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    height: 57%; 
+  }
 `;
 
 export const MusicEmoji = styled(I.Music)`
-    margin-left: 6%;
+    width: 20%;
+    height: 50%;
+
+    @media (max-width: 350px) and (max-height: 600px) {
+    width: 14%;
+  }
 `;
 
 export const JoinMembersAndIntroduction = styled.div`

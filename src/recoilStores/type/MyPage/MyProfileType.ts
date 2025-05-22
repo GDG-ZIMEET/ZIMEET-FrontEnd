@@ -1,4 +1,5 @@
 export interface MyProfileType {
+    id: number;
     name: string;
     studentNumber: string;
     gender: string;
@@ -14,6 +15,7 @@ export interface MyProfileType {
     idealAge: string;
     idealType: string;
     level: string;
+    profileStatus: string; //ACTIVE, INACTIVE
 }
 
 export interface MyProfileResponseType {

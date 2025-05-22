@@ -8,6 +8,7 @@ export const ItemHi22Container = styled.div`
   padding: 4% 4% 4% 4%;
   border-radius: 0.8rem;
   margin-top: 3%;
+  
 `;
 
 export const Title = styled.p`
@@ -21,12 +22,10 @@ export const HiContainer = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 3%; 
-  height: 72%;
 `;
 
 export const HiWrpper = styled.div`
   width: 100%; 
-  flex: 1;
   align-items: center;
   text-align: center;
   border-radius: 0.8rem;
@@ -39,6 +38,10 @@ export const HiQuantity = styled.div`
   padding: 10% 10% 10% 10%;
   border-top-left-radius: 0.8rem; 
   border-top-right-radius: 0.8rem;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    height: 65%;
+  }
 `;
 
 export const HiQuantityText = styled.p`
@@ -59,6 +62,10 @@ export const HiPrice = styled.div`
   align-items: center;
   text-align: center;
   border-bottom-left-radius: 0.8rem; border-bottom-right-radius: 0.8rem;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 10px;
+  }
 `;
 export const OriginPrice = styled.p`
   text-decoration: line-through;
@@ -75,35 +82,55 @@ export const DiscountPrice = styled.p`
 export const Hi1 = styled(I.Hi1)`
   width: 63%;
   height: 90%;
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 50%;
+  }
 `;
 
 export const Hi3 = styled(I.Hi3)`
   width: 100%;
   height: 70%;
   margin-top: 5%;
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 70%;
+  }
 `;
 
 export const Hi10 = styled(I.Hi10)`
   width: 90%;
   height: 85%;
   margin-top: 2%;
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 60%;
+  }
 `;
 
 export const T1 = styled(I.Ticket1)`
   width: 63%;
   height: 90%;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 60%;
+  }
 `;
 
 export const T3 = styled(I.Ticket3)`
   width: 100%;
   height: 70%;
   margin-top: 5%;
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 60%;
+  }
 `;
 
 export const T8 = styled(I.Ticket8)`
   width: 90%;
   height: 85%;
   margin-top: 2%;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    width: 60%;
+  }
 `;
 export const TicketsContainer = styled.div`
   width: 100%; 

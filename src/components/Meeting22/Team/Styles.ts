@@ -63,6 +63,10 @@ export const TeamNameBox = styled.div`
   font-size: 13px;
   font-weight: 700;
   font-family: 'Pretendard';
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 11px;
+}
 `;
 
 export const CertificationIcon = styled(Certification)`
@@ -99,6 +103,10 @@ export const MajorDisplay = styled.div`
   color: #0;
   line-height: 16px;
   font-family: 'Pretendard';
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 9px;
+}
 `;
 
 export const MemberInfo = styled.div`
@@ -122,4 +130,8 @@ export const MemberItem2 = styled.div<{ width: string }>`
   background: #F5F5F5;
   width: ${({ width }) => width};
   box-sizing: border-box;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 9px;
+}
 `;

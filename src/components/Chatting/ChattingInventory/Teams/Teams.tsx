@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
-import View from '../../../../assets/icon/Meeting22/View.svg';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { getchattingRoomList } from 'api/Chatting/GetChattingRoomList';
 import { ChattingRoomType } from 'recoilStores/type/Chatting/ChattingRoomListType';
-import { connectWebSocket, disconnectWebSocket } from 'api/Chatting/WebSocketchat';
+import {
+  connectWebSocket,
+  disconnectWebSocket,
+} from 'api/Chatting/WebSocketchat';
 import { ourteamIds } from 'recoilStores/state/ourTeamIds';
 import { useRecoilValue } from 'recoil';
 import { track } from '@amplitude/analytics-browser';
@@ -13,10 +15,12 @@ import { track } from '@amplitude/analytics-browser';
 const Teams: React.FC = () => {
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
-  const [chattingRoomList, setchattingRoomList] = useState<ChattingRoomType[] | null>(null);
+  const [chattingRoomList, setchattingRoomList] = useState<
+    ChattingRoomType[] | null
+  >(null);
   const [isLoading, setIsLoading] = useState(true);
   const isourteam = useRecoilValue(ourteamIds);
-  
+
   useEffect(() => {
     setIsLoading(true);
     const fetchChattingRoomList = async () => {
@@ -24,14 +28,16 @@ const Teams: React.FC = () => {
         const response = await getchattingRoomList();
         if (response) {
           const sortedRooms = response.data.sort(
-            (a, b) => new Date(b.lastestTime || 0).getTime() - new Date(a.lastestTime || 0).getTime()
+            (a, b) =>
+              new Date(b.lastestTime || 0).getTime() -
+              new Date(a.lastestTime || 0).getTime(),
           );
           setchattingRoomList(sortedRooms);
         } else {
           setchattingRoomList([]);
         }
       } catch (error) {
-        console.error("chatting room 리스트 가져오기 실패:", error);
+        console.error('chatting room 리스트 가져오기 실패:', error);
         setchattingRoomList([]);
       } finally {
         setIsLoading(false);
@@ -48,18 +54,23 @@ const Teams: React.FC = () => {
   //WebSocket 채팅방 목록 업데이트
   useEffect(() => {
     if (isourteam === null) return;
-    connectWebSocket("all_rooms", (message) => {
-
+    connectWebSocket('all_rooms', (message) => {
       setchattingRoomList((prevRooms) => {
         const updatedRooms = (prevRooms || []).map((room) =>
           room.chatRoomId === message.roomId
-            ? { ...room, latestMessage: message.content, lastestTime: message.sendAt }
-            : room
+            ? {
+                ...room,
+                latestMessage: message.content,
+                lastestTime: message.sendAt,
+              }
+            : room,
         );
 
         // 최신 메시지 기준으로 정렬
         return [...updatedRooms].sort(
-          (a, b) => new Date(b.lastestTime || 0).getTime() - new Date(a.lastestTime || 0).getTime()
+          (a, b) =>
+            new Date(b.lastestTime || 0).getTime() -
+            new Date(a.lastestTime || 0).getTime(),
         );
       });
     });
@@ -73,7 +84,7 @@ const Teams: React.FC = () => {
   const handleTeamClick = (team: ChattingRoomType) => {
     navigate(`/chatting/${team.chatRoomId}`, { state: team });
     track('[클릭]채팅_채팅목록_팀', {
-      chatRoomId: team.chatRoomId
+      chatRoomId: team.chatRoomId,
     });
   };
 
@@ -90,39 +101,55 @@ const Teams: React.FC = () => {
     else if (hours === 0) hours = 12;
     const formattedTime = `${period} ${hours}시 ${formattedMinutes}분`;
     const formattedTimeNotToday = `${hours}:${formattedMinutes}`;
-    return isToday ? formattedTime : `${date.getMonth() + 1}/${date.getDate()} ${formattedTimeNotToday}`;
+    return isToday
+      ? formattedTime
+      : `${date.getMonth() + 1}/${date.getDate()} ${formattedTimeNotToday}`;
   };
+
   return (
     <S.TeamComponent>
-      {!isLoggedIn || chattingRoomList === null ? (
-      <S.NoTeamsMessageContainer>
-        <S.ZimeetLogo />
-        <S.NoTeamsMessage>매력적인 팀을 만들어서 하이를 보내거나, <br /> 받은 하이를 수락하면 채팅방이 열려요!</S.NoTeamsMessage>
-      </S.NoTeamsMessageContainer>
-      ) : ( isLoading ? (
+      {!isLoggedIn || chattingRoomList?.length === 0 ? (
+        <S.NoTeamsMessageContainer>
+          <S.ZimeetLogo />
+          <S.NoTeamsMessage>
+            1대1 혼자 또는 2대2 팀으로 하이를 보내거나,
+            <br /> 받은 하이를 수락하면 채팅방이 열려요!
+          </S.NoTeamsMessage>
+        </S.NoTeamsMessageContainer>
+      ) : isLoading ? (
         <S.LoadingContainer />
       ) : (
-      chattingRoomList?.map(team => (
-        <S.Team key={team.chatRoomId.toString()} onClick={() => handleTeamClick(team)}>
-        <S.TeamHeader>
-          <S.TeamName>{team.chatRoomName} 팀</S.TeamName>
-          <S.WriteTime>{formatWriteTime(team.lastestTime)}</S.WriteTime>
-          <View/>
-        </S.TeamHeader>
-        <S.JoinMembersAndIntroduction>
-          <S.JoinMembers>
-          {team.userProfiles.map((profile) => (
-            <S.JoinMemberBox key={profile.userId}>
-            <S.JoinMember>
-              <img src={getImageByEmoji(profile.emoji)} alt={profile.emoji} />
-            </S.JoinMember>
-            </S.JoinMemberBox>
-          ))}
-          </S.JoinMembers>
-          <S.Introduction>{team.latestMessage}</S.Introduction>
-        </S.JoinMembersAndIntroduction>
-        </S.Team>
-      )))
+        chattingRoomList?.map((team) => (
+          <S.Team
+            key={team.chatRoomId.toString()}
+            onClick={() => handleTeamClick(team)}
+          >
+            <S.JoinMembersAndIntroduction>
+              <S.JoinMembers>
+                {team.userProfiles.map((profile) => (
+                  <S.JoinMemberBox key={profile.userId}>
+                    <S.JoinMember>
+                      <img
+                        src={getImageByEmoji(profile.emoji)}
+                        alt={profile.emoji}
+                      />
+                    </S.JoinMember>
+                  </S.JoinMemberBox>
+                ))}
+              </S.JoinMembers>
+              <S.ChatInfoContainer>
+                <S.TeamHeader>
+                  <S.TeamName>
+                    {team.chatRoomName}{' '}
+                    {team.userProfiles.length === 1 ? '' : '팀'}
+                  </S.TeamName>
+                  <S.WriteTime>{formatWriteTime(team.lastestTime)}</S.WriteTime>
+                </S.TeamHeader>
+                <S.Introduction>{team.latestMessage}</S.Introduction>
+              </S.ChatInfoContainer>
+            </S.JoinMembersAndIntroduction>
+          </S.Team>
+        ))
       )}
     </S.TeamComponent>
   );

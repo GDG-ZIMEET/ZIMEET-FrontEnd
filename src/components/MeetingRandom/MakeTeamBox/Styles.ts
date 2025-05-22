@@ -19,21 +19,30 @@ export const explainComponent = styled.div`
 `;
 
 export const line1 = styled.div<{ $isRandomLoading: boolean }>`
-  font-size: 14px;
+  font-size: ${({ $isRandomLoading }) => ($isRandomLoading ? '12px' : '14px')};
   width: 100%;
   color: #000000;
-  font-weight: bold;
-  opacity: ${({ $isRandomLoading }) => ($isRandomLoading ? '1' : '0')};
+  font-weight: ${({ $isRandomLoading }) => ($isRandomLoading ? '' : 'bold')};
   transition: opacity 0.3s ease-in-out;
   margin-bottom: 2%;
+  white-space: pre-line;
+  line-height: 1.2;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: ${({ $isRandomLoading }) => ($isRandomLoading ? '12px' : '12px')};
+  }
 `;
 
 export const Line2 = styled.div<{ $isRandomLoading: boolean }>`
-  font-size: 14px;
+  font-size: ${({ $isRandomLoading }) => ($isRandomLoading ? '12px' : '14px')};
   width: 100%;
   color: #000000;
-  opacity: ${({ $isRandomLoading }) => ($isRandomLoading ? '1' : '0')};
   transition: opacity 0.3s ease-in-out;
+  margin-bottom: ${({ $isRandomLoading }) => ($isRandomLoading ? '5%' : '0')};
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: ${({ $isRandomLoading }) => ($isRandomLoading ? '12px' : '10px')};
+  }
 `;
 
 
@@ -41,21 +50,25 @@ export const GirlComponent = styled.div`
   font-size: 15px;
   color: #000000;
   margin-bottom: 2%;
+  margin-left: 13%;
   font-weight: bold;
   align-self: flex-start;
+
 `;
 
-export const TeamRow = styled.div`
+export const TeamRow = styled.div<{ $isRandomLoading: boolean }>`
   display: flex;
-  height: 55%;
+  height: ${({ $isRandomLoading }) => ($isRandomLoading ? '45%' : '100%')}; 
   width: 100%;
-  justify-content: space-between; 
+  align-items: center;
+  justify-content: center;
 `;
 
 export const BoyComponent = styled.div`
   font-size: 15px;
   color: #000000;
   margin-bottom: 2%;
+  margin-left: 13%;
   font-weight: bold;
   align-self: flex-start;
 `;
@@ -63,8 +76,8 @@ export const BoyComponent = styled.div`
 export const FirstPerson = styled.div`
   font-size: 40px;
   background-color: #F2F2F2;
-  height: 100%; 
-  flex: 1; 
+  width: 35%;
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,10 +104,14 @@ export const SixthPerson = styled(FirstPerson)`
 
 export const LoadingBefore = styled(I.RandomBefore)`
   margin-top: 2.5%;
-  height: 30%;
+  padding: 2% 0 2% 0;
+  width: 25%;
+  height: 20%;
 `;
 
 export const LoadingAfter = styled(I.RandomAfter)`
   margin-top: 2.5%;
-  height: 30%;
+  padding: 2% 0 2% 0;
+  width: 25%;
+  height: 20%;
 `;

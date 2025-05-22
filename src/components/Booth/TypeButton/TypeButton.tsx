@@ -10,16 +10,16 @@ const TypeButton: React.FC = () => {
   const handleClick = (buttonType: string) => {
     setSelectedSpace(buttonType);
     switch(buttonType) {
-      case 'S_LEFT':
-        amplitude.track('[클릭]부스_광장L');
-        break;
-      case 'S_RIGHT':
-        amplitude.track('[클릭]부스_광장R');
-        break;
       case 'A':
         amplitude.track('[클릭]부스_안드레아');
         break;
-      case 'PG':
+      case 'S':
+        amplitude.track('[클릭]부스_광장');
+        break;
+      case 'K':
+      amplitude.track('[클릭]부스_김수환관');
+      break;
+      case 'G':
         amplitude.track('[클릭]부스_운동장');
         break;
       case 'F':
@@ -31,22 +31,22 @@ const TypeButton: React.FC = () => {
   return (
       <S.TypeLayout>
         <S.TypeComponent>
-          <S.FrontN onClick={() => handleClick('S_LEFT')} selected={selectedSpace === 'S_LEFT'}>
-            광장 L
-          </S.FrontN>
-        </S.TypeComponent>
-        <S.TypeComponent>
-          <S.FrontK onClick={() => handleClick('S_RIGHT')} selected={selectedSpace === 'S_RIGHT'}>
-            광장 R
-          </S.FrontK>
-        </S.TypeComponent>
-        <S.TypeComponent>
           <S.SSquare onClick={() => handleClick('A')} selected={selectedSpace === 'A'}>
             안드레아
           </S.SSquare>
         </S.TypeComponent>
         <S.TypeComponent>
-          <S.PlayGroud onClick={() => handleClick('PG')} selected={selectedSpace === 'PG'}>
+          <S.FrontN onClick={() => handleClick('S')} selected={selectedSpace === 'S'}>
+            성심광장
+          </S.FrontN>
+        </S.TypeComponent>
+        <S.TypeComponent>
+          <S.FrontK onClick={() => handleClick('K')} selected={selectedSpace === 'K'}>
+            K관/학관
+          </S.FrontK>
+        </S.TypeComponent>
+        <S.TypeComponent>
+          <S.PlayGroud onClick={() => handleClick('G')} selected={selectedSpace === 'G'}>
             운동장
           </S.PlayGroud>
         </S.TypeComponent>

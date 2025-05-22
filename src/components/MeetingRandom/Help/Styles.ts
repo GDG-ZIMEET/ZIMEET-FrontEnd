@@ -7,6 +7,10 @@ export const HelpLayout = styled.div`
   align-items: center;
   height: 10%;
   width: 100%;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    height: 8%;
+  }
 `;
 
 export const HelpContainer = styled.div`
@@ -19,6 +23,10 @@ export const HelpContainer = styled.div`
   font-size: 14px;
   color: #333;
   white-space: nowrap;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 11px;
+  }
 `;
 
 export const HelpIcon = styled(SpeechBubble)`

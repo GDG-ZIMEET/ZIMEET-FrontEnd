@@ -8,6 +8,7 @@ import { getOurTeamDetail } from '../../api/Meeting/GetourTeamDetail';
 import { useLocation } from 'react-router-dom';
 import { TeamData, User } from '../../recoilStores/type/Meeting/TeamDetail';
 import Certification from 'components/OurTeamIntro/Modal/Certification/Certification';
+import NotificationButton from 'components/OurTeamIntro/Modal/NotificationButton/NotificationButton';
 
 const OurTeamIntro = () => {
   const location = useLocation();
@@ -41,7 +42,7 @@ const OurTeamIntro = () => {
   if (isLoading) {
     return (
       <S.OurTeamIntroLayout>
-        <p>로딩 중...</p>
+        <S.LoadingContainer />
       </S.OurTeamIntroLayout>
     );
   }
@@ -59,8 +60,8 @@ const OurTeamIntro = () => {
           />
         ))}
       </S.OurTeamIntroContainer>
-      <TipModal />
       {ourteamDetailData?.verification === 1 ? <Certification /> : <TipModal />}
+      <NotificationButton />
       <NavigationBar />
     </S.OurTeamIntroLayout>
   );

@@ -13,7 +13,7 @@ export const connectWebSocket = ( roomId: string, onMessageReceived: (message: a
     }
 
     const socket = new SockJS(`${baseURL}/ws`);
-
+     
     stompClient = new Client({
         webSocketFactory: () => socket,
         reconnectDelay: 5000, 
@@ -24,6 +24,7 @@ export const connectWebSocket = ( roomId: string, onMessageReceived: (message: a
             track("[접속]웹소켓_채팅", { roomId: roomId });
             stompClient?.subscribe(`/topic/${roomId}`, (message) => {
                 onMessageReceived(JSON.parse(message.body));
+                console.log("Received message:", message.body);
                 track("[수신]웹소켓_채팅", { roomId: roomId });
             });
         },
@@ -50,7 +51,7 @@ export const sendMessage = (roomId: string, message: object )  => {
         return;
     }
 
-    const newMessage = { ...message, sentAt: new Date().toISOString() };
+    const newMessage = { ...message, sendAt: new Date().toISOString() };
 
     //서버로 메시지 전송
     stompClient.publish({

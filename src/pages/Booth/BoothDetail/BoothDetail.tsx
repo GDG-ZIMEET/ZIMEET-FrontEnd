@@ -8,7 +8,7 @@ import Explanation from 'components/BoothDetail/Explanation/Explanation';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import GotoMeeting from 'components/GotoMeeting/GotoMeeting';
 import { GetboothDetail } from '../../../api/booth/GetboothDetail';
-import { getPosterComponent } from '../../../utils/ClubPosterMapper';
+import { getPosterComponent } from '../../../utils/aureum/ClubPosterMapper';
 import { track } from '@amplitude/analytics-browser';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { boothDetailState } from 'recoilStores/state/boothState';
@@ -31,12 +31,12 @@ const BoothDetail: React.FC = () => {
     fetchBoothDetail();
     track('[접속]부스_상세화면', { clubId: Number(clubId) });
   }, [clubId]);
-  
+
   const PosterComponent = getPosterComponent(Number(clubId));
 
   return (
     <S.BoothDetailLayout>
-      <BackHeader boothtype={boothDetail?.data.category}/>
+      <BackHeader boothtype={boothDetail?.data.category} />
       {PosterComponent && (
         <S.PosterComponent src={PosterComponent} alt="부스 포스터" />
       )}

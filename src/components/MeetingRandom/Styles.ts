@@ -21,4 +21,8 @@ export const TicketCount = styled.div<{ $isRandomLoading: boolean }>`
       width: 25%;
     }
   }
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 9px;
+  }
 `;

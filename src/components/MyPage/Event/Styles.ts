@@ -18,19 +18,20 @@ export const EventContainer = styled.div`
       margin: 9% auto 0 auto;
     }
   }
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    margin-top: 4%;
+  }
 `;
 
 export const EventLogo = styled.div`
   width: 15%;
+  margin-left: 3.5%;
   margin-right: 3.5%;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 export const ZimeetLogo = styled(I.ZimeetLogo) `
-  width: 12%;
+  width: 100%;
   height: 100%;
 `;
 
@@ -49,6 +50,10 @@ export const EventText = styled.div`
   h1 {
     font-weight: 700;
     font-size: 14px;
+
+    @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 12px;
+  }
   }
 
   @media (max-width: 768px) {
@@ -56,7 +61,18 @@ export const EventText = styled.div`
       margin-right: 19%;
     }
   }
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    font-size: 10px;
+  }
 `;
 export const MoveBtn = styled(NextWhite)`
   margin-bottom: 7%;
+  margin-left: auto;
+  margin-right: 4%;
+
+  @media (max-width: 350px) and (max-height: 600px) {
+    margin-right: 1.5%;
+    height: 12px;
+  }
 `;
