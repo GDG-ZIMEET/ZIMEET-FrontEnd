@@ -24,6 +24,7 @@ import media_poster from '../../assets/icon/boothDetail/aureum/poster/media.png'
 import ai_poster from '../../assets/icon/boothDetail/aureum/poster/ai.jpeg';
 import cbo_poster from '../../assets/icon/boothDetail/aureum/poster/cbo.jpeg';
 import the_game_poster from '../../assets/icon/boothDetail/aureum/poster/the_game.png';
+import street_of_blue_poster from '../../assets/icon/boothDetail/aureum/poster/street_of_blue.png';
 import social_plus_poster from '../../assets/icon/boothDetail/aureum/poster/social_plus.jpg';
 import mp_poster from '../../assets/icon/boothDetail/aureum/poster/mp.jpg';
 import physical_poster from '../../assets/icon/boothDetail/aureum/poster/physical.png';
@@ -105,7 +106,7 @@ const posterMap: { [key: number]: string } = {
     57: global_poster,
     58: chinese_poster,
     59: global_poster,
-    60: the_game_poster,
+    60: street_of_blue_poster,
     61: human_ecology_poster,
     62: social_plus_poster,
     63: media_poster,

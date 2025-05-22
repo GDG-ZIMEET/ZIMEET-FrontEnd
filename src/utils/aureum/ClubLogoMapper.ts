@@ -24,6 +24,7 @@ import media_logo from '../../assets/icon/boothDetail/aureum/logo/media.jpg';
 import ai_logo from '../../assets/icon/boothDetail/aureum/logo/ai.png';
 import cbo_logo from '../../assets/icon/boothDetail/aureum/logo/cbo.jpeg';
 import the_game_logo from '../../assets/icon/boothDetail/aureum/logo/the_game.png';
+import street_of_blue_logo from '../../assets/icon/boothDetail/aureum/logo/street_of_blue.jpg';
 import social_plus_logo from '../../assets/icon/boothDetail/aureum/logo/social_plus.jpg';
 import mp_logo from '../../assets/icon/boothDetail/aureum/logo/mp.jpg';
 import physical_logo from '../../assets/icon/boothDetail/aureum/logo/physical.jpeg';
@@ -104,7 +105,7 @@ const logoMap: { [key: number]: string } = {
     57: global_logo,
     58: chinese_logo,
     59: global_logo,
-    60: the_game_logo,
+    60: street_of_blue_logo,
     61: human_ecology_logo,
     62: social_plus_logo,
     63: media_logo,
