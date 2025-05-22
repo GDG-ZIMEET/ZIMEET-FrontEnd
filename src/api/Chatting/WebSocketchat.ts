@@ -24,7 +24,6 @@ export const connectWebSocket = ( roomId: string, onMessageReceived: (message: a
             track("[접속]웹소켓_채팅", { roomId: roomId });
             stompClient?.subscribe(`/topic/${roomId}`, (message) => {
                 onMessageReceived(JSON.parse(message.body));
-                console.log("Received message:", message.body);
                 track("[수신]웹소켓_채팅", { roomId: roomId });
             });
         },

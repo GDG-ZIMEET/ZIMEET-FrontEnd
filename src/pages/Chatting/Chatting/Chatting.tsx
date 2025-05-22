@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './Styles';
@@ -26,9 +26,18 @@ const Chatting = () => {
   const [messages, setMessages] = useState<getMessageResponseType[]>([]);
   const [input, setInput] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
   const navigate = useNavigate();
+  //메세지 본 마지막 시간
+  const [lastMessageTime, setLastMessageTime] = useState<string | undefined>(
+    undefined,
+  );
+
+  //채팅 무한스크롤
+  const limit = 20;
+  const [hasMore, setHasMore] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   //채팅방 없으면 홈으로
   useEffect(() => {
@@ -38,28 +47,49 @@ const Chatting = () => {
   }, [chatRoom, navigate]);
 
   //기존 메시지 조회
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const response = await getMessages(Number(chatRoom.chatRoomId), 0, 15);
-        if (response) {
-          const sortedMessages = response.sort(
-            (a, b) =>
-              new Date(a.sendAt).getTime() - new Date(b.sendAt).getTime(),
-          );
-          setMessages(sortedMessages);
-        }
-      } catch (error) {
-        console.error('메시지 불러오기 실패:', error);
-      } finally {
-        setIsLoading(false);
+  const fetchMessages = async () => {
+    if (!chatRoom?.chatRoomId || !hasMore || isLoading) return;
+    setIsLoading(true);
+    try {
+      const response = await getMessages(
+        chatRoom.chatRoomId,
+        limit,
+        lastMessageTime,
+      );
+      if (response && response.length > 0) {
+        // 오래된 순 정렬
+        const sorted = response.sort(
+          (a, b) => new Date(a.sendAt).getTime() - new Date(b.sendAt).getTime(),
+        );
+        // 누적
+        setMessages((prev) => [...prev, ...sorted]);
+        // 다음 커서: 가장 오래된 메시지
+        setLastMessageTime(sorted[0].sendAt);
+      } else {
+        // 더 이상 불러올 메시지 없음
+        setHasMore(false);
       }
-    };
+    } catch (error) {
+      console.error('메시지 불러오기 실패:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    if (chatRoom.chatRoomId) {
+  // 최초 로드 및 룸 변경 시 초기화 후 fetch
+  useEffect(() => {
+    setMessages([]);
+    setLastMessageTime(undefined);
+    setHasMore(true);
+    fetchMessages();
+  }, [chatRoom?.chatRoomId]);
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
+    if (scrollHeight - scrollTop - clientHeight < 50) {
       fetchMessages();
     }
-  }, [chatRoom.chatRoomId]);
+  };
 
   //소켓연결
   useEffect(() => {
@@ -154,7 +184,7 @@ const Chatting = () => {
   };
 
   return (
-    <S.ChattingContainer>
+    <S.ChattingContainer ref={containerRef} onScroll={handleScroll}>
       <ChatHeader
         onBackClick={handleBackClick}
         chatRoomName={chatRoom.chatRoomName}
