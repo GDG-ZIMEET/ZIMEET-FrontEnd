@@ -43,6 +43,16 @@ const Teams: React.FC = () => {
     }
   };
 
+  const handleOnetoOneClick = (userId: number) => {
+    const selectedUser = sendHiList?.find((user) => user.teamId === userId);
+    if (selectedUser) {
+      navigate(`/Profile1to1/${userId}`, { state: { from: 'receiveHi' } });
+      track('[클릭]채팅_하이보낸_유저', {
+        teamId: userId,
+      });
+    }
+  };
+
   return (
     <S.TeamComponent>
       {!isLoggedIn || sendHiList?.length === 0 || sendHiList === null ? (
@@ -59,7 +69,11 @@ const Teams: React.FC = () => {
         sendHiList?.map((team) => (
           <S.Team
             key={team.teamId}
-            onClick={() => handleTeamClick(team.teamId)}
+            onClick={
+              team.userProfileDtos.length === 1
+                ? () => handleOnetoOneClick(team.teamId)
+                : () => handleTeamClick(team.teamId)
+            }
           >
             <S.TeamHeader>
               <S.TeamName>
