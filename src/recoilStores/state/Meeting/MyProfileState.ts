@@ -6,3 +6,9 @@ export const MyProfileState = atom<MyProfileType | null>({
     key: 'MyProfileState',
     default: null,
 });
+
+//2대2 내 팀 id
+export const OurTwoToTwoState = atom<number | 0>({
+    key: 'OurTwoToTwoState',
+    default: 0,
+});

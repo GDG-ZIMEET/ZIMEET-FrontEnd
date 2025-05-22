@@ -5,6 +5,7 @@ import { postsendHi } from '../../../../api/Hi/PostsendHi';
 import { useRecoilValue } from 'recoil';
 import { ourteamIds } from 'recoilStores/state/ourTeamIds';
 import { track } from '@amplitude/analytics-browser';
+import { OurTwoToTwoState } from 'recoilStores/state/Meeting/MyProfileState';
 
 interface SendQuestionProps {
   onClose: () => void;
@@ -14,9 +15,15 @@ interface SendQuestionProps {
   teamType: string;
 }
 
-const SendQuestion: React.FC<SendQuestionProps> = ({ onClose, onConfirm, teamName, teamId, teamType }) => {  
+const SendQuestion: React.FC<SendQuestionProps> = ({
+  onClose,
+  onConfirm,
+  teamName,
+  teamId,
+  teamType,
+}) => {
   const [hiCount, setHiCount] = useState(0);
-  const ourTeamIdsValue = useRecoilValue(ourteamIds);
+  const OurTwoToTwoid = useRecoilValue(OurTwoToTwoState);
 
   useEffect(() => {
     const fetchHiCount = async () => {
@@ -33,14 +40,18 @@ const SendQuestion: React.FC<SendQuestionProps> = ({ onClose, onConfirm, teamNam
       }
     };
     fetchHiCount();
-    track('[접속]미팅_팀_하이보내기')
+    track('[접속]미팅_팀_하이보내기');
   }, [teamType]);
 
   const sendHi = async () => {
     try {
-      if (ourTeamIdsValue) {
-        const fromId = teamType === 'TWO_TO_TWO' ? ourTeamIdsValue[0] : ourTeamIdsValue[1];
-        const sendHiresponse = await postsendHi({ toId: teamId, fromId: fromId });
+      if (OurTwoToTwoid) {
+        const fromId = teamType === 'TWO_TO_TWO' ? OurTwoToTwoid : 0; // threeTothree인 경우 수정
+        const sendHiresponse = await postsendHi({
+          toId: teamId,
+          fromId: fromId,
+          type: 'TEAM',
+        });
       } else {
         console.error('ourTeamIdsValue is null');
       }
@@ -54,10 +65,10 @@ const SendQuestion: React.FC<SendQuestionProps> = ({ onClose, onConfirm, teamNam
       team_name: teamName,
       team_id: teamId,
       team_type: teamType,
-      remaining_hi: hiCount
+      remaining_hi: hiCount,
     });
-    await sendHi(); 
-    onConfirm();  
+    await sendHi();
+    onConfirm();
   };
 
   const handleClose = () => {
@@ -65,26 +76,27 @@ const SendQuestion: React.FC<SendQuestionProps> = ({ onClose, onConfirm, teamNam
       team_name: teamName,
       team_id: teamId,
       team_type: teamType,
-      remaining_hi: hiCount
+      remaining_hi: hiCount,
     });
-    onClose();  
+    onClose();
   };
-
 
   return (
     <S.Modallayout>
       <S.ModalContent>
         <S.ModalTitle>{teamName} 팀에게 하트를 보낼까요?</S.ModalTitle>
         <S.ModalText>
-          우리팀이 보낸 하트를 수락하면 채팅방이 열려요!<br />
-          하이는 우리 팀 하이 개수에서 차감되고,<br />
+          우리팀이 보낸 하트를 수락하면 채팅방이 열려요!
+          <br />
+          하이는 우리 팀 하이 개수에서 차감되고,
+          <br />
           보낸 하이는 취소할 수 없어요.
         </S.ModalText>
         <S.TicketCount>우리 팀의 하이 : {hiCount}개</S.TicketCount>
         <S.ButtonBox>
           <S.CancelButton onClick={handleClose}>취소</S.CancelButton>
           <S.ConfirmButton onClick={handleConfirm}>
-            <S.Hi /> 
+            <S.Hi />
             <S.Text>보내기</S.Text>
           </S.ConfirmButton>
         </S.ButtonBox>

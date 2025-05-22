@@ -22,6 +22,7 @@ import { getmyProfile } from 'api/Meeting/GetMyprofile';
 import { MyProfileType } from 'recoilStores/type/Meeting/MyProfile';
 import UserBox from '../../components/Meeting22/TeamBox/UserBox';
 import { MyProfileState } from '../../recoilStores/state/Meeting/MyProfileState';
+import { OurTwoToTwoState } from '../../recoilStores/state/Meeting/MyProfileState';
 import { track } from '@amplitude/analytics-browser';
 
 const Meeting22 = () => {
@@ -32,6 +33,10 @@ const Meeting22 = () => {
   const [teamType, setTeamType] = useState<string>('ONE_TO_ONE');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ourTeamData, setOurTeamData] = useState<OurTeamType | null>(null);
+  const [our2teamid, setour2teamid] = useRecoilState<number | 0>(
+    OurTwoToTwoState,
+  );
+
   const [myProfileData, setMyProfileData] =
     useRecoilState<MyProfileType | null>(MyProfileState);
 
@@ -69,6 +74,7 @@ const Meeting22 = () => {
         } else if (isLoggedIn && teamType !== 'Random') {
           const response = await getOurTeam(teamType);
           setOurTeamData(response?.data || null);
+          setour2teamid(response?.data.teamId || 0);
         } else {
           if (teamType === 'TWO_TO_TWO') {
             setOurTeamData(null);
@@ -110,11 +116,7 @@ const Meeting22 = () => {
               ) : teamType === 'ONE_TO_ONE' ? (
                 <UserBox userData={UserGalleryData} teamType={teamType} />
               ) : (
-                <TeamBox
-                  teamData={teamGalleryData}
-                  ourTeamData={ourTeamData}
-                  teamType={teamType}
-                />
+                <TeamBox teamData={teamGalleryData} teamType={teamType} />
               )}
             </>
           ) : isLoggedIn ? (
