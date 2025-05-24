@@ -29,6 +29,7 @@ export const useFCM = () => {
                 });
                 console.log(fcmToken);
                 console.log('FCM token POST 완료 | 서버 응답:', tokenResponse.data);
+                alert('이미 알림을 설정했어요! 알림을 받기 위해 ZI밋을 홈화면에 추가해주세요.');
                 return fcmToken;
             }
             

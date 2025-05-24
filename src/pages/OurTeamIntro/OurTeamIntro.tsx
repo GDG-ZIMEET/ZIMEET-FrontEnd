@@ -61,7 +61,7 @@ const OurTeamIntro = () => {
         ))}
       </S.OurTeamIntroContainer>
       {ourteamDetailData?.verification === 1 ? <Certification /> : <TipModal />}
-      {/*<NotificationButton />*/}
+      <NotificationButton />
       <NavigationBar />
     </S.OurTeamIntroLayout>
   );
