@@ -3,17 +3,16 @@ import { getMessageResponseType } from '../../recoilStores/type/Chatting/Message
 
 export const getMessages = async (
     roomId: number,
-    page: number,
-    size: number
-     // lastMessageTime ?: string //마지막으로 메세지 본 시간
+    size: number,
+    lastMessageTime?: string //마지막으로 메세지 본 시간
 ): Promise<getMessageResponseType[] | null> => {
   try {
+    const params = {
+        size,
+        lastMessageTime,
+    };
     const { data } = await privateAxios.get<getMessageResponseType[]>(`/chat/rooms/${roomId}/messages`, {
-        params: {
-            page,
-            size,
-          //  lastMessageTime
-        },
+        params,
     }); 
     return data;
   } catch (error) {
