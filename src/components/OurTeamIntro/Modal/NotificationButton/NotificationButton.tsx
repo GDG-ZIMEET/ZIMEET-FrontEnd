@@ -2,13 +2,16 @@ import * as S from './Styles';
 import { useFCM } from '../../../../firebase/useFCM';
 
 const NotificationButton = () => {
-    const { requestNotificationPermission } = useFCM();
-    const isNotificationEnabled = Notification.permission === 'granted';
-    const handleNotificationPermission = async () => {
-        await requestNotificationPermission();
-    };
+    const {
+        checkNotificationPermission,
+        requestNotificationPermission
+    } = useFCM();
 
-    if (isNotificationEnabled) return null;
+    const handleNotificationPermission = async () => {
+        if (checkNotificationPermission()) {
+            await requestNotificationPermission();
+        }
+    };
 
     return (
         <S.NotificationLayout>

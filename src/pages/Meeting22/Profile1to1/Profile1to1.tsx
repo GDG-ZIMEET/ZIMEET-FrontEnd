@@ -51,8 +51,10 @@ const Profile1to1 = () => {
   const [isAcceptedModalOpen, setIsAcceptedModalOpen] = useState(false);
   const [isRefusedModalOpen, setIsRefusedModalOpen] = useState(false);
   const navigate = useNavigate();
-  const { requestNotificationPermission } = useFCM();
-  const isNotificationEnabled = Notification.permission === 'granted';
+  const {
+    checkNotificationPermission,
+    requestNotificationPermission
+  } = useFCM();
 
   const openModal = () => {
     track('[버튼]미팅_이성유저상세보기_하이보내기');
@@ -149,7 +151,9 @@ const Profile1to1 = () => {
   };
 
   const handleNotificationPermission = async () => {
-    await requestNotificationPermission();
+    if (checkNotificationPermission()) {
+      await requestNotificationPermission();
+    }
   };
 
   //유저 프로필
@@ -271,14 +275,14 @@ const Profile1to1 = () => {
         <p>유저 프로필을 찾을수 없습니다 </p>
       )}
 
-      {/* {!isNotificationEnabled && isMyProfile && (
+      {isMyProfile &&
         <S.NotificationLayout>
           <S.NotificationButton onClick={handleNotificationPermission}>
             <S.NotificationIcon />
             <S.NotificationText>눌러서 하이 받을 때, 채팅 올 때 알림 받기</S.NotificationText>
           </S.NotificationButton>
         </S.NotificationLayout>
-      )} */}
+      }
 
       {!isMyProfile &&
         (userProfile?.hi === true ? (

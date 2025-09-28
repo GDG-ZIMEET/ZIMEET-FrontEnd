@@ -17,7 +17,7 @@ const ReceiveHi: React.FC = () => {
       <S.ReceiveHiExplanation>
         <strong>내가 속해있는 팀에게 하이가 왔어요!</strong>
         <br />
-        받은 하이는 방치를 방지하고자 <span>5시간 후에 사라져요!</span>
+        받은 하이는 방치를 방지하고자 <span>12시간 후에 사라져요!</span>
       </S.ReceiveHiExplanation>
       <Teams />
       <NavigationBar />
