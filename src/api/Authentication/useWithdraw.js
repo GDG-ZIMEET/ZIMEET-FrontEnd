@@ -29,8 +29,11 @@ const useWithdraw = () => {
       // }
 
 
+      try {
       await disconnectWebSocket();
-
+    } catch (_err) {
+      console.warn('socket disconnect failed, continue anyway');
+    }
 
       alert("회원탈퇴가 완료되었습니다.");
       window.location.href = "/";

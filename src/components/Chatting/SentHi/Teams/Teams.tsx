@@ -46,7 +46,7 @@ const Teams: React.FC = () => {
   const handleOnetoOneClick = (userId: number) => {
     const selectedUser = sendHiList?.find((user) => user.teamId === userId);
     if (selectedUser) {
-      navigate(`/Profile1to1/${userId}`, { state: { from: 'receiveHi' } });
+      navigate(`/Profile1to1/${userId}`, { state: { from: 'sendHi' } });
       track('[클릭]채팅_하이보낸_유저', {
         teamId: userId,
       });

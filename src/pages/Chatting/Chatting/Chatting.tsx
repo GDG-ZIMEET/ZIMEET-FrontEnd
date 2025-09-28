@@ -62,7 +62,7 @@ const Chatting = () => {
           (a, b) => new Date(a.sendAt).getTime() - new Date(b.sendAt).getTime(),
         );
         // 누적
-        setMessages((prev) => [...prev, ...sorted]);
+        setMessages((prev) => [...sorted, ...prev]);
         // 다음 커서: 가장 오래된 메시지
         setLastMessageTime(sorted[0].sendAt);
       } else {
@@ -85,8 +85,8 @@ const Chatting = () => {
   }, [chatRoom?.chatRoomId]);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
-    if (scrollHeight - scrollTop - clientHeight < 50) {
+    const { scrollTop } = e.currentTarget;
+    if (scrollTop < 50 && hasMore && !isLoading) {
       fetchMessages();
     }
   };

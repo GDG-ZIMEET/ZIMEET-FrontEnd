@@ -11,6 +11,7 @@ export interface HiType {
     userProfileDtos: Users[];
     age: number;
     dateTime: string;
+    type: string;
 }
   
 export interface HiResponseType {

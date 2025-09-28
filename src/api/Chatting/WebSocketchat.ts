@@ -5,6 +5,7 @@ import { track } from '@amplitude/analytics-browser';
 const baseURL = import.meta.env.VITE_APP_SOCKET_URL;
 const token = localStorage.getItem('accessToken');
 let stompClient: Client | null = null;
+let pendingMessages: { roomId: string; body: object }[] = [];
 
 export const connectWebSocket = ( roomId: string, onMessageReceived: (message: any) => void) => {
     if (stompClient && stompClient.connected) {
@@ -21,11 +22,20 @@ export const connectWebSocket = ( roomId: string, onMessageReceived: (message: a
             Authorization: `Bearer ${token}`
         },
         onConnect: () => {
+            console.log("roomId", roomId);
             track("[접속]웹소켓_채팅", { roomId: roomId });
             stompClient?.subscribe(`/topic/${roomId}`, (message) => {
                 onMessageReceived(JSON.parse(message.body));
                 track("[수신]웹소켓_채팅", { roomId: roomId });
             });
+            pendingMessages.forEach(({ roomId, body }) => {
+                stompClient?.publish({
+                destination: `/app/chat/${roomId}`,
+                headers: { Authorization: `Bearer ${token}` },
+                body: JSON.stringify(body),
+                });
+            });
+            pendingMessages = [];
         },
         onWebSocketError: (error) => {
             console.error("WebSocket 오류 발생:", error);
@@ -41,26 +51,19 @@ export const connectWebSocket = ( roomId: string, onMessageReceived: (message: a
 };
 
 export const sendMessage = (roomId: string, message: object )  => {
-    if (!stompClient || !stompClient.connected) {
-        console.error("STOMP Client is not connected.");
-        return;
-    }
-    if (!roomId) {
-        console.error("Invalid roomId:", roomId);
-        return;
-    }
+    const body = { ...message, sendAt: new Date().toISOString() };
 
-    const newMessage = { ...message, sendAt: new Date().toISOString() };
-
-    //서버로 메시지 전송
+  if (stompClient?.connected) {
     stompClient.publish({
-        destination: `/app/chat/${roomId}`,
-        headers: {
-            Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(newMessage),
+      destination: `/app/chat/${roomId}`,
+      headers: { Authorization: `Bearer ${token}` },
+      body: JSON.stringify(body),
     });
-    track("[전송]웹소켓_채팅", { roomId: roomId, message: message });
+    track("[전송]웹소켓_채팅", { roomId });
+  } else {
+    // 연결 전이면 큐에 저장
+    pendingMessages.push({ roomId, body });
+  }
 };
 
 export const disconnectWebSocket = () => {
