@@ -18,7 +18,6 @@ import science_poster from '../../assets/icon/boothDetail/aureum/poster/science.
 import international_poster from '../../assets/icon/boothDetail/aureum/poster/international.jpg';
 import special_education_poster from '../../assets/icon/boothDetail/aureum/poster/special_education.jpeg';
 import judo_poster from '../../assets/icon/boothDetail/aureum/poster/judo.jpeg';
-import hantteut_poster from '../../assets/icon/boothDetail/aureum/poster/hantteut.jpg';
 import taekwondo_poster from '../../assets/icon/boothDetail/aureum/poster/taekwondo.jpg';
 import media_poster from '../../assets/icon/boothDetail/aureum/poster/media.png';
 import ai_poster from '../../assets/icon/boothDetail/aureum/poster/ai.jpeg';
@@ -47,7 +46,6 @@ import computer_poster from '../../assets/icon/boothDetail/aureum/poster/compute
 import default_poster from '../../assets/icon/boothDetail/aureum/poster/default_poster.svg';
 
 const posterMap: { [key: number]: string } = {
-    1: hantteut_poster,
     2: mp_poster,
     3: default_poster, // 철의맛 (포스터 없음)
     4: special_education_poster,
