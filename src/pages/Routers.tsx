@@ -9,7 +9,6 @@ import MyPage from './MyPage/MyPage/MyPage';
 import ModifyProfile from './MyPage/ModifyProfile/ModifyProfile';
 import ModifyEmoji from './MyPage/ModifyEmoji/ModifyEmoji';
 import Booth from './Booth/Booth';
-import BoothDetail from './Booth/BoothDetail/BoothDetail';
 import Chatting from './Chatting/Chatting/Chatting';
 import ChattingInventory from './Chatting/ChattingInventory/ChattingInventory';
 import Meeting22 from './Meeting22/Meeting22';
@@ -39,7 +38,6 @@ const Routers: React.FC = () => {
       <Route path="/modifyprofile" element={<ModifyProfile />} />
       <Route path="/modifyemoji" element={<ModifyEmoji />} />
       <Route path="/booth" element={<Booth />} />
-      <Route path="/boothDetail/:clubId" element={<BoothDetail />} />
       <Route path="/zimeetIntroduct" element={<ZimeetIntroduct />} />
       <Route path="/gdgocIntroduct" element={<GdgocIntroduct />} />
       <Route path="/chatting/:chatRoomId" element={<Chatting />} />

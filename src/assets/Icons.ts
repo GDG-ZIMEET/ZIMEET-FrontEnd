@@ -64,8 +64,6 @@ import Ticket3 from './icon/MyPage/Ticket3.svg?react';
 import Ticket8 from './icon/MyPage/Ticket8.svg?react';
 import HiIconblack from './icon/MyPage/Hi10.svg?react';
 
-// 부스 로고
-import NonLogo from './icon/boothDetail/neulpum/logo/GDGlogo.svg?react';
 
 // 👇 이렇게 한번에 export
 export {
@@ -114,7 +112,6 @@ export {
   Ticket3,
   Ticket8,
   HiIconblack,
-  NonLogo,
   TimeLine,
   TimeLineWhite,
   View,
