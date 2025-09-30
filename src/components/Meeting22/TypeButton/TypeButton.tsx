@@ -1,40 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as S from './Styles';
 import { track } from '@amplitude/analytics-browser';
 
+type TeamType = 'ONE_TO_ONE' | 'TWO_TO_TWO' | 'Random';
+
 interface TypeButtonProps {
-  setSelectedTeamType: (teamType: string) => void;
+  selectedTeamType: TeamType;
+  setSelectedTeamType: (teamType: TeamType) => void;
 }
 
-const TypeButton: React.FC<TypeButtonProps> = ({ setSelectedTeamType }) => {
+const TypeButton: React.FC<TypeButtonProps> = ({ selectedTeamType, setSelectedTeamType }) => {
   const location = useLocation();
-  const [selectedButton, setSelectedButton] = useState<string>('1to1');
+
+  const selectedButton = useMemo(() => {
+    if (selectedTeamType === 'TWO_TO_TWO') return '2to2';
+    if (selectedTeamType === 'Random') return 'random';
+    return '1to1';
+  }, [selectedTeamType]);
 
   useEffect(() => {
-    track('[접속]미팅_2대2');
-  });
+    if (selectedTeamType === 'TWO_TO_TWO') track('[접속]미팅_2대2');
+    else if (selectedTeamType === 'Random') track('[접속]미팅_랜덤');
+    else track('[접속]미팅_1대1');
+  }, [selectedTeamType]);
 
-  const handleTypeChange = (teamType: string, button: string, size: number) => {
-    setSelectedButton(button);
-    setSelectedTeamType(teamType);
-
-    if (button === '2to2') {
-      track('[클릭]미팅_헤더_2대2버튼');
-      track('[접속]미팅_2대2');
-    } else if (button === '3to3') {
-      track('[클릭]미팅_헤더_3대3버튼');
-      track('[접속]미팅_3대3');
-    } else if (button === '1to1') {
-      track('[클릭]미팅_헤더_1대1버튼');
-      track('[접속]미팅_1대1');
-    }
+  const handleTypeChange = (next: TeamType, clickTag: string, visitTag: string) => {
+    setSelectedTeamType(next);
+    track(clickTag);
+    track(visitTag);
   };
 
-  const handleRClick = () => {
-    setSelectedButton('random');
+  const handleRandomClick = () => {
     setSelectedTeamType('Random');
-
     track('[클릭]미팅_헤더_랜덤버튼');
     track('[접속]미팅_랜덤');
   };
@@ -43,7 +41,9 @@ const TypeButton: React.FC<TypeButtonProps> = ({ setSelectedTeamType }) => {
     <S.TypeLayout>
       <S.TypeComponent>
         <S.Oneto1
-          onClick={() => handleTypeChange('ONE_TO_ONE', '1to1', 1)}
+          onClick={() =>
+            handleTypeChange('ONE_TO_ONE', '[클릭]미팅_헤더_1대1버튼', '[접속]미팅_1대1')
+          }
           selected={selectedButton === '1to1'}
         >
           1대1
@@ -51,14 +51,16 @@ const TypeButton: React.FC<TypeButtonProps> = ({ setSelectedTeamType }) => {
       </S.TypeComponent>
       <S.TypeComponent>
         <S.Twoto2
-          onClick={() => handleTypeChange('TWO_TO_TWO', '2to2', 2)}
+          onClick={() =>
+            handleTypeChange('TWO_TO_TWO', '[클릭]미팅_헤더_2대2버튼', '[접속]미팅_2대2')
+          }
           selected={selectedButton === '2to2'}
         >
           2대2
         </S.Twoto2>
       </S.TypeComponent>
       <S.TypeComponent>
-        <S.Random onClick={handleRClick} selected={selectedButton === 'random'}>
+        <S.Random onClick={handleRandomClick} selected={selectedButton === 'random'}>
           랜덤
         </S.Random>
       </S.TypeComponent>
