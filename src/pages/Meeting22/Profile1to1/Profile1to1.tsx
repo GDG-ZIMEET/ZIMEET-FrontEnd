@@ -126,7 +126,7 @@ const Profile1to1 = () => {
   const openRefusedModal = async () => {
     if (!userProfile) return;
     try {
-      if (isMyProfile == null) {
+      if (!isMyProfile) {
         console.error('내 정보가 없습니다.');
         return;
       }

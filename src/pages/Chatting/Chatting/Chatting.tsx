@@ -82,7 +82,7 @@ const Chatting = () => {
     setLastMessageTime(undefined);
     setHasMore(true);
     fetchMessages();
-  }, [chatRoom?.chatRoomId, fetchMessages]);
+  }, [chatRoom?.chatRoomId]);
 
   const handleLoadMore = () => {
     fetchMessages();

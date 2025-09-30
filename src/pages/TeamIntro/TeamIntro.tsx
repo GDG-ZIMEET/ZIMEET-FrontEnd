@@ -97,7 +97,7 @@ const TeamIntro = () => {
     if (!teamDetailData) return;
 
     try {
-      if (ourTeamIdsValue == null) {
+      if (ourTeamIdsValue == null || ourTeamIdsValue === 0) {
         console.error('우리팀이 없습니다.');
         return;
       }
@@ -130,7 +130,7 @@ const TeamIntro = () => {
     if (!teamDetailData) return;
 
     try {
-      if (ourTeamIdsValue == null) {
+      if (ourTeamIdsValue == 0) {
         console.error('우리팀이 없습니다.');
         return;
       }

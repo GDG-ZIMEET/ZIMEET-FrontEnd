@@ -2,21 +2,25 @@ import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 
 const baseURL = import.meta.env.VITE_APP_SOCKET_URL;
-const token = localStorage.getItem('accessToken');
 
 //채팅방 목록 웹 소켓 서비스
 class WebSocketRoomService {
   private client: Client | null = null;
 
-  connect(chatRooms: { chatRoomId: string }[], onMessage: (msg: any) => void, onConnectCallback?: () => void) {
+  async connect(chatRooms: { chatRoomId: string }[], onMessage: (msg: any) => void, onConnectCallback?: () => void) {
+    
     if (this.client) {
-      this.client.deactivate();
+      await this.client.deactivate();
       this.client = null;
     }
     const socket = new SockJS(`${baseURL}/ws`);
+    const token = localStorage.getItem('accessToken');
+
     this.client = new Client({
       webSocketFactory: () => socket,
       reconnectDelay: 1000,
+      heartbeatIncoming: 10000,
+      heartbeatOutgoing: 10000,
       connectHeaders: { Authorization: `Bearer ${token}` },
       onConnect: () => {
         chatRooms.forEach((room) => {
@@ -37,9 +41,9 @@ class WebSocketRoomService {
     this.client.activate();
   }
 
-  disconnect() {
+  async disconnect() {
     if (this.client) {
-      this.client.deactivate();
+      await this.client.deactivate();
       this.client = null;
     }
   }

@@ -3,15 +3,16 @@ import SockJS from "sockjs-client";
 import { track } from '@amplitude/analytics-browser';
 
 const baseURL = import.meta.env.VITE_APP_SOCKET_URL;
-const token = localStorage.getItem('accessToken');
 
 //채팅방 웹 소켓 서비스
 class WebSocketService {
   private client: Client | null = null;
 
-  connect(chatRoomId: string, onMessage: (message: any) => void, onError?: (error: any) => void) {
+  async connect(chatRoomId: string, onMessage: (message: any) => void, onError?: (error: any) => void) {
+    const token = localStorage.getItem('accessToken');
+
     if (this.client) {
-      this.client.deactivate();
+      await this.client.deactivate();
       this.client = null;
     }
 
@@ -19,6 +20,8 @@ class WebSocketService {
     this.client = new Client({
       webSocketFactory: () => socket,
       reconnectDelay: 1000,
+      heartbeatIncoming: 10000,
+      heartbeatOutgoing: 10000,
       connectHeaders: { Authorization: `Bearer ${token}` },
       
       onConnect: () => {
@@ -56,9 +59,9 @@ class WebSocketService {
     }
   }
 
-  disconnect() {
+  async disconnect() {
     if (this.client) {
-      this.client.deactivate();
+      await this.client.deactivate();
       this.client = null;
     }
   }
