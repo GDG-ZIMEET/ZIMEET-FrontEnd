@@ -1,39 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as S from './Styles';
 import { getImageByEmoji, getRandomEmoji } from 'utils/IconMapper';
 import { RandomTeamType } from 'recoilStores/type/Meeting/RandomNowType';
 import Nopeople from 'assets/icon/emoji/Nopeople.svg';
-import { useNavigate } from 'react-router-dom';
 
 interface MakeTeamBoxProps {
   isRandomLoading: boolean;
   randomNowData: RandomTeamType | null;
-  navigateOnComplete: boolean; // COMPLETE 시 자동 이동 여부 (초기 렌더링에서는 false로 넘겨 자동 이동 방지)
-  hasSeenWaiting: boolean; 
-  onCompleteNavigate?: () => void;
 }
 
 const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({
   isRandomLoading,
   randomNowData,
-  navigateOnComplete,
-  hasSeenWaiting,
-  onCompleteNavigate,
 }) => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (
-      randomNowData?.matchingStatus === 'COMPLETE' &&
-      navigateOnComplete &&
-      hasSeenWaiting 
-    ) {
-      alert('매칭이 완료됐어요! 채팅 탭에서 대화를 시작해보세요🩶');
-      navigate('/chattingInventory');
-      onCompleteNavigate?.();
-    }
-  }, [randomNowData, navigateOnComplete, hasSeenWaiting, navigate, onCompleteNavigate]);
-
   const femaleUsers = randomNowData?.userList.filter(
     (user) => user.gender === 'FEMALE',
   );
