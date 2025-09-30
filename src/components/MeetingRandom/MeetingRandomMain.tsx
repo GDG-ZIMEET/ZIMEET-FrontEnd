@@ -47,6 +47,9 @@ const MeetingRandomMain: React.FC = () => {
           } else if (nowResponse.data.matchingStatus === 'COMPLETE') {
             setNavigateOnComplete(false);
             setHasSeenWaiting(false);
+          } else {
+            setNavigateOnComplete(false);
+            setHasSeenWaiting(false);
           }
         }
       } catch (e: any) {
@@ -64,6 +67,21 @@ const MeetingRandomMain: React.FC = () => {
       setHasSeenWaiting(true);
     }
   }, [randomNowData?.matchingStatus]);
+
+  useEffect(() => {
+    if (
+      randomNowData?.matchingStatus === 'COMPLETE' &&
+      navigateOnComplete &&
+      hasSeenWaiting
+    ) {
+      alert('매칭이 완료됐어요! 채팅 탭에서 대화를 시작해보세요🩶');
+      navigate('/chattingInventory');
+
+      setNavigateOnComplete(false);
+      setHasSeenWaiting(false);
+      setIsRandomLoading(false);
+    }
+  }, [randomNowData?.matchingStatus, navigateOnComplete, hasSeenWaiting, navigate]);
 
   const handleJoinClick = () => {
     setIsModalOpen(true);
@@ -87,6 +105,9 @@ const MeetingRandomMain: React.FC = () => {
     //실시간 상태 구독
     if (ticket !== null && ticket <= 0) {
       alert('티켓 수가 부족합니다');
+      setIsRandomLoading(false);
+      setNavigateOnComplete(false);
+      setHasSeenWaiting(false);
       navigate('/mypage');
       return;
     }
@@ -125,13 +146,7 @@ const MeetingRandomMain: React.FC = () => {
     <>
       <MakeTeamBox 
         isRandomLoading={isRandomLoading} 
-        randomNowData={randomNowData} 
-        navigateOnComplete={navigateOnComplete}
-        hasSeenWaiting={hasSeenWaiting}
-        onCompleteNavigate={() => {
-          setNavigateOnComplete(false);
-          setHasSeenWaiting(false);
-        }}
+        randomNowData={randomNowData}
       />
       <Help isRandomLoading={isRandomLoading} randomNowData={randomNowData} navigateOnComplete={navigateOnComplete} />
       <TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : {ticket}개</TicketCount>
