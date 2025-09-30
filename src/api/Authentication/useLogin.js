@@ -23,7 +23,7 @@ const useLogin = () => {
       console.log('Setting Amplitude userId:', amplitudeUserId);
       amplitude.setUserId(amplitudeUserId);
       
-      navigate('/meeting22');
+      navigate('/');
 
     } catch (error) {
       const errorMessage = error.response?.data?.message || '로그인 실패';

@@ -17,8 +17,8 @@ import AcceptedHiModal from 'components/Chatting/ReceiveHi/Modal/AcceptedHiModal
 import RefuseHiModal from 'components/Chatting/ReceiveHi/Modal/RefuseHiModal/RefuseHiModal';
 import RefusedHiModal from 'components/Chatting/ReceiveHi/Modal/RefusedHiModal/RefusedHiModal';
 import patchrefuseHi from 'api/Hi/PatchrefuseHi';
-import { ourteamIds } from 'recoilStores/state/ourTeamIds';
-import { getacceptHi } from 'api/Chatting/GetacceptHi';
+import { OurTwoToTwoState } from 'recoilStores/state/Meeting/MyProfileState';
+import { postacceptTeamHi } from 'api/Hi/PostacceptTeamHi';
 import { track } from '@amplitude/analytics-browser';
 
 const TeamIntro = () => {
@@ -27,7 +27,7 @@ const TeamIntro = () => {
   const { teamType, from } = location.state || {};
   const [teamDetailData, setTeamDetailData] = useState<TeamData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const ourTeamIdsValue = useRecoilValue(ourteamIds);
+  const ourTeamIdsValue = useRecoilValue(OurTwoToTwoState);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showSend, setShowSend] = useState(false);
   const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
@@ -82,7 +82,7 @@ const TeamIntro = () => {
   const closeSendModal = () => {
     track('[버튼]미팅_이성팀상세보기_하이보내기_확정안내닫기');
     setShowSend(false);
-    navigate('/Meeting22');
+    navigate('/');
   };
 
   //하이모달
@@ -97,20 +97,17 @@ const TeamIntro = () => {
     if (!teamDetailData) return;
 
     try {
-      if (!ourTeamIdsValue) {
+      if (ourTeamIdsValue == null || ourTeamIdsValue === 0) {
         console.error('우리팀이 없습니다.');
         return;
       }
-      const toId =
-        teamDetailData.userList.length === 3
-          ? ourTeamIdsValue[1]
-          : ourTeamIdsValue[0];
+      const toId = ourTeamIdsValue;
       const requestData = {
         toId: toId,
         fromId: teamDetailData.teamId,
       };
 
-      await getacceptHi(requestData);
+      await postacceptTeamHi(requestData);
       setIsAcceptModalOpen(false);
       setIsAcceptedModalOpen(true);
     } catch (error) {
@@ -133,16 +130,12 @@ const TeamIntro = () => {
     if (!teamDetailData) return;
 
     try {
-      if (!ourTeamIdsValue) {
+      if (ourTeamIdsValue == 0) {
         console.error('우리팀이 없습니다.');
         return;
       }
-      const toId =
-        teamDetailData.userList.length === 3
-          ? ourTeamIdsValue[1]
-          : ourTeamIdsValue[0];
       const requestData = {
-        toId: toId,
+        toId: ourTeamIdsValue,
         fromId: teamDetailData.teamId,
       };
 

@@ -9,7 +9,6 @@ import MyPage from './MyPage/MyPage/MyPage';
 import ModifyProfile from './MyPage/ModifyProfile/ModifyProfile';
 import ModifyEmoji from './MyPage/ModifyEmoji/ModifyEmoji';
 import Booth from './Booth/Booth';
-import BoothDetail from './Booth/BoothDetail/BoothDetail';
 import Chatting from './Chatting/Chatting/Chatting';
 import ChattingInventory from './Chatting/ChattingInventory/ChattingInventory';
 import Meeting22 from './Meeting22/Meeting22';
@@ -30,7 +29,7 @@ import SentryTest from './SentryTest/SentryTest';
 const Routers: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<Booth />} />
+      <Route path="/" element={<Meeting22 />} />
       <Route path="/join" element={<Join />} />
       <Route path="/join2" element={<Join2 />} />
       <Route path="/selectemoji" element={<SelectEmoji />} />
@@ -40,7 +39,6 @@ const Routers: React.FC = () => {
       <Route path="/modifyprofile" element={<ModifyProfile />} />
       <Route path="/modifyemoji" element={<ModifyEmoji />} />
       <Route path="/booth" element={<Booth />} />
-      <Route path="/boothDetail/:clubId" element={<BoothDetail />} />
       <Route path="/zimeetIntroduct" element={<ZimeetIntroduct />} />
       <Route path="/gdgocIntroduct" element={<GdgocIntroduct />} />
       <Route path="/chatting/:chatRoomId" element={<Chatting />} />
@@ -48,7 +46,6 @@ const Routers: React.FC = () => {
       <Route path="/chattingInventory" element={<ChattingInventory />} />
       <Route path="/receiveHi" element={<ReceiveHi />} />
       <Route path="/sentHi" element={<SentHi />} />
-      <Route path="/meeting22" element={<Meeting22 />} />
       <Route path="/teamMaking" element={<TeamMaking />} />
       <Route path="/Profile1to1/:userId" element={<Profile1to1 />} />
       <Route path="/nonmember-Meeting" element={<Meeting />} />

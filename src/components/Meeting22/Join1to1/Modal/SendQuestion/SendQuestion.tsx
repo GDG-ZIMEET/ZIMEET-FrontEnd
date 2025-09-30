@@ -38,6 +38,8 @@ const SendQuestion: React.FC<SendQuestionProps> = ({
     fetchHiCount();
     track('[접속]미팅_유저_하이보내기');
   });
+
+  //하이보내기
   const sendHi = async () => {
     try {
       if (myProfile) {

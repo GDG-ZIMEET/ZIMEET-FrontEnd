@@ -1,18 +1,18 @@
 import { privateAxios } from '../axiosConfig';
 
-interface getacceptHiRequest {
+interface postacceptHiRequest {
     toId: number;
-    fromId: number;
+    fromId?: number;
 }
 
-export const getacceptHi = async (data: getacceptHiRequest) => {
+export const postacceptTeamHi = async (data: postacceptHiRequest) => {
     try {
         const response = await privateAxios.post('/chat/rooms/teams', data);
         return response.data;
     } catch (error) {
-        console.error('Error send hi:', error);
+        console.error('Error accept hi:', error);
         throw error;
     }
 };
 
-export default getacceptHi;
+export default postacceptTeamHi;

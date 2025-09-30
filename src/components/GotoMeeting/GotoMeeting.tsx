@@ -7,9 +7,8 @@ const GotoMeeting: React.FC = () => {
   const navigate = useNavigate();
 
   const handleGotoMeetingClick = () => {
-    navigate('/meeting22');
+    navigate('/');
     amplitude.track('[클릭]부스_플로팅버튼');
-    
   };
 
   return (

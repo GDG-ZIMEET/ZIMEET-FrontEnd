@@ -4,7 +4,7 @@ import * as S from './Styles';
 import { getTeamdeleteCount } from '../../../../api/TeamMaking/GetTeamdeleteCount';
 import { deleteTeam } from '../../../../api/Meeting/DeleteTeam';
 import { useResetRecoilState } from 'recoil';
-import { ourteamIds } from 'recoilStores/state/ourTeamIds';
+import { OurTwoToTwoState } from 'recoilStores/state/Meeting/MyProfileState';
 
 interface DeleteModalProps {
   teamType: string;
@@ -14,14 +14,14 @@ interface DeleteModalProps {
 const DeleteModal: React.FC<DeleteModalProps> = ({ teamType, onClose }) => {
   const [teamdeleteCount, setTeamdeleteCount] = useState(0);
   const navigate = useNavigate();
-  const resetTeamIds = useResetRecoilState(ourteamIds);
+  const resetTeamIds = useResetRecoilState(OurTwoToTwoState);
 
-  console.log('teamType', ourteamIds);
+  console.log('teamType', teamType);
   const handleDeleteConfirm = async () => {
     const response = await deleteTeam(teamType);
     if (response) {
       resetTeamIds();
-      navigate('/meeting22');
+      navigate('/');
     } else {
       console.error('팀 삭제 실패');
     }

@@ -40,7 +40,7 @@ const Join3 = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    navigate('/meeting22');
+    navigate('/');
   };
 
   const isFormComplete = 

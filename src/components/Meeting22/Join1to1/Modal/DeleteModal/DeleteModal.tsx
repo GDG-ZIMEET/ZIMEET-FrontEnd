@@ -13,7 +13,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ onClose }) => {
   const handleProfileDown = async () => {
     const response = await patchJoin1to1({ status: 'INACTIVE' });
     if (response) {
-      navigate('/meeting22');
+      navigate('/');
     } else {
       console.error('프로필 내리기 실패');
     }

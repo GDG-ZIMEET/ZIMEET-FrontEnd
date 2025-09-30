@@ -68,7 +68,11 @@ const Teams: React.FC = () => {
       ) : (
         sendHiList?.map((team) => (
           <S.Team
-            key={team.teamId}
+            key={
+              team.userProfileDtos.length === 1
+                ? `user-${team.teamId}`
+                : `team-${team.teamId}`
+            }
             onClick={
               team.userProfileDtos.length === 1
                 ? () => handleOnetoOneClick(team.teamId)

@@ -3,72 +3,69 @@ import SockJS from "sockjs-client";
 import { track } from '@amplitude/analytics-browser';
 
 const baseURL = import.meta.env.VITE_APP_SOCKET_URL;
-const token = localStorage.getItem('accessToken');
-let stompClient: Client | null = null;
-let pendingMessages: { roomId: string; body: object }[] = [];
 
-export const connectWebSocket = ( roomId: string, onMessageReceived: (message: any) => void) => {
-    if (stompClient && stompClient.connected) {
-        console.warn("WebSocket already connected.");
-        return;
+//채팅방 웹 소켓 서비스
+class WebSocketService {
+  private client: Client | null = null;
+
+  async connect(chatRoomId: string, onMessage: (message: any) => void, onError?: (error: any) => void) {
+    const token = localStorage.getItem('accessToken');
+
+    if (this.client) {
+      await this.client.deactivate();
+      this.client = null;
     }
 
     const socket = new SockJS(`${baseURL}/ws`);
-     
-    stompClient = new Client({
-        webSocketFactory: () => socket,
-        reconnectDelay: 5000, 
-        connectHeaders: {
-            Authorization: `Bearer ${token}`
-        },
-        onConnect: () => {
-            console.log("roomId", roomId);
-            track("[접속]웹소켓_채팅", { roomId: roomId });
-            stompClient?.subscribe(`/topic/${roomId}`, (message) => {
-                onMessageReceived(JSON.parse(message.body));
-                track("[수신]웹소켓_채팅", { roomId: roomId });
-            });
-            pendingMessages.forEach(({ roomId, body }) => {
-                stompClient?.publish({
-                destination: `/app/chat/${roomId}`,
-                headers: { Authorization: `Bearer ${token}` },
-                body: JSON.stringify(body),
-                });
-            });
-            pendingMessages = [];
-        },
-        onWebSocketError: (error) => {
-            console.error("WebSocket 오류 발생:", error);
-            track("[오류]웹소켓_채팅", { error: error.message });
-        },
-        onStompError: (frame) => {
-            console.error("STOMP 프로토콜 오류:", frame);
-            track("[오류]웹소켓_채팅", { error: frame.body });
-        }
+    this.client = new Client({
+      webSocketFactory: () => socket,
+      reconnectDelay: 1000,
+      heartbeatIncoming: 10000,
+      heartbeatOutgoing: 10000,
+      connectHeaders: { Authorization: `Bearer ${token}` },
+      
+      onConnect: () => {
+        track("[접속]웹소켓_채팅", { roomId: chatRoomId });
+        this.client?.subscribe(`/topic/${chatRoomId}`, (frame) => {
+          const message = JSON.parse(frame.body);
+          onMessage(message);
+          track("[수신]웹소켓_채팅", { roomId: chatRoomId });
+        });
+      },
+      
+      onStompError: (frame) => {
+        console.error('STOMP ERROR:', frame);
+        track("[오류]웹소켓_채팅", { error: frame.body });
+        if (onError) onError(frame);
+      },
+      onWebSocketError: (event) => {
+        console.error('WEBSOCKET ERROR:', event);
+        track("[오류]웹소켓_채팅", { error: event.message });
+        if (onError) onError(event);
+      },
     });
 
-    stompClient.activate();
-};
-
-export const sendMessage = (roomId: string, message: object )  => {
-    const body = { ...message, sendAt: new Date().toISOString() };
-
-  if (stompClient?.connected) {
-    stompClient.publish({
-      destination: `/app/chat/${roomId}`,
-      headers: { Authorization: `Bearer ${token}` },
-      body: JSON.stringify(body),
-    });
-    track("[전송]웹소켓_채팅", { roomId });
-  } else {
-    // 연결 전이면 큐에 저장
-    pendingMessages.push({ roomId, body });
+    this.client.activate();
   }
-};
 
-export const disconnectWebSocket = () => {
-    if (stompClient) {
-        stompClient.deactivate();
-        stompClient = null;
+  sendMessage(destination: string, body: object) {
+    if (this.client?.connected) {
+      this.client.publish({
+        destination,
+        body: JSON.stringify(body),
+      });
+    } else {
+      console.warn('WebSocket is not connected.');
     }
-};
+  }
+
+  async disconnect() {
+    if (this.client) {
+      await this.client.deactivate();
+      this.client = null;
+    }
+  }
+}
+
+const websocketService = new WebSocketService();
+export default websocketService;

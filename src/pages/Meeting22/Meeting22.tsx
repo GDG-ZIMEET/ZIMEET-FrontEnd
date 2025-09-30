@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useRecoilState } from 'recoil';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import TypeButton from '../../components/Meeting22/TypeButton/TypeButton';
@@ -23,45 +23,19 @@ import { MyProfileType } from 'recoilStores/type/Meeting/MyProfile';
 import UserBox from '../../components/Meeting22/TeamBox/UserBox';
 import { MyProfileState } from '../../recoilStores/state/Meeting/MyProfileState';
 import { OurTwoToTwoState } from '../../recoilStores/state/Meeting/MyProfileState';
-
-type TeamType = 'ONE_TO_ONE' | 'TWO_TO_TWO' | 'Random';
-
-const paramToTeamType = (param?: string | null): TeamType => {
-  if (param === '2to2') return 'TWO_TO_TWO';
-  if (param === 'random') return 'Random';
-  return 'ONE_TO_ONE';
-};
-
-const teamTypeToParam = (type: TeamType) => {
-  if (type === 'TWO_TO_TWO') return '2to2';
-  if (type === 'Random') return 'random';
-  return '1to1';
-};
+import { track } from '@amplitude/analytics-browser';
 
 const Meeting22 = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
   const [teamGalleryData, setTeamGalleryData] = useState<any | null>(null);
   const [UserGalleryData, setUserGalleryData] = useState<any | null>(null);
-  const [teamType, setTeamType] = useState<TeamType>('ONE_TO_ONE');
+  const [teamType, setTeamType] = useState<string>('ONE_TO_ONE');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ourTeamData, setOurTeamData] = useState<OurTeamType | null>(null);
   const [our2teamid, setour2teamid] = useRecoilState<number | 0>(
     OurTwoToTwoState,
   );
-
-  useEffect(() => {
-    const sp = new URLSearchParams(location.search);
-    const fromUrl = paramToTeamType(sp.get('type'));
-    setTeamType(fromUrl);
-  }, [location.search]);
-
-  const applyTeamType = (next: TeamType) => {
-    const sp = new URLSearchParams(location.search);
-    sp.set('type', teamTypeToParam(next));
-    navigate({ search: `?${sp.toString()}` }, { replace: false });
-  };
 
   const [myProfileData, setMyProfileData] =
     useRecoilState<MyProfileType | null>(MyProfileState);
@@ -97,14 +71,16 @@ const Meeting22 = () => {
           setMyProfileData(data?.data ?? null);
         } else if (isLoggedIn && teamType !== 'Random') {
           const response = await getOurTeam(teamType);
-          setOurTeamData(response?.data || null);
-          setour2teamid(response?.data.teamId || 0);
-        } else {
-          if (teamType === 'TWO_TO_TWO') {
+          if (!response?.data) {
             setOurTeamData(null);
-          } else if (teamType === 'ONE_TO_ONE') {
-            setOurTeamData(null);
+            setour2teamid(0);
+            return;
           }
+
+          setOurTeamData(response.data);
+          setour2teamid(response.data.teamId || 0);
+        } else {
+          setOurTeamData(null);
         }
       } catch (error: any) {
         console.error('❌ 우리팀 데이터 가져오기 실패:', error);
@@ -128,10 +104,7 @@ const Meeting22 = () => {
       )}
       <S.Meeting22Layout>
         <S.Meeting22Title>미팅</S.Meeting22Title>
-        <TypeButton 
-          selectedTeamType={teamType}
-          setSelectedTeamType={applyTeamType} 
-        />
+        <TypeButton setSelectedTeamType={setTeamType} />
         <S.Meeting22Container>
           {teamType !== 'Random' ? (
             <>

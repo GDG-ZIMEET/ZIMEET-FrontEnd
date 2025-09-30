@@ -12,27 +12,27 @@ interface ChattingBoxProps {
 const ChattingBox: React.FC<ChattingBoxProps> = ({ messages }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { userId } = useRecoilValue(authState);
-  //스크롤을 최신 메시지로 이동
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
 
   return (
     <S.ChattingBox>
       {messages.map((message, index) => {
+        const key = message.id
+          ? `${message.id}-${index}`
+          : `${message.type}-${message.sendAt}-${index}`;
+
         const isMine = userId === message.senderId;
         const isFirstOfGroup =
           index === 0 || messages[index - 1].senderId !== message.senderId;
 
         if (message.type === 'EXIT') {
           return (
-            <S.ExitMessageContainer key={message.id}>
+            <S.ExitMessageContainer key={key}>
               {message.content}
             </S.ExitMessageContainer>
           );
         }
         return (
-          <S.MessageContainer key={message.id} $isMine={isMine}>
+          <S.MessageContainer key={key} $isMine={isMine}>
             {!isMine && isFirstOfGroup && (
               <S.Avatar>
                 <img src={getImageByEmoji(message.emoji)} alt={message.emoji} />

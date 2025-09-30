@@ -51,10 +51,8 @@ const Profile1to1 = () => {
   const [isAcceptedModalOpen, setIsAcceptedModalOpen] = useState(false);
   const [isRefusedModalOpen, setIsRefusedModalOpen] = useState(false);
   const navigate = useNavigate();
-  const {
-    checkNotificationPermission,
-    requestNotificationPermission
-  } = useFCM();
+  const { checkNotificationPermission, requestNotificationPermission } =
+    useFCM();
 
   const openModal = () => {
     track('[버튼]미팅_이성유저상세보기_하이보내기');
@@ -75,7 +73,7 @@ const Profile1to1 = () => {
   const closeSendModal = () => {
     track('[버튼]미팅_이성유저상세보기_하이보내기_확정안내닫기');
     setShowSend(false);
-    navigate('/Meeting22');
+    navigate('/');
   };
 
   //하이수락모달
@@ -90,6 +88,7 @@ const Profile1to1 = () => {
   //하이수락완료모달
   const openAcceptedModal = async () => {
     if (!userProfile) return;
+    console.log('myprofile', MyProfile);
 
     try {
       if (!MyProfile) {
@@ -112,7 +111,7 @@ const Profile1to1 = () => {
 
   const closeAcceptedModal = () => {
     setIsAcceptedModalOpen(false);
-    navigate('/meeting22');
+    navigate('/chattingInventory');
   };
 
   //refuse모달
@@ -126,7 +125,6 @@ const Profile1to1 = () => {
   //하이거절완료모달
   const openRefusedModal = async () => {
     if (!userProfile) return;
-
     try {
       if (!isMyProfile) {
         console.error('내 정보가 없습니다.');
@@ -275,14 +273,16 @@ const Profile1to1 = () => {
         <p>유저 프로필을 찾을수 없습니다 </p>
       )}
 
-      {isMyProfile &&
+      {isMyProfile && (
         <S.NotificationLayout>
           <S.NotificationButton onClick={handleNotificationPermission}>
             <S.NotificationIcon />
-            <S.NotificationText>눌러서 하이 받을 때, 채팅 올 때 알림 받기</S.NotificationText>
+            <S.NotificationText>
+              눌러서 하이 받을 때, 채팅 올 때 알림 받기
+            </S.NotificationText>
           </S.NotificationButton>
         </S.NotificationLayout>
-      }
+      )}
 
       {!isMyProfile &&
         (userProfile?.hi === true ? (
