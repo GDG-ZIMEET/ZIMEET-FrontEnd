@@ -28,7 +28,7 @@ import Profile1to1 from './Meeting22/Profile1to1/Profile1to1';
 const Routers: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<Booth />} />
+      <Route path="/" element={<Meeting22 />} />
       <Route path="/join" element={<Join />} />
       <Route path="/join2" element={<Join2 />} />
       <Route path="/selectemoji" element={<SelectEmoji />} />
@@ -45,7 +45,6 @@ const Routers: React.FC = () => {
       <Route path="/chattingInventory" element={<ChattingInventory />} />
       <Route path="/receiveHi" element={<ReceiveHi />} />
       <Route path="/sentHi" element={<SentHi />} />
-      <Route path="/meeting22" element={<Meeting22 />} />
       <Route path="/teamMaking" element={<TeamMaking />} />
       <Route path="/Profile1to1/:userId" element={<Profile1to1 />} />
       <Route path="/nonmember-Meeting" element={<Meeting />} />

@@ -1,7 +1,8 @@
 import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { authState } from "recoilStores/state/authState";
 import { privateAxios } from "api/axiosConfig"; 
-import { disconnectWebSocket } from "api/Chatting/WebSocketchat";
+import WebSocketService from "api/Chatting/WebSocketchat";
+import websocketRoomService from "api/Chatting/WebSocketRoomServer";
 
 const useLogout = () => {
   const resetAuthState = useResetRecoilState(authState);
@@ -31,7 +32,8 @@ const useLogout = () => {
       sessionStorage.clear();
 
 
-      await disconnectWebSocket();
+      await WebSocketService.disconnect();
+        await websocketRoomService.disconnect();
 
       window.location.href = "/";
 

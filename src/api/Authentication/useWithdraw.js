@@ -1,7 +1,8 @@
 import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { authState } from "recoilStores/state/authState";
 import { privateAxios } from "api/axiosConfig"; 
-import { disconnectWebSocket } from "api/Chatting/WebSocketchat";
+import WebSocketService from "api/Chatting/WebSocketchat";
+import websocketRoomService from "api/Chatting/WebSocketRoomServer";
 
 const useWithdraw = () => {
   const resetAuthState = useResetRecoilState(authState);
@@ -30,7 +31,8 @@ const useWithdraw = () => {
 
 
       try {
-      await disconnectWebSocket();
+        await WebSocketService.disconnect();
+        await websocketRoomService.disconnect();
     } catch (_err) {
       console.warn('socket disconnect failed, continue anyway');
     }

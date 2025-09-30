@@ -4,81 +4,88 @@ import * as S from './Styles';
 import { getImageByEmoji } from 'utils/IconMapper';
 import { getchattingRoomList } from 'api/Chatting/GetChattingRoomList';
 import { ChattingRoomType } from 'recoilStores/type/Chatting/ChattingRoomListType';
-import {
-  connectWebSocket,
-  disconnectWebSocket,
-} from 'api/Chatting/WebSocketchat';
-import { ourteamIds } from 'recoilStores/state/ourTeamIds';
+import websocketRoomService from 'api/Chatting/WebSocketRoomServer';
+import { OurTwoToTwoState } from 'recoilStores/state/Meeting/MyProfileState';
 import { useRecoilValue } from 'recoil';
 import { track } from '@amplitude/analytics-browser';
+import { on } from 'events';
+
+import { Client } from '@stomp/stompjs';
+import SockJS from 'sockjs-client';
+const baseURL = import.meta.env.VITE_APP_SOCKET_URL;
+const token = localStorage.getItem('accessToken');
+let stompClient: Client | null = null;
+
+function sortRooms(rooms: ChattingRoomType[]) {
+  return rooms.sort(
+    (a, b) =>
+      new Date(b.lastestTime || 0).getTime() -
+      new Date(a.lastestTime || 0).getTime(),
+  );
+}
 
 const Teams: React.FC = () => {
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
-  const [chattingRoomList, setchattingRoomList] = useState<
-    ChattingRoomType[] | null
-  >(null);
+  const [chattingRoomList, setChattingRoomList] = useState<ChattingRoomType[]>(
+    [],
+  );
   const [isLoading, setIsLoading] = useState(true);
-  const isourteam = useRecoilValue(ourteamIds);
+  const isourteam = useRecoilValue(OurTwoToTwoState);
 
+  //api로 최초 채팅방 리스트 불러오기
   useEffect(() => {
     setIsLoading(true);
-    const fetchChattingRoomList = async () => {
-      try {
-        const response = await getchattingRoomList();
-        if (response) {
-          const sortedRooms = response.data.sort(
-            (a, b) =>
-              new Date(b.lastestTime || 0).getTime() -
-              new Date(a.lastestTime || 0).getTime(),
-          );
-          setchattingRoomList(sortedRooms);
+    getchattingRoomList()
+      .then((response) => {
+        if (response && response.data) {
+          setChattingRoomList(sortRooms(response.data));
         } else {
-          setchattingRoomList([]);
+          setChattingRoomList([]);
         }
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error('chatting room 리스트 가져오기 실패:', error);
-        setchattingRoomList([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchChattingRoomList();
-
-    return () => {
-      disconnectWebSocket();
-    };
+        setChattingRoomList([]);
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   //WebSocket 채팅방 목록 업데이트
   useEffect(() => {
-    if (isourteam === null) return;
-    connectWebSocket('all_rooms', (message) => {
-      setchattingRoomList((prevRooms) => {
-        const updatedRooms = (prevRooms || []).map((room) =>
-          room.chatRoomId === message.roomId
-            ? {
-                ...room,
-                latestMessage: message.content,
-                lastestTime: message.sendAt,
-              }
-            : room,
-        );
+    if (chattingRoomList.length === 0) return;
 
-        // 최신 메시지 기준으로 정렬
-        return [...updatedRooms].sort(
-          (a, b) =>
-            new Date(b.lastestTime || 0).getTime() -
-            new Date(a.lastestTime || 0).getTime(),
-        );
-      });
-    });
+    websocketRoomService.connect(
+      chattingRoomList.map((room) => ({
+        ...room,
+        chatRoomId: room.chatRoomId.toString(),
+      })),
+      (msg) => {
+        setChattingRoomList((prevRooms) => {
+          const filtered = prevRooms.filter((r) => r.chatRoomId !== msg.roomId);
+          const updated = [
+            {
+              ...(filtered.find((r) => r.chatRoomId === msg.roomId) || {}),
+              latestMessage: msg.content,
+              lastestTime: msg.sendAt,
+              chatRoomId: msg.roomId,
+              chatRoomName: msg.chatRoomName,
+              userProfiles: msg.userProfiles ?? [],
+            },
+            ...filtered,
+          ];
+          return sortRooms(updated);
+        });
+      },
+      () => {
+        track('[접속]웹소켓_채팅', { roomCount: chattingRoomList.length });
+      },
+    );
 
     return () => {
-      disconnectWebSocket();
+      websocketRoomService.disconnect();
     };
-  }, []);
+  }, [chattingRoomList]);
 
   //팀 클릭시 채팅방으로 이동
   const handleTeamClick = (team: ChattingRoomType) => {

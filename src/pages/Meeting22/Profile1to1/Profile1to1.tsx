@@ -73,7 +73,7 @@ const Profile1to1 = () => {
   const closeSendModal = () => {
     track('[버튼]미팅_이성유저상세보기_하이보내기_확정안내닫기');
     setShowSend(false);
-    navigate('/Meeting22');
+    navigate('/');
   };
 
   //하이수락모달
@@ -111,7 +111,7 @@ const Profile1to1 = () => {
 
   const closeAcceptedModal = () => {
     setIsAcceptedModalOpen(false);
-    navigate('/meeting22');
+    navigate('/chattingInventory');
   };
 
   //refuse모달

@@ -5,7 +5,7 @@ import { getImageByEmoji } from 'utils/IconMapper';
 import { getreceiveHi } from 'api/Hi/GetreceiveHi';
 import { HiType } from 'recoilStores/type/Hi/HiType';
 import { useRecoilValue } from 'recoil';
-import { ourteamIds } from 'recoilStores/state/ourTeamIds';
+import { OurTwoToTwoState } from 'recoilStores/state/Meeting/MyProfileState';
 import { track } from '@amplitude/analytics-browser';
 import { mappingMajor } from 'data/SignUpData';
 
@@ -13,7 +13,7 @@ const Teams: React.FC = () => {
   const navigate = useNavigate();
   const [receiveHiList, setreceiveHiList] = useState<HiType[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const isourteam = useRecoilValue(ourteamIds);
+  const isourteam = useRecoilValue(OurTwoToTwoState);
   const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
 
   useEffect(() => {
@@ -71,7 +71,11 @@ const Teams: React.FC = () => {
       ) : (
         receiveHiList?.map((team) => (
           <S.Team
-            key={team.teamId}
+            key={
+              team.userProfileDtos.length === 1
+                ? `user-${team.teamId}`
+                : `team-${team.teamId}`
+            }
             onClick={
               team.userProfileDtos.length === 1
                 ? () => handleOnetoOneClick(team.teamId)

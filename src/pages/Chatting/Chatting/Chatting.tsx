@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './Styles';
@@ -8,16 +8,18 @@ import ChatInputBox from '../../../components/Chatting/Chat/Input/ChatInputBox';
 import ChatSidebar from '../../../components/Chatting/Chat/Sidebar/ChatSidebar';
 import { getMessages } from '../../../api/Chatting/GetMessage';
 import { getMessageResponseType } from '../../../recoilStores/type/Chatting/MessageType';
-import {
-  connectWebSocket,
-  sendMessage,
-  disconnectWebSocket,
-} from '../../../api/Chatting/WebSocketchat';
-import { v4 as uuidv4 } from 'uuid';
+import websocketService from '../../../api/Chatting/WebSocketchat';
 import { authState } from 'recoilStores/state/authState';
 import { deleteuser } from 'api/Chatting/DeleteUser';
 import ExitModal from 'components/Chatting/ExitModal/ExitModal';
 import { track } from '@amplitude/analytics-browser';
+import { Client } from '@stomp/stompjs';
+import SockJS from 'sockjs-client';
+const baseURL = import.meta.env.VITE_APP_SOCKET_URL;
+const token = localStorage.getItem('accessToken');
+let stompClient: Client | null = null;
+
+const PAGE_SIZE = 20;
 
 const Chatting = () => {
   const location = useLocation();
@@ -28,16 +30,15 @@ const Chatting = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
-  const navigate = useNavigate();
-  //메세지 본 마지막 시간
+
   const [lastMessageTime, setLastMessageTime] = useState<string | undefined>(
     undefined,
   );
 
-  //채팅 무한스크롤
-  const limit = 20;
+  const navigate = useNavigate();
   const [hasMore, setHasMore] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
+  const stompClientRef = useRef<Client | null>(null);
 
   //채팅방 없으면 홈으로
   useEffect(() => {
@@ -47,13 +48,13 @@ const Chatting = () => {
   }, [chatRoom, navigate]);
 
   //기존 메시지 조회
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     if (!chatRoom?.chatRoomId || !hasMore || isLoading) return;
-    setIsLoading(true);
+
     try {
       const response = await getMessages(
         chatRoom.chatRoomId,
-        limit,
+        PAGE_SIZE,
         lastMessageTime,
       );
       if (response && response.length > 0) {
@@ -61,10 +62,9 @@ const Chatting = () => {
         const sorted = response.sort(
           (a, b) => new Date(a.sendAt).getTime() - new Date(b.sendAt).getTime(),
         );
-        // 누적
         setMessages((prev) => [...sorted, ...prev]);
-        // 다음 커서: 가장 오래된 메시지
         setLastMessageTime(sorted[0].sendAt);
+        console.log('불러온 메시지:', sorted);
       } else {
         // 더 이상 불러올 메시지 없음
         setHasMore(false);
@@ -74,7 +74,7 @@ const Chatting = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [chatRoom?.chatRoomId, hasMore]);
 
   // 최초 로드 및 룸 변경 시 초기화 후 fetch
   useEffect(() => {
@@ -82,53 +82,45 @@ const Chatting = () => {
     setLastMessageTime(undefined);
     setHasMore(true);
     fetchMessages();
-  }, [chatRoom?.chatRoomId]);
+  }, [chatRoom?.chatRoomId, fetchMessages]);
 
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const { scrollTop } = e.currentTarget;
-    if (scrollTop < 50 && hasMore && !isLoading) {
-      fetchMessages();
-    }
+  const handleLoadMore = () => {
+    fetchMessages();
   };
 
   //소켓연결
   useEffect(() => {
-    if (!chatRoom || !chatRoom.chatRoomId) return;
+    if (!chatRoom?.chatRoomId) return;
     track('[접속]채팅_실시간채팅', { roomId: chatRoom.chatRoomId, userId });
 
-    connectWebSocket(chatRoom.chatRoomId.toString(), (message) => {
-      setMessages((prev) => [...prev, message]);
-    });
+    websocketService.connect(
+      chatRoom.chatRoomId,
+      (message) => {
+        setMessages((prev) => [...prev, message]);
+      },
+      (error) => {
+        console.error('WebSocket error:', error);
+      },
+    );
 
     return () => {
-      disconnectWebSocket();
-      track('[퇴장]채팅_실시간채팅', { roomId: chatRoom.chatRoomId, userId });
+      websocketService.disconnect();
     };
-  }, [chatRoom]);
+  }, [chatRoom?.chatRoomId]);
 
   //메세지 전송
   const handleSendMessage = () => {
-    if (!input.trim()) return;
-    if (!chatRoom || !chatRoom.chatRoomId) return;
+    if (!input.trim() || !chatRoom?.chatRoomId) return;
 
     const newMessage = {
-      id: uuidv4(),
       type: 'TALK',
-      roomId: chatRoom.chatRoomId.toString(),
-      senderId: userId,
-      senderName: '',
       content: input,
-      sendAt: new Date().toISOString(),
-      emoji: '',
     };
 
-    sendMessage(chatRoom.chatRoomId.toString(), newMessage);
-    track('[전송]채팅_실시간채팅_채팅메시지', {
-      roomId: chatRoom.chatRoomId,
-      userId,
-      content: input,
-    });
-
+    websocketService.sendMessage(
+      `/app/chat/${chatRoom.chatRoomId}`,
+      newMessage,
+    );
     setInput('');
   };
 
@@ -136,17 +128,14 @@ const Chatting = () => {
     if (!chatRoom || !chatRoom.chatRoomId) return;
 
     const exitMessage = {
-      id: uuidv4(),
       type: 'EXIT',
-      roomId: chatRoom.chatRoomId.toString(),
-      senderId: userId,
-      senderName: '',
       content: `${userId}님이 채팅방을 나갔습니다.`,
-      sendAt: new Date().toISOString(),
-      emoji: '',
     };
 
-    sendMessage(chatRoom.chatRoomId.toString(), exitMessage);
+    websocketService.sendMessage(
+      `/app/chat/${chatRoom.chatRoomId}`,
+      exitMessage,
+    );
 
     try {
       await deleteuser(chatRoom.chatRoomId);
@@ -181,6 +170,12 @@ const Chatting = () => {
 
   const handleExitclose = () => {
     setIsExitModalOpen(false);
+  };
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (e.currentTarget.scrollTop === 0 && hasMore && !isLoading) {
+      handleLoadMore();
+    }
   };
 
   return (

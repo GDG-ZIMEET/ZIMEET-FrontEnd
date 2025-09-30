@@ -18,7 +18,7 @@ import RefuseHiModal from 'components/Chatting/ReceiveHi/Modal/RefuseHiModal/Ref
 import RefusedHiModal from 'components/Chatting/ReceiveHi/Modal/RefusedHiModal/RefusedHiModal';
 import patchrefuseHi from 'api/Hi/PatchrefuseHi';
 import { OurTwoToTwoState } from 'recoilStores/state/Meeting/MyProfileState';
-import { getacceptHi } from 'api/Chatting/GetacceptHi';
+import { postacceptTeamHi } from 'api/Hi/PostacceptTeamHi';
 import { track } from '@amplitude/analytics-browser';
 
 const TeamIntro = () => {
@@ -82,7 +82,7 @@ const TeamIntro = () => {
   const closeSendModal = () => {
     track('[버튼]미팅_이성팀상세보기_하이보내기_확정안내닫기');
     setShowSend(false);
-    navigate('/Meeting22');
+    navigate('/');
   };
 
   //하이모달
@@ -107,7 +107,7 @@ const TeamIntro = () => {
         fromId: teamDetailData.teamId,
       };
 
-      await getacceptHi(requestData);
+      await postacceptTeamHi(requestData);
       setIsAcceptModalOpen(false);
       setIsAcceptedModalOpen(true);
     } catch (error) {
@@ -134,11 +134,9 @@ const TeamIntro = () => {
         console.error('우리팀이 없습니다.');
         return;
       }
-      const toId = ourTeamIdsValue;
       const requestData = {
-        toId: toId,
+        toId: ourTeamIdsValue,
         fromId: teamDetailData.teamId,
-        type: 'TEAM',
       };
 
       await patchrefuseHi(requestData);
