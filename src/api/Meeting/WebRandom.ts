@@ -187,6 +187,7 @@ const subscribeToMatching = (groupId: string, setRandomNowData: (data: any) => v
 export const cancelMatching = async () => {
   if (!token) {
     console.warn("cancelMatching: 토큰이 없습니다.");
+    throw new Error("토큰이 없어 취소 요청을 보낼 수 없습니다.");
   }
 
   try {
