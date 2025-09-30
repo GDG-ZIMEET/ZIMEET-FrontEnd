@@ -25,6 +25,7 @@ import Notion from './Notion/NotionMain';
 import UserDetail from './Chatting/UserDetail/ChatUserdetail';
 import SetList from './SetList/SetList';
 import Profile1to1 from './Meeting22/Profile1to1/Profile1to1';
+import SentryTest from './SentryTest/SentryTest';
 
 const Routers: React.FC = () => {
   return (
@@ -63,6 +64,7 @@ const Routers: React.FC = () => {
       <Route path="/notion/meetingGuide" element={<Notion />} />
       <Route path="/notion/randomMeetingGuide" element={<Notion />} />
       <Route path="/notion/developmentTeam" element={<Notion />} />
+      <Route path="/sentryTest" element={<SentryTest />} />
     </Routes>
   );
 };
