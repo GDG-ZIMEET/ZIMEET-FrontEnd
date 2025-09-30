@@ -51,6 +51,7 @@ const MeetingRandomMain: React.FC = () => {
     wasCanceledRef.current = false;
     setIsRandomLoading(true);
     track('[클릭]미팅_랜덤_참여모달_참여');
+    console.log(isRandomLoading, '매칭이 시작되었습니다.');
     //실시간 상태 구독
     if (ticket !== null && ticket <= 0) {
       alert('티켓 수가 부족합니다');
@@ -73,6 +74,7 @@ const MeetingRandomMain: React.FC = () => {
     setIsRandomLoading(false); // 로딩 상태 해제
     setRandomNowData(null);
     track('[클릭]미팅_랜덤_취소');
+    console.log(isRandomLoading, '매칭이 취소되었습니다.');
   };
 
   return (
