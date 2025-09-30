@@ -83,7 +83,7 @@ const ChatUserdetail = () => {
               <S.PremiumText onClick={() => handleClick(2500)}>
                 <b>지밋+등급</b>이 되면 볼 수 있어요.
                 <br />
-                '마이' 탭에서 오직 <b>아우름제에만 2,500원</b>으로!
+                '마이' 탭에서 오직 <b>다맛제에만 2,500원</b>으로!
               </S.PremiumText>
             </S.PremiumOverlay>
           ) : (
@@ -108,7 +108,7 @@ const ChatUserdetail = () => {
               <S.PremiumText onClick={() => handleClick(2500)}>
                 <b>지밋+등급</b>이 되면 볼 수 있어요.
                 <br />
-                '마이' 탭에서 오직 <b>아우름제에만 2,500원</b>으로!
+                '마이' 탭에서 오직 <b>다맛제에만 2,500원</b>으로!
               </S.PremiumText>
             </S.PremiumOverlay>
           ) : (

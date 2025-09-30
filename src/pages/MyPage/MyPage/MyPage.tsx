@@ -196,7 +196,7 @@ const MyPage = () => {
       <Event />
       <S.Text>
         <b>아이템 상점</b> <br />
-        ZI밋 출시 기념! 오직 2025 아우름제에서만 이 가격으로!
+        ZI밋 출시 기념! 오직 2025 다맛제에서만 이 가격으로!
       </S.Text>
       <Item />
       <StoreInfoButton />
