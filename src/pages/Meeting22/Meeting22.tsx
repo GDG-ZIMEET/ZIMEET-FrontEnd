@@ -53,8 +53,6 @@ const Meeting22 = () => {
         } else {
           if (!isLoggedIn && teamType === 'TWO_TO_TWO') {
             setTeamGalleryData(NonLoginDataTwoToTwo);
-          } else if (!isLoggedIn && teamType === 'THREE_TO_THREE') {
-            setTeamGalleryData(NonLoginDataThreeToThree);
           } else if (!isLoggedIn && teamType === 'ONE_TO_ONE') {
             setUserGalleryData(NonLoginDataOneToOne);
           }
@@ -73,16 +71,16 @@ const Meeting22 = () => {
           setMyProfileData(data?.data ?? null);
         } else if (isLoggedIn && teamType !== 'Random') {
           const response = await getOurTeam(teamType);
-          setOurTeamData(response?.data || null);
-          setour2teamid(response?.data.teamId || 0);
-        } else {
-          if (teamType === 'TWO_TO_TWO') {
+          if (!response?.data) {
             setOurTeamData(null);
-          } else if (teamType === 'THREE_TO_THREE') {
-            setOurTeamData(null);
-          } else if (teamType === 'ONE_TO_ONE') {
-            setOurTeamData(null);
+            setour2teamid(0);
+            return;
           }
+
+          setOurTeamData(response.data);
+          setour2teamid(response.data.teamId || 0);
+        } else {
+          setOurTeamData(null);
         }
       } catch (error: any) {
         console.error('❌ 우리팀 데이터 가져오기 실패:', error);

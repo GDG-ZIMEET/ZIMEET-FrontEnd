@@ -46,10 +46,9 @@ const SendQuestion: React.FC<SendQuestionProps> = ({
   const sendHi = async () => {
     try {
       if (OurTwoToTwoid) {
-        const fromId = teamType === 'TWO_TO_TWO' ? OurTwoToTwoid : 0; // threeTothree인 경우 수정
         const sendHiresponse = await postsendHi({
           toId: teamId,
-          fromId: fromId,
+          fromId: OurTwoToTwoid,
           type: 'TEAM',
         });
       } else {

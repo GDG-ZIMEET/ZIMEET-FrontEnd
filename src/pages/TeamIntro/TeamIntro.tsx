@@ -17,7 +17,7 @@ import AcceptedHiModal from 'components/Chatting/ReceiveHi/Modal/AcceptedHiModal
 import RefuseHiModal from 'components/Chatting/ReceiveHi/Modal/RefuseHiModal/RefuseHiModal';
 import RefusedHiModal from 'components/Chatting/ReceiveHi/Modal/RefusedHiModal/RefusedHiModal';
 import patchrefuseHi from 'api/Hi/PatchrefuseHi';
-import { ourteamIds } from 'recoilStores/state/ourTeamIds';
+import { OurTwoToTwoState } from 'recoilStores/state/Meeting/MyProfileState';
 import { getacceptHi } from 'api/Chatting/GetacceptHi';
 import { track } from '@amplitude/analytics-browser';
 
@@ -27,7 +27,7 @@ const TeamIntro = () => {
   const { teamType, from } = location.state || {};
   const [teamDetailData, setTeamDetailData] = useState<TeamData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const ourTeamIdsValue = useRecoilValue(ourteamIds);
+  const ourTeamIdsValue = useRecoilValue(OurTwoToTwoState);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showSend, setShowSend] = useState(false);
   const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
@@ -97,14 +97,11 @@ const TeamIntro = () => {
     if (!teamDetailData) return;
 
     try {
-      if (!ourTeamIdsValue) {
+      if (ourTeamIdsValue == null) {
         console.error('우리팀이 없습니다.');
         return;
       }
-      const toId =
-        teamDetailData.userList.length === 3
-          ? ourTeamIdsValue[1]
-          : ourTeamIdsValue[0];
+      const toId = ourTeamIdsValue;
       const requestData = {
         toId: toId,
         fromId: teamDetailData.teamId,
@@ -133,17 +130,15 @@ const TeamIntro = () => {
     if (!teamDetailData) return;
 
     try {
-      if (!ourTeamIdsValue) {
+      if (ourTeamIdsValue == null) {
         console.error('우리팀이 없습니다.');
         return;
       }
-      const toId =
-        teamDetailData.userList.length === 3
-          ? ourTeamIdsValue[1]
-          : ourTeamIdsValue[0];
+      const toId = ourTeamIdsValue;
       const requestData = {
         toId: toId,
         fromId: teamDetailData.teamId,
+        type: 'TEAM',
       };
 
       await patchrefuseHi(requestData);

@@ -7,6 +7,7 @@ import { HiType } from 'recoilStores/type/Hi/HiType';
 import { useRecoilValue } from 'recoil';
 import { ourteamIds } from 'recoilStores/state/ourTeamIds';
 import { track } from '@amplitude/analytics-browser';
+import { mappingMajor } from 'data/SignUpData';
 
 const Teams: React.FC = () => {
   const navigate = useNavigate();
@@ -100,7 +101,7 @@ const Teams: React.FC = () => {
               <S.Introduction $memberCount={team.userProfileDtos.length}>
                 <S.Major $memberCount={team.userProfileDtos.length}>
                   {team.userProfileDtos
-                    .map((profile) => profile.major)
+                    .map((profile) => mappingMajor(String(profile.major)))
                     .join(' / ')}{' '}
                   | {team.age}세
                 </S.Major>
