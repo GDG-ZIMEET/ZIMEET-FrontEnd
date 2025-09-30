@@ -46,6 +46,7 @@ export const connectWebSocketRandom = async () => {
       fn(arg);
     };
 
+    console.log("SockJS endpoint = ", `${baseURL}/ws`);
     const socket = new SockJS(`${baseURL}/ws`);
 
     if (stompClient) {
