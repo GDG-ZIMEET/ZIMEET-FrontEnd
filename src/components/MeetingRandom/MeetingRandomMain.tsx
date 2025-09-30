@@ -78,7 +78,7 @@ const MeetingRandomMain: React.FC = () => {
     setIsRandomLoading(true);
     setNavigateOnComplete(true);
     track('[클릭]미팅_랜덤_참여모달_참여');
-    console.log(isRandomLoading, '매칭이 시작되었습니다.');
+    console.log('매칭이 시작되었습니다.');
 
     //실시간 상태 구독
     if (ticket !== null && ticket <= 0) {
@@ -106,7 +106,7 @@ const MeetingRandomMain: React.FC = () => {
     } finally {
       setIsRandomLoading(false);
       setRandomNowData(null);
-      console.log(isRandomLoading, '매칭이 취소되었습니다.');
+      console.log('매칭이 취소되었습니다.');
     }
   };
 
