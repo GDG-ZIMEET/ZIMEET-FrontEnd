@@ -48,20 +48,13 @@ const MeetingRandomMain: React.FC = () => {
         }
       } catch (e: any) {
         const code = e?.response?.data?.code || e?.code;
-        if (code === 'MATCHING4002') {
-          // no-op
-        } else {
+        if (code !== 'MATCHING4002') {
           Sentry.captureException(e);
         }
       }
     };
     fetchData();
   }, []);
-    
-  const handleHelpClick = () => {
-    navigate('/notion/termsOfService');
-    track('[클릭]미팅_랜덤_도움말(회원)');
-  };
 
   const handleJoinClick = () => {
     setIsModalOpen(true);
@@ -106,13 +99,19 @@ const MeetingRandomMain: React.FC = () => {
     } finally {
       setIsRandomLoading(false);
       setRandomNowData(null);
+      setNavigateOnComplete(false);
       console.log('매칭이 취소되었습니다.');
     }
   };
 
   return (
     <>
-      <MakeTeamBox isRandomLoading={isRandomLoading} randomNowData={randomNowData} navigateOnComplete={navigateOnComplete}/>
+      <MakeTeamBox 
+        isRandomLoading={isRandomLoading} 
+        randomNowData={randomNowData} 
+        navigateOnComplete={navigateOnComplete}
+        onCompleteNavigate={() => setNavigateOnComplete(false)}
+      />
       <Help isRandomLoading={isRandomLoading} randomNowData={randomNowData} navigateOnComplete={navigateOnComplete} />
       <TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : {ticket}개</TicketCount>
       <JoinRandomMeetingButton isRandomLoading={isRandomLoading} onClick={isRandomLoading ? handleCancel : handleJoinClick}/>
