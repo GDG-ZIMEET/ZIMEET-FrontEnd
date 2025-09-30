@@ -11,7 +11,7 @@ const Event = () => {
             <S.ZimeetLogo />
           </S.EventLogo>
           <S.EventText>
-            <h1>아우름제 EVENT</h1><br/>
+            <h1>다맛제 EVENT</h1><br/>
             지밋 <b>후기</b>쓰고, 다맛제 때 <b>특별혜택</b> 받자!
           </S.EventText>
           <S.MoveBtn />

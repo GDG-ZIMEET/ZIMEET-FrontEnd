@@ -12,8 +12,8 @@ const Help: React.FC<HelpProps> = ({ isRandomLoading, randomNowData, navigateOnC
   return (
     <>
       {randomNowData?.matchingStatus === 'COMPLETE' && !navigateOnComplete && (
-        <div style={{ margin: '5% 0', textAlign: 'center'}}>
-          매칭이 완료됐어요! 채팅 탭에서 대화를 시작해보세요🩶
+        <div style={{ marginTop: '5%', marginBottom: '5%', textAlign: 'center'}}>
+          매칭이 완료됐어요!<br />채팅 탭에서 대화를 시작해보세요🩶
         </div>
       )}
     </>

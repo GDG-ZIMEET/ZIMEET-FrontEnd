@@ -249,7 +249,7 @@ const Profile1to1 = () => {
               <S.PremiumText2>
                 <b>지밋+등급</b>이 되면 볼 수 있어요.
                 <br />
-                <b>2500원</b>으로 <b>아우름제 시즌 내내!</b>
+                <b>2500원</b>으로 <b>다맛제 시즌 내내!</b>
               </S.PremiumText2>
             </S.PremiumOverlay2>
           ) : (
