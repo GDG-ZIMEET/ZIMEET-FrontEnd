@@ -96,13 +96,18 @@ const MeetingRandomMain: React.FC = () => {
       setRandomNowData(null);
     }}
 
-  const handleCancel = () => {
+  const handleCancel = async () => {
     wasCanceledRef.current = true;
-    cancelMatching(); // 서버에 취소 요청
-    setIsRandomLoading(false); // 로딩 상태 해제
-    setRandomNowData(null);
     track('[클릭]미팅_랜덤_취소');
-    console.log(isRandomLoading, '매칭이 취소되었습니다.');
+    try {
+      await cancelMatching();
+    } catch (e) {
+      console.warn('취소 중 에러:', e);
+    } finally {
+      setIsRandomLoading(false);
+      setRandomNowData(null);
+      console.log(isRandomLoading, '매칭이 취소되었습니다.');
+    }
   };
 
   return (
