@@ -1,20 +1,22 @@
 import React from 'react';
 import * as S from './Styles';
-
+import { RandomTeamType } from 'recoilStores/type/Meeting/RandomNowType';
 
 interface HelpProps {
   isRandomLoading: boolean;
-  onClick: () => void;
+  randomNowData: RandomTeamType | null;
+  navigateOnComplete: boolean;
 }
 
-const Help: React.FC<HelpProps> = ({ isRandomLoading, onClick }) => {
+const Help: React.FC<HelpProps> = ({ isRandomLoading, randomNowData, navigateOnComplete }) => {
   return (
-    <S.HelpLayout>
-      {isRandomLoading && <S.HelpContainer onClick={onClick}>
-        <S.HelpIcon />
-        도움말
-        </S.HelpContainer>}
-    </S.HelpLayout> 
+    <>
+      {randomNowData?.matchingStatus === 'COMPLETE' && !navigateOnComplete && (
+        <div style={{ margin: '5% 0', textAlign: 'center'}}>
+          매칭이 완료됐어요! 채팅 탭에서 대화를 시작해보세요🩶
+        </div>
+      )}
+    </>
   );
 };
 

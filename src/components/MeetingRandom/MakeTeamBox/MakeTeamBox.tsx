@@ -8,19 +8,21 @@ import { useNavigate } from 'react-router-dom';
 interface MakeTeamBoxProps {
   isRandomLoading: boolean;
   randomNowData: RandomTeamType | null;
+  navigateOnComplete: boolean; // COMPLETE 시 자동 이동 여부 (초기 렌더링에서는 false로 넘겨 자동 이동 방지)
 }
 
 const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({
   isRandomLoading,
   randomNowData,
+  navigateOnComplete = true,
 }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (randomNowData?.matchingStatus === 'COMPLETE') {
+    if (randomNowData?.matchingStatus === 'COMPLETE' && navigateOnComplete) {
       navigate('/chattingInventory');
     }
-  }, [randomNowData, navigate]);
+  }, [randomNowData, navigateOnComplete, navigate]);
 
   const femaleUsers = randomNowData?.userList.filter(
     (user) => user.gender === 'FEMALE',
