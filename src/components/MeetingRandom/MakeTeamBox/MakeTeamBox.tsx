@@ -20,6 +20,7 @@ const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({
 
   useEffect(() => {
     if (randomNowData?.matchingStatus === 'COMPLETE' && navigateOnComplete) {
+      alert('매칭이 완료됐어요! 채팅 탭에서 대화를 시작해보세요🩶');
       navigate('/chattingInventory');
     }
   }, [randomNowData, navigateOnComplete, navigate]);
