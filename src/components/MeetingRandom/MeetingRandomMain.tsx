@@ -41,6 +41,7 @@ const MeetingRandomMain: React.FC = () => {
           if (nowResponse.data.matchingStatus === 'WAITING') {
             setIsRandomLoading(true);
             wasCanceledRef.current = false;
+            setNavigateOnComplete(true);
           } else if (nowResponse.data.matchingStatus === 'COMPLETE') {
             setNavigateOnComplete(false);
           }
