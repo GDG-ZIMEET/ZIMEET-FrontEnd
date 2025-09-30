@@ -64,7 +64,6 @@ const Chatting = () => {
         );
         setMessages((prev) => [...sorted, ...prev]);
         setLastMessageTime(sorted[0].sendAt);
-        console.log('불러온 메시지:', sorted);
       } else {
         // 더 이상 불러올 메시지 없음
         setHasMore(false);
