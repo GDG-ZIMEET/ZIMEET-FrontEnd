@@ -3,6 +3,7 @@ import SockJS from "sockjs-client";
 import { getRandomNow } from "./GetRandomnow";
 import { track } from '@amplitude/analytics-browser';
 import * as Sentry from '@sentry/react';
+import React from "react";
 
 const baseURL = import.meta.env.VITE_APP_SOCKET_URL;
 const token = localStorage.getItem("accessToken");
@@ -90,7 +91,7 @@ export const connectWebSocketRandom = async () => {
 
 // 참가 요청을 보내는 함수
 const sendMatchingRequest = async (
-  wasCanceledRef: React.MutableRefObject<boolean>
+  wasCanceledRef: React.RefObject<boolean>
 ): Promise<{ groupId: string; userList: any[]; matchingStatus: string } | null> => {
   if (!stompClient || !stompClient.connected) {
     console.error("WebSocket 연결이 없습니다.");
@@ -212,7 +213,7 @@ export const cancelMatching = async () => {
 // 매칭 프로세스 시작 함수
 export const startMatchingProcess = async ( 
   setRandomNowData : (data: any) => void,
-  wasCanceledRef: React.MutableRefObject<boolean>
+  wasCanceledRef: React.RefObject<boolean>
 ) => {
   try {
     await connectWebSocketRandom();

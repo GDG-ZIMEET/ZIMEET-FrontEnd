@@ -10,6 +10,7 @@ const SENTRY_DSN = import.meta.env.VITE_APP_SENTRY_DSN;
 
 Sentry.init({
   dsn: SENTRY_DSN,
+  enableLogs: true,
   sendDefaultPii: false,
   integrations: [
     Sentry.browserTracingIntegration(),
@@ -17,7 +18,7 @@ Sentry.init({
   ],
   // Tracing
   tracesSampleRate: 1.0,
-  tracePropagationTargets: ["localhost"],
+  tracePropagationTargets: ["localhost", /^\/$/],
   // Session Replay
   replaysSessionSampleRate: 1.0,
   replaysOnErrorSampleRate: 1.0
