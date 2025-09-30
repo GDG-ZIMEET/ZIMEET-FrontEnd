@@ -13,11 +13,6 @@ import { authState } from 'recoilStores/state/authState';
 import { deleteuser } from 'api/Chatting/DeleteUser';
 import ExitModal from 'components/Chatting/ExitModal/ExitModal';
 import { track } from '@amplitude/analytics-browser';
-import { Client } from '@stomp/stompjs';
-import SockJS from 'sockjs-client';
-const baseURL = import.meta.env.VITE_APP_SOCKET_URL;
-const token = localStorage.getItem('accessToken');
-let stompClient: Client | null = null;
 
 const PAGE_SIZE = 20;
 
@@ -31,14 +26,14 @@ const Chatting = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
 
+  const [hasMore, setHasMore] = useState(true);
+
   const [lastMessageTime, setLastMessageTime] = useState<string | undefined>(
     undefined,
   );
 
   const navigate = useNavigate();
-  const [hasMore, setHasMore] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
-  const stompClientRef = useRef<Client | null>(null);
 
   //채팅방 없으면 홈으로
   useEffect(() => {
@@ -49,7 +44,8 @@ const Chatting = () => {
 
   //기존 메시지 조회
   const fetchMessages = useCallback(async () => {
-    if (!chatRoom?.chatRoomId || !hasMore || isLoading) return;
+    if (!chatRoom?.chatRoomId || isLoading || !hasMore) return;
+    setIsLoading(true);
 
     try {
       const response = await getMessages(
@@ -57,25 +53,25 @@ const Chatting = () => {
         PAGE_SIZE,
         lastMessageTime,
       );
-      if (response && response.length > 0) {
-        // 오래된 순 정렬
-        const sorted = response.sort(
-          (a, b) => new Date(a.sendAt).getTime() - new Date(b.sendAt).getTime(),
-        );
-        setMessages((prev) => [...sorted, ...prev]);
+      // 오래된 순으로 정렬
+      const sorted = (response || []).sort(
+        (a, b) => new Date(a.sendAt).getTime() - new Date(b.sendAt).getTime(),
+      );
+      setMessages((prev) => [...sorted, ...prev]);
+      if (sorted.length > 0) {
         setLastMessageTime(sorted[0].sendAt);
+        if (sorted.length < PAGE_SIZE) setHasMore(false);
       } else {
-        // 더 이상 불러올 메시지 없음
         setHasMore(false);
       }
     } catch (error) {
-      console.error('메시지 불러오기 실패:', error);
+      console.error('메시지 불러오기 오류:', error);
     } finally {
       setIsLoading(false);
     }
-  }, [chatRoom?.chatRoomId, hasMore]);
+  }, [chatRoom?.chatRoomId, isLoading, lastMessageTime, hasMore]);
 
-  // 최초 로드 및 룸 변경 시 초기화 후 fetch
+  // 최초 입장/방 이동시 초기화
   useEffect(() => {
     setMessages([]);
     setLastMessageTime(undefined);
@@ -83,112 +79,90 @@ const Chatting = () => {
     fetchMessages();
   }, [chatRoom?.chatRoomId]);
 
-  const handleLoadMore = () => {
-    fetchMessages();
+  // 무한 스크롤
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (e.currentTarget.scrollTop === 0 && !isLoading && hasMore) {
+      fetchMessages();
+    }
   };
 
-  //소켓연결
+  // WebSocket 연결/구독
   useEffect(() => {
     if (!chatRoom?.chatRoomId) return;
     track('[접속]채팅_실시간채팅', { roomId: chatRoom.chatRoomId, userId });
-
     websocketService.connect(
       chatRoom.chatRoomId,
-      (message) => {
-        setMessages((prev) => [...prev, message]);
-      },
-      (error) => {
-        console.error('WebSocket error:', error);
-      },
+      (message) => setMessages((prev) => [...prev, message]),
+      (error) => console.error('WebSocket error:', error),
     );
-
     return () => {
       websocketService.disconnect();
     };
   }, [chatRoom?.chatRoomId]);
 
-  //메세지 전송
+  // 메시지 보내기
   const handleSendMessage = () => {
     if (!input.trim() || !chatRoom?.chatRoomId) return;
-
     const newMessage = {
       type: 'TALK',
       content: input,
     };
-
     websocketService.sendMessage(
       `/app/chat/${chatRoom.chatRoomId}`,
       newMessage,
     );
     setInput('');
+    setTimeout(() => {
+      if (containerRef.current) {
+        containerRef.current.scrollTop = containerRef.current.scrollHeight;
+      }
+    }, 50);
   };
 
+  // 유저 나가기
   const handleUserExit = async () => {
     if (!chatRoom || !chatRoom.chatRoomId) return;
-
     const exitMessage = {
       type: 'EXIT',
       content: `${userId}님이 채팅방을 나갔습니다.`,
     };
-
     websocketService.sendMessage(
       `/app/chat/${chatRoom.chatRoomId}`,
       exitMessage,
     );
-
     try {
       await deleteuser(chatRoom.chatRoomId);
     } catch (error) {
       console.error('유저 삭제 실패:', error);
     }
-
     navigate('/chattingInventory');
   };
 
-  const handleBackClick = () => {
-    navigate(-1);
-  };
-
-  const SidebarOpen = () => {
-    setIsSidebarOpen(true);
-  };
-
-  const SidebarClose = () => {
-    setIsSidebarOpen(false);
-  };
-
+  const handleBackClick = () => navigate(-1);
+  const SidebarOpen = () => setIsSidebarOpen(true);
+  const SidebarClose = () => setIsSidebarOpen(false);
   const handleExitClick = () => {
     setIsSidebarOpen(false);
     setIsExitModalOpen(true);
   };
-
   const handleExitConfirm = () => {
     setIsExitModalOpen(false);
     handleUserExit();
   };
-
-  const handleExitclose = () => {
-    setIsExitModalOpen(false);
-  };
-
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    if (e.currentTarget.scrollTop === 0 && hasMore && !isLoading) {
-      handleLoadMore();
-    }
-  };
+  const handleExitclose = () => setIsExitModalOpen(false);
 
   return (
-    <S.ChattingContainer ref={containerRef} onScroll={handleScroll}>
+    <S.ChattingContainer ref={containerRef}>
       <ChatHeader
         onBackClick={handleBackClick}
         chatRoomName={chatRoom.chatRoomName}
         onHamburgerClick={SidebarOpen}
       />
-      {isLoading ? (
+      {isLoading && messages.length === 0 ? (
         <S.LoadingContainer />
       ) : (
         <>
-          <ChattingBox messages={messages} />
+          <ChattingBox messages={messages} onScroll={handleScroll} />
           <ChatInputBox
             input={input}
             setInput={setInput}
