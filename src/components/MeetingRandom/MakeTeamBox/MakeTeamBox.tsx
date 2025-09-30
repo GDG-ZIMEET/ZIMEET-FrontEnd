@@ -43,7 +43,7 @@ const MakeTeamBox: React.FC<MakeTeamBoxProps> = ({
       <S.explainComponent>
         <S.line1 $isRandomLoading={isRandomLoading}>
           {isRandomLoading
-            ? '📌미팅참여하기 후 10초안에 이모지가 뜨지 않으면 \n새로고침 또는 어플을 다시 시작해주세요!'
+            ? '📌 미팅 참여하기 후 10초 안에 이모지가 뜨지 않으면 \n새로고침 또는 어플을 다시 시작해주세요!'
             : '친구도 얻고, 연인도 얻고!'}
         </S.line1>
         <S.Line2 $isRandomLoading={isRandomLoading}>
