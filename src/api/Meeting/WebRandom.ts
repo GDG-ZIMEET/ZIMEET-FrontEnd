@@ -185,13 +185,21 @@ const subscribeToMatching = (groupId: string, setRandomNowData: (data: any) => v
 
 // 매칭 취소 함수 (기존 구독도 해제)
 export const cancelMatching = async () => {
-  if (!stompClient) {
-    console.warn("WebSocket이 연결되지 않았습니다.");
-    return;
+  if (!token) {
+    console.warn("cancelMatching: 토큰이 없습니다.");
   }
 
   try {
-    if (stompClient.connected && token) {
+    if (!stompClient || !stompClient.connected) {
+      try {
+        await connectWebSocketRandom();
+      } catch (e) {
+        console.warn("cancelMatching: 재연결 실패로 취소 불가", e);
+      }
+    }
+    
+    if (stompClient && stompClient.connected) {
+      console.log("SockJS cancel -> /app/matching/cancel");
       stompClient.publish({
         destination: "/app/matching/cancel",
         headers: { Authorization: `Bearer ${token}` },
@@ -215,7 +223,7 @@ export const cancelMatching = async () => {
 
   // 클라이언트 비활성화
   try {
-    await stompClient.deactivate();
+    await stompClient?.deactivate();
   } catch (error) {
     console.warn("클라이언트 비활성화 오류:", error);
   } finally {
