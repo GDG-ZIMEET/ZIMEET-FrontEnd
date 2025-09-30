@@ -18,6 +18,7 @@ const MeetingRandomMain: React.FC = () => {
   const [ticket, setTicket] = useState<number | null>(null);
   const [randomNowData, setRandomNowData] = useState<RandomTeamType | null>(null);
   const [navigateOnComplete, setNavigateOnComplete] = useState<boolean>(false);
+  const [hasSeenWaiting, setHasSeenWaiting] = useState(false);
 
   const navigate = useNavigate();
   const wasCanceledRef = useRef(false);
@@ -42,8 +43,10 @@ const MeetingRandomMain: React.FC = () => {
             setIsRandomLoading(true);
             wasCanceledRef.current = false;
             setNavigateOnComplete(true);
+            setHasSeenWaiting(true);
           } else if (nowResponse.data.matchingStatus === 'COMPLETE') {
             setNavigateOnComplete(false);
+            setHasSeenWaiting(false);
           }
         }
       } catch (e: any) {
@@ -55,6 +58,12 @@ const MeetingRandomMain: React.FC = () => {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (randomNowData?.matchingStatus === 'WAITING') {
+      setHasSeenWaiting(true);
+    }
+  }, [randomNowData?.matchingStatus]);
 
   const handleJoinClick = () => {
     setIsModalOpen(true);
@@ -70,6 +79,8 @@ const MeetingRandomMain: React.FC = () => {
     wasCanceledRef.current = false;
     setIsRandomLoading(true);
     setNavigateOnComplete(true);
+    setHasSeenWaiting(false);
+
     track('[클릭]미팅_랜덤_참여모달_참여');
     console.log('매칭이 시작되었습니다.');
 
@@ -77,7 +88,9 @@ const MeetingRandomMain: React.FC = () => {
     if (ticket !== null && ticket <= 0) {
       alert('티켓 수가 부족합니다');
       navigate('/mypage');
+      return;
     }
+
     try {
       await startMatchingProcess(setRandomNowData, wasCanceledRef);
     } catch (error) {
@@ -87,7 +100,10 @@ const MeetingRandomMain: React.FC = () => {
       }
       setIsRandomLoading(false);
       setRandomNowData(null);
-    }}
+      setNavigateOnComplete(false);
+      setHasSeenWaiting(false);
+    }
+  };
 
   const handleCancel = async () => {
     wasCanceledRef.current = true;
@@ -100,6 +116,7 @@ const MeetingRandomMain: React.FC = () => {
       setIsRandomLoading(false);
       setRandomNowData(null);
       setNavigateOnComplete(false);
+      setHasSeenWaiting(false);
       console.log('매칭이 취소되었습니다.');
     }
   };
@@ -110,7 +127,11 @@ const MeetingRandomMain: React.FC = () => {
         isRandomLoading={isRandomLoading} 
         randomNowData={randomNowData} 
         navigateOnComplete={navigateOnComplete}
-        onCompleteNavigate={() => setNavigateOnComplete(false)}
+        hasSeenWaiting={hasSeenWaiting}
+        onCompleteNavigate={() => {
+          setNavigateOnComplete(false);
+          setHasSeenWaiting(false);
+        }}
       />
       <Help isRandomLoading={isRandomLoading} randomNowData={randomNowData} navigateOnComplete={navigateOnComplete} />
       <TicketCount $isRandomLoading={isRandomLoading}>남은 티켓 : {ticket}개</TicketCount>
