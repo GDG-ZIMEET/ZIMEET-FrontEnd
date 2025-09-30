@@ -33,6 +33,19 @@ export const connectWebSocketRandom = async () => {
   isConnecting = true;
 
   return new Promise<void>((resolve, reject) => {
+    let settled = false;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    const settle = (fn: (v?: any) => void, arg?: any) => {
+      if (settled) return;
+      settled = true;
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
+      isConnecting = false;
+      fn(arg);
+    };
+
     const socket = new SockJS(`${baseURL}/ws`);
 
     if (stompClient) {
@@ -51,20 +64,20 @@ export const connectWebSocketRandom = async () => {
       },
       onConnect: async () => {
         console.log("WebSocket 연결 성공");
-        isConnecting = false;
-        resolve();
+        settle(resolve);
       },
       onWebSocketError: (error) => {
         console.error("WebSocket 오류 발생:", error);
-        isConnecting = false;
         Sentry.captureException(error);
-        reject(error);
+        void stompClient?.deactivate?.();
+        settle(reject, error);
       },
       onStompError: (frame) => {
+        const err = new Error(`STOMP 오류: ${frame.body}`);
         console.error("STOMP 프로토콜 오류:", frame);
-        isConnecting = false;
-        Sentry.captureException(frame);
-        reject(new Error(`STOMP 오류: ${frame.body}`));
+        Sentry.captureException(err);
+        void stompClient?.deactivate?.();
+        settle(reject, err);
       },
       onDisconnect: () => {
         console.log("WebSocket 연결 해제");
@@ -76,15 +89,15 @@ export const connectWebSocketRandom = async () => {
       stompClient.activate();
       
       // 타임아웃 추가 (10초)
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         if (isConnecting) {
-          isConnecting = false;
-          reject(new Error("연결 시간 초과"));
+          console.warn("WebSocket 연결 시간 초과");
+          void stompClient?.deactivate?.();
+          settle(reject, new Error("연결 시간 초과"));
         }
       }, 10000);
     } catch (error) {
-      isConnecting = false;
-      reject(error);
+      settle(reject, error);
     }
   });
 };
