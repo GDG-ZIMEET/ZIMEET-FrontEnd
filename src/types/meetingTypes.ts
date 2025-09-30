@@ -1,0 +1,1 @@
+export type MeetingMode = 'ONE_TO_ONE' | 'TWO_TO_TWO' | 'Random';
