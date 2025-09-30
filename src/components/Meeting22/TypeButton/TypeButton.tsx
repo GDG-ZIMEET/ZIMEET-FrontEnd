@@ -2,12 +2,11 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as S from './Styles';
 import { track } from '@amplitude/analytics-browser';
-
-type TeamType = 'ONE_TO_ONE' | 'TWO_TO_TWO' | 'Random';
+import { MeetingMode } from 'types/meetingTypes';
 
 interface TypeButtonProps {
-  selectedTeamType: TeamType;
-  setSelectedTeamType: (teamType: TeamType) => void;
+  selectedTeamType: MeetingMode;
+  setSelectedTeamType: (teamType: MeetingMode) => void;
 }
 
 const TypeButton: React.FC<TypeButtonProps> = ({ selectedTeamType, setSelectedTeamType }) => {
@@ -25,7 +24,7 @@ const TypeButton: React.FC<TypeButtonProps> = ({ selectedTeamType, setSelectedTe
     else track('[접속]미팅_1대1');
   }, [selectedTeamType]);
 
-  const handleTypeChange = (next: TeamType, clickTag: string, visitTag: string) => {
+  const handleTypeChange = (next: MeetingMode, clickTag: string, visitTag: string) => {
     setSelectedTeamType(next);
     track(clickTag);
     track(visitTag);

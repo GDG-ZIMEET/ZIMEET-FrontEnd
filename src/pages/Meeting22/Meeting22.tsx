@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import NavigationBar from 'components/Common/NavigationBar/NavigationBar';
 import TypeButton from '../../components/Meeting22/TypeButton/TypeButton';
@@ -11,7 +11,6 @@ import { getTeamGallery } from 'api/Meeting/GetTeamGallery';
 import { getOurTeam } from '../../api/Meeting/GetourTeam';
 import {
   NonLoginDataTwoToTwo,
-  NonLoginDataThreeToThree,
   NonLoginDataOneToOne,
 } from '../../data/NonLoginData';
 import { OurTeamType } from '../../recoilStores/type/Meeting/ourTeamType';
@@ -23,19 +22,43 @@ import { MyProfileType } from 'recoilStores/type/Meeting/MyProfile';
 import UserBox from '../../components/Meeting22/TeamBox/UserBox';
 import { MyProfileState } from '../../recoilStores/state/Meeting/MyProfileState';
 import { OurTwoToTwoState } from '../../recoilStores/state/Meeting/MyProfileState';
-import { track } from '@amplitude/analytics-browser';
+import { MeetingMode } from 'types/meetingTypes';
+
+const paramToTeamType = (param?: string | null): MeetingMode => {
+  if (param === '2to2') return 'TWO_TO_TWO';
+  if (param === 'random') return 'Random';
+  return 'ONE_TO_ONE';
+};
+
+const teamTypeToParam = (type: MeetingMode) => {
+  if (type === 'TWO_TO_TWO') return '2to2';
+  if (type === 'Random') return 'random';
+  return '1to1';
+};
 
 const Meeting22 = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const isLoggedIn = localStorage.getItem('accessToken') ? true : false;
   const [teamGalleryData, setTeamGalleryData] = useState<any | null>(null);
   const [UserGalleryData, setUserGalleryData] = useState<any | null>(null);
-  const [teamType, setTeamType] = useState<string>('ONE_TO_ONE');
+  const [teamType, setTeamType] = useState<MeetingMode>('ONE_TO_ONE');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ourTeamData, setOurTeamData] = useState<OurTeamType | null>(null);
   const [our2teamid, setour2teamid] = useRecoilState<number | 0>(
     OurTwoToTwoState,
   );
+
+   useEffect(() => {
+    const fromUrl = paramToTeamType(new URLSearchParams(location.search).get('type'));
+    setTeamType(fromUrl);
+  }, [location.search]);
+
+  const applyTeamType = (next: MeetingMode) => {
+    const sp = new URLSearchParams(location.search);
+    sp.set('type', teamTypeToParam(next));
+    navigate({ search: `?${sp.toString()}` }, { replace: false });
+  };
 
   const [myProfileData, setMyProfileData] =
     useRecoilState<MyProfileType | null>(MyProfileState);
@@ -104,7 +127,10 @@ const Meeting22 = () => {
       )}
       <S.Meeting22Layout>
         <S.Meeting22Title>미팅</S.Meeting22Title>
-        <TypeButton setSelectedTeamType={setTeamType} />
+        <TypeButton 
+          selectedTeamType={teamType}
+          setSelectedTeamType={applyTeamType} 
+        />
         <S.Meeting22Container>
           {teamType !== 'Random' ? (
             <>
