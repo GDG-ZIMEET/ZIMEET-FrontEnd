@@ -7,14 +7,21 @@ import { getImageByEmoji } from 'utils/IconMapper';
 
 interface ChattingBoxProps {
   messages: getMessageResponseType[];
+  onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
 }
 
-const ChattingBox: React.FC<ChattingBoxProps> = ({ messages }) => {
+const ChattingBox: React.FC<ChattingBoxProps> = ({ messages, onScroll }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { userId } = useRecoilValue(authState);
 
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
+
   return (
-    <S.ChattingBox>
+    <S.ChattingBox onScroll={onScroll}>
       {messages.map((message, index) => {
         const key = message.id
           ? `${message.id}-${index}`
