@@ -1,5 +1,4 @@
 import * as S from './Styles';
-import { useRecoilValue } from 'recoil';
 import Event from 'components/MyPage/Event/Event';
 import ItemShop from 'components/MyPage/ItemShop/Main/ItemShop';
 import QnA from 'components/MyPage/QnA/QnA';
@@ -9,10 +8,8 @@ import { useEffect, useState } from 'react';
 import { getmyProfile } from 'api/Mypage/GetmyProfile';
 import { useNavigate } from 'react-router-dom';
 import { getImageByEmoji } from 'utils/IconMapper';
-import { authState } from '../../../recoilStores/state/authState';
 import ModalWithdraw from 'components/MyPage/ModalWithdraw/ModalWithdraw';
 import ModalLogout from 'components/MyPage/ModalLogout/ModalLogout';
-import useLoginCheck from 'api/Authentication/useLoginCheck';
 import { track } from '@amplitude/analytics-browser';
 import { MyProfileResponseType } from 'recoilStores/type/MyPage/MyProfileType';
 import StoreInfoButton from 'components/MyPage/StoreInfoButton/StoreInfoButton';
@@ -177,7 +174,7 @@ const MyPage = () => {
                   <S.Hiblack />
                 </S.MeetingEmojiWrap>
                 <S.MyMeetingText>
-                  {isTeam === false ? '팀없음' : `${OnetoOneHi}개`}
+                  {isTeam === false ? '팀없음' : `${TeamHi?.data.hi}개`}
                 </S.MyMeetingText>
               </S.MyMeeting>
               <S.MyMeeting>
